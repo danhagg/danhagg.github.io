@@ -34,16 +34,14 @@
 <p>In <a href="/category/oscp.html">OSCP</a>.</p>
 <p>tags: <a href="/tag/penetration-testing.html">Penetration Testing</a> <a href="/tag/privilege-escalation.html">Privilege Escalation</a> </p>
 </footer><!-- /.post-info --><div class="highlight"><pre><span></span><code><span class="n">privesc_linux</span>
-<span class="n">UPGRADE</span> <span class="n">SHELL</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="err">‘</span><span class="kn">import</span> <span class="nn">pty</span><span class="p">;</span> <span class="n">pty</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="s2">&quot;bin/bash&quot;</span><span class="p">)</span><span class="err">’</span>
+<span class="n">UPGRADE</span> <span class="n">SHELL</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import pty; pty.spawn(&quot;bin/bash&quot;)&#39;</span>
 <span class="n">ctrl</span><span class="o">-</span><span class="n">Z</span>
 <span class="n">stty</span> <span class="n">raw</span> <span class="o">-</span><span class="n">echo</span>
 <span class="n">fg</span>
 </code></pre></div>
 
 <p>Enumerate and run this:</p>
-<div class="highlight"><pre><span></span><code><span class="err">which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2&gt;/dev/null</span>
-</code></pre></div>
-
+<p><code>which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2&gt;/dev/null</code></p>
 <p>If you don’t see a compiler such as GCC, you know it’s probably not going to be a kernel exploit. So enumerate and use
 LinEnum.sh or Linuxprivescchecker.py. I found on one of my 20 point boxes it only perl and wget, so I was looking for priv esc
 related to perl. The other 20 pointer had GCC, so I googled a linux exploit, 2 minutes later I am root.

@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Daniel Haggerty's Blog - OSCP</title><link href="/" rel="alternate"></link><link href="/feeds/oscp.atom.xml" rel="self"></link><id>/</id><updated>2019-11-01T00:00:00-05:00</updated><entry><title>"Linux Privilege Escalation"</title><link href="/linux-privilege-escalation.html" rel="alternate"></link><published>2019-11-01T00:00:00-05:00</published><updated>2019-11-01T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-11-01:/linux-privilege-escalation.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;privesc_linux&lt;/span&gt;
-&lt;span class="n"&gt;UPGRADE&lt;/span&gt; &lt;span class="n"&gt;SHELL&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pty&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;pty&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;spawn&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;bin/bash&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;
+&lt;span class="n"&gt;UPGRADE&lt;/span&gt; &lt;span class="n"&gt;SHELL&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;import pty; pty.spawn(&amp;quot;bin/bash&amp;quot;)&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;ctrl&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Z&lt;/span&gt;
 &lt;span class="n"&gt;stty&lt;/span&gt; &lt;span class="n"&gt;raw&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt;
 &lt;span class="n"&gt;fg&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Enumerate and run this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2&amp;gt;/dev/null&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt;&lt;code&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2&amp;gt;/dev/null&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;If you don’t see a compiler such as GCC …&lt;/p&gt;</summary><content type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;privesc_linux&lt;/span&gt;
-&lt;span class="n"&gt;UPGRADE&lt;/span&gt; &lt;span class="n"&gt;SHELL&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pty&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;pty&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;spawn&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;bin/bash&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;
+&lt;span class="n"&gt;UPGRADE&lt;/span&gt; &lt;span class="n"&gt;SHELL&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;import pty; pty.spawn(&amp;quot;bin/bash&amp;quot;)&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;ctrl&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Z&lt;/span&gt;
 &lt;span class="n"&gt;stty&lt;/span&gt; &lt;span class="n"&gt;raw&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt;
 &lt;span class="n"&gt;fg&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Enumerate and run this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2&amp;gt;/dev/null&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt;&lt;code&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2&amp;gt;/dev/null&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;If you don’t see a compiler such as GCC, you know it’s probably not going to be a kernel exploit. So enumerate and use
 LinEnum.sh or Linuxprivescchecker.py. I found on one of my 20 point boxes it only perl and wget, so I was looking for priv esc
 related to perl. The other 20 pointer had GCC, so I googled a linux exploit, 2 minutes later I am root.
