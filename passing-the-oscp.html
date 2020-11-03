@@ -7,22 +7,24 @@
         <link rel="stylesheet" href="/theme/css/main.css" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Daniel Haggerty's Blog Atom Feed" />
         <link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Daniel Haggerty's Blog RSS Feed" />
-        <meta name="description" content="Cyber Security tags: Penetration Testing OSCP The definition of insanity is doing the same thing over and over again, but expecting different..." />
+        <meta name="description" content="The definition of insanity is doing the same thing over and over again, but expecting different results. Albert Einstein If, like me, you have no..." />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
                 <h1><a href="/">Daniel Haggerty's Blog</a></h1>
                 <nav><ul>
-                    <li class="active"><a href="/category/misc.html">misc</a></li>
-                    <li><a href="/category/oscp.html">OSCP</a></li>
+                    <li><a href="/category/dfir.html">DFIR</a></li>
+                    <li><a href="/category/docker.html">Docker</a></li>
+                    <li><a href="/category/network.html">Network+</a></li>
+                    <li class="active"><a href="/category/oscp.html">OSCP</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
   <article>
     <header>
       <h1 class="entry-title">
-        <a href="/passing-the-oscp-exam-trying-smarter.html" rel="bookmark"
+        <a href="/passing-the-oscp.html" rel="bookmark"
            title="Permalink to "Passing the OSCP Exam: Trying Smarter"">"Passing the OSCP Exam: Trying Smarter"</a></h1>
     </header>
 
@@ -33,18 +35,11 @@
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel.html">Daniel</a>
+                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
         </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info -->      <ul>
-<li>Cyber Security
-tags:</li>
-<li>Penetration Testing</li>
-<li>OSCP</li>
-</ul>
-<hr>
-<blockquote>
+<p>In <a href="/category/oscp.html">OSCP</a>.</p>
+<p>tags: <a href="/tag/penetration-testing.html">Penetration Testing</a> </p>
+</footer><!-- /.post-info -->      <blockquote>
 <p>The definition of insanity is doing the same thing over and over again, but expecting different results.</p>
 <p><cite>Albert Einstein</cite></p>
 </blockquote>
@@ -57,7 +52,7 @@ When you buy the PWK course you get a pdf and some video content and access to t
 You can just watch the Ippsec HackTheBox videos on Youtube without getting a HackTheBox account. But for the cheapness of a paid account I'd just pull your wallet out, spend the money, and actually hack the boxes yourself (using a Kali VM which you can download from Offensive Security). In addition, you need to make notes on your work. Extensive, searchable notes that you can jump into during the exam as reference material. Furthermore, your note taking process in HackTheBox, and doing the PWK labs, will be the same process you use during the Exam itself as you may jump around from machine to machine and you need to know what you've already done (what scans/vulnerabilities you've already found). 
 A Note on note-taking.
 CherryTree is preinstalled in the Kali VM from Offensive Security. Its simple and you'll pick it up in no time. It's also searchable which is ideal. Here is an snapshot of my CherryTree notes from my HackTheBox work.</p>
-<p><img alt="image" src="/assets/images/htb.png" title="Some of the nodes from my HackTheBox activity"></p>
+<p><img alt="image" src="/images/htb.png" title="Some of the nodes from my HackTheBox activity"></p>
 <p>Yes, thats also a <code>PWK</code> node at the top for the machines I'd worked on during PWK lab time. Each node in the HTB node is a machine that I walked through with Ippsec's guidance.</p>
 <p>Finally, it must be noted, we're not just trying to rack up the numbers on how many boxes we rooted. Ippsec's videos are 20-80 minutes on average. In an 8 hour day you can blow though 10-20 of these boxes taking the easiest path and stopping halfway through the video once the box is rooted. And yay, you'll have 10-20 roots in a day. But,sometimes each box has several paths to root and those other paths are described later in the video. You don't know which path will come up in your exam. The first, the second, the third, so watch the whole video. Root the machine using all ways described in the video. What we are trying to do is broaden and deepen our knowledge not just 'get root'.</p>
 <p>In summary, the OSCP exam doesn't care if you rooted 100 boxes in HackTheBox if you didn't retain any knowledge from it. </p>
@@ -81,7 +76,7 @@ You CherryTree notes should have:
 1. HackTheBox node stuffed with walkthrough notes on each machine. 
 2. A PWK node with similar. The PWK node should have extensive notes on Buffer Overflow.
 3. Brief summary on each tool or technology you expect to see. Especially with ready-made commands for tools like nmap, dirbuster, gobuster.</p>
-<p><img alt="image" src="/assets/images/cherry_summary.png" title="OSCP exam notes"></p>
+<p><img alt="image" src="/images/cherry_summary.png" title="OSCP exam notes"></p>
 <p>If you fail (likely). You will have gained knowledge on:
 1. Oh yeah, the buffer overflow machine is in the exam, it is easy, and its 25 points in the bag in under an hour.
 2. Learn the point-values on offer for the other machines.
@@ -112,8 +107,7 @@ The attitude was so different for each exam. For the first two attempts I was ex
                         <ul>
                             <li><a href="https://getpelican.com/">Pelican</a></li>
                             <li><a href="https://www.python.org/">Python.org</a></li>
-                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
+                            <li><a href="https://www.docker.com/">Docker</a></li>
                         </ul>
                 </div><!-- /.blogroll -->
                 <div class="social">
@@ -122,7 +116,6 @@ The attitude was so different for each exam. For the first two attempts I was ex
                             <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
                             <li><a href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
 
-                            <li><a href="#">You can add links in your config file</a></li>
                             <li><a href="#">Another social link</a></li>
                         </ul>
                 </div><!-- /.social -->

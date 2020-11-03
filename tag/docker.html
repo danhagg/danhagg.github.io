@@ -3,7 +3,7 @@
 <head>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
-        <title>Daniel Haggerty's Blog - misc</title>
+        <title>Daniel Haggerty's Blog - Docker</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Daniel Haggerty's Blog Atom Feed" />
         <link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Daniel Haggerty's Blog RSS Feed" />
@@ -13,7 +13,9 @@
         <header id="banner" class="body">
                 <h1><a href="/">Daniel Haggerty's Blog</a></h1>
                 <nav><ul>
-                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                    <li><a href="/category/dfir.html">DFIR</a></li>
+                    <li><a href="/category/docker.html">Docker</a></li>
+                    <li><a href="/category/network.html">Network+</a></li>
                     <li><a href="/category/oscp.html">OSCP</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
@@ -27,18 +29,11 @@
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel.html">Daniel</a>
+                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
         </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info --><ul>
-<li>Dev Ops
-tags:</li>
-<li>Docker</li>
-<li>Kubernetes</li>
-</ul>
-<hr>
-<h3>Docker</h3>
+<p>In <a href="/category/docker.html">Docker</a>.</p>
+<p>tags: <a href="/tag/docker.html">Docker</a> </p>
+</footer><!-- /.post-info --><h3>Docker</h3>
 <div class="highlight"><pre><span></span><code>docker run dans-container
 </code></pre></div>
 
@@ -205,302 +200,13 @@ docker-compose down
 docker-compose ps
 </code></pre></div>                </article>
             </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/oscp-windows-privilege-escalation.html" rel="bookmark"
-                           title="Permalink to "OSCP: Windows Privilege Escalation"">"OSCP: Windows Privilege Escalation"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2019-11-01T00:00:00-05:00">
-                Published: Fri 01 November 2019
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel.html">Daniel</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info -->                <ul>
-<li>Cyber Security
-tags:</li>
-<li>OSCP</li>
-<li>Windows</li>
-<li>Privilege Escalation</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="err">icacls scsiaccess.exe</span>
-<span class="err">...</span>
-<span class="c">Everyone: (I)(F)</span>
-</code></pre></div>
-
-<p>crosscompile useradd.c
-i686-w64-mingw32-gcc -o scsiaccess.exe useradd.c
-wce -w
-fgdump.exe
-type 127.0.0.1.pwdump
-john --wordlist=/usr/share/wordlists/rockyou.txt 127.0.0.1.pwdump
-Is there python on dev windows …</p>
-                <a class="readmore" href="/oscp-windows-privilege-escalation.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/oscp-linux-buffer-overflow.html" rel="bookmark"
-                           title="Permalink to "OSCP: Linux Buffer Overflow"">"OSCP: Linux Buffer Overflow"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2019-10-31T00:00:00-05:00">
-                Published: Thu 31 October 2019
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel.html">Daniel</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info -->                <ul>
-<li>Cyber Security
-tags:</li>
-<li>OSCP</li>
-<li>Linux</li>
-<li>Buffer Overflow</li>
-</ul>
-<hr>
-<h1>Linux Buffer Overflow (Crossfire)</h1>
-<p>Download a version of the vulnerable app Crossfire</p>
-<h3>Setup safe environment: iptables only allow traffic from loopback interface=targetip</h3>
-<p>iptables –A, -p, -d, -j # Append, protocol, destination, jump
-crossfire listens on port 13327
-iptables -A INPUT -p tcp --destination-port …</p>
-                <a class="readmore" href="/oscp-linux-buffer-overflow.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/oscp-windows-buffer-overflow.html" rel="bookmark"
-                           title="Permalink to "OSCP: Windows Buffer Overflow"">"OSCP: Windows Buffer Overflow"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2019-10-31T00:00:00-05:00">
-                Published: Thu 31 October 2019
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel.html">Daniel</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info -->                <ul>
-<li>Cyber Security
-tags:</li>
-<li>OSCP</li>
-<li>Windows</li>
-<li>Buffer Overflow</li>
-</ul>
-<hr>
-<h1>Windows Buffer Overflow (SLMail)</h1>
-<p>Seattle Lab Mail (SLMail) is fantastic vulnerable app to practise your buffer overflow on. You will have to download a version of the vulnerable SLMail to a Windows VM. The SLMail buffer overflow affects the <strong>POP3 PASS</strong> command. Both …</p>
-                <a class="readmore" href="/oscp-windows-buffer-overflow.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/oscp-notes-for-exam.html" rel="bookmark"
-                           title="Permalink to "OSCP: Notes for exam"">"OSCP: Notes for exam"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2019-10-30T00:00:00-05:00">
-                Published: Wed 30 October 2019
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel.html">Daniel</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info -->                <ul>
-<li>Cyber Security
-tags:</li>
-<li>OSCP</li>
-<li>Kali</li>
-</ul>
-<hr>
-<p>Everyone has one. This is mine. A collection of OSCP prep-notes from various other guides and sources over the internet as well as my own experience within the Hack The Box labs and in the Penetration Testing with Kali Linux labs. </p>
-<h3>Nmap (host/port)</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># nmap …</span></code></pre></div>
-                <a class="readmore" href="/oscp-notes-for-exam.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/digital-forensics-imaging-a-windows-pc.html" rel="bookmark"
-                           title="Permalink to "Digital Forensics: Imaging a Windows PC"">"Digital Forensics: Imaging a Windows PC"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2019-10-28T00:00:00-05:00">
-                Published: Mon 28 October 2019
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel.html">Daniel</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info -->                <ul>
-<li>Cyber Security
-tags:</li>
-<li>FTK Imager</li>
-<li>Windows</li>
-</ul>
-<hr>
-<p>Drive acquisition is one the first steps a Forensic Analyst will have to carry out at the beginning of case. These acquistions are often carried out remotely by VPN or by the the client (or client IT department) where the computer is located. Acquiring …</p>
-                <a class="readmore" href="/digital-forensics-imaging-a-windows-pc.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/network-cabling-topology.html" rel="bookmark"
-                           title="Permalink to "Network+: Cabling & Topology"">"Network+: Cabling & Topology"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2019-10-25T00:00:00-05:00">
-                Published: Fri 25 October 2019
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel.html">Daniel</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info -->                <ul>
-<li>Network+
-tags:</li>
-<li>Topology</li>
-<li>Cabling</li>
-</ul>
-<hr>
-<h2>Topology</h2>
-<p>A network topology is defined by the lines and nodes that make up the network. This can be further delineated into two twpes of topology: <code>physical</code> vs <code>logical</code> topology.</p>
-<p>Physical topology is the geometric pattern of the connected nodes of a network, whereas logical topology …</p>
-                <a class="readmore" href="/network-cabling-topology.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/passing-the-oscp-exam-trying-smarter.html" rel="bookmark"
-                           title="Permalink to "Passing the OSCP Exam: Trying Smarter"">"Passing the OSCP Exam: Trying Smarter"</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2019-10-25T00:00:00-05:00">
-                Published: Fri 25 October 2019
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel.html">Daniel</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info -->                <ul>
-<li>Cyber Security
-tags:</li>
-<li>Penetration Testing</li>
-<li>OSCP</li>
-</ul>
-<hr>
-<blockquote>
-<p>The definition of insanity is doing the same thing over and over again, but expecting different results.</p>
-<p><cite>Albert Einstein</cite></p>
-</blockquote>
-<p>If, like me, you have no hacking experience and no computer science background you have probably spent time in the Penetration Testing With Kali Linux …</p>
-                <a class="readmore" href="/passing-the-oscp-exam-trying-smarter.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/Network+: Network Models.html" rel="bookmark"
-                           title="Permalink to Network+: Network Models">Network+: Network Models</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2019-10-24T16:20:02-05:00">
-                Published: Thu 24 October 2019
-        </abbr>
-		<br />
-        <abbr class="modified" title="2019-10-24T16:20:02-05:00">
-                Updated: Thu 24 October 2019
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/dan.html">Dan</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-<p>tags: <a href="/tag/networks.html">Networks</a> </p>
-</footer><!-- /.post-info -->                <p>What does your post talk about? Write here.</p>
-                <a class="readmore" href="/Network+: Network Models.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/My-first-post.html" rel="bookmark"
-                           title="Permalink to My first post">My first post</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2017-11-26T10:01:00-06:00">
-                Published: Sun 26 November 2017
-        </abbr>
-		<br />
-        <abbr class="modified" title="2017-11-27T12:30:00-06:00">
-                Updated: Mon 27 November 2017
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/your-name.html">Your name</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-<p>tags: <a href="/tag/first.html">first</a> <a href="/tag/misc.html">misc</a> </p>
-</footer><!-- /.post-info -->                <p>What does your post talk about? Write here.</p>
-                <a class="readmore" href="/My-first-post.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-                </section><!-- /#content -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>
                         <ul>
                             <li><a href="https://getpelican.com/">Pelican</a></li>
                             <li><a href="https://www.python.org/">Python.org</a></li>
-                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
+                            <li><a href="https://www.docker.com/">Docker</a></li>
                         </ul>
                 </div><!-- /.blogroll -->
                 <div class="social">
@@ -509,7 +215,6 @@ tags:</li>
                             <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
                             <li><a href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
 
-                            <li><a href="#">You can add links in your config file</a></li>
                             <li><a href="#">Another social link</a></li>
                         </ul>
                 </div><!-- /.social -->

@@ -3,27 +3,29 @@
 <head>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
-        <title>"OSCP: Windows Privilege Escalation"</title>
+        <title>"Windows Privilege Escalation"</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Daniel Haggerty's Blog Atom Feed" />
         <link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Daniel Haggerty's Blog RSS Feed" />
-        <meta name="description" content="Cyber Security tags: OSCP Windows Privilege Escalation icacls scsiaccess.exe ... Everyone: (I)(F) crosscompile useradd.c i686-w64-mingw32-gcc -o..." />
+        <meta name="description" content="icacls scsiaccess.exe ... Everyone: (I)(F) crosscompile useradd.c i686-w64-mingw32-gcc -o scsiaccess.exe useradd.c wce -w fgdump.exe type..." />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
                 <h1><a href="/">Daniel Haggerty's Blog</a></h1>
                 <nav><ul>
-                    <li class="active"><a href="/category/misc.html">misc</a></li>
-                    <li><a href="/category/oscp.html">OSCP</a></li>
+                    <li><a href="/category/dfir.html">DFIR</a></li>
+                    <li><a href="/category/docker.html">Docker</a></li>
+                    <li><a href="/category/network.html">Network+</a></li>
+                    <li class="active"><a href="/category/oscp.html">OSCP</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
   <article>
     <header>
       <h1 class="entry-title">
-        <a href="/oscp-windows-privilege-escalation.html" rel="bookmark"
-           title="Permalink to "OSCP: Windows Privilege Escalation"">"OSCP: Windows Privilege Escalation"</a></h1>
+        <a href="/windows-privilege-escalation.html" rel="bookmark"
+           title="Permalink to "Windows Privilege Escalation"">"Windows Privilege Escalation"</a></h1>
     </header>
 
     <div class="entry-content">
@@ -33,18 +35,11 @@
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel.html">Daniel</a>
+                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
         </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info -->      <ul>
-<li>Cyber Security
-tags:</li>
-<li>OSCP</li>
-<li>Windows</li>
-<li>Privilege Escalation</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="err">icacls scsiaccess.exe</span>
+<p>In <a href="/category/oscp.html">OSCP</a>.</p>
+<p>tags: <a href="/tag/penetration-testing.html">Penetration Testing</a> <a href="/tag/privilege-escalation.html">Privilege Escalation</a> </p>
+</footer><!-- /.post-info -->      <div class="highlight"><pre><span></span><code><span class="err">icacls scsiaccess.exe</span>
 <span class="err">...</span>
 <span class="c">Everyone: (I)(F)</span>
 </code></pre></div>
@@ -188,8 +183,7 @@ https://pentestlab.blog/2017/04/24/windows-kernel-exploits/</p>
                         <ul>
                             <li><a href="https://getpelican.com/">Pelican</a></li>
                             <li><a href="https://www.python.org/">Python.org</a></li>
-                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
+                            <li><a href="https://www.docker.com/">Docker</a></li>
                         </ul>
                 </div><!-- /.blogroll -->
                 <div class="social">
@@ -198,7 +192,6 @@ https://pentestlab.blog/2017/04/24/windows-kernel-exploits/</p>
                             <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
                             <li><a href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
 
-                            <li><a href="#">You can add links in your config file</a></li>
                             <li><a href="#">Another social link</a></li>
                         </ul>
                 </div><!-- /.social -->
