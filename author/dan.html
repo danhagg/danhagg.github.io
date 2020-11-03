@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Daniel Haggerty's Blog - Dan</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Daniel Haggerty's Blog Atom Feed" />
+        <link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Daniel Haggerty's Blog RSS Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Daniel Haggerty's Blog</a></h1>
+                <nav><ul>
+                    <li><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/Network+: Network Models.html">Network+: Network Models</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2019-10-24T16:20:02-05:00">
+                Published: Thu 24 October 2019
+        </abbr>
+		<br />
+        <abbr class="modified" title="2019-10-24T16:20:02-05:00">
+                Updated: Thu 24 October 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dan.html">Dan</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/networks.html">Networks</a> </p>
+</footer><!-- /.post-info --><h2>Network Models</h2>
+<p>There are two main models that represent networks. The OSI and TCP/IP Model.</p>
+<h3>OSI Model</h3>
+<ol>
+<li>Physical (Cables)</li>
+<li>Data Link (Network cards, Switches, components with MAC Addresses)</li>
+<li>Network (Routers, Logical Addresses, IP Addresses)</li>
+<li>Transport (Assembly/Disassembly layer for packets)</li>
+<li>Session (Connection between two systems)</li>
+<li>Presentation (Converts data into a format your applications can use)</li>
+<li>Application (Network aware components of an Application, API)</li>
+</ol>
+<h3>TCP/IP Model</h3>
+<ol>
+<li>Network Interface Layer (Cables, MAC Addresses)</li>
+<li>Internet (Routers, IP Addresses)</li>
+<li>Transport (Assembly/Diassembly, TCP/UDP)</li>
+<li>Application (OSI: Session, Presentation, Application altogether. Applications are seen as traditional Applications)</li>
+</ol>
+<h3>How data is processed in OSI and TCP/IP</h3>
+<p><img alt="image" src="/assets/images/how-data-is-processed-in-OSI-and-TCPIP-models1.jpg" title="How data is modified as it passes over the network"></p>
+<h3>MAC Addresses</h3>
+<p>Networked devices send and receive data in <code>frames</code> which have a maximum size of 1500 bytes and are created and destroyed by Network Interface Controllers (NIC).</p>
+<p>A Media Access Control address of a device is a unique identifier assigned to a NIC. The MAC address is a 48-bit number (12 hexadecimal characters). The first 34 bit number is an Organizationally Unique Identifier (OUI).</p>
+<p>When routers receive a frame from a single computer it sends it on to all other computers linked to that router. It is the MAC Address on the NIC that determines the fate of the frame it has received. </p>
+<p>On Windows we can find the MAC address with</p>
+<div class="highlight"><pre><span></span><code>ipconfig /all
+
+Physical Address. . . . . . . . . : ??-??-??-??-??-??
+</code></pre></div>
+
+<p>Therefore, we add to our frame two MAC Addresses. Where its going to, and where it's coming from. A Cyclic Redunancy Check (CRC) is also added to verify the data is good. If the data is bad it can be resent. </p>
+<p>Once the hub receives the frame. It makes multiple copies of it, one for each computer its connected to and then sends the frame(s) to each networked computer. Each computer's NIC knows its own MAC address such that, when the frame arrives it knows whether the frame was meant for itself. If the frame was delivered to the correct address then it is passed upwards to the appropriate software.</p>
+<p><img alt="image" src="/assets/images/frame.jpg" title="A frame"></p>
+<h3>Broadcast vs Unicast</h3>
+<p>During Unicast situations the frame's destination MAC address is compared to the MAC address of the NIC that receives it. If they match, the MAC addresses are removed from the frame (the souce MAC address is kept in memory in order to send replies) and the frame is passed on to the appropriate software.
+During broadcast situations, the dataframe's destination MAC address is set to FF-FF-FF-FF-FF-FF. And the receiving computer knows that the recieved dataframe is a <code>broadcast</code>. The most common uses for broadcasts are when one computer signals to every other on the local network requesting a return frame from a computer with a specific name (for example, <code>Dans-Windows-PC</code>). The return frame will bear the MAC address of <code>Dans-Windows-PC</code>.
+A group of computers that can hear the broadcasts of the other computers is a <code>broadcast domain</code>.</p>
+<h3>IP addressing</h3>
+<p>A fully connected network based solely on MAC addresses would be overwhelmed with all this broadcasting of frames. In order to make huge networks reduce the amount of network traffic another layer of addressing is added <code>logical addressing</code>. The most commonly used form is <code>IP addressing</code>. Unlike MAC addresses IP addresses are not fixed. </p>
+<p>Equipment such as routers tie IP and MAC addresses together. Routers tend to have two or more connections. An example router may be connected to a 4 port <code>switch</code> as shown below.</p>
+<p><img alt="image" src="/assets/images/RP114.jpg" title="A router hardwired to a 4-port switch"></p>
+<p>In order to ensure transfer of frames to the correct destination we add the IP addresses of the souce and destination. When we add the IP addresses to a frame we get a <code>packet</code>. When an IP packet is detected by a computer, if the destination IP address is not part of its own network the computer sends the IP address over the <code>default gateway</code> (invariably to the router). The router then adds its own MAC address (in addition to the MAC address of the source computer) and the MAC address of the destination computer (yes thats 3 MAC addresses) to the IP packet. The frame is sent from the computer, to the switch, to the router. At the router the MAC addresses are stripped and the router uses a <code>routing table</code> to find where to send the data. Router then adds his own MAC address and that of the destination computer. So, we are back to two MAC addresses on the dataframe that surrounds the IP packet. The IP packets remain unchanged during this process.</p>
+<h3>Packets and Ports</h3>
+<p>We still have two issues to solve:
+1. How does the data get to the right application?
+2. How do we know all the data has arrived?</p>
+<p><code>Port numbers</code> are added to the packet (e.g., port 80 for http, and port 16394 for the <code>client</code> computer). When the <code>server</code> receives packets from a client with port 80 as the destination port it knows to send the data to the web serving application. Responses (such as web pages) are sent back to the IP and port number (16394 in this case) of the client. Of course, the destination/source IP and ports are reversed when data returns from server to client. In the case of browsing web pages, the port number of the client is specific to each web page. Thus, all packets for a specific page will contain the same port number.</p>
+<p>The port number range runs from 0 - 65535.</p>
+<p>The first 1024 ports are reserved.</p>
+<p>Transmission Control protocol (TCP) is a connection-oriented conversation between two computers that insure complete transmission of data. This is achieved by <code>sequence numbers</code> and <code>acknowledgement numbers</code>.</p>
+<p>User Datagram Protocol (UDP). UDP is not connection-oriented. and data is just sent regardless of whether the receiving computer is ready for it. Errors in transmission have to be handled at the receiving end. </p>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

