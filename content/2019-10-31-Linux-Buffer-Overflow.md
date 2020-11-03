@@ -1,13 +1,14 @@
 ---
-title: "OSCP: Linux Buffer Overflow"
+title: "Linux Buffer Overflow"
+slug: linux-buffer-overflow
 last_modified_at: 2019-11-01T16:20:02-05:00
-categories:
-  - Cyber Security
-tags:
-  - OSCP
-  - Linux
-  - Buffer Overflow
+category: OSCP
+tags: Penetration Testing, Buffer Overflow
+authors: Daniel Haggerty
 ---
+
+
+
 
 # Linux Buffer Overflow (Crossfire)
 Download a version of the vulnerable app Crossfire

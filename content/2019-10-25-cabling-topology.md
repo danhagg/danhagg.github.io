@@ -1,11 +1,10 @@
 ---
 title: "Network+: Cabling & Topology"
-last_modified_at: 2019-10-24T16:20:02-05:00
-categories:
-  - Network+
-tags:
-  - Topology
-  - Cabling
+slug: network-cabling-topology
+last_modified_at: 2019-10-24T16:18:02-05:00
+Category: Network+
+tags: Topology, Cabling
+authors: Daniel Haggerty
 ---
 
 ## Topology
@@ -15,7 +14,7 @@ Physical topology is the geometric pattern of the connected nodes of a network, 
 
 ### Physical topologies
 
-![image](/assets/images/network-topology.png "A sample of physical network topologies")
+![image](/images/network-topology.png "A sample of physical network topologies")
 
 1. Bus topology (dropdowns)
 2. Ring topology (Token ring, developed by IBM)
@@ -25,7 +24,7 @@ Physical topology is the geometric pattern of the connected nodes of a network, 
 
 The hybrid star-bus topology is very often implemented... 
 
-![image](/assets/images/star_network_topology_ani.gif "Star-Bus topology")
+![image](/images/star_network_topology_ani.gif "Star-Bus topology")
 
 ## Cabling
 ### Coaxial cabling
@@ -47,7 +46,7 @@ Thicker thab RG-59
 Twisting allows signal to propogate further down a piece of copper wire.
 Unshielded twisted pair (UTP) cabling (no metal protective sheath).
 
-![image](/assets/images/utp.jpg "UTP wire. 4 pairs")
+![image](/images/utp.jpg "UTP wire. 4 pairs")
 
 Not strong or durable due to absence of sheath but is very cheap.
 Solid core versus stranded core.
@@ -57,7 +56,7 @@ Two standards for how the wires are connected to a connector.
 1. EIA/TIA 568A standard
 2. EIA/TIA 568B standard
 
-![image](/assets/images/tia-eia-568-standards.jpg "UTP wire. 4 pairs")
+![image](/images/tia-eia-568-standards.jpg "UTP wire. 4 pairs")
 
 Shielded twisted pair (STP) cabling (metal protective sheath).
 

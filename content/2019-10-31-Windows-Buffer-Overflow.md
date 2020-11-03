@@ -1,13 +1,12 @@
 ---
-title: "OSCP: Windows Buffer Overflow"
+title: "Windows Buffer Overflow"
+slug: windows-buffer-overflow
 last_modified_at: 2019-11-01T16:20:02-05:00
-categories:
-  - Cyber Security
-tags:
-  - OSCP
-  - Windows
-  - Buffer Overflow
+category: OSCP
+tags: Penetration Testing, Buffer Overflow
+authors: Daniel Haggerty
 ---
+
 
 # Windows Buffer Overflow (SLMail)
 Seattle Lab Mail (SLMail) is fantastic vulnerable app to practise your buffer overflow on. You will have to download a version of the vulnerable SLMail to a Windows VM. The SLMail buffer overflow affects the **POP3 PASS** command. Both the app itself and the exploit are available on Exploit Database ([exploit][exploit])!
@@ -55,7 +54,7 @@ python poc.py
 
 The SLMail app should crash and the EIP register in Immunity should be filled with **41**s... the hex equivalent of the ASCII character **A** see figure below (1).
 
-![image](/assets/images/oscp/win_buff_0.jpg "step 1")
+![image](/images/oscp/win_buff_0.jpg "step 1")
 
 ### 2. Control EIP
 Next we need to locate the exact bytes at which the Extended Instruction Pointer (EIP) is overwritten. The EIP tells the computer where in memory to execute the next command. If we can find where the EIP is we can exchange those bytes at the EIP with a memory address containing our reverse shellcode. So, instead of sending a string of 2700 **A**s, we send a specially crafted string of 2700 characters. Each sequence of 4 letters in this string is unique. We can simply determine how far along the 2700 charcaters the unique 4 letter overwrite the EIP. 
@@ -86,7 +85,7 @@ buffer = "A" * 2606 + "B" * 4 + "C" * (3500 – 2606 - 4)
 ```
 The result is in the figure below (3).
 
-![image](/assets/images/oscp/win_buff_1.JPG "step 2a, 2b, 3")
+![image](/images/oscp/win_buff_1.JPG "step 2a, 2b, 3")
 
 As we can see, our buffer overflow still crashes the app. We now have some space to insert our shellcode...
 
@@ -134,7 +133,7 @@ buffer = "A" * 2606 + "\x8f\x35\x4a\x5f" + "C" * 390
 
 If we rerun the exploit the EIP will be hit. It will point to the JMP ESP address where the buffer of **C**s (or future shellcode) will run ()see figure below (5)!
 
-![image](/assets/images/oscp/win_buff_2.JPG "step 4 & 5")
+![image](/images/oscp/win_buff_2.JPG "step 4 & 5")
 
 ### 6. Make shellcode excluding bad chars and insert to python script
 We can create the shellcode with Metasploit tool **msfvenom**. This takes the arguments for you listening IP address (of your Kali machine, and the port you will be listening on - using netcat). The other argument of interest here is to exclude the bad characters we found earlier.

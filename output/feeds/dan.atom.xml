@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Daniel Haggerty's Blog - Dan</title><link href="/" rel="alternate"></link><link href="/feeds/dan.atom.xml" rel="self"></link><id>/</id><updated>2019-10-24T16:20:02-05:00</updated><entry><title>Network+: Network Models</title><link href="Network+:%20Network%20Models.html" rel="alternate"></link><published>2019-10-24T16:20:02-05:00</published><updated>2019-10-24T16:20:02-05:00</updated><author><name>Dan</name></author><id>tag:None,2019-10-24: Network Models.html</id><summary type="html">&lt;p&gt;What does your post talk about? Write here.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Network Models&lt;/h2&gt;
+&lt;p&gt;There are two main models that represent networks. The OSI and TCP/IP Model.&lt;/p&gt;
+&lt;h3&gt;OSI Model&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Physical (Cables)&lt;/li&gt;
+&lt;li&gt;Data Link (Network cards, Switches, components with MAC Addresses)&lt;/li&gt;
+&lt;li&gt;Network (Routers, Logical Addresses, IP Addresses)&lt;/li&gt;
+&lt;li&gt;Transport (Assembly/Disassembly layer for packets)&lt;/li&gt;
+&lt;li&gt;Session (Connection between two systems)&lt;/li&gt;
+&lt;li&gt;Presentation (Converts data into a format your applications can use)&lt;/li&gt;
+&lt;li&gt;Application (Network aware components of an Application, API)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;TCP/IP Model&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Network Interface Layer (Cables, MAC Addresses)&lt;/li&gt;
+&lt;li&gt;Internet (Routers, IP Addresses)&lt;/li&gt;
+&lt;li&gt;Transport (Assembly/Diassembly, TCP/UDP)&lt;/li&gt;
+&lt;li&gt;Application (OSI: Session, Presentation, Application altogether. Applications are seen as traditional Applications)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;How data is processed in OSI and TCP/IP&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="image" src="/images/how-data-is-processed-in-OSI-and-TCPIP-models1.jpg" title="How data is modified as it passes over the network"&gt;&lt;/p&gt;
+&lt;h3&gt;MAC Addresses&lt;/h3&gt;
+&lt;p&gt;Networked devices send and receive data in &lt;code&gt;frames&lt;/code&gt; which have a maximum size of 1500 bytes and are created and destroyed by Network Interface Controllers (NIC).&lt;/p&gt;
+&lt;p&gt;A Media Access Control address of a device is a unique identifier assigned to a NIC. The MAC address is a 48-bit number (12 hexadecimal characters). The first 34 bit number is an Organizationally Unique Identifier (OUI).&lt;/p&gt;
+&lt;p&gt;When routers receive a frame from a single computer it sends it on to all other computers linked to that router. It is the MAC Address on the NIC that determines the fate of the frame it has received. &lt;/p&gt;
+&lt;p&gt;On Windows we can find the MAC address with&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ipconfig /all
+
+Physical Address. . . . . . . . . : ??-??-??-??-??-??
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Therefore, we add to our frame two MAC Addresses. Where its going to, and where it's coming from. A Cyclic Redunancy Check (CRC) is also added to verify the data is good. If the data is bad it can be resent. &lt;/p&gt;
+&lt;p&gt;Once the hub receives the frame. It makes multiple copies of it, one for each computer its connected to and then sends the frame(s) to each networked computer. Each computer's NIC knows its own MAC address such that, when the frame arrives it knows whether the frame was meant for itself. If the frame was delivered to the correct address then it is passed upwards to the appropriate software.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="images/frame.jpg" title="A frame"&gt;&lt;/p&gt;
+&lt;h3&gt;Broadcast vs Unicast&lt;/h3&gt;
+&lt;p&gt;During Unicast situations the frame's destination MAC address is compared to the MAC address of the NIC that receives it. If they match, the MAC addresses are removed from the frame (the souce MAC address is kept in memory in order to send replies) and the frame is passed on to the appropriate software.
+During broadcast situations, the dataframe's destination MAC address is set to FF-FF-FF-FF-FF-FF. And the receiving computer knows that the recieved dataframe is a &lt;code&gt;broadcast&lt;/code&gt;. The most common uses for broadcasts are when one computer signals to every other on the local network requesting a return frame from a computer with a specific name (for example, &lt;code&gt;Dans-Windows-PC&lt;/code&gt;). The return frame will bear the MAC address of &lt;code&gt;Dans-Windows-PC&lt;/code&gt;.
+A group of computers that can hear the broadcasts of the other computers is a &lt;code&gt;broadcast domain&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;IP addressing&lt;/h3&gt;
+&lt;p&gt;A fully connected network based solely on MAC addresses would be overwhelmed with all this broadcasting of frames. In order to make huge networks reduce the amount of network traffic another layer of addressing is added &lt;code&gt;logical addressing&lt;/code&gt;. The most commonly used form is &lt;code&gt;IP addressing&lt;/code&gt;. Unlike MAC addresses IP addresses are not fixed. &lt;/p&gt;
+&lt;p&gt;Equipment such as routers tie IP and MAC addresses together. Routers tend to have two or more connections. An example router may be connected to a 4 port &lt;code&gt;switch&lt;/code&gt; as shown below.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="images/RP114.jpg" title="A router hardwired to a 4-port switch"&gt;&lt;/p&gt;
+&lt;p&gt;In order to ensure transfer of frames to the correct destination we add the IP addresses of the souce and destination. When we add the IP addresses to a frame we get a &lt;code&gt;packet&lt;/code&gt;. When an IP packet is detected by a computer, if the destination IP address is not part of its own network the computer sends the IP address over the &lt;code&gt;default gateway&lt;/code&gt; (invariably to the router). The router then adds its own MAC address (in addition to the MAC address of the source computer) and the MAC address of the destination computer (yes thats 3 MAC addresses) to the IP packet. The frame is sent from the computer, to the switch, to the router. At the router the MAC addresses are stripped and the router uses a &lt;code&gt;routing table&lt;/code&gt; to find where to send the data. Router then adds his own MAC address and that of the destination computer. So, we are back to two MAC addresses on the dataframe that surrounds the IP packet. The IP packets remain unchanged during this process.&lt;/p&gt;
+&lt;h3&gt;Packets and Ports&lt;/h3&gt;
+&lt;p&gt;We still have two issues to solve:
+1. How does the data get to the right application?
+2. How do we know all the data has arrived?&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Port numbers&lt;/code&gt; are added to the packet (e.g., port 80 for http, and port 16394 for the &lt;code&gt;client&lt;/code&gt; computer). When the &lt;code&gt;server&lt;/code&gt; receives packets from a client with port 80 as the destination port it knows to send the data to the web serving application. Responses (such as web pages) are sent back to the IP and port number (16394 in this case) of the client. Of course, the destination/source IP and ports are reversed when data returns from server to client. In the case of browsing web pages, the port number of the client is specific to each web page. Thus, all packets for a specific page will contain the same port number.&lt;/p&gt;
+&lt;p&gt;The port number range runs from 0 - 65535.&lt;/p&gt;
+&lt;p&gt;The first 1024 ports are reserved.&lt;/p&gt;
+&lt;p&gt;Transmission Control protocol (TCP) is a connection-oriented conversation between two computers that insure complete transmission of data. This is achieved by &lt;code&gt;sequence numbers&lt;/code&gt; and &lt;code&gt;acknowledgement numbers&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;User Datagram Protocol (UDP). UDP is not connection-oriented. and data is just sent regardless of whether the receiving computer is ready for it. Errors in transmission have to be handled at the receiving end. &lt;/p&gt;</content><category term="misc"></category><category term="Networks"></category></entry></feed>

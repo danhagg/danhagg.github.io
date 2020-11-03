@@ -1,12 +1,13 @@
+---
 Title: Network+: Network Models
+Slug: network-models
 Date: 2019-10-24T16:20:02-05:00
 Modified: 2019-10-24T16:20:02-05:00
-Category: misc
+Category: Network+
 Tags: Networks
-Slug: Network+: Network Models
-Authors: Dan
-Summary: What does your post talk about? Write here.
-
+Authors: Daniel Haggerty
+Summary: CompTIA Network+
+---
 
 
 ## Network Models
@@ -29,7 +30,7 @@ There are two main models that represent networks. The OSI and TCP/IP Model.
 
 ### How data is processed in OSI and TCP/IP
 
-![image](/assets/images/how-data-is-processed-in-OSI-and-TCPIP-models1.jpg "How data is modified as it passes over the network")
+![image](/images/how-data-is-processed-in-OSI-and-TCPIP-models1.jpg "How data is modified as it passes over the network")
 
 ### MAC Addresses
 Networked devices send and receive data in `frames` which have a maximum size of 1500 bytes and are created and destroyed by Network Interface Controllers (NIC).
@@ -49,7 +50,7 @@ Therefore, we add to our frame two MAC Addresses. Where its going to, and where 
 
 Once the hub receives the frame. It makes multiple copies of it, one for each computer its connected to and then sends the frame(s) to each networked computer. Each computer's NIC knows its own MAC address such that, when the frame arrives it knows whether the frame was meant for itself. If the frame was delivered to the correct address then it is passed upwards to the appropriate software.
 
-![image](/assets/images/frame.jpg "A frame")
+![image](images/frame.jpg "A frame")
 
 ### Broadcast vs Unicast
 During Unicast situations the frame's destination MAC address is compared to the MAC address of the NIC that receives it. If they match, the MAC addresses are removed from the frame (the souce MAC address is kept in memory in order to send replies) and the frame is passed on to the appropriate software.
@@ -61,7 +62,7 @@ A fully connected network based solely on MAC addresses would be overwhelmed wit
 
 Equipment such as routers tie IP and MAC addresses together. Routers tend to have two or more connections. An example router may be connected to a 4 port `switch` as shown below.
 
-![image](/assets/images/RP114.jpg "A router hardwired to a 4-port switch")
+![image](images/RP114.jpg "A router hardwired to a 4-port switch")
 
 In order to ensure transfer of frames to the correct destination we add the IP addresses of the souce and destination. When we add the IP addresses to a frame we get a `packet`. When an IP packet is detected by a computer, if the destination IP address is not part of its own network the computer sends the IP address over the `default gateway` (invariably to the router). The router then adds its own MAC address (in addition to the MAC address of the source computer) and the MAC address of the destination computer (yes thats 3 MAC addresses) to the IP packet. The frame is sent from the computer, to the switch, to the router. At the router the MAC addresses are stripped and the router uses a `routing table` to find where to send the data. Router then adds his own MAC address and that of the destination computer. So, we are back to two MAC addresses on the dataframe that surrounds the IP packet. The IP packets remain unchanged during this process.
 

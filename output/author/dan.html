@@ -5,6 +5,8 @@
         <meta name="generator" content="Pelican" />
         <title>Daniel Haggerty's Blog - Dan</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Daniel Haggerty's Blog Atom Feed" />
+        <link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Daniel Haggerty's Blog RSS Feed" />
 </head>
 
 <body id="index" class="home">
@@ -12,6 +14,8 @@
                 <h1><a href="/">Daniel Haggerty's Blog</a></h1>
                 <nav><ul>
                     <li><a href="/category/misc.html">misc</a></li>
+                    <li><a href="/category/network.html">Network+</a></li>
+                    <li><a href="/category/oscp.html">OSCP</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
@@ -52,7 +56,7 @@
 <li>Application (OSI: Session, Presentation, Application altogether. Applications are seen as traditional Applications)</li>
 </ol>
 <h3>How data is processed in OSI and TCP/IP</h3>
-<p><img alt="image" src="/assets/images/how-data-is-processed-in-OSI-and-TCPIP-models1.jpg" title="How data is modified as it passes over the network"></p>
+<p><img alt="image" src="/images/how-data-is-processed-in-OSI-and-TCPIP-models1.jpg" title="How data is modified as it passes over the network"></p>
 <h3>MAC Addresses</h3>
 <p>Networked devices send and receive data in <code>frames</code> which have a maximum size of 1500 bytes and are created and destroyed by Network Interface Controllers (NIC).</p>
 <p>A Media Access Control address of a device is a unique identifier assigned to a NIC. The MAC address is a 48-bit number (12 hexadecimal characters). The first 34 bit number is an Organizationally Unique Identifier (OUI).</p>
@@ -65,7 +69,7 @@ Physical Address. . . . . . . . . : ??-??-??-??-??-??
 
 <p>Therefore, we add to our frame two MAC Addresses. Where its going to, and where it's coming from. A Cyclic Redunancy Check (CRC) is also added to verify the data is good. If the data is bad it can be resent. </p>
 <p>Once the hub receives the frame. It makes multiple copies of it, one for each computer its connected to and then sends the frame(s) to each networked computer. Each computer's NIC knows its own MAC address such that, when the frame arrives it knows whether the frame was meant for itself. If the frame was delivered to the correct address then it is passed upwards to the appropriate software.</p>
-<p><img alt="image" src="/assets/images/frame.jpg" title="A frame"></p>
+<p><img alt="image" src="images/frame.jpg" title="A frame"></p>
 <h3>Broadcast vs Unicast</h3>
 <p>During Unicast situations the frame's destination MAC address is compared to the MAC address of the NIC that receives it. If they match, the MAC addresses are removed from the frame (the souce MAC address is kept in memory in order to send replies) and the frame is passed on to the appropriate software.
 During broadcast situations, the dataframe's destination MAC address is set to FF-FF-FF-FF-FF-FF. And the receiving computer knows that the recieved dataframe is a <code>broadcast</code>. The most common uses for broadcasts are when one computer signals to every other on the local network requesting a return frame from a computer with a specific name (for example, <code>Dans-Windows-PC</code>). The return frame will bear the MAC address of <code>Dans-Windows-PC</code>.
@@ -73,7 +77,7 @@ A group of computers that can hear the broadcasts of the other computers is a <c
 <h3>IP addressing</h3>
 <p>A fully connected network based solely on MAC addresses would be overwhelmed with all this broadcasting of frames. In order to make huge networks reduce the amount of network traffic another layer of addressing is added <code>logical addressing</code>. The most commonly used form is <code>IP addressing</code>. Unlike MAC addresses IP addresses are not fixed. </p>
 <p>Equipment such as routers tie IP and MAC addresses together. Routers tend to have two or more connections. An example router may be connected to a 4 port <code>switch</code> as shown below.</p>
-<p><img alt="image" src="/assets/images/RP114.jpg" title="A router hardwired to a 4-port switch"></p>
+<p><img alt="image" src="images/RP114.jpg" title="A router hardwired to a 4-port switch"></p>
 <p>In order to ensure transfer of frames to the correct destination we add the IP addresses of the souce and destination. When we add the IP addresses to a frame we get a <code>packet</code>. When an IP packet is detected by a computer, if the destination IP address is not part of its own network the computer sends the IP address over the <code>default gateway</code> (invariably to the router). The router then adds its own MAC address (in addition to the MAC address of the source computer) and the MAC address of the destination computer (yes thats 3 MAC addresses) to the IP packet. The frame is sent from the computer, to the switch, to the router. At the router the MAC addresses are stripped and the router uses a <code>routing table</code> to find where to send the data. Router then adds his own MAC address and that of the destination computer. So, we are back to two MAC addresses on the dataframe that surrounds the IP packet. The IP packets remain unchanged during this process.</p>
 <h3>Packets and Ports</h3>
 <p>We still have two issues to solve:
@@ -98,6 +102,8 @@ A group of computers that can hear the broadcasts of the other computers is a <c
                 <div class="social">
                         <h2>social</h2>
                         <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
 
                             <li><a href="#">You can add links in your config file</a></li>
                             <li><a href="#">Another social link</a></li>

