@@ -3,26 +3,28 @@
 <head>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
-        <title>Daniel Haggerty's Blog - Privilege Escalation</title>
+        <title>Digital Forensics - OSCP</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Daniel Haggerty's Blog Atom Feed" />
-        <link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Daniel Haggerty's Blog RSS Feed" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Digital Forensics Atom Feed" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="/">Daniel Haggerty's Blog</a></h1>
+                <h1><a href="/">Digital Forensics</a></h1>
                 <nav><ul>
-                    <li><a href="/category/dfir.html">DFIR</a></li>
-                    <li><a href="/category/docker.html">Docker</a></li>
-                    <li><a href="/category/network.html">Network+</a></li>
-                    <li><a href="/category/oscp.html">OSCP</a></li>
+                    <li><a href="/category/android.html">Android</a></li>
+                    <li><a href="/category/cdr.html">CDR</a></li>
+                    <li><a href="/category/certifications.html">Certifications</a></li>
+                    <li><a href="/category/iphone.html">iPhone</a></li>
+                    <li><a href="/category/mac.html">Mac</a></li>
+                    <li><a href="/category/mail.html">Mail</a></li>
+                    <li><a href="/category/windows.html">Windows</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/linux-privilege-escalation.html">"Linux Privilege Escalation"</a></h1>
+                    <h1 class="entry-title"><a href="/linux-privilege-escalation.html">Linux Privilege Escalation</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2019-11-01T00:00:00-05:00">
                 Published: Fri 01 November 2019
@@ -31,8 +33,8 @@
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
         </address>
-<p>In <a href="/category/oscp.html">OSCP</a>.</p>
-<p>tags: <a href="/tag/penetration-testing.html">Penetration Testing</a> <a href="/tag/privilege-escalation.html">Privilege Escalation</a> </p>
+<p>In <a href="/category/certifications.html">Certifications</a>.</p>
+<p>tags: <a href="/tag/oscp.html">OSCP</a> </p>
 </footer><!-- /.post-info --><div class="highlight"><pre><span></span><code><span class="n">privesc_linux</span>
 <span class="n">UPGRADE</span> <span class="n">SHELL</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import pty; pty.spawn(&quot;bin/bash&quot;)&#39;</span>
 <span class="n">ctrl</span><span class="o">-</span><span class="n">Z</span>
@@ -178,7 +180,7 @@ CAP_DAC_READ_SEARCH
             <li><article class="hentry">
                 <header>
                     <h1><a href="/windows-privilege-escalation.html" rel="bookmark"
-                           title="Permalink to "Windows Privilege Escalation"">"Windows Privilege Escalation"</a></h1>
+                           title="Permalink to Windows Privilege Escalation">Windows Privilege Escalation</a></h1>
                 </header>
 
                 <div class="entry-content">
@@ -190,8 +192,8 @@ CAP_DAC_READ_SEARCH
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
         </address>
-<p>In <a href="/category/oscp.html">OSCP</a>.</p>
-<p>tags: <a href="/tag/penetration-testing.html">Penetration Testing</a> <a href="/tag/privilege-escalation.html">Privilege Escalation</a> </p>
+<p>In <a href="/category/certifications.html">Certifications</a>.</p>
+<p>tags: <a href="/tag/oscp.html">OSCP</a> </p>
 </footer><!-- /.post-info -->                <div class="highlight"><pre><span></span><code><span class="err">icacls scsiaccess.exe</span>
 <span class="err">...</span>
 <span class="c">Everyone: (I)(F)</span>
@@ -208,24 +210,115 @@ Use pyinstaller on dev windows machine …</p>
                 <a class="readmore" href="/windows-privilege-escalation.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/linux-buffer-overflow.html" rel="bookmark"
+                           title="Permalink to Linux Buffer Overflow">Linux Buffer Overflow</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-10-31T00:00:00-05:00">
+                Published: Thu 31 October 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
+        </address>
+<p>In <a href="/category/certifications.html">Certifications</a>.</p>
+<p>tags: <a href="/tag/oscp.html">OSCP</a> </p>
+</footer><!-- /.post-info -->                <h1>Linux Buffer Overflow (Crossfire)</h1>
+<p>Download a version of the vulnerable app Crossfire</p>
+<h3>Setup safe environment: iptables only allow traffic from loopback interface=targetip</h3>
+<p>iptables –A, -p, -d, -j # Append, protocol, destination, jump
+crossfire listens on port 13327
+iptables -A INPUT -p tcp --destination-port 13327 ! -d 127.0.0.1 -j …</p>
+                <a class="readmore" href="/linux-buffer-overflow.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/windows-buffer-overflow.html" rel="bookmark"
+                           title="Permalink to Windows Buffer Overflow">Windows Buffer Overflow</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-10-31T00:00:00-05:00">
+                Published: Thu 31 October 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
+        </address>
+<p>In <a href="/category/certifications.html">Certifications</a>.</p>
+<p>tags: <a href="/tag/oscp.html">OSCP</a> </p>
+</footer><!-- /.post-info -->                <h1>Windows Buffer Overflow (SLMail)</h1>
+<p>Seattle Lab Mail (SLMail) is fantastic vulnerable app to practise your buffer overflow on. You will have to download a version of the vulnerable SLMail to a Windows VM. The SLMail buffer overflow affects the <strong>POP3 PASS</strong> command. Both the app itself and the exploit are …</p>
+                <a class="readmore" href="/windows-buffer-overflow.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/oscp-notes.html" rel="bookmark"
+                           title="Permalink to "OSCP: Notes for exam"">"OSCP: Notes for exam"</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-10-30T00:00:00-05:00">
+                Published: Wed 30 October 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
+        </address>
+<p>In <a href="/category/certifications.html">Certifications</a>.</p>
+<p>tags: <a href="/tag/oscp.html">OSCP</a> </p>
+</footer><!-- /.post-info -->                <p>Everyone has one. This is mine. A collection of OSCP prep-notes from various other guides and sources over the internet as well as my own experience within the Hack The Box labs and in the Penetration Testing with Kali Linux labs. </p>
+<h3>Nmap (host/port)</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># nmap all ports</span>
+nmap -p- -oA …</code></pre></div>
+                <a class="readmore" href="/oscp-notes.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/passing-the-oscp.html" rel="bookmark"
+                           title="Permalink to Passing the OSCP Exam - Trying Smarter">Passing the OSCP Exam - Trying Smarter</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-10-25T00:00:00-05:00">
+                Published: Fri 25 October 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
+        </address>
+<p>In <a href="/category/certifications.html">Certifications</a>.</p>
+<p>tags: <a href="/tag/oscp.html">OSCP</a> </p>
+</footer><!-- /.post-info -->                <blockquote>
+<p>The definition of insanity is doing the same thing over and over again, but expecting different results.</p>
+<p><cite>Albert Einstein</cite></p>
+</blockquote>
+<p>If, like me, you have no hacking experience and no computer science background you have probably spent time in the Penetration Testing With Kali Linux (PWK) labs proving Einstein's theory of …</p>
+                <a class="readmore" href="/passing-the-oscp.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
                 </ol><!-- /#posts-list -->
                 </section><!-- /#content -->
         <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="https://getpelican.com/">Pelican</a></li>
-                            <li><a href="https://www.python.org/">Python.org</a></li>
-                            <li><a href="https://www.docker.com/">Docker</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
                 <div class="social">
                         <h2>social</h2>
                         <ul>
                             <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-                            <li><a href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
 
-                            <li><a href="#">Another social link</a></li>
                         </ul>
                 </div><!-- /.social -->
         </section><!-- /#extras -->

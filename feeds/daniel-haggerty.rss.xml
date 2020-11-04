@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>Digital Forensics - Daniel Haggerty</title><link>/</link><description></description><lastBuildDate>Tue, 03 Nov 2020 00:00:00 -0600</lastBuildDate><item><title>Android Artifacts</title><link>/android-artifacts.html</link><description></description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Tue, 03 Nov 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-11-03:/android-artifacts.html</guid><category>Android</category><category>Android</category><category>Artifacts</category></item><item><title>Calendar, Remiders, Time, Alarms</title><link>/calendar-reminders-time-alarms.html</link><description>&lt;h1&gt;Calendar&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;The calendar database is named  &lt;strong&gt;calendar.sqlitedb&lt;/strong&gt; and is stored at &lt;strong&gt;HomeDomain/Library/Calendar&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;The most important tables here are &lt;strong&gt;Calendar&lt;/strong&gt; and &lt;strong&gt;CalendarItem&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Calendar&lt;/strong&gt; stores calendars used by applications (iOS, Gmail, Facebook)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CalendarItem&lt;/strong&gt; stores information related to each entry saved&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reminders&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Tue, 03 Nov 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-11-03:/calendar-reminders-time-alarms.html</guid><category>iPhone</category><category>iPhone</category><category>iOS</category><category>Artifacts</category></item><item><title>Carving Binary plists</title><link>/carving-binary-plists.html</link><description>&lt;h1&gt;&lt;/h1&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Tue, 03 Nov 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-11-03:/carving-binary-plists.html</guid><category>iPhone</category><category>iPhone</category><category>iOS</category><category>Artifacts</category></item><item><title>Cell Data Record Analysis</title><link>/cdr.html</link><description></description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Tue, 03 Nov 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-11-03:/cdr.html</guid><category>CDR</category><category>CDR</category></item><item><title>Elasticsearch O365 Audit Logs</title><link>/elasticsearch-o365.html</link><description></description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Tue, 03 Nov 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-11-03:/elasticsearch-o365.html</guid><category>Mail</category><category>ELK</category><category>O365</category></item><item><title>iPhone Backups</title><link>/iphone-backups.html</link><description>&lt;h1&gt;iTunes&lt;/h1&gt;
+&lt;h2&gt;iTunes backup structure&lt;/h2&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Tue, 03 Nov 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-11-03:/iphone-backups.html</guid><category>iPhone</category><category>iPhone</category><category>iOS</category><category>Artifacts</category></item><item><title>iPhone Messages, Calls and Contacts</title><link>/iphone-messaging-and-calls.html</link><description>&lt;h1&gt;iMessage and SMS/MMS Messages&lt;/h1&gt;
+&lt;h2&gt;Messages stored on device&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;All three message types (SMS, MMS, iMessage) stored in a SQLite3 database &lt;strong&gt;sms.db&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Located at &lt;strong&gt;/private/var/mobile/Library/SMS/&lt;/strong&gt; or &lt;strong&gt;HomeDomain-Library/SMS&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;mobile&lt;/strong&gt; is the root user on each iPhone&lt;/li&gt;
+&lt;li&gt;Media attachemnets stored in the &lt;strong&gt;MediaDomain-Library/SMS/Attachments&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Seven …&lt;/li&gt;&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Tue, 03 Nov 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-11-03:/iphone-messaging-and-calls.html</guid><category>iPhone</category><category>iPhone</category><category>iOS</category><category>Artifacts</category></item><item><title>Mac Artifacts</title><link>/mac-artifacts.html</link><description></description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Tue, 03 Nov 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-11-03:/mac-artifacts.html</guid><category>Mac</category><category>Mac</category><category>iOS</category><category>Artifacts</category></item><item><title>Safari</title><link>/safari.html</link><description>&lt;h1&gt;Safari Data&lt;/h1&gt;
+&lt;p&gt;Data storage for Safari has change dover the years and how data is stored will depend on version of iOS. There has been a gradual shift from &lt;strong&gt;plist&lt;/strong&gt; to &lt;strong&gt;sqlite&lt;/strong&gt; databases.&lt;/p&gt;
+&lt;p&gt;Safari's main history data is stored in a database named &lt;strong&gt;History.db&lt;/strong&gt; at AppDomain-com.apple.mobilesafari/Library …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Tue, 03 Nov 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-11-03:/safari.html</guid><category>iPhone</category><category>iPhone</category><category>iOS</category><category>Artifacts</category></item><item><title>iPhone Third-party Apps</title><link>/third-party-apps.html</link><description>&lt;h1&gt;Where might we find third-party app data?&lt;/h1&gt;
+&lt;p&gt;Look in info.plist  &amp;gt; Installed Applications &amp;gt; BundleId e.g., &lt;strong&gt;com.kik.chat&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Data may be in either &lt;strong&gt;AppDomain&lt;/strong&gt; or &lt;strong&gt;AppDomainGroup&lt;/strong&gt;. &lt;/p&gt;
+&lt;p&gt;For example, &lt;strong&gt;AppDomain-com.kik.chat&lt;/strong&gt;
+- Each of these folders hould contain the subfolders of Library/Preferences and a &lt;strong&gt;plist&lt;/strong&gt; such as &lt;strong&gt;com.kik …&lt;/strong&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Tue, 03 Nov 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-11-03:/third-party-apps.html</guid><category>iPhone</category><category>iPhone</category><category>iOS</category><category>Artifacts</category></item><item><title>Windows Artifacts</title><link>/windows-artifacts.html</link><description></description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Tue, 03 Nov 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-11-03:/windows-artifacts.html</guid><category>Windows</category><category>Windows</category><category>Artifacts</category></item><item><title>Docker Certified Associate</title><link>/docker-certified-associate.html</link><description>&lt;h3&gt;Docker&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker run dans-container
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Is equivalent too&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker create dans-container
+docker start dans-container
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker run busybox ping google.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;dockerfile&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;alpine&lt;/span&gt;
+
+&lt;span class="n"&gt;WORKDIR&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/app&amp;#39;&lt;/span&gt;
+
+&lt;span class="k"&gt;COPY&lt;/span&gt; &lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;RUN&lt;/span&gt; &lt;span class="n"&gt;npm&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt;
+
+&lt;span class="k"&gt;COPY&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;CMD&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;npm&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;&amp;quot;start&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;docker-compose.yml&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;version: &amp;#39;3&amp;#39;&lt;/span&gt;
+&lt;span class="c"&gt;services:&lt;/span&gt;
+&lt;span class="c"&gt;  redis-server:&lt;/span&gt;
+&lt;span class="c"&gt;    image: &amp;#39;redis&amp;#39;&lt;/span&gt;
+&lt;span class="c"&gt;  node-app:&lt;/span&gt;
+&lt;span class="c"&gt;    restart: always&lt;/span&gt;
+&lt;span class="c"&gt;    build: .&lt;/span&gt;
+&lt;span class="c"&gt;    ports:&lt;/span&gt;
+&lt;span class="c"&gt;      - &amp;quot;4001 …&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Sat, 18 Jan 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-01-18:/docker-certified-associate.html</guid><category>Certifications</category><category>Docker</category></item><item><title>Docker Commands</title><link>/docker-commands.html</link><description>&lt;h3&gt;Docker&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker run dans-container
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Is equivalent too&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker create dans-container
+docker start dans-container
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker run busybox ping google.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;To view that container still running:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker ps
+docker ps --all
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;To stop container: &lt;code&gt;docker stop&lt;/code&gt; tries to cleanup, &lt;code&gt;docker kill&lt;/code&gt; is more brutal.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker stop containerid
+docker &lt;span class="nb"&gt;kill&lt;/span&gt; containerid …&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Sat, 18 Jan 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-01-18:/docker-commands.html</guid><category>Certifications</category><category>Docker</category></item><item><title>Linux Privilege Escalation</title><link>/linux-privilege-escalation.html</link><description>&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;privesc_linux&lt;/span&gt;
+&lt;span class="n"&gt;UPGRADE&lt;/span&gt; &lt;span class="n"&gt;SHELL&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;import pty; pty.spawn(&amp;quot;bin/bash&amp;quot;)&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;ctrl&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Z&lt;/span&gt;
+&lt;span class="n"&gt;stty&lt;/span&gt; &lt;span class="n"&gt;raw&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt;
+&lt;span class="n"&gt;fg&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Enumerate and run this:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2&amp;gt;/dev/null&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;If you don’t see a compiler such as GCC …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Fri, 01 Nov 2019 00:00:00 -0500</pubDate><guid isPermaLink="false">tag:None,2019-11-01:/linux-privilege-escalation.html</guid><category>Certifications</category><category>OSCP</category></item><item><title>Windows Privilege Escalation</title><link>/windows-privilege-escalation.html</link><description>&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;icacls scsiaccess.exe&lt;/span&gt;
+&lt;span class="err"&gt;...&lt;/span&gt;
+&lt;span class="c"&gt;Everyone: (I)(F)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;crosscompile useradd.c
+i686-w64-mingw32-gcc -o scsiaccess.exe useradd.c
+wce -w
+fgdump.exe
+type 127.0.0.1.pwdump
+john --wordlist=/usr/share/wordlists/rockyou.txt 127.0.0.1.pwdump
+Is there python on dev windows machine
+Use pyinstaller on dev windows machine …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Fri, 01 Nov 2019 00:00:00 -0500</pubDate><guid isPermaLink="false">tag:None,2019-11-01:/windows-privilege-escalation.html</guid><category>Certifications</category><category>OSCP</category></item><item><title>Linux Buffer Overflow</title><link>/linux-buffer-overflow.html</link><description>&lt;h1&gt;Linux Buffer Overflow (Crossfire)&lt;/h1&gt;
+&lt;p&gt;Download a version of the vulnerable app Crossfire&lt;/p&gt;
+&lt;h3&gt;Setup safe environment: iptables only allow traffic from loopback interface=targetip&lt;/h3&gt;
+&lt;p&gt;iptables –A, -p, -d, -j # Append, protocol, destination, jump
+crossfire listens on port 13327
+iptables -A INPUT -p tcp --destination-port 13327 ! -d 127.0.0.1 -j …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Thu, 31 Oct 2019 00:00:00 -0500</pubDate><guid isPermaLink="false">tag:None,2019-10-31:/linux-buffer-overflow.html</guid><category>Certifications</category><category>OSCP</category></item><item><title>Windows Buffer Overflow</title><link>/windows-buffer-overflow.html</link><description>&lt;h1&gt;Windows Buffer Overflow (SLMail)&lt;/h1&gt;
+&lt;p&gt;Seattle Lab Mail (SLMail) is fantastic vulnerable app to practise your buffer overflow on. You will have to download a version of the vulnerable SLMail to a Windows VM. The SLMail buffer overflow affects the &lt;strong&gt;POP3 PASS&lt;/strong&gt; command. Both the app itself and the exploit are …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Thu, 31 Oct 2019 00:00:00 -0500</pubDate><guid isPermaLink="false">tag:None,2019-10-31:/windows-buffer-overflow.html</guid><category>Certifications</category><category>OSCP</category></item><item><title>"OSCP: Notes for exam"</title><link>/oscp-notes.html</link><description>&lt;p&gt;Everyone has one. This is mine. A collection of OSCP prep-notes from various other guides and sources over the internet as well as my own experience within the Hack The Box labs and in the Penetration Testing with Kali Linux labs. &lt;/p&gt;
+&lt;h3&gt;Nmap (host/port)&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# nmap all ports&lt;/span&gt;
+nmap -p- -oA …&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Wed, 30 Oct 2019 00:00:00 -0500</pubDate><guid isPermaLink="false">tag:None,2019-10-30:/oscp-notes.html</guid><category>Certifications</category><category>OSCP</category></item><item><title>"FTK: Imaging a Windows PC"</title><link>/ftk-windows.html</link><description>&lt;p&gt;Drive acquisition is one the first steps a Forensic Analyst will have to carry out at the beginning of case. These acquistions are often carried out remotely by VPN or by the the client (or client IT department) where the computer is located. Acquiring such images from a drive has …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Mon, 28 Oct 2019 00:00:00 -0500</pubDate><guid isPermaLink="false">tag:None,2019-10-28:/ftk-windows.html</guid><category>Windows</category><category>FTK Imager</category><category>Windows</category></item><item><title>Network+ - Cabling &amp; Topology</title><link>/network-cabling-topology.html</link><description>&lt;h2&gt;Topology&lt;/h2&gt;
+&lt;p&gt;A network topology is defined by the lines and nodes that make up the network. This can be further delineated into two twpes of topology: &lt;code&gt;physical&lt;/code&gt; vs &lt;code&gt;logical&lt;/code&gt; topology.&lt;/p&gt;
+&lt;p&gt;Physical topology is the geometric pattern of the connected nodes of a network, whereas logical topology defines the pattern of …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Fri, 25 Oct 2019 00:00:00 -0500</pubDate><guid isPermaLink="false">tag:None,2019-10-25:/network-cabling-topology.html</guid><category>Certifications</category><category>Network+</category></item><item><title>Passing the OSCP Exam - Trying Smarter</title><link>/passing-the-oscp.html</link><description>&lt;blockquote&gt;
+&lt;p&gt;The definition of insanity is doing the same thing over and over again, but expecting different results.&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;Albert Einstein&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If, like me, you have no hacking experience and no computer science background you have probably spent time in the Penetration Testing With Kali Linux (PWK) labs proving Einstein's theory of …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Fri, 25 Oct 2019 00:00:00 -0500</pubDate><guid isPermaLink="false">tag:None,2019-10-25:/passing-the-oscp.html</guid><category>Certifications</category><category>OSCP</category></item><item><title>Network+ - Network Models</title><link>/network-models.html</link><description>&lt;h2&gt;Network Models&lt;/h2&gt;
+&lt;p&gt;There are two main models that represent networks. The OSI and TCP/IP Model.&lt;/p&gt;
+&lt;h3&gt;OSI Model&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Physical (Cables)&lt;/li&gt;
+&lt;li&gt;Data Link (Network cards, Switches, components with MAC Addresses)&lt;/li&gt;
+&lt;li&gt;Network (Routers, Logical Addresses, IP Addresses)&lt;/li&gt;
+&lt;li&gt;Transport (Assembly/Disassembly layer for packets)&lt;/li&gt;
+&lt;li&gt;Session (Connection between two systems)&lt;/li&gt;
+&lt;li&gt;Presentation (Converts data into …&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Thu, 24 Oct 2019 16:20:02 -0500</pubDate><guid isPermaLink="false">tag:None,2019-10-24:/network-models.html</guid><category>Certifications</category><category>Network+</category></item></channel></rss>

