@@ -3,26 +3,52 @@
 <head>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
-        <title>Daniel Haggerty's Blog - Windows</title>
+        <title>Digital Forensics - Windows</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Daniel Haggerty's Blog Atom Feed" />
-        <link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Daniel Haggerty's Blog RSS Feed" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Digital Forensics Atom Feed" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="/">Daniel Haggerty's Blog</a></h1>
+                <h1><a href="/">Digital Forensics</a></h1>
                 <nav><ul>
-                    <li><a href="/category/dfir.html">DFIR</a></li>
-                    <li><a href="/category/docker.html">Docker</a></li>
-                    <li><a href="/category/network.html">Network+</a></li>
-                    <li><a href="/category/oscp.html">OSCP</a></li>
+                    <li><a href="/category/android.html">Android</a></li>
+                    <li><a href="/category/cdr.html">CDR</a></li>
+                    <li><a href="/category/certifications.html">Certifications</a></li>
+                    <li><a href="/category/iphone.html">iPhone</a></li>
+                    <li><a href="/category/mac.html">Mac</a></li>
+                    <li><a href="/category/mail.html">Mail</a></li>
+                    <li><a href="/category/windows.html">Windows</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/ftk-windows.html">"FTK: Imaging a Windows PC"</a></h1>
+                    <h1 class="entry-title"><a href="/windows-artifacts.html">Windows Artifacts</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2020-11-03T00:00:00-06:00">
+                Published: Tue 03 November 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
+        </address>
+<p>In <a href="/category/windows.html">Windows</a>.</p>
+<p>tags: <a href="/tag/windows.html">Windows</a> <a href="/tag/artifacts.html">Artifacts</a> </p>
+</footer><!-- /.post-info -->                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/ftk-windows.html" rel="bookmark"
+                           title="Permalink to "FTK: Imaging a Windows PC"">"FTK: Imaging a Windows PC"</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2019-10-28T00:00:00-05:00">
                 Published: Mon 28 October 2019
@@ -31,49 +57,20 @@
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
         </address>
-<p>In <a href="/category/dfir.html">DFIR</a>.</p>
+<p>In <a href="/category/windows.html">Windows</a>.</p>
 <p>tags: <a href="/tag/ftk-imager.html">FTK Imager</a> <a href="/tag/windows.html">Windows</a> </p>
-</footer><!-- /.post-info --><p>Drive acquisition is one the first steps a Forensic Analyst will have to carry out at the beginning of case. These acquistions are often carried out remotely by VPN or by the the client (or client IT department) where the computer is located. Acquiring such images from a drive has been made easy using AccesData Forensic Toolkit (FTK) Imager. The software is free and can be downloaded <a href="https://accessdata.com/product-download/forensic-toolkit-ftk-version-7.1.0">here</a>! </p>
-<p>Once downloaded, install the software. Launch by doubleclicking the FTK icon or running <code>FTK Imager.exe</code> from the command line.</p>
-<p>Let's plug in an external USB drive to write to and image the host, a Windows 10 machine.</p>
-<p>Here is the main GUI for FTK. Select <code>File</code> from the menu and <code>Create a Disk Image</code> and then chose the source of your image</p>
-<p><img alt="image" src="/images/ftk/ftk1.jpg" title="FTK Imager"></p>
-<p>We are imaging a physical drive so selct that option</p>
-<p><img alt="image" src="/images/ftk/ftk2.jpg" title="FTK Imager, select Physical Drive"></p>
-<p>Choose the drive to be imaged</p>
-<p><img alt="image" src="/images/ftk/ftk3.jpg" title="FTK Imager, chose drive"></p>
-<p>Now we need to select the destination (our external USB), to save the image too. We also want to carry out verification on the image to ensure that the copy we have on the USB is identical to the host machine. The image will calculate the MD5 and SHA1 hash values for the host drive ad FTK Image.</p>
-<p><img alt="image" src="/images/ftk/ftk4.jpg" title="FTK Imager"></p>
-<p>Next we need to selct the image format type that we will be saving. E01 is a common forensic image file format and is almost a standard. In addition, the E01 file format provides metadata about the image as well as compressing the data meaning you will be handler a smaller file after imaging. </p>
-<p><img alt="image" src="/images/ftk/ftk5.jpg" title="FTK Imager"></p>
-<p>Select the image destination. The external USB dive is <code>D:</code>.</p>
-<p><img alt="image" src="/images/ftk/ftk6.jpg" title="Select image destination"></p>
-<p>Now image!</p>
-<p><img alt="image" src="/images/ftk/ftk7.jpg" title="Image!"></p>
-<p>After imaging the software will jump into the verification process</p>
-<p><img alt="image" src="/images/ftk/ftk8.jpg" title="Image verification"></p>
-<p>FTK Imager also creates a log of the acquisition process and places it in the same directory as the image, image-name.txt. This file lists the evidence information, details of the drive, check sums, and times the image acquisition started and finished:</p>
-<p><img alt="image" src="/images/ftk/ftk9.jpg" title="Image verification"></p>
-<p>Once the drive is imaged we are presented with the display that both the MD5 and SHA1 hashes indicate that the drive we just imaged and the image itself match.</p>
-<p><img alt="image" src="/images/ftk/ftk10.jpg" title="Image verification display"></p>
-<p>And that's that. Next up, memory dump using FTK Imager</p>                </article>
-            </aside><!-- /#featured -->
+</footer><!-- /.post-info -->                <p>Drive acquisition is one the first steps a Forensic Analyst will have to carry out at the beginning of case. These acquistions are often carried out remotely by VPN or by the the client (or client IT department) where the computer is located. Acquiring such images from a drive has …</p>
+                <a class="readmore" href="/ftk-windows.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
         <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="https://getpelican.com/">Pelican</a></li>
-                            <li><a href="https://www.python.org/">Python.org</a></li>
-                            <li><a href="https://www.docker.com/">Docker</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
                 <div class="social">
                         <h2>social</h2>
                         <ul>
                             <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-                            <li><a href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
 
-                            <li><a href="#">Another social link</a></li>
                         </ul>
                 </div><!-- /.social -->
         </section><!-- /#extras -->

@@ -1,8 +1,8 @@
 ---
-title: "Docker Commands"
+title: Docker Commands
 slug: docker-commands
 last_modified_at: 2019-11-01T16:20:02-05:00
-category: Docker
+category: Certifications
 tags: Docker
 Authors: Daniel Haggerty
 ---

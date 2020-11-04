@@ -1,9 +1,9 @@
 ---
-title: "Windows Buffer Overflow"
+title: Windows Buffer Overflow
 slug: windows-buffer-overflow
 last_modified_at: 2019-11-01T16:20:02-05:00
-category: OSCP
-tags: Penetration Testing, Buffer Overflow
+category: Certifications
+tags: OSCP
 authors: Daniel Haggerty
 ---
 

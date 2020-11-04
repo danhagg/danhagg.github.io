@@ -1,9 +1,9 @@
 ---
-title: "Network+: Cabling & Topology"
+title: Network+ - Cabling & Topology
 slug: network-cabling-topology
 last_modified_at: 2019-10-24T16:18:02-05:00
-Category: Network+
-tags: Topology, Cabling
+Category: Certifications
+tags: Network+
 authors: Daniel Haggerty
 ---
 

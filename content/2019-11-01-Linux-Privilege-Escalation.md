@@ -1,9 +1,9 @@
 ---
-title: "Linux Privilege Escalation"
+title: Linux Privilege Escalation
 Slug: linux-privilege-escalation
 last_modified_at: 2019-11-01T16:20:02-05:00
-category: OSCP
-Tags: Penetration Testing, Privilege Escalation
+category: Certifications
+Tags: OSCP
 Authors: Daniel Haggerty
 ---
 

