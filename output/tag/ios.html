@@ -24,7 +24,7 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/calendar-reminders-time-alarms.html">Calendar, Remiders, Time, Alarms</a></h1>
+                    <h1 class="entry-title"><a href="/iphone-messaging-and-calls.html">iPhone Artifacts</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2020-11-03T00:00:00-06:00">
                 Published: Tue 03 November 2020
@@ -35,93 +35,200 @@
         </address>
 <p>In <a href="/category/iphone.html">iPhone</a>.</p>
 <p>tags: <a href="/tag/iphone.html">iPhone</a> <a href="/tag/ios.html">iOS</a> <a href="/tag/artifacts.html">Artifacts</a> </p>
-</footer><!-- /.post-info --><h1>Calendar</h1>
+</footer><!-- /.post-info --><ol>
+<li>Acquisition</li>
+<li>Apple Device Identifiers</li>
+<li>iTunes Backups, info.plist</li>
+<li>iMessage and SMS/MMS Messages</li>
+<li>Call logs</li>
+<li>Contacts</li>
+<li>Calendars and Reminders</li>
+<li>Safari</li>
+<li>Third-party app data</li>
+<li>Anatomy of an Application</li>
+</ol>
+<h2>1. Acquisition</h2>
 <ul>
-<li>The calendar database is named  <strong>calendar.sqlitedb</strong> and is stored at <strong>HomeDomain/Library/Calendar</strong></li>
-<li>The most important tables here are <strong>Calendar</strong> and <strong>CalendarItem</strong></li>
-<li><strong>Calendar</strong> stores calendars used by applications (iOS, Gmail, Facebook)</li>
-<li><strong>CalendarItem</strong> stores information related to each entry saved</li>
-<li><strong>Reminders</strong></li>
-</ul>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/carving-binary-plists.html" rel="bookmark"
-                           title="Permalink to Carving Binary plists">Carving Binary plists</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2020-11-03T00:00:00-06:00">
-                Published: Tue 03 November 2020
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
-        </address>
-<p>In <a href="/category/iphone.html">iPhone</a>.</p>
-<p>tags: <a href="/tag/iphone.html">iPhone</a> <a href="/tag/ios.html">iOS</a> <a href="/tag/artifacts.html">Artifacts</a> </p>
-</footer><!-- /.post-info -->                <h1></h1>
-                <a class="readmore" href="/carving-binary-plists.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/iphone-backups.html" rel="bookmark"
-                           title="Permalink to iPhone Backups">iPhone Backups</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2020-11-03T00:00:00-06:00">
-                Published: Tue 03 November 2020
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
-        </address>
-<p>In <a href="/category/iphone.html">iPhone</a>.</p>
-<p>tags: <a href="/tag/iphone.html">iPhone</a> <a href="/tag/ios.html">iOS</a> <a href="/tag/artifacts.html">Artifacts</a> </p>
-</footer><!-- /.post-info -->                <h1>iTunes</h1>
-<h2>iTunes backup structure</h2>
-                <a class="readmore" href="/iphone-backups.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/iphone-messaging-and-calls.html" rel="bookmark"
-                           title="Permalink to iPhone Messages, Calls and Contacts">iPhone Messages, Calls and Contacts</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2020-11-03T00:00:00-06:00">
-                Published: Tue 03 November 2020
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
-        </address>
-<p>In <a href="/category/iphone.html">iPhone</a>.</p>
-<p>tags: <a href="/tag/iphone.html">iPhone</a> <a href="/tag/ios.html">iOS</a> <a href="/tag/artifacts.html">Artifacts</a> </p>
-</footer><!-- /.post-info -->                <h1>iMessage and SMS/MMS Messages</h1>
-<h2>Messages stored on device</h2>
+<li>Property lockdown pairing plist will be located at C:\ProgramData\Apple\Lockdown</li>
+<li>Can copy <strong>plist</strong> from target comp to examiner. </li>
+<li>May unlock if pairing cert is valid</li>
+<li>Jailbroken devices will reveal all of logical data tho may be encrypted</li>
+</ul>
+<h2>2. Apple Device Identifiers</h2>
+<p>Apple devices have several identifying values
+- IMEI (international mobile equipment identity)
+- MEID (mobile equipment identifier)
+- Serial number assigned by Apple
+- Unique Device Identifier or UDID (uniquely ID each device Apple).</p>
+<h3>UDID</h3>
+<ul>
+<li>Hashed unique values on device: chip ID, Wi-Fi/Bluetooth MAC</li>
+<li>The UDID is used by Apple to track devices. </li>
+<li>Uniquely identify a backup on PC. <ul>
+<li>If iOS plugged: UDID stored in Windows registry</li>
+</ul>
+</li>
+<li>The UDID is a 40-character alphanumeric value.</li>
+<li>There are two ways to find out a devices UDID:<ol>
+<li>Unlocked/paired to PC: When iOS device connected iTunes can show UDID: device properties and clicking on Serial No. == UDID</li>
+<li>Run <strong>devmgmt.msc</strong> (with iphone plugged in)<ul>
+<li>Expand USB devices to find Apple</li>
+<li>Details &gt; Property submenu &gt; Device Instance Path</li>
+<li>Value after \</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>USB Devices Artifact: Device Class ID: “Filter column”. <strong>Apple</strong> or <strong>05AC</strong> </li>
+</ul>
+<h2>3. iTunes Backups</h2>
+<ul>
+<li>
+<p>iTunes tend to backup to PC's at following location:
+<strong>C:\Users<username>\AppData\Roaming\Apple Computer\MobileSync\Backup</strong></p>
+</li>
+<li>
+<p>May be possible to find multiple copies of same device under separate users.</p>
+</li>
+<li>\Backup\ folder, subfolder folders for each backed-up device/UDID. </li>
+<li>A UDID may be listed multiple times: appended by a 24hr date/time.</li>
+<li>Files will have no file extension &amp; represent a file on the iOS device. </li>
+<li>Filenames reflect a SHA1 value of the path of original device file. </li>
+<li>Apple does not store full path, uses a list of Domains (shortcuts) eg:<ul>
+<li>AppDomain-com.some.user.installed.app</li>
+</ul>
+</li>
+<li>Apple calculates hash using domain followed by the rest of the path. </li>
+<li>eg, <strong>/private/var/mobile/Library/SMS/sms.db</strong> is represented in the backup as HomeDomain-Library/SMS/sms.db whose hash is <strong>3d0d7e5fb2ce288813306e4d4636395e047a3d28</strong></li>
+<li>This hash reflect the SQLite database containing these messages.</li>
+<li>It will be a common hash for many devices</li>
+<li>A list of all paths &amp; domains can be found in the <strong>manifest.mbdb</strong> file.</li>
+<li>iOS 10, Apple changed from <strong>.mbdb</strong> file to SQLite db <strong>Manifest.db</strong>.</li>
+<li>There are three .plist (property) files on PC where Apple device was backed up. </li>
+<li>Manifest.plist, Status.plist, Info.plist reflect info from device. </li>
+<li>These files do not belong on device itself but contain info about device<ol>
+<li>Info.plist is an XML file:<ul>
+<li>Device Name</li>
+<li>Display Name</li>
+<li>GUID</li>
+<li>ICCID</li>
+<li>IMEI</li>
+<li>Last Backup Date</li>
+<li>Phone Number</li>
+<li>Product Type</li>
+<li>Product Version (iOS Version)</li>
+<li>Serial Number</li>
+<li>UDID</li>
+<li>iTunes Version</li>
+<li>List of Installed Applications</li>
+<li>List of Applications in Library</li>
+</ul>
+</li>
+<li>Manifest.plist is a binary file: <ul>
+<li>whether or not the backup is encrypted</li>
+<li>UDID of the device</li>
+<li>whether or not a passcode was set on the device</li>
+</ul>
+</li>
+<li>Status.plist file<ul>
+<li>UDID</li>
+<li>the state of the backup</li>
+<li>whether or not it is a full backup.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3>Encrypted backups</h3>
+<ul>
+<li>\Backup\s select backup and SAVE FILE TO case folder</li>
+<li>Close Examine, Open Process to add backup/integrate</li>
+<li>Browse to current case, SCAN2, GO TO EVIDENCE SOURCES</li>
+<li>iOS&gt;LOAD &gt; FILES/FOLDERS &gt; BACKUP &gt; ENTER ENCRYPT PASSWORD</li>
+</ul>
+<h2>4. iMessage and SMS/MMS Messages</h2>
+<h3>Messages stored on device</h3>
 <ul>
 <li>All three message types (SMS, MMS, iMessage) stored in a SQLite3 database <strong>sms.db</strong></li>
 <li>Located at <strong>/private/var/mobile/Library/SMS/</strong> or <strong>HomeDomain-Library/SMS</strong></li>
 <li><strong>mobile</strong> is the root user on each iPhone</li>
 <li>Media attachemnets stored in the <strong>MediaDomain-Library/SMS/Attachments</strong></li>
-<li>Seven …</li></ul>
-                <a class="readmore" href="/iphone-messaging-and-calls.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
+<li>Seven tables in <strong>sms.db</strong> of which 3 are joins and 4 contain details (Message, Chat, Handle, Attachment)</li>
+<li>Database stores times as Mac Epochs (1st, January, 2001 in seconds)</li>
+<li>Date, Date read, Date Received</li>
+</ul>
+<h3>Sending and receiving messages</h3>
+<ul>
+<li>iMessages can be transmitted over WiFi and/or cellular data</li>
+<li>iMessages can only be sent to other iMessage users (sent message = blue)</li>
+<li>If the message sent via SMS message the sent message will be green</li>
+<li>Dates/times</li>
+<li>Can determine those messages by those sent by Siri but <em>NOT</em> those sent by talk-to-text</li>
+</ul>
+<p>More info at <a href="https://sqliteforensictoolkit.com/sms-recovered-records-and-contacts-3-ways/">Sanderson Forensics</a></p>
+<h2>5. Call logs</h2>
+<ul>
+<li>Pre iOS 8 call logs stored in a SQLite3 database <strong>call_history.db</strong> in <strong>WirelessDomain</strong> located at <strong>/private/var/wrieless</strong></li>
+<li>Modern call logs database is <strong>CallHistroy.storedata</strong> in <strong>HomeDomain</strong> located at <strong>/Library/CallHistoryDB</strong></li>
+<li><strong>zservice_provider</strong> tells you the application making the call<ul>
+<li>com.apple.Telephony is the standard iPhone call</li>
+<li>com.apple.FaceTime</li>
+<li>WhatsApp and Skype appear here if used</li>
+</ul>
+</li>
+<li><strong>zcalltype</strong> (1 standard, 8 FaceTime video, 16 FaceTime aduio)</li>
+<li><strong>zdate</strong> is in Apple time</li>
+<li>If you remove application the call logs tend to disappear</li>
+<li>Application calls stored often exist only for a few days (e.g., Snapchat)</li>
+</ul>
+<h2>6. Contacts</h2>
+<ul>
+<li>Stored in <strong>AddressBook.sqlitedb</strong> in <strong>WirelessDomain</strong> located at <strong>/private/var/wrieless</strong></li>
+<li>Two tables of note<ol>
+<li><strong>ABPerson</strong> (Name, Organization, D.O.B)</li>
+<li><strong>ABMultiValue</strong> (phone numbers, email addresses, ringtone settings)</li>
+</ol>
+</li>
+</ul>
+<h2>7. Calendar &amp; Reminders</h2>
+<ul>
+<li>The calendar database is named  <strong>calendar.sqlitedb</strong> and is stored at <strong>HomeDomain/Library/Calendar</strong></li>
+<li>The most important tables here are <strong>Calendar</strong> and <strong>CalendarItem</strong></li>
+<li><strong>Calendar</strong> stores calendars used by applications (iOS, Gmail, Facebook)</li>
+<li><strong>CalendarItem</strong> stores information related to each entry saved</li>
+<li><strong>Reminders</strong> are included in the <strong>CalendarItem</strong> table and linked to <strong>Reminders</strong> entry in <strong>Calendar</strong> table.</li>
+</ul>
+<h2>8. Safari</h2>
+<ul>
+<li>Data storage for Safari has change dover the years and how data is stored will depend on version of iOS. </li>
+<li>There has been a gradual shift from <strong>plist</strong> to <strong>sqlite</strong> databases.</li>
+<li>Safari's main history data is stored in a database named <strong>History.db</strong> </li>
+<li>Located at <strong>AppDomain-com.apple.mobilesafari/Library/Safari</strong></li>
+<li>Tables of interest are:<ul>
+<li>history_items (url, domain, visit count)</li>
+<li>history_visits (visit time, page title)</li>
+</ul>
+</li>
+<li>Artifacts extracted from Safari database may result from WebKit data: e.g., from internet searches from within applications.</li>
+</ul>
+<h2>9. Third-party app data</h2>
+<ul>
+<li>Look in info.plist  &gt; Installed Applications &gt; BundleId e.g., <strong>com.kik.chat</strong></li>
+<li>Data may be in either <strong>AppDomain</strong> or <strong>AppDomainGroup</strong>. </li>
+<li>For example, <strong>AppDomain-com.kik.chat</strong><ul>
+<li>Each of these folders hould contain the subfolders of Library/Preferences and a <strong>plist</strong> such as <strong>com.kik.chat.plist</strong> or <strong>group.com.kik.chat.plist</strong></li>
+</ul>
+</li>
+<li>This <strong>plist</strong> may contain a ton of data. It is up to the third-party developer as to what information is stored in this <strong>plist</strong></li>
+<li>Can use a third-party app to find Buble Ids such as <a href="https://offcornerdev.com/bundleid.html">OffCornerDev</a></li>
+</ul>
+<h2>10. Anatomy of an application</h2>
+<p>plist carving</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
 
             <li><article class="hentry">
                 <header>
@@ -142,56 +249,6 @@
 <p>tags: <a href="/tag/mac.html">Mac</a> <a href="/tag/ios.html">iOS</a> <a href="/tag/artifacts.html">Artifacts</a> </p>
 </footer><!-- /.post-info -->                
                 <a class="readmore" href="/mac-artifacts.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/safari.html" rel="bookmark"
-                           title="Permalink to Safari">Safari</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2020-11-03T00:00:00-06:00">
-                Published: Tue 03 November 2020
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
-        </address>
-<p>In <a href="/category/iphone.html">iPhone</a>.</p>
-<p>tags: <a href="/tag/iphone.html">iPhone</a> <a href="/tag/ios.html">iOS</a> <a href="/tag/artifacts.html">Artifacts</a> </p>
-</footer><!-- /.post-info -->                <h1>Safari Data</h1>
-<p>Data storage for Safari has change dover the years and how data is stored will depend on version of iOS. There has been a gradual shift from <strong>plist</strong> to <strong>sqlite</strong> databases.</p>
-<p>Safari's main history data is stored in a database named <strong>History.db</strong> at AppDomain-com.apple.mobilesafari/Library …</p>
-                <a class="readmore" href="/safari.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/third-party-apps.html" rel="bookmark"
-                           title="Permalink to iPhone Third-party Apps">iPhone Third-party Apps</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2020-11-03T00:00:00-06:00">
-                Published: Tue 03 November 2020
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
-        </address>
-<p>In <a href="/category/iphone.html">iPhone</a>.</p>
-<p>tags: <a href="/tag/iphone.html">iPhone</a> <a href="/tag/ios.html">iOS</a> <a href="/tag/artifacts.html">Artifacts</a> </p>
-</footer><!-- /.post-info -->                <h1>Where might we find third-party app data?</h1>
-<p>Look in info.plist  &gt; Installed Applications &gt; BundleId e.g., <strong>com.kik.chat</strong></p>
-<p>Data may be in either <strong>AppDomain</strong> or <strong>AppDomainGroup</strong>. </p>
-<p>For example, <strong>AppDomain-com.kik.chat</strong>
-- Each of these folders hould contain the subfolders of Library/Preferences and a <strong>plist</strong> such as <strong>com.kik …</strong></p>
-                <a class="readmore" href="/third-party-apps.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->
