@@ -35,63 +35,14 @@
         </address>
 <p>In <a href="/category/android.html">Android</a>.</p>
 <p>tags: <a href="/tag/android.html">Android</a> <a href="/tag/artifacts.html">Artifacts</a> </p>
-</footer><!-- /.post-info -->                </article>
+</footer><!-- /.post-info --><p>Android phones do not immediately upgrades but rollouts tend to be taken up slowly (months to years).</p>
+<p>Google is developer but manufacturers and carriers also have a role in upgrade process</p>
+<p>Android devices now have full device encryption</p>                </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>
                     <hr />
                     <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/calendar-reminders-time-alarms.html" rel="bookmark"
-                           title="Permalink to Calendar, Remiders, Time, Alarms">Calendar, Remiders, Time, Alarms</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2020-11-03T00:00:00-06:00">
-                Published: Tue 03 November 2020
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
-        </address>
-<p>In <a href="/category/iphone.html">iPhone</a>.</p>
-<p>tags: <a href="/tag/iphone.html">iPhone</a> <a href="/tag/ios.html">iOS</a> <a href="/tag/artifacts.html">Artifacts</a> </p>
-</footer><!-- /.post-info -->                <h1>Calendar</h1>
-<ul>
-<li>The calendar database is named  <strong>calendar.sqlitedb</strong> and is stored at <strong>HomeDomain/Library/Calendar</strong></li>
-<li>The most important tables here are <strong>Calendar</strong> and <strong>CalendarItem</strong></li>
-<li><strong>Calendar</strong> stores calendars used by applications (iOS, Gmail, Facebook)</li>
-<li><strong>CalendarItem</strong> stores information related to each entry saved</li>
-<li><strong>Reminders</strong></li>
-</ul>
-                <a class="readmore" href="/calendar-reminders-time-alarms.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/carving-binary-plists.html" rel="bookmark"
-                           title="Permalink to Carving Binary plists">Carving Binary plists</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2020-11-03T00:00:00-06:00">
-                Published: Tue 03 November 2020
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
-        </address>
-<p>In <a href="/category/iphone.html">iPhone</a>.</p>
-<p>tags: <a href="/tag/iphone.html">iPhone</a> <a href="/tag/ios.html">iOS</a> <a href="/tag/artifacts.html">Artifacts</a> </p>
-</footer><!-- /.post-info -->                <h1></h1>
-                <a class="readmore" href="/carving-binary-plists.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -139,31 +90,8 @@
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="/iphone-backups.html" rel="bookmark"
-                           title="Permalink to iPhone Backups">iPhone Backups</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2020-11-03T00:00:00-06:00">
-                Published: Tue 03 November 2020
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
-        </address>
-<p>In <a href="/category/iphone.html">iPhone</a>.</p>
-<p>tags: <a href="/tag/iphone.html">iPhone</a> <a href="/tag/ios.html">iOS</a> <a href="/tag/artifacts.html">Artifacts</a> </p>
-</footer><!-- /.post-info -->                <h1>iTunes</h1>
-<h2>iTunes backup structure</h2>
-                <a class="readmore" href="/iphone-backups.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
                     <h1><a href="/iphone-messaging-and-calls.html" rel="bookmark"
-                           title="Permalink to iPhone Messages, Calls and Contacts">iPhone Messages, Calls and Contacts</a></h1>
+                           title="Permalink to iPhone Artifacts">iPhone Artifacts</a></h1>
                 </header>
 
                 <div class="entry-content">
@@ -177,14 +105,23 @@
         </address>
 <p>In <a href="/category/iphone.html">iPhone</a>.</p>
 <p>tags: <a href="/tag/iphone.html">iPhone</a> <a href="/tag/ios.html">iOS</a> <a href="/tag/artifacts.html">Artifacts</a> </p>
-</footer><!-- /.post-info -->                <h1>iMessage and SMS/MMS Messages</h1>
-<h2>Messages stored on device</h2>
+</footer><!-- /.post-info -->                <ol>
+<li>Acquisition</li>
+<li>Apple Device Identifiers</li>
+<li>iTunes Backups, info.plist</li>
+<li>iMessage and SMS/MMS Messages</li>
+<li>Call logs</li>
+<li>Contacts</li>
+<li>Calendars and Reminders</li>
+<li>Safari</li>
+<li>Third-party app data</li>
+<li>Anatomy of an Application</li>
+</ol>
+<h2>1. Acquisition</h2>
 <ul>
-<li>All three message types (SMS, MMS, iMessage) stored in a SQLite3 database <strong>sms.db</strong></li>
-<li>Located at <strong>/private/var/mobile/Library/SMS/</strong> or <strong>HomeDomain-Library/SMS</strong></li>
-<li><strong>mobile</strong> is the root user on each iPhone</li>
-<li>Media attachemnets stored in the <strong>MediaDomain-Library/SMS/Attachments</strong></li>
-<li>Seven …</li></ul>
+<li>Property lockdown pairing plist will be located at C:\ProgramData\Apple\Lockdown</li>
+<li>Can copy <strong>plist</strong> from target comp to examiner. </li>
+<li>May …</li></ul>
                 <a class="readmore" href="/iphone-messaging-and-calls.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
@@ -213,8 +150,8 @@
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="/safari.html" rel="bookmark"
-                           title="Permalink to Safari">Safari</a></h1>
+                    <h1><a href="/windows-artifacts.html" rel="bookmark"
+                           title="Permalink to Windows Artifacts">Windows Artifacts</a></h1>
                 </header>
 
                 <div class="entry-content">
@@ -226,45 +163,182 @@
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
         </address>
-<p>In <a href="/category/iphone.html">iPhone</a>.</p>
-<p>tags: <a href="/tag/iphone.html">iPhone</a> <a href="/tag/ios.html">iOS</a> <a href="/tag/artifacts.html">Artifacts</a> </p>
-</footer><!-- /.post-info -->                <h1>Safari Data</h1>
-<p>Data storage for Safari has change dover the years and how data is stored will depend on version of iOS. There has been a gradual shift from <strong>plist</strong> to <strong>sqlite</strong> databases.</p>
-<p>Safari's main history data is stored in a database named <strong>History.db</strong> at AppDomain-com.apple.mobilesafari/Library …</p>
-                <a class="readmore" href="/safari.html">read more</a>
+<p>In <a href="/category/windows.html">Windows</a>.</p>
+<p>tags: <a href="/tag/windows.html">Windows</a> <a href="/tag/artifacts.html">Artifacts</a> </p>
+</footer><!-- /.post-info -->                
+                <a class="readmore" href="/windows-artifacts.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="/third-party-apps.html" rel="bookmark"
-                           title="Permalink to iPhone Third-party Apps">iPhone Third-party Apps</a></h1>
+                    <h1><a href="/docker-certified-associate.html" rel="bookmark"
+                           title="Permalink to Docker Certified Associate">Docker Certified Associate</a></h1>
                 </header>
 
                 <div class="entry-content">
 <footer class="post-info">
-        <abbr class="published" title="2020-11-03T00:00:00-06:00">
-                Published: Tue 03 November 2020
+        <abbr class="published" title="2020-01-18T00:00:00-06:00">
+                Published: Sat 18 January 2020
         </abbr>
 
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
         </address>
-<p>In <a href="/category/iphone.html">iPhone</a>.</p>
-<p>tags: <a href="/tag/iphone.html">iPhone</a> <a href="/tag/ios.html">iOS</a> <a href="/tag/artifacts.html">Artifacts</a> </p>
-</footer><!-- /.post-info -->                <h1>Where might we find third-party app data?</h1>
-<p>Look in info.plist  &gt; Installed Applications &gt; BundleId e.g., <strong>com.kik.chat</strong></p>
-<p>Data may be in either <strong>AppDomain</strong> or <strong>AppDomainGroup</strong>. </p>
-<p>For example, <strong>AppDomain-com.kik.chat</strong>
-- Each of these folders hould contain the subfolders of Library/Preferences and a <strong>plist</strong> such as <strong>com.kik …</strong></p>
-                <a class="readmore" href="/third-party-apps.html">read more</a>
+<p>In <a href="/category/certifications.html">Certifications</a>.</p>
+<p>tags: <a href="/tag/docker.html">Docker</a> </p>
+</footer><!-- /.post-info -->                <h3>Docker</h3>
+<div class="highlight"><pre><span></span><code>docker run dans-container
+</code></pre></div>
+
+<p>Is equivalent too</p>
+<div class="highlight"><pre><span></span><code>docker create dans-container
+docker start dans-container
+</code></pre></div>
+
+<p>If:</p>
+<div class="highlight"><pre><span></span><code>docker run busybox ping google.com
+</code></pre></div>
+
+<p><strong>dockerfile</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span> <span class="n">node</span><span class="p">:</span><span class="n">alpine</span>
+
+<span class="n">WORKDIR</span> <span class="s1">&#39;/app&#39;</span>
+
+<span class="k">COPY</span> <span class="n">package</span><span class="p">.</span><span class="n">json</span> <span class="p">.</span>
+
+<span class="n">RUN</span> <span class="n">npm</span> <span class="n">install</span>
+
+<span class="k">COPY</span> <span class="p">.</span> <span class="p">.</span>
+
+<span class="n">CMD</span> <span class="p">[</span><span class="ss">&quot;npm&quot;</span><span class="p">,</span> <span class="ss">&quot;start&quot;</span><span class="p">]</span>
+</code></pre></div>
+
+<p><strong>docker-compose.yml</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c">version: &#39;3&#39;</span>
+<span class="c">services:</span>
+<span class="c">  redis-server:</span>
+<span class="c">    image: &#39;redis&#39;</span>
+<span class="c">  node-app:</span>
+<span class="c">    restart: always</span>
+<span class="c">    build: .</span>
+<span class="c">    ports:</span>
+<span class="c">      - &quot;4001 …</span></code></pre></div>
+                <a class="readmore" href="/docker-certified-associate.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/docker-commands.html" rel="bookmark"
+                           title="Permalink to Docker Commands">Docker Commands</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-01-18T00:00:00-06:00">
+                Published: Sat 18 January 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
+        </address>
+<p>In <a href="/category/certifications.html">Certifications</a>.</p>
+<p>tags: <a href="/tag/docker.html">Docker</a> </p>
+</footer><!-- /.post-info -->                <h3>Docker</h3>
+<div class="highlight"><pre><span></span><code>docker run dans-container
+</code></pre></div>
+
+<p>Is equivalent too</p>
+<div class="highlight"><pre><span></span><code>docker create dans-container
+docker start dans-container
+</code></pre></div>
+
+<p>If:</p>
+<div class="highlight"><pre><span></span><code>docker run busybox ping google.com
+</code></pre></div>
+
+<p>To view that container still running:</p>
+<div class="highlight"><pre><span></span><code>docker ps
+docker ps --all
+</code></pre></div>
+
+<p>To stop container: <code>docker stop</code> tries to cleanup, <code>docker kill</code> is more brutal.</p>
+<div class="highlight"><pre><span></span><code>docker stop containerid
+docker <span class="nb">kill</span> containerid …</code></pre></div>
+                <a class="readmore" href="/docker-commands.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/linux-privilege-escalation.html" rel="bookmark"
+                           title="Permalink to Linux Privilege Escalation">Linux Privilege Escalation</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-11-01T00:00:00-05:00">
+                Published: Fri 01 November 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
+        </address>
+<p>In <a href="/category/certifications.html">Certifications</a>.</p>
+<p>tags: <a href="/tag/oscp.html">OSCP</a> </p>
+</footer><!-- /.post-info -->                <div class="highlight"><pre><span></span><code><span class="n">privesc_linux</span>
+<span class="n">UPGRADE</span> <span class="n">SHELL</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import pty; pty.spawn(&quot;bin/bash&quot;)&#39;</span>
+<span class="n">ctrl</span><span class="o">-</span><span class="n">Z</span>
+<span class="n">stty</span> <span class="n">raw</span> <span class="o">-</span><span class="n">echo</span>
+<span class="n">fg</span>
+</code></pre></div>
+
+<p>Enumerate and run this:</p>
+<p><code>which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2&gt;/dev/null</code></p>
+<p>If you don’t see a compiler such as GCC …</p>
+                <a class="readmore" href="/linux-privilege-escalation.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/windows-privilege-escalation.html" rel="bookmark"
+                           title="Permalink to Windows Privilege Escalation">Windows Privilege Escalation</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-11-01T00:00:00-05:00">
+                Published: Fri 01 November 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/daniel-haggerty.html">Daniel Haggerty</a>
+        </address>
+<p>In <a href="/category/certifications.html">Certifications</a>.</p>
+<p>tags: <a href="/tag/oscp.html">OSCP</a> </p>
+</footer><!-- /.post-info -->                <div class="highlight"><pre><span></span><code><span class="err">icacls scsiaccess.exe</span>
+<span class="err">...</span>
+<span class="c">Everyone: (I)(F)</span>
+</code></pre></div>
+
+<p>crosscompile useradd.c
+i686-w64-mingw32-gcc -o scsiaccess.exe useradd.c
+wce -w
+fgdump.exe
+type 127.0.0.1.pwdump
+john --wordlist=/usr/share/wordlists/rockyou.txt 127.0.0.1.pwdump
+Is there python on dev windows machine
+Use pyinstaller on dev windows machine …</p>
+                <a class="readmore" href="/windows-privilege-escalation.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->
 <p class="paginator">
-    Page 1 / 3
+    Page 1 / 2
         <a href="/author/daniel-haggerty2.html">&raquo;</a>
-        <a href="/author/daniel-haggerty3.html">&#8649;</a>
+        <a href="/author/daniel-haggerty2.html">&#8649;</a>
 </p>
                 </section><!-- /#content -->
         <section id="extras" class="body">
