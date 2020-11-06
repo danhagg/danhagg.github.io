@@ -85,7 +85,7 @@ Open Immunity Debugger and attach SLMail to it; Make sure that Immunity debugger
 <h3>2. Control EIP</h3>
 <p>Next we need to locate the exact bytes at which the Extended Instruction Pointer (EIP) is overwritten. The EIP tells the computer where in memory to execute the next command. If we can find where the EIP is we can exchange those bytes at the EIP with a memory address containing our reverse shellcode. So, instead of sending a string of 2700 <strong>A</strong>s, we send a specially crafted string of 2700 characters. Each sequence of 4 letters in this string is unique. We can simply determine how far along the 2700 charcaters the unique 4 letter overwrite the EIP. 
 2a. We use a Metasploit script to generate the unique string as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="err">/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 2700</span>
+<div class="highlight"><pre><span></span><code>/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l <span class="m">2700</span>
 </code></pre></div>
 
 <p>We swap out the buffer in the python script. Prior to resending the exploit we have to restart SLMail on the target and reattach to Immunity debugger. This will be the case after each exploit attempt. Now we resend with the following buffer...</p>
@@ -126,21 +126,20 @@ Immunity debugger can execute certain modules to help find JMP ESPs in memory as
 1. No memory protection such as DEP and ASLR. 
 2. No bad characters in memory range.</p>
 <p>With SLMail running. Into the Immunity debugger command line enter:</p>
-<div class="highlight"><pre><span></span><code><span class="sx">!mona modules</span>
+<div class="highlight"><pre><span></span><code>!mona modules
 </code></pre></div>
 
 <p><strong>!mona</strong> module identified the SLMFC.DLL as not being affected by any memory protection schemes and not being rebased on each reboot. Therefore, the DLL will always load to same address. Use mona again to find a JMP ESP (or equivalent opcode) instruction within this DLL, and identify its memory address.<br>
 In Immunity Debugger:</p>
-<div class="highlight"><pre><span></span><code><span class="err">Use Metasploit NASM Shell ruby script to find the opcode for jmp esp.</span>
-<span class="err">```bash</span>
-<span class="err">/usr/share/metasploit-framework/tools/exploit/nasm_shell.rb </span>
-<span class="err">nasm &gt; jmp esp </span>
-<span class="err">FFE4</span>
+<p>Use Metasploit NASM Shell ruby script to find the opcode for jmp esp.</p>
+<div class="highlight"><pre><span></span><code>/usr/share/metasploit-framework/tools/exploit/nasm_shell.rb 
+nasm &gt; jmp esp 
+FFE4
 </code></pre></div>
 
 <p>Now search addresses for FFE4. Remember the memory address needs to be free of bad characters. 
 Back in Immunity Debugger command line.</p>
-<div class="highlight"><pre><span></span><code><span class="sx">!mona find –s “\xff\xe4” –m slmfc.dll</span>
+<div class="highlight"><pre><span></span><code>!mona find –s “<span class="se">\x</span>ff<span class="se">\x</span>e4” –m slmfc.dll
 </code></pre></div>
 
 <p>The address <strong>0x5f4a358f</strong> looks good (no bad characters).
@@ -210,7 +209,7 @@ Replace the EIP (was <strong>BBBB</strong> previously) in the buffer string of t
 </code></pre></div>
 
 <p>In Kali Terminal 2</p>
-<div class="highlight"><pre><span></span><code><span class="err">python pop3_exploit.py</span>
+<div class="highlight"><pre><span></span><code>python pop3_exploit.py
 </code></pre></div>
 
 <p>Hopefully, Terminal 1 will now give you your reverse shell onto the Windows VM. We have developed an exploit for any similar Windows machine running Seattle Lab Mail.</p>

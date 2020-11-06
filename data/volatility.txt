@@ -1,0 +1,25 @@
+Pg. 130
+volatility.exe -f Win10x64-1607.dmp imageinfo
+volatility.exe -f Win10x64-1607.dmp imageinfo >> C:\imageinfo.txt
+
+Pg. 131
+Volatility.exe -f Win10x64-1607.dmp --profile=Win10x64_14393 kdbgscan
+
+Pg. 131
+Volatility.exe -f Win10x64-1607.dmp --profile=Win10x64_14393 psscan
+
+Pg. 133
+volatility.exe -h
+
+Pg. 134
+Volatility.exe --conf-file=config.txt pslist >> pslist.txt
+Volatility.exe --conf-file=config.txt netscan >> netscan.txt
+Volatility.exe --conf-file=config.txt psxview >> psxview.txt
+Volatility.exe --conf-file=config.txt getsids >> getsids.txt
+Volatility.exe --conf-file=config.txt filescan >> filescan.txt
+
+Pg. 191
+lsadump::sam /system:SYSTEM_e /SAM:SAM_e
+
+Pg. 193
+Hashcat64.exe -a 0 -m 1000 NTLM.txt DICTIONARY.txt

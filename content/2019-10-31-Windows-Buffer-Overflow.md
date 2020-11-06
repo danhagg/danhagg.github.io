@@ -59,7 +59,7 @@ The SLMail app should crash and the EIP register in Immunity should be filled wi
 ### 2. Control EIP
 Next we need to locate the exact bytes at which the Extended Instruction Pointer (EIP) is overwritten. The EIP tells the computer where in memory to execute the next command. If we can find where the EIP is we can exchange those bytes at the EIP with a memory address containing our reverse shellcode. So, instead of sending a string of 2700 **A**s, we send a specially crafted string of 2700 characters. Each sequence of 4 letters in this string is unique. We can simply determine how far along the 2700 charcaters the unique 4 letter overwrite the EIP. 
 2a. We use a Metasploit script to generate the unique string as follows:
-```
+```bash
 /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 2700
 ```
 We swap out the buffer in the python script. Prior to resending the exploit we have to restart SLMail on the target and reattach to Immunity debugger. This will be the case after each exploit attempt. Now we resend with the following buffer...
@@ -108,12 +108,12 @@ Immunity debugger can execute certain modules to help find JMP ESPs in memory as
 2. No bad characters in memory range.
 
 With SLMail running. Into the Immunity debugger command line enter:
-```
+```bash
 !mona modules
 ```
 **!mona** module identified the SLMFC.DLL as not being affected by any memory protection schemes and not being rebased on each reboot. Therefore, the DLL will always load to same address. Use mona again to find a JMP ESP (or equivalent opcode) instruction within this DLL, and identify its memory address.  
 In Immunity Debugger:
-```
+
 Use Metasploit NASM Shell ruby script to find the opcode for jmp esp.
 ```bash
 /usr/share/metasploit-framework/tools/exploit/nasm_shell.rb 
@@ -122,7 +122,7 @@ FFE4
 ```
 Now search addresses for FFE4. Remember the memory address needs to be free of bad characters. 
 Back in Immunity Debugger command line.
-```
+```bash
 !mona find –s “\xff\xe4” –m slmfc.dll
 ``` 	
 The address **0x5f4a358f** looks good (no bad characters).
@@ -199,7 +199,7 @@ nc –nlvp 443
 ```
 
 In Kali Terminal 2
-```
+```bash
 python pop3_exploit.py
 ```
 

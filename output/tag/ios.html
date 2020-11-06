@@ -62,13 +62,14 @@
 - Unique Device Identifier or UDID (uniquely ID each device Apple).</p>
 <h3>UDID</h3>
 <ul>
+<li>The UDID is a 40-character alphanumeric value.</li>
 <li>Hashed unique values on device: chip ID, Wi-Fi/Bluetooth MAC</li>
+<li>UDID = SHA1(serial + IMEI or ECID + WiFiMac + BluetoothMac)</li>
 <li>The UDID is used by Apple to track devices. </li>
 <li>Uniquely identify a backup on PC. <ul>
 <li>If iOS plugged: UDID stored in Windows registry</li>
 </ul>
 </li>
-<li>The UDID is a 40-character alphanumeric value.</li>
 <li>There are two ways to find out a devices UDID:<ol>
 <li>Unlocked/paired to PC: When iOS device connected iTunes can show UDID: device properties and clicking on Serial No. == UDID</li>
 <li>Run <strong>devmgmt.msc</strong> (with iphone plugged in)<ul>
@@ -79,17 +80,14 @@
 </li>
 </ol>
 </li>
-<li>USB Devices Artifact: Device Class ID: “Filter column”. <strong>Apple</strong> or <strong>05AC</strong> </li>
+<li><strong>Apple</strong> or <strong>05AC</strong> </li>
 </ul>
 <h2>3. iTunes Backups</h2>
 <ul>
-<li>
-<p>iTunes tend to backup to PC's at following location:
-<strong>C:\Users<username>\AppData\Roaming\Apple Computer\MobileSync\Backup</strong></p>
-</li>
-<li>
-<p>May be possible to find multiple copies of same device under separate users.</p>
-</li>
+<li>iOS backups on a PC almost identical to data on device</li>
+<li>iTunes tend to backup to PC's at following location:
+<strong>C:\Users<username>\AppData\Roaming\Apple Computer\MobileSync\Backup</strong></li>
+<li>May be possible to find multiple copies of same device under separate users.</li>
 <li>\Backup\ folder, subfolder folders for each backed-up device/UDID. </li>
 <li>A UDID may be listed multiple times: appended by a 24hr date/time.</li>
 <li>Files will have no file extension &amp; represent a file on the iOS device. </li>
@@ -99,19 +97,35 @@
 </ul>
 </li>
 <li>Apple calculates hash using domain followed by the rest of the path. </li>
-<li>eg, <strong>/private/var/mobile/Library/SMS/sms.db</strong> is represented in the backup as HomeDomain-Library/SMS/sms.db whose hash is <strong>3d0d7e5fb2ce288813306e4d4636395e047a3d28</strong></li>
+<li>eg, <strong>/private/var/mobile/Library/SMS/sms.db</strong> is represented in the backup as <strong>HomeDomain-Library/SMS/sms.db</strong> whose hash is <strong>3d0d7e5fb2ce288813306e4d4636395e047a3d28</strong></li>
 <li>This hash reflect the SQLite database containing these messages.</li>
 <li>It will be a common hash for many devices</li>
 <li>A list of all paths &amp; domains can be found in the <strong>manifest.mbdb</strong> file.</li>
-<li>iOS 10, Apple changed from <strong>.mbdb</strong> file to SQLite db <strong>Manifest.db</strong>.</li>
-<li>There are three .plist (property) files on PC where Apple device was backed up. </li>
-<li>Manifest.plist, Status.plist, Info.plist reflect info from device. </li>
+<li>iOS 10, Apple changed from <strong>.mbdb</strong> file to SQLite db <strong>Manifest.db</strong>.<ul>
+<li><strong>Manifest.db</strong> contains two tables (Files and Properties)</li>
+<li><strong>Files</strong> table contains the following fields<ul>
+<li><strong>fileID</strong> SHA1 hash for the object</li>
+<li><strong>domain</strong> domain the object belongs to</li>
+<li><strong>relativePath</strong> path from domain to object</li>
+<li><strong>flags</strong> is encrypted, is file, is folder</li>
+<li><strong>file</strong> binary plistfile stored as binary large object (BLOB)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Along with organizational files and SHA1-files there are three property list files <ul>
+<li>Manifest.plist </li>
+<li>Status.plist </li>
+<li>Info.plist </li>
+</ul>
+</li>
 <li>These files do not belong on device itself but contain info about device<ol>
-<li>Info.plist is an XML file:<ul>
+<li><strong>Info.plist</strong> is an XML file:<ul>
+<li>Static header 8-bytes of <strong>bplist00</strong></li>
 <li>Device Name</li>
 <li>Display Name</li>
 <li>GUID</li>
-<li>ICCID</li>
+<li>ICCID (Integrated Circuit Card Identifier)</li>
 <li>IMEI</li>
 <li>Last Backup Date</li>
 <li>Phone Number</li>
@@ -124,13 +138,17 @@
 <li>List of Applications in Library</li>
 </ul>
 </li>
-<li>Manifest.plist is a binary file: <ul>
+<li><strong>Manifest.plist</strong> is a binary file: <ul>
 <li>whether or not the backup is encrypted</li>
 <li>UDID of the device</li>
 <li>whether or not a passcode was set on the device</li>
+<li>Application data</li>
+<li>Applications key including bundle ID, bundle version</li>
+<li><strong>WasPasswordSet</strong> </li>
+<li><strong>IsEnrypted</strong> (was backup encryption enabled)</li>
 </ul>
 </li>
-<li>Status.plist file<ul>
+<li><strong>Status.plist</strong> file<ul>
 <li>UDID</li>
 <li>the state of the backup</li>
 <li>whether or not it is a full backup.</li>
@@ -138,6 +156,11 @@
 </li>
 </ol>
 </li>
+</ul>
+<h3>Domains</h3>
+<ul>
+<li>All the domains are located in <strong>Domains.plist</strong> stored in <strong>/system/library/backup</strong>.</li>
+<li>This file is not backed up</li>
 </ul>
 <h3>Encrypted backups</h3>
 <ul>
@@ -220,10 +243,45 @@
 </ul>
 </li>
 <li>This <strong>plist</strong> may contain a ton of data. It is up to the third-party developer as to what information is stored in this <strong>plist</strong></li>
-<li>Can use a third-party app to find Buble Ids such as <a href="https://offcornerdev.com/bundleid.html">OffCornerDev</a></li>
+<li>
+<p>Can use a third-party app to find Bundle Ids such as <a href="https://offcornerdev.com/bundleid.html">OffCornerDev</a></p>
+</li>
+<li>
+<p>Majority of data on iPhones comes from the directory <strong>/private/var/mobile</strong></p>
+</li>
+<li><strong>/Library/</strong> which holds most of the core user data; </li>
+<li><strong>/Media/</strong> camera roll, pictures, and videos on the device;</li>
+<li><strong>/Containers/</strong> third-party and core application data on the device.</li>
+<li>Both types of property list files will store text data and Base-64 encoded data. </li>
+<li>They may use the base-64 data to store other property list files, pictures, videos, or just additional text stores. </li>
+<li>Binary and XML plist files: <ul>
+<li>store user and configuration info. eg previous connections to wifi networks</li>
+</ul>
+</li>
+<li>Also used in 3rd-party app data to store configuration info for each app (eg usernames, install date/times, last opened date/times etc)</li>
+<li>iOS uses plist files as registry files Contacts, Call Logs, SMS/iMessages</li>
+<li>Emails, Web History, and more are stored within SQLite databases.</li>
+<li>plist xml header/footer:
+    &lt;?xml version=”1.0” encoding=”UTF-8”?&gt;
+    &lt;!DOCTYPE plist SYSTEM “file://localhost/System/Library/DTDs/ PropertyList.dtd”&gt;
+    <plist version=”1.0>.
+    </plist></li>
+<li><strong>plist</strong> binary header <strong>bplist00</strong> </li>
+<li>SQLite3 header <strong>SQLite format3</strong> in ASCII<ul>
+<li>iOS uses SQLite version 3.7 which means they use write-ahead logs</li>
+</ul>
+</li>
 </ul>
 <h2>10. Anatomy of an application</h2>
-<p>plist carving</p>                </article>
+<ul>
+<li>Third-party <strong>plist</strong> files may contyain plain-text passwords</li>
+</ul>
+<h3>Binary plist carving</h3>
+<ul>
+<li>Export the plist</li>
+<li>Eaxamine in HxD</li>
+<li><a href="https://github.com/pug4N6/plist_carver">plist carver</a></li>
+</ul>                </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>

