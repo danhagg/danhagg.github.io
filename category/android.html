@@ -37,7 +37,101 @@
 <p>tags: <a href="/tag/android.html">Android</a> <a href="/tag/artifacts.html">Artifacts</a> </p>
 </footer><!-- /.post-info --><p>Android phones do not immediately upgrades but rollouts tend to be taken up slowly (months to years).</p>
 <p>Google is developer but manufacturers and carriers also have a role in upgrade process</p>
-<p>Android devices now have full device encryption</p>                </article>
+<p>Android devices now have full device encryption</p>
+<h3>Android partitions include...</h3>
+<ul>
+<li><strong>/boot</strong></li>
+<li><strong>/system</strong></li>
+<li><strong>/recovery</strong></li>
+<li><strong>/data</strong> or <strong>/userdata</strong></li>
+<li><strong>/cache</strong></li>
+<li><strong>/misc</strong></li>
+<li><strong>/sdcard</strong></li>
+<li><strong>/sd-ext</strong></li>
+</ul>
+<p>Vendors may also specify device specific partitions. Not all partitions contain files or data.</p>
+<ul>
+<li><strong>/system</strong><ul>
+<li>Contains actual OS of Android other than kernel and ramdisk</li>
+<li>Contains built-in system and vendor applications</li>
+</ul>
+</li>
+<li><strong>/boot</strong><ul>
+<li>Contains kernel and ramdisk</li>
+</ul>
+</li>
+<li><strong>/recovery</strong><ul>
+<li>Alternative boot partition. Allows for recovery and naintenance including wiping <strong>/data</strong></li>
+<li>Can be utilized to gain privileged access</li>
+</ul>
+</li>
+<li><strong>/cache</strong><ul>
+<li>Application components/data</li>
+<li>May store some system data for applications to access</li>
+<li>Can be wiped without loss of functionality</li>
+</ul>
+</li>
+<li><strong>/data</strong><ul>
+<li>Core user data</li>
+<li>Third-party applications</li>
+<li>Lots of juicy information in here for digital forensics</li>
+</ul>
+</li>
+</ul>
+<p>In the <strong>/data</strong> folder applications are sorted by Application ID.
+Java package naming convention
+- Companies use their reversed Internet domain name to begin their package names—for example, com.example.mypackage for a package named mypackage created by a programmer at example.com.</p>
+<ul>
+<li><strong>/userdata/data</strong> is credential-encrypted storage</li>
+<li><strong>/user_de/0</strong> is device encrypted storage<ul>
+<li>0 is first user on device</li>
+</ul>
+</li>
+</ul>
+<h2>Contacts</h2>
+<ul>
+<li>Stored at <strong>/data/com.android.providers.contacts/databases/contacts2.db</strong></li>
+<li>Tables<ul>
+<li><strong>accounts</strong><ul>
+<li>Account name <strong>myemail@gmail.com</strong></li>
+<li>Account type <strong>com.google</strong></li>
+</ul>
+</li>
+<li><strong>raw_contacts</strong><ul>
+<li>Display name for contact</li>
+<li>Time of last interaction with said contact</li>
+</ul>
+</li>
+<li><strong>data</strong><ul>
+<li>Phone numbers</li>
+<li>Addresses</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Call Logs</h2>
+<ul>
+<li>Stored at <strong>/data/com.android.providers.contacts/databases/contacts2.db</strong></li>
+<li>Tables<ul>
+<li><strong>accounts</strong><ul>
+<li>Account name <strong>myemail@gmail.com</strong></li>
+<li>Account type <strong>com.google</strong></li>
+</ul>
+</li>
+<li><strong>raw_contacts</strong><ul>
+<li>Display name for contact</li>
+<li>Time of last interaction with said contact</li>
+</ul>
+</li>
+<li><strong>data</strong><ul>
+<li>Phone numbers</li>
+<li>Addresses</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>                </article>
             </aside><!-- /#featured -->
         <section id="extras" class="body">
                 <div class="social">

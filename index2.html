@@ -27,7 +27,7 @@
             <li><article class="hentry">
                 <header>
                     <h1><a href="/linux-buffer-overflow.html" rel="bookmark"
-                           title="Permalink to Linux Buffer Overflow">Linux Buffer Overflow</a></h1>
+                           title="Permalink to Linux Buffer Overflow (Crossfire)">Linux Buffer Overflow (Crossfire)</a></h1>
                 </header>
 
                 <div class="entry-content">
@@ -41,12 +41,12 @@
         </address>
 <p>In <a href="/category/certifications.html">Certifications</a>.</p>
 <p>tags: <a href="/tag/oscp.html">OSCP</a> </p>
-</footer><!-- /.post-info -->                <h1>Linux Buffer Overflow (Crossfire)</h1>
-<p>Download a version of the vulnerable app Crossfire</p>
-<h3>Setup safe environment: iptables only allow traffic from loopback interface=targetip</h3>
-<p>iptables –A, -p, -d, -j # Append, protocol, destination, jump
-crossfire listens on port 13327
-iptables -A INPUT -p tcp --destination-port 13327 ! -d 127.0.0.1 -j …</p>
+</footer><!-- /.post-info -->                <p>Download a version of the vulnerable app Crossfire</p>
+<h2>Setup safe environment: iptables only allow traffic from loopback interface=targetip</h2>
+<div class="highlight"><pre><span></span><code>iptables –A, -p, -d, -j <span class="c1"># Append, protocol, destination, jump</span>
+crossfire listens on port <span class="m">13327</span>
+iptables -A INPUT -p tcp --destination-port <span class="m">13327</span> <span class="se">\!</span> -d <span class="m">127</span>.0.0.1 -j DROP
+iptables -A INPUT …</code></pre></div>
                 <a class="readmore" href="/linux-buffer-overflow.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
