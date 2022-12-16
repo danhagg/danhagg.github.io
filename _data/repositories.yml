@@ -3,7 +3,7 @@ github_users:
 
 github_repos:
   - alshedivat/al-folio
-  - deviantony / docker-elk
+  - deviantony/docker-elk
   - BC-SECURITY/Empire
   - Velocidex/velociraptor
   - weslambert/velociraptor-docker

@@ -1,3 +1,8 @@
+Generate a token with all boxes checked
+
+The main branch is published. So if u are working on a "dev" branch u need to pull into "main"
+
+
 https://dev.to/trentyang/how-to-setup-google-domain-for-github-pages-1p58
 
 # al-folio
